@@ -1,0 +1,15 @@
+services:
+  biinge-app:
+    build:
+      context: .
+      # target: biinge-app
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+networks:
+  default:
+    name: biinge-network
+    external: true
