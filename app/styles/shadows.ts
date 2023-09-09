@@ -1,5 +1,5 @@
-import {Platform} from 'react-native';
-import colors from './colors';
+import { Platform } from "react-native"
+import colors from "./colors"
 
 export const shadows = Platform.select({
   ios: {
@@ -14,4 +14,4 @@ export const shadows = Platform.select({
   android: {
     elevation: 3,
   },
-});
+})
