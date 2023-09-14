@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react"
 import { useApp, useAuth, useQuery, useRealm, useUser } from "@realm/react"
 import { Pressable, StyleSheet, Text } from "react-native"
 
-import { Task } from "./models/Task"
-import { TaskManager } from "./components/TaskManager"
-import { buttonStyles } from "./styles/button"
-import { shadows } from "./styles/shadows"
-import colors from "./styles/colors"
-import { OfflineModeButton } from "./components/OfflineModeButton"
+import { Task } from "models/Task"
+import { TaskManager } from "components/TaskManager"
+import { buttonStyles } from "styles/button"
+import { shadows } from "styles/shadows"
+import colors from "styles/colors"
+import { OfflineModeButton } from "components/OfflineModeButton"
 
 export const AppSync: React.FC = () => {
   const realm = useRealm()

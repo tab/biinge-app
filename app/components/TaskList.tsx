@@ -2,8 +2,8 @@ import React from "react"
 import { View, FlatList, StyleSheet } from "react-native"
 import { Realm } from "@realm/react"
 
-import { Task } from "../models/Task"
-import { TaskItem } from "./TaskItem"
+import { Task } from "models/Task"
+import { TaskItem } from "components/TaskItem"
 
 type TaskListProps = {
   tasks: Realm.Results<Task & Realm.Object>

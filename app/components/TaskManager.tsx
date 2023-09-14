@@ -1,13 +1,13 @@
 import React, { useCallback } from "react"
 import { View, StyleSheet, Switch, Text } from "react-native"
 
-import { Task } from "../models/Task"
-import { IntroText } from "./IntroText"
-import { AddTaskForm } from "./AddTaskForm"
-import TaskList from "./TaskList"
+import { Task } from "models/Task"
+import { IntroText } from "components/IntroText"
+import { AddTaskForm } from "components/AddTaskForm"
+import TaskList from "components/TaskList"
 
 import { useRealm } from "@realm/react"
-import { shadows } from "../styles/shadows"
+import { shadows } from "styles/shadows"
 
 export const TaskManager: React.FC<{
   tasks: Realm.Results<Task & Realm.Object>
