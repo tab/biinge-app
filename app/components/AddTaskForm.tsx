@@ -8,9 +8,9 @@ import {
   StyleSheet,
 } from "react-native"
 
-import { buttonStyles } from "../styles/button"
-import colors from "../styles/colors"
-import { shadows } from "../styles/shadows"
+import { buttonStyles } from "styles/button"
+import colors from "styles/colors"
+import { shadows } from "styles/shadows"
 
 type AddTaskFormProps = {
   onSubmit: (description: string) => void

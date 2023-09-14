@@ -3,5 +3,12 @@ module.exports = {
   plugins: [
     "@realm/babel-plugin",
     // ["@babel/plugin-proposal-decorators", { legacy: true }],
+    [
+      "module-resolver",
+      {
+        root: ["./app"],
+        extensions: [".ios.ts", ".android.ts", ".ts", ".tsx", ".json"],
+      },
+    ],
   ],
 }

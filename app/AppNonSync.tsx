@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Task } from "./models/Task"
-import { TaskManager } from "./components/TaskManager"
+import { Task } from "models/Task"
+import { TaskManager } from "components/TaskManager"
 
 import { useQuery } from "@realm/react"
 
