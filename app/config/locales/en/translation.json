@@ -9,6 +9,9 @@
       },
       "profile": {
         "title": "Profile"
+      },
+      "movie": {
+        "title": "Movie"
       }
     }
   }

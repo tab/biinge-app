@@ -24,6 +24,23 @@ const DiscoverScreen = ({ componentId }: Props) => {
           })
         }
       />
+      <Button
+        title="Open Movie Screen"
+        onPress={() =>
+          Navigation.showModal({
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: "com.biinge.Movie",
+                    passProps: { id: "tt0075686" },
+                  },
+                },
+              ],
+            },
+          })
+        }
+      />
     </View>
   )
 }

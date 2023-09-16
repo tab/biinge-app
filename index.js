@@ -6,13 +6,12 @@ import "react-native-get-random-values"
 import { Navigation } from "react-native-navigation"
 import { Provider } from "react-redux"
 
-import { Store } from "./app/redux/Store"
+import { Store } from "redux/Store"
 
-// import App from "App"
-
-import Discover, { DISCOVER_SCREEN } from "./app/screens/Discover"
-import Search, { SEARCH_SCREEN } from "./app/screens/Search"
-import Profile, { PROFILE_SCREEN } from "./app/screens/Profile"
+import Discover, { DISCOVER_SCREEN } from "screens/Discover"
+import Search, { SEARCH_SCREEN } from "screens/Search"
+import Profile, { PROFILE_SCREEN } from "screens/Profile"
+import Movie, { MOVIE_SCREEN } from "screens/Movie"
 
 Navigation.registerComponent(
   DISCOVER_SCREEN.name,
@@ -44,9 +43,19 @@ Navigation.registerComponent(
   () => Profile,
 )
 
+Navigation.registerComponent(
+  MOVIE_SCREEN.name,
+  () => (props) => (
+    <Provider store={Store}>
+      <Movie {...props} />
+    </Provider>
+  ),
+  () => Movie,
+)
+
 Navigation.setDefaultOptions({
   statusBar: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   topBar: {
     title: {
