@@ -11,17 +11,6 @@ const SearchScreen = () => {
   )
 }
 
-SearchScreen.options = {
-  topBar: {
-    title: {
-      text: i18n.t("screens.search.title"),
-    },
-  },
-  bottomTab: {
-    text: i18n.t("screens.search.title"),
-  },
-}
-
 export const SEARCH_SCREEN = {
   name: "com.biinge.Search",
   title: i18n.t("screens.search.title"),

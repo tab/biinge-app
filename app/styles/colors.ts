@@ -5,6 +5,13 @@ const colors = {
   gray: "#B5B5B5",
   white: "#FFFFFF",
   black: "#000000",
+  raisinBlack: "#221f1f",
+  graniteGray: "#666666",
+  orangeYellow: "#eec01e",
+  gunmetal: "#2b2835",
+  americanSilver: "#d1cecf",
+  darkCandyAppleRed: "#9f0909",
+  palmLeaf: "#699d3a",
 }
 
 export default colors

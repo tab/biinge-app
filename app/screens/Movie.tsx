@@ -1,9 +1,11 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
-import { View, Text, StyleSheet } from "react-native"
+import { SafeAreaView, ScrollView } from "react-native"
 
-import i18n from "config/i18n"
 import { useMovie } from "hocs/useMovie"
+import Poster from "components/Movie/Poster"
+import Content from "components/Movie/Content"
+import { layoutStyles } from "styles"
 import { MovieType } from "types"
 
 type Props = {
@@ -11,44 +13,23 @@ type Props = {
   movie: MovieType
 }
 
-const MovieScreen = ({ id, movie }: Props) => {
-  console.log("--- props ---")
-  console.log(id)
-  console.log(movie)
-
+const MovieScreen = ({ movie }: Props) => {
   return (
-    <View style={styles.root}>
-      <Text>{movie.title}</Text>
-      <Text>{movie.year}</Text>
-      <Text>{movie.plot}</Text>
-      <Text>{movie.image}</Text>
-    </View>
+    <SafeAreaView style={layoutStyles.root}>
+      <ScrollView
+        contentContainerStyle={null}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
+      >
+        <Poster image={movie.image} rating={movie.rating} />
+        <Content movie={movie} />
+      </ScrollView>
+    </SafeAreaView>
   )
-}
-
-MovieScreen.options = {
-  topBar: {
-    title: {
-      text: i18n.t("screens.movie.title"),
-    },
-  },
-  bottomTab: {
-    text: i18n.t("screens.movie.title"),
-  },
 }
 
 export const MOVIE_SCREEN = {
   name: "com.biinge.Movie",
-  title: i18n.t("screens.movie.title"),
 }
 
 export default compose<ComponentType>(useMovie)(MovieScreen)
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "whitesmoke",
-  },
-})

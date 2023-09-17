@@ -25,7 +25,7 @@ const DiscoverScreen = ({ componentId }: Props) => {
         }
       />
       <Button
-        title="Open Movie Screen"
+        title="Annie Hall"
         onPress={() =>
           Navigation.showModal({
             stack: {
@@ -34,6 +34,17 @@ const DiscoverScreen = ({ componentId }: Props) => {
                   component: {
                     name: "com.biinge.Movie",
                     passProps: { id: "tt0075686" },
+                    options: {
+                      topBar: {
+                        visible: false,
+                      },
+                      bottomTabs: {
+                        visible: false,
+                      },
+                      modal: {
+                        swipeToDismiss: true,
+                      },
+                    },
                   },
                 },
               ],
@@ -43,17 +54,6 @@ const DiscoverScreen = ({ componentId }: Props) => {
       />
     </View>
   )
-}
-
-DiscoverScreen.options = {
-  topBar: {
-    title: {
-      text: i18n.t("screens.discover.title"),
-    },
-  },
-  bottomTab: {
-    text: i18n.t("screens.discover.title"),
-  },
 }
 
 export const DISCOVER_SCREEN = {

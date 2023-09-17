@@ -11,17 +11,6 @@ const ProfileScreen = () => {
   )
 }
 
-ProfileScreen.options = {
-  topBar: {
-    title: {
-      text: i18n.t("screens.profile.title"),
-    },
-  },
-  bottomTab: {
-    text: i18n.t("screens.profile.title"),
-  },
-}
-
 export const PROFILE_SCREEN = {
   name: "com.biinge.Profile",
   title: i18n.t("screens.profile.title"),
