@@ -10,8 +10,31 @@
       "profile": {
         "title": "Profile"
       },
-      "movie": {
-        "title": "Movie"
+      "media": {
+        "title": "Media"
+      }
+    },
+    "media": {
+      "actions": {
+        "want": {
+          "title": "Want"
+        },
+        "watched": {
+          "title": "Watched"
+        }
+      }
+    },
+    "actions": {
+      "want": {
+        "add": "Move to Want",
+        "remove": "Remove from Want"
+      },
+      "watched": {
+        "add": "Move to Watched",
+        "remove": "Remove from Watched"
+      },
+      "cancel": {
+        "title": "Cancel"
       }
     }
   }

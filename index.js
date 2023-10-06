@@ -6,22 +6,27 @@ import "react-native-get-random-values"
 import { Navigation } from "react-native-navigation"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { Provider } from "react-redux"
+import { RealmProvider } from "@realm/react"
 
 import { Store } from "redux/Store"
+import { Schemas } from "./app/models/index"
 
 import Discover, { DISCOVER_SCREEN } from "screens/Discover"
 import Search, { SEARCH_SCREEN } from "screens/Search"
 import Profile, { PROFILE_SCREEN } from "screens/Profile"
-import Movie, { MOVIE_SCREEN } from "screens/Movie"
+import Media, { MEDIA_SCREEN } from "screens/Media"
+import Overlay, { OVERLAY_SCREEN } from "screens/Overlay"
 
 import colors from "styles/colors"
 
 Navigation.registerComponent(
   DISCOVER_SCREEN.name,
   () => (props) => (
-    <Provider store={Store}>
-      <Discover {...props} />
-    </Provider>
+    <RealmProvider schema={Schemas}>
+      <Provider store={Store}>
+        <Discover {...props} />
+      </Provider>
+    </RealmProvider>
   ),
   () => Discover,
 )
@@ -29,9 +34,11 @@ Navigation.registerComponent(
 Navigation.registerComponent(
   SEARCH_SCREEN.name,
   () => (props) => (
-    <Provider store={Store}>
-      <Search {...props} />
-    </Provider>
+    <RealmProvider schema={Schemas}>
+      <Provider store={Store}>
+        <Search {...props} />
+      </Provider>
+    </RealmProvider>
   ),
   () => Search,
 )
@@ -39,21 +46,37 @@ Navigation.registerComponent(
 Navigation.registerComponent(
   PROFILE_SCREEN.name,
   () => (props) => (
-    <Provider store={Store}>
-      <Profile {...props} />
-    </Provider>
+    <RealmProvider schema={Schemas}>
+      <Provider store={Store}>
+        <Profile {...props} />
+      </Provider>
+    </RealmProvider>
   ),
   () => Profile,
 )
 
 Navigation.registerComponent(
-  MOVIE_SCREEN.name,
+  MEDIA_SCREEN.name,
   () => (props) => (
-    <Provider store={Store}>
-      <Movie {...props} />
-    </Provider>
+    <RealmProvider schema={Schemas}>
+      <Provider store={Store}>
+        <Media {...props} />
+      </Provider>
+    </RealmProvider>
   ),
-  () => Movie,
+  () => Media,
+)
+
+Navigation.registerComponent(
+  OVERLAY_SCREEN.name,
+  () => (props) => (
+    <RealmProvider schema={Schemas}>
+      <Provider store={Store}>
+        <Overlay {...props} />
+      </Provider>
+    </RealmProvider>
+  ),
+  () => Overlay,
 )
 
 Navigation.setDefaultOptions({

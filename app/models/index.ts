@@ -1,4 +1,6 @@
 import { Task } from "models/Task"
-import { Movie } from "models/Movie"
 
-export const schemas = [Task, Movie]
+import { BacklogModel } from "models/Backlog"
+import { MediaListModel, MediaModel } from "models/Media"
+
+export const Schemas = [Task, BacklogModel, MediaListModel, MediaModel]

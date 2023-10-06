@@ -1,16 +1,18 @@
 import React from "react"
-import { View, Image, Text } from "react-native"
+import { View, Image } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 
-import { posterStyles, ratingStyles } from "styles"
-import { RatingType } from "types"
+import { posterStyles } from "styles"
+import Rating from "components/Media/Rating"
+import ContentRating from "components/Media/ContentRating"
 
 type Props = {
   image: string
-  rating: RatingType
+  contentRating: string
+  star: number
 }
 
-const PosterComponent = ({ image, rating }: Props) => {
+const PosterComponent = ({ image, contentRating, star }: Props) => {
   return (
     <View style={posterStyles.container}>
       <Image
@@ -26,9 +28,8 @@ const PosterComponent = ({ image, rating }: Props) => {
           "rgba(0, 0, 0, 0.6) 0%",
         ]}
       />
-      <View style={ratingStyles.container}>
-        <Text style={ratingStyles.rating}>{rating.star}</Text>
-      </View>
+      <Rating star={star} />
+      <ContentRating contentRating={contentRating} />
     </View>
   )
 }

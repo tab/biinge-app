@@ -1,8 +1,9 @@
 import React from "react"
-import { View, Text, Button, StyleSheet } from "react-native"
+import { View, Button, StyleSheet } from "react-native"
 import { Navigation } from "react-native-navigation"
 
 import i18n from "config/i18n"
+import { MEDIA_SCREEN } from "screens/Media"
 
 type Props = {
   componentId: string
@@ -11,8 +12,6 @@ type Props = {
 const DiscoverScreen = ({ componentId }: Props) => {
   return (
     <View style={styles.root}>
-      <Text>{i18n.t("screens.discover.title")}</Text>
-      <Text>Hello React Native Navigation 👋</Text>
       <Button
         title="Push Search Screen"
         color="#710ce3"
@@ -32,8 +31,64 @@ const DiscoverScreen = ({ componentId }: Props) => {
               children: [
                 {
                   component: {
-                    name: "com.biinge.Movie",
+                    name: MEDIA_SCREEN.name,
                     passProps: { id: "tt0075686" },
+                    options: {
+                      topBar: {
+                        visible: false,
+                      },
+                      bottomTabs: {
+                        visible: false,
+                      },
+                      modal: {
+                        swipeToDismiss: true,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          })
+        }
+      />
+      <Button
+        title="The Card Counter"
+        onPress={() =>
+          Navigation.showModal({
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: MEDIA_SCREEN.name,
+                    passProps: { id: "tt11196036" },
+                    options: {
+                      topBar: {
+                        visible: false,
+                      },
+                      bottomTabs: {
+                        visible: false,
+                      },
+                      modal: {
+                        swipeToDismiss: true,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          })
+        }
+      />
+      <Button
+        title="Foundation"
+        onPress={() =>
+          Navigation.showModal({
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: MEDIA_SCREEN.name,
+                    passProps: { id: "tt0804484" },
                     options: {
                       topBar: {
                         visible: false,

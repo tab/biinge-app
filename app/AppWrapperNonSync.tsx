@@ -5,13 +5,13 @@ import colors from "styles/colors"
 import { AppNonSync } from "AppNonSync"
 
 import { RealmProvider } from "@realm/react"
-import { schemas } from "models"
+import { Schemas } from "models"
 
 export const AppWrapperNonSync = () => {
   // If sync is disabled, setup the app without any sync functionality and return early
   return (
     <SafeAreaView style={styles.screen}>
-      <RealmProvider schema={schemas}>
+      <RealmProvider schema={Schemas}>
         <AppNonSync />
       </RealmProvider>
     </SafeAreaView>

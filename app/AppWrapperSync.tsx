@@ -2,7 +2,7 @@ import React from "react"
 import { AppProvider, UserProvider } from "@realm/react"
 import { SafeAreaView, StyleSheet } from "react-native"
 
-import { schemas } from "models"
+import { Schemas } from "models"
 import { LoginScreen } from "components/LoginScreen"
 import colors from "styles/colors"
 import { AppSync } from "AppSync"
@@ -19,7 +19,7 @@ export const AppWrapperSync: React.FC<{
       <AppProvider id={appId}>
         <UserProvider fallback={<LoginScreen />}>
           <RealmProvider
-            schema={schemas}
+            schema={Schemas}
             sync={{
               flexible: true,
               existingRealmFileBehavior: {

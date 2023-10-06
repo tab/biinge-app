@@ -1,7 +1,9 @@
 import { combineReducers } from "redux"
 
-import movieReducer from "redux/features/movie/movieSlice"
+import mediaReducer from "redux/features/media/mediaSlice"
+import mediaMenuReducer from "redux/features/media/mediaMenuSlice"
 
 export const features = combineReducers({
-  movie: movieReducer,
+  media: mediaReducer,
+  mediaMenu: mediaMenuReducer,
 })
