@@ -9,7 +9,6 @@ export const buttonStyles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: "center",
     padding: 15,
-    marginHorizontal: 5,
   },
   title: {
     color: colors.white,

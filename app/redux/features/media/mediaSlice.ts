@@ -32,11 +32,9 @@ export const mediaSlice = createSlice({
   },
 })
 
-export const {
-  selectTotal,
-  selectAll: selectMedias,
-  selectById: selectMediaById,
-} = mediaAdapter.getSelectors((state: RootState) => state.features.media)
+export const { selectTotal, selectAll, selectById } = mediaAdapter.getSelectors(
+  (state: RootState) => state.features.media,
+)
 
 export const selectFetchStatus = (state: RootState) =>
   state.features.media.fetchStatus

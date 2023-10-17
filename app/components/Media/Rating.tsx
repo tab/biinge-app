@@ -6,14 +6,14 @@ import { ratingStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
-  star: number
+  children: React.ReactNode
 }
 
-const RatingComponent = ({ star }: Props) => {
+const RatingComponent = ({ children }: Props) => {
   return (
     <View style={ratingStyles.container}>
       <Icon name="star" size={20} color={colors.orangeYellow} />
-      <Text style={ratingStyles.text}>{star}</Text>
+      <Text style={ratingStyles.text}>{children}</Text>
     </View>
   )
 }

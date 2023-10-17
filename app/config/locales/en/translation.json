@@ -12,6 +12,12 @@
       },
       "media": {
         "title": "Media"
+      },
+      "want": {
+        "title": "Want"
+      },
+      "watched": {
+        "title": "Watched"
       }
     },
     "media": {
@@ -35,6 +41,38 @@
       },
       "cancel": {
         "title": "Cancel"
+      }
+    },
+    "badge": {
+      "want": {
+        "title": "want"
+      },
+      "watched": {
+        "title": "watched"
+      }
+    },
+    "nav": {
+      "want": {
+        "title": "Want"
+      },
+      "watched": {
+        "title": "Watched"
+      },
+      "series": {
+        "title": "Series"
+      }
+    },
+    "empty": {
+      "title": "There are no results"
+    },
+    "search": {
+      "form": {
+        "placeholder": {
+          "title": "Search..."
+        },
+        "submit": {
+          "title": "Search"
+        }
       }
     }
   }

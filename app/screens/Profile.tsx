@@ -1,28 +1,18 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { SafeAreaView } from "react-native"
 
 import i18n from "config/i18n"
+import { layoutStyles } from "styles"
 
 const ProfileScreen = () => {
-  return (
-    <View style={styles.root}>
-      <Text>{i18n.t("screens.profile.title")}</Text>
-    </View>
-  )
+  return <SafeAreaView style={layoutStyles.root}></SafeAreaView>
 }
 
 export const PROFILE_SCREEN = {
+  id: "PROFILE_SCREEN",
+  index: 2,
   name: "com.biinge.Profile",
   title: i18n.t("screens.profile.title"),
 }
 
 export default ProfileScreen
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "whitesmoke",
-  },
-})

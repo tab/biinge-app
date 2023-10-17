@@ -12,7 +12,7 @@ export class MediaListModel extends Realm.Object<MediaListModel> {
   }
 }
 
-export class MediaModel extends Realm.Object<MediaModel> {
+export class Media extends Realm.Object<Media> {
   id!: string
   title!: string
   image!: string
@@ -30,7 +30,7 @@ export class MediaModel extends Realm.Object<MediaModel> {
   updatedAt: Date = new Date()
 
   MediaSchema = {
-    name: "MediaModel",
+    name: "Media",
     properties: {
       id: "string",
       title: "string",

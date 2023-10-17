@@ -1,25 +1,27 @@
 import React from "react"
-import { View, Image } from "react-native"
+import { View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
+import { useTranslation } from "react-i18next"
 
 import { posterStyles } from "styles"
+import Image from "components/ui/Image"
 import Rating from "components/Media/Rating"
+import Badge from "components/Media/Badge"
 import ContentRating from "components/Media/ContentRating"
+import { Media } from "models/Media"
 
 type Props = {
-  image: string
-  contentRating: string
-  star: number
+  item: Media
 }
 
-const PosterComponent = ({ image, contentRating, star }: Props) => {
+const PosterComponent = ({
+  item: { image, contentRating, star, want, watched },
+}: Props) => {
+  const { t } = useTranslation()
+
   return (
     <View style={posterStyles.container}>
-      <Image
-        style={posterStyles.image}
-        resizeMode="cover"
-        source={{ uri: image }}
-      />
+      <Image style={posterStyles.image} image={image} />
       <LinearGradient
         style={posterStyles.gradient}
         colors={[
@@ -28,8 +30,11 @@ const PosterComponent = ({ image, contentRating, star }: Props) => {
           "rgba(0, 0, 0, 0.6) 0%",
         ]}
       />
-      <Rating star={star} />
-      <ContentRating contentRating={contentRating} />
+      <Rating>{star}</Rating>
+      {(want || watched) && (
+        <Badge>{want ? t("badge.want.title") : t("badge.watched.title")}</Badge>
+      )}
+      <ContentRating>{contentRating}</ContentRating>
     </View>
   )
 }

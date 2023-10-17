@@ -1,6 +1,3 @@
-import { Task } from "models/Task"
+import { MediaListModel, Media } from "models/Media"
 
-import { BacklogModel } from "models/Backlog"
-import { MediaListModel, MediaModel } from "models/Media"
-
-export const Schemas = [Task, BacklogModel, MediaListModel, MediaModel]
+export const Schemas = [MediaListModel, Media]

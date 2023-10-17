@@ -4,13 +4,13 @@ import { View, Text } from "react-native"
 import { contentRatingStyles } from "styles"
 
 type Props = {
-  contentRating: string
+  children: React.ReactNode
 }
 
-const ContentRatingComponent = ({ contentRating }: Props) => {
+const ContentRatingComponent = ({ children }: Props) => {
   return (
     <View style={contentRatingStyles.container}>
-      <Text style={contentRatingStyles.text}>{contentRating}</Text>
+      <Text style={contentRatingStyles.text}>{children}</Text>
     </View>
   )
 }

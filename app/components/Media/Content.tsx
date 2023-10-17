@@ -1,30 +1,33 @@
 import React from "react"
 import { View, Text } from "react-native"
+import { Navigation } from "react-native-navigation"
 import { useRealm } from "@realm/react"
 import { useTranslation } from "react-i18next"
 
-import { useAppDispatch } from "redux/hooks"
-import { openMenu } from "redux/features/media/mediaMenuSlice"
-import { layoutStyles, mediaStyles, activeButtonStyles } from "styles"
-import { MediaModel } from "models/Media"
+import {
+  layoutStyles,
+  mediaStyles,
+  activeButtonStyles,
+  actionButtonStyles,
+} from "styles"
+import { Media } from "models/Media"
 import Button from "components/ui/Button"
-import { MediaType } from "types"
+import { MEDIA_MENU_OVERLAY } from "screens/Overlay/MediaMenu"
 
 type Props = {
-  media: MediaType
+  item: Media
 }
 
-const ContentComponent = ({ media }: Props) => {
-  const dispatch = useAppDispatch()
+const ContentComponent = ({ item }: Props) => {
   const { t } = useTranslation()
   const realm = useRealm()
 
-  const { id, title, year, plot, want, watched } = media
+  const { id, title, year, plot, want, watched } = item
 
   const handleWant = () => {
     realm.write(() => {
       realm.create(
-        MediaModel,
+        Media,
         {
           id: id,
           want: true,
@@ -38,7 +41,7 @@ const ContentComponent = ({ media }: Props) => {
   const handleWatched = () => {
     realm.write(() => {
       realm.create(
-        MediaModel,
+        Media,
         {
           id: id,
           watched: true,
@@ -50,7 +53,20 @@ const ContentComponent = ({ media }: Props) => {
   }
 
   const handleOverlay = () => {
-    dispatch(openMenu())
+    Navigation.showOverlay({
+      component: {
+        name: MEDIA_MENU_OVERLAY.name,
+        passProps: { id: id, item: item },
+        options: {
+          layout: {
+            componentBackgroundColor: "transparent",
+          },
+          overlay: {
+            interceptTouchOutside: true,
+          },
+        },
+      },
+    })
   }
 
   return (
@@ -61,24 +77,20 @@ const ContentComponent = ({ media }: Props) => {
       </View>
       <View style={mediaStyles.actions}>
         {want || watched ? (
-          <>
-            {want && (
-              <Button style={activeButtonStyles.button} onPress={handleOverlay}>
-                {t("media.actions.want.title")}
-              </Button>
-            )}
-            {watched && (
-              <Button style={activeButtonStyles.button} onPress={handleOverlay}>
-                {t("media.actions.watched.title")}
-              </Button>
-            )}
-          </>
+          <Button style={activeButtonStyles.button} onPress={handleOverlay}>
+            {want
+              ? t("media.actions.want.title")
+              : t("media.actions.watched.title")}
+          </Button>
         ) : (
           <>
-            <Button onPress={handleWant}>
+            <Button style={actionButtonStyles.buttonWant} onPress={handleWant}>
               {t("media.actions.want.title")}
             </Button>
-            <Button onPress={handleWatched}>
+            <Button
+              style={actionButtonStyles.buttonWatched}
+              onPress={handleWatched}
+            >
               {t("media.actions.watched.title")}
             </Button>
           </>

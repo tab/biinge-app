@@ -7,7 +7,7 @@ import { cacheableFetchMedia as fetchMedia } from "redux/features/media/mediaThu
 import { selectFetchStatus } from "redux/features/media/mediaSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
 import { MediaType, ImdbResultType } from "types"
-import { MediaModel } from "models/Media"
+import { Media } from "models/Media"
 
 type Props = {
   id: string
@@ -16,11 +16,11 @@ type Props = {
 export function useMedia<GenericType>(
   WrappedComponent: React.ComponentType<GenericType>,
 ) {
-  const UseMedia = ({ id, ...restProps }: Props) => {
+  const UseMedia = ({ id = "", ...restProps }: Props) => {
     const dispatch = useAppDispatch()
     const realm = useRealm()
 
-    const media = useObject(MediaModel, id)
+    const item = useObject(Media, id)
 
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
@@ -32,8 +32,7 @@ export function useMedia<GenericType>(
               return handleSaveMedia(result)
             })
             .catch((error) => {
-              console.log("--- error ---")
-              console.log(error)
+              console.log(`FETCH ERROR: ${error}`)
             })
         }
       }
@@ -64,7 +63,7 @@ export function useMedia<GenericType>(
         title,
         image,
         contentType,
-        contentRating,
+        contentRating: contentRating ? contentRating : "–",
         plot,
         year,
         star,
@@ -75,11 +74,10 @@ export function useMedia<GenericType>(
 
       try {
         realm.write(() => {
-          realm.create(MediaModel, payload, true)
+          realm.create(Media, payload, true)
         })
       } catch (error) {
-        console.log("--- error ---")
-        console.log(error)
+        console.log(`REALM CREATE ERROR: ${error}`)
       }
     }
 
@@ -101,16 +99,16 @@ export function useMedia<GenericType>(
 
     return (
       <LoadableEntity
-        entity={media}
+        entity={item}
         fetchStatus={fetchStatus}
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(media: MediaType) => (
+        {(item: MediaType) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
-            media={media}
+            item={item}
             fetchStatus={fetchStatus}
           />
         )}
