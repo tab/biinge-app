@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native"
 import colors from "styles/colors"
 
-const { height, width } = Dimensions.get("window")
+const { width } = Dimensions.get("window")
 
 export const searchFormStyles = StyleSheet.create({
   container: {
@@ -52,39 +52,5 @@ export const searchFormStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 17,
     fontWeight: "bold",
-  },
-})
-
-export const searchEmptyStyles = StyleSheet.create({
-  root: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: height / 1.4,
-    width: "100%",
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "85%",
-  },
-  title: {
-    color: colors.black,
-    fontWeight: "700",
-    fontSize: 22,
-    lineHeight: 34,
-    textAlign: "center",
-  },
-  subTitle: {
-    color: colors.grayDark,
-    fontWeight: "400",
-    fontSize: 18,
-    lineHeight: 22,
-    textAlign: "center",
-  },
-  emoji: {
-    fontSize: 44,
   },
 })

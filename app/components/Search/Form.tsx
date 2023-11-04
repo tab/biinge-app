@@ -32,7 +32,7 @@ const SearchForm = ({ initialValues, onSubmit }: Props) => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ setFieldValue, values }) => (
           <View style={searchFormStyles.group}>
-            <Icon name="search" color={colors.grayDark} size={24} />
+            <Icon name="search" color={colors.gray} size={24} />
             <TextInput
               autoCapitalize="none"
               autoComplete="off"

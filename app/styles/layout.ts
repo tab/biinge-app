@@ -1,11 +1,10 @@
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet } from "react-native"
 import colors from "styles/colors"
-
-const { height } = Dimensions.get("window")
 
 export const layoutStyles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: colors.black,
   },
   content: {
     flex: 1,
@@ -97,17 +96,13 @@ export const listStyles = StyleSheet.create({
 export const listEmptyStyles = StyleSheet.create({
   root: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: height / 1.4,
-    width: "100%",
   },
   content: {
+    backgroundColor: colors.white,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    width: "85%",
+    padding: 15,
   },
   title: {
     color: colors.black,

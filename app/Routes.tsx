@@ -21,14 +21,15 @@ const transparentModalOptions = {
 
 const RouterComponent = () => {
   const scheme = useColorScheme()
+  const dark = scheme === "dark"
 
   return (
-    <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
+    <NavigationContainer theme={dark ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName={DISCOVER_SCREEN.name}>
         <Stack.Group
           screenOptions={{
             headerShown: false,
-            statusBarStyle: "auto",
+            statusBarStyle: "light",
           }}
         >
           <Stack.Screen name={DISCOVER_SCREEN.name} component={Discover} />

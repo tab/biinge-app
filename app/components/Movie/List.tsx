@@ -3,7 +3,7 @@ import { FlatList, View, Text } from "react-native"
 
 import i18n from "config/i18n"
 import { Movie } from "models"
-import { listStyles, searchEmptyStyles, listEmptyStyles } from "styles"
+import { listStyles, listEmptyStyles } from "styles"
 import Item from "components/Movie/ListItem"
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
 }
 
 const ListComponent = ({ items }: Props) => {
+  const empty = items.length === 0
+
   const renderHeader = () => {
     return <></>
   }
@@ -44,7 +46,9 @@ const ListComponent = ({ items }: Props) => {
   return (
     <FlatList
       style={listStyles.root}
-      contentContainerStyle={listStyles.content}
+      contentContainerStyle={
+        empty ? listEmptyStyles.content : listStyles.content
+      }
       numColumns={2}
       data={items}
       keyExtractor={(item) => item._id.toString()}
