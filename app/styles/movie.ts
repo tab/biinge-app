@@ -5,21 +5,27 @@ import colors from "styles/colors"
 const { height, width } = Dimensions.get("window")
 
 export const movieStyles = StyleSheet.create({
-  title: {
-    color: colors.raisinBlack,
-    fontSize: 26,
-    fontWeight: "700",
-    lineHeight: 28,
-    marginBottom: 2,
-  },
   row: {
     flexDirection: "row",
     flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  release: {
-    marginVertical: 15,
+  rowTitle: {
+    alignItems: "flex-start",
+    marginBottom: 7,
+  },
+  title: {
+    color: colors.raisinBlack,
+    fontSize: 26,
+    fontWeight: "700",
+    lineHeight: 28,
+  },
+  full: {
+    flexBasis: "100%",
+  },
+  short: {
+    flexBasis: "75%",
   },
   date: {
     color: colors.graniteGray,
@@ -84,20 +90,22 @@ export const actionStyles = StyleSheet.create({
 })
 
 export const ratingStyles = StyleSheet.create({
-  container: {
+  root: {
+    // position: "absolute",
+  },
+  content: {
+    // paddingVertical: 20,
+    // borderTopWidth: 0.5,
+    // borderColor: colors.americanSilver,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    // position: "absolute",
-    // bottom: 15,
-    // left: 15,
+    justifyContent: "flex-start",
   },
   text: {
     color: colors.raisinBlack,
     fontSize: 24,
-    fontWeight: "500",
-    // lineHeight: 30,
-    marginLeft: 7,
+    fontWeight: "800",
+    marginLeft: 5,
   },
 })
 
@@ -109,7 +117,7 @@ export const imdbLogoStyles = StyleSheet.create({
 })
 
 export const statusStyles = StyleSheet.create({
-  container: {
+  root: {
     borderColor: colors.gunmetal,
     borderWidth: 2,
     borderRadius: 50,

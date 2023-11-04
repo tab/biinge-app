@@ -9,7 +9,7 @@ type Props = {
 
 const StatusComponent = ({ children }: Props) => {
   return (
-    <View style={statusStyles.container}>
+    <View style={statusStyles.root}>
       <Text style={statusStyles.text}>{children}</Text>
     </View>
   )

@@ -1,7 +1,9 @@
 import React from "react"
-import { View, Image, Text } from "react-native"
+import { View, Text } from "react-native"
 
-import { ratingStyles, imdbLogoStyles } from "styles"
+import { ratingStyles } from "styles"
+import colors from "../../styles/colors"
+import Icon from "../ui/Icon"
 
 type Props = {
   children: React.ReactNode
@@ -9,12 +11,11 @@ type Props = {
 
 const RatingComponent = ({ children }: Props) => {
   return (
-    <View style={ratingStyles.container}>
-      <Image
-        style={imdbLogoStyles.image}
-        source={require("../../assets/icons/imdb.png")}
-      />
-      <Text style={ratingStyles.text}>{children}</Text>
+    <View style={ratingStyles.root}>
+      <View style={ratingStyles.content}>
+        <Icon name="star" color={colors.orangeYellow} size={20} />
+        <Text style={ratingStyles.text}>{children}</Text>
+      </View>
     </View>
   )
 }

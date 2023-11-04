@@ -17,10 +17,20 @@ const ContentComponent = ({ item }: Props) => {
 
   const { title, overview, vote_average, release_date, status } = item
 
+  const votes = vote_average > 0
+
   return (
     <View style={layoutStyles.content}>
-      <View style={movieStyles.row}>
-        <Text style={movieStyles.title}>{title}</Text>
+      <View style={[movieStyles.row, movieStyles.rowTitle]}>
+        <Text
+          style={[
+            movieStyles.title,
+            votes ? movieStyles.short : movieStyles.full,
+          ]}
+        >
+          {title}
+        </Text>
+        {votes && <Rating>{vote_average.toFixed(1)}</Rating>}
       </View>
       <View style={movieStyles.row}>
         <Text style={movieStyles.date}>{formatDate(release_date)}</Text>
@@ -34,10 +44,6 @@ const ContentComponent = ({ item }: Props) => {
           {t("movie.content.overview")}
         </Text>
         <Text style={contentStyles.text}>{overview}</Text>
-      </View>
-
-      <View style={{ display: "none" }}>
-        <Rating>{vote_average ? vote_average.toFixed(1) : "–"}</Rating>
       </View>
     </View>
   )
