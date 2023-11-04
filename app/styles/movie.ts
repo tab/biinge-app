@@ -39,6 +39,7 @@ export const posterStyles = StyleSheet.create({
   image: {
     alignSelf: "center",
     aspectRatio: "4/6",
+    backgroundColor: colors.americanSilver,
     borderRadius: 12,
     width: width * 0.7,
     shadowColor: colors.black,
