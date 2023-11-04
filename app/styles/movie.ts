@@ -83,28 +83,6 @@ export const actionStyles = StyleSheet.create({
   },
 })
 
-export const badgeStyles = StyleSheet.create({
-  container: {
-    backgroundColor: "rgba(43, 40, 53, 0.95)",
-    borderRadius: 50,
-    paddingVertical: 2,
-    paddingBottom: 4,
-    paddingHorizontal: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    top: 15,
-    right: 10,
-  },
-  text: {
-    color: colors.white,
-    fontSize: 14,
-    fontWeight: "400",
-    lineHeight: 21,
-  },
-})
-
 export const ratingStyles = StyleSheet.create({
   container: {
     flexDirection: "row",

@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { useTranslation } from "react-i18next"
 
+import { MovieContext } from "contexts/MovieContext"
 import { DETAILS_SCREEN } from "screens/Details"
 import Image from "components/ui/Image"
+import Badge from "components/ui/Badge"
 import { cardStyles } from "styles"
 import { SearchResult } from "types"
 
@@ -14,6 +17,12 @@ type Props = {
 
 const ListItemComponent = ({ item, index }: Props) => {
   const navigation = useNavigation()
+  const { t } = useTranslation()
+
+  const { inWantList, inWatchedList } = useContext(MovieContext)
+
+  const want = inWantList(item.id)
+  const watched = inWatchedList(item.id)
 
   const { title, poster_path } = item
 
@@ -37,6 +46,9 @@ const ListItemComponent = ({ item, index }: Props) => {
         title={title}
         path={poster_path}
       />
+      {(want || watched) && (
+        <Badge>{want ? t("badge.want.title") : t("badge.watched.title")}</Badge>
+      )}
     </Pressable>
   )
 }

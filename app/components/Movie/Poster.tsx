@@ -13,10 +13,6 @@ type Props = {
 const PosterComponent = ({ item }: Props) => {
   const { poster_path } = item
 
-  // {(want || watched) && (
-  //   <Badge>{want ? t("badge.want.title") : t("badge.watched.title")}</Badge>
-  // )}
-
   return (
     <View style={posterStyles.root}>
       <BlurView
