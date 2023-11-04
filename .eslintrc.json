@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "@react-native",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "semi": ["error", "never"],
+    "no-trailing-spaces": "error",
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "FunctionDeclaration": {
+          "parameters": "first"
+        },
+        "offsetTernaryExpressions": true,
+        "ignoredNodes": [
+          "TSIntersectionType",
+          "TSTypeParameterInstantiation",
+          "ConditionalExpression > CallExpression"
+        ],
+        "ignoreComments": true
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "spaced-comment": "error",
+    "quotes": ["error", "double"],
+    "object-curly-spacing": ["warn", "always"],
+    "camelcase": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "no-console": "warn",
+    "no-var": "warn",
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
+      }
+    ]
+  }
+}

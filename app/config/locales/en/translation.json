@@ -1,0 +1,126 @@
+{
+  "translation": {
+    "app": {
+      "name": "Biinge"
+    },
+    "login": {
+      "apple": {
+        "title": "Continue with Apple"
+      },
+      "google": {
+        "title": "Continue with Google"
+      },
+      "form": {
+        "email": {
+          "placeholder": {
+            "title": "Email"
+          }
+        },
+        "password": {
+          "placeholder": {
+            "title": "Password"
+          }
+        },
+        "submit": {
+          "title": "Login or Register"
+        }
+      },
+      "error": {
+        "title": "Invalid username or password"
+      }
+    },
+    "discover": {
+      "title": "Discover",
+      "nav": {
+        "want": {
+          "title": "Want"
+        },
+        "watched": {
+          "title": "Watched"
+        },
+        "series": {
+          "title": "Series"
+        }
+      },
+      "help": {
+        "emoji": "\uD83D\uDC4B\uD83C\uDFFB",
+        "title": "Your list is empty",
+        "subtitle": "Add movie or series into Want or Watched lists"
+      }
+    },
+    "search": {
+      "title": "Search",
+      "form": {
+        "placeholder": {
+          "title": "Search..."
+        },
+        "submit": {
+          "title": "Search"
+        }
+      },
+      "help": {
+        "emoji": "\uD83D\uDD75\uD83C\uDFFB\u200D♀️",
+        "title": "Start searching",
+        "subtitle": "Search for movies, series, and people"
+      },
+      "empty": {
+        "emoji": "\uD83E\uDD37\uD83C\uDFFB\u200D♀️",
+        "title": "Your search is over",
+        "subtitle": "There are no results"
+      }
+    },
+    "movie": {
+      "content": {
+        "overview": "Synopsis:"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "stats": {
+        "want":  {
+          "title": "want"
+        },
+        "watched":  {
+          "title": "watched"
+        }
+      },
+      "actions": {
+        "logOut": {
+          "title": "Logout"
+        }
+      }
+    },
+    "actions": {
+      "want": {
+        "title": "Want",
+        "add": "Move to Want",
+        "remove": "Remove from Want"
+      },
+      "watched": {
+        "title": "Watched",
+        "add": "Move to Watched",
+        "remove": "Remove from Watched"
+      },
+      "cancel": {
+        "title": "Cancel"
+      }
+    },
+    "badge": {
+      "want": {
+        "title": "want"
+      },
+      "watched": {
+        "title": "watched"
+      }
+    },
+    "validation": {
+      "field": {
+        "required": "{{field}} is required",
+        "invalid": "{{field}} is invalid"
+      },
+      "password": {
+        "toShort": "At least 8 characters"
+      }
+    }
+  }
+}
