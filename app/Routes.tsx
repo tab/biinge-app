@@ -5,11 +5,14 @@ import {
   DarkTheme,
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { HeaderBackground } from "@react-navigation/elements"
+import { useTranslation } from "react-i18next"
 
 import Discover, { DISCOVER_SCREEN } from "screens/Discover"
 import Search, { SEARCH_SCREEN } from "screens/Search"
 import Profile, { PROFILE_SCREEN } from "screens/Profile"
 import Details, { DETAILS_SCREEN } from "screens/Details"
+import colors from "styles/colors"
 
 const Stack = createNativeStackNavigator()
 
@@ -20,6 +23,8 @@ const transparentModalOptions = {
 }
 
 const RouterComponent = () => {
+  const { t } = useTranslation()
+
   const scheme = useColorScheme()
   const dark = scheme === "dark"
 
@@ -28,7 +33,11 @@ const RouterComponent = () => {
       <Stack.Navigator initialRouteName={DISCOVER_SCREEN.name}>
         <Stack.Group
           screenOptions={{
-            headerShown: false,
+            headerTitle: t("app.name"),
+            headerShadowVisible: false,
+            headerBackground: () => (
+              <HeaderBackground style={{ backgroundColor: colors.black }} />
+            ),
             statusBarStyle: "light",
           }}
         >
