@@ -1,5 +1,5 @@
-import React from "react"
-import { View, TextInput } from "react-native"
+import React, { useEffect, useState } from "react"
+import { View, TextInput, Keyboard } from "react-native"
 import { FormikErrors, FormikProps, withFormik } from "formik"
 import { useTranslation } from "react-i18next"
 
@@ -27,57 +27,77 @@ const LoginForm = ({
 }: Props) => {
   const { t } = useTranslation()
 
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardWillShow", () => {
+      setVisible(true)
+    })
+    const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
+      setVisible(false)
+    })
+
+    return () => {
+      showSubscription.remove()
+      hideSubscription.remove()
+    }
+  }, [])
+
   return (
-    <View style={loginFormStyles.root}>
-      <View style={loginFormStyles.content}>
-        <View style={loginFormStyles.group}>
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="email"
-            autoCorrect={false}
-            autoFocus={true}
-            allowFontScaling={false}
-            textContentType="emailAddress"
-            style={loginFormStyles.input}
-            placeholder={t("login.form.email.placeholder.title")}
-            placeholderTextColor={colors.gray}
-            onChangeText={(newValue: string) => {
-              setFieldValue("email", newValue)
-            }}
-          />
-          <InputError>{errors.email}</InputError>
-        </View>
-        <View style={loginFormStyles.group}>
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="password"
-            autoCorrect={false}
-            autoFocus={false}
-            allowFontScaling={false}
-            secureTextEntry
-            textContentType="password"
-            style={loginFormStyles.input}
-            placeholder={t("login.form.password.placeholder.title")}
-            placeholderTextColor={colors.gray}
-            onChangeText={(newValue: string) => {
-              setFieldValue("password", newValue)
-            }}
-          />
-          <InputError>{errors.password}</InputError>
-        </View>
-        <View style={loginFormStyles.actions}>
-          <Button
-            style={
-              isLoading
-                ? [loginFormStyles.submit, loginFormStyles.disabled]
-                : [loginFormStyles.submit]
-            }
-            disabled={isLoading}
-            onPress={handleSubmit}
-          >
-            {t("login.form.submit.title")}
-          </Button>
-        </View>
+    <View
+      style={
+        visible
+          ? [loginFormStyles.content, loginFormStyles.contentPadding]
+          : loginFormStyles.content
+      }
+    >
+      <View style={loginFormStyles.group}>
+        <TextInput
+          autoCapitalize="none"
+          autoComplete="email"
+          autoCorrect={false}
+          autoFocus={true}
+          allowFontScaling={false}
+          textContentType="emailAddress"
+          style={loginFormStyles.input}
+          placeholder={t("login.form.email.placeholder.title")}
+          placeholderTextColor={colors.gray}
+          onChangeText={(newValue: string) => {
+            setFieldValue("email", newValue)
+          }}
+        />
+        <InputError>{errors.email}</InputError>
+      </View>
+      <View style={loginFormStyles.group}>
+        <TextInput
+          autoCapitalize="none"
+          autoComplete="password"
+          autoCorrect={false}
+          autoFocus={false}
+          allowFontScaling={false}
+          secureTextEntry
+          textContentType="password"
+          style={loginFormStyles.input}
+          placeholder={t("login.form.password.placeholder.title")}
+          placeholderTextColor={colors.gray}
+          onChangeText={(newValue: string) => {
+            setFieldValue("password", newValue)
+          }}
+        />
+        <InputError>{errors.password}</InputError>
+      </View>
+      <View style={loginFormStyles.actions}>
+        <Button
+          style={
+            isLoading
+              ? [loginFormStyles.submit, loginFormStyles.disabled]
+              : [loginFormStyles.submit]
+          }
+          disabled={isLoading}
+          onPress={handleSubmit}
+        >
+          {t("login.form.submit.title")}
+        </Button>
       </View>
     </View>
   )

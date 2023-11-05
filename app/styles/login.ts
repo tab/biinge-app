@@ -6,38 +6,34 @@ export const loginStyles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    width: "100%",
-    height: "100%",
-  },
-  gradient: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     height: "100%",
+    width: "100%",
   },
-  content: {
+  button: {
     flex: 1,
-    paddingVertical: 24,
-    paddingHorizontal: 24,
-    backgroundColor: colors.white,
+    backgroundColor: "transparent",
+    width: "100%",
   },
 })
 
 export const loginFormStyles = StyleSheet.create({
   root: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "flex-end",
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
   content: {
     paddingHorizontal: 24,
-    paddingBottom: 50,
+    paddingBottom: 60,
     width: "100%",
+  },
+  contentPadding: {
+    paddingBottom: 24,
   },
   group: {
     marginBottom: 15,
