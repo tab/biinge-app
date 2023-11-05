@@ -33,12 +33,14 @@ export const movieStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: 20,
   },
-  overview: {},
+  overview: {
+    paddingBottom: 60,
+  },
 })
 
 export const posterStyles = StyleSheet.create({
   root: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
     paddingVertical: 24,
     paddingHorizontal: 36,
   },
@@ -197,10 +199,9 @@ export const overlayStyles = StyleSheet.create({
   },
   actions: {
     position: "absolute",
-    bottom: 5,
-    left: 5,
-    right: 5,
-    width: width - 10,
+    bottom: 24,
+    left: 15,
+    right: 15,
   },
   button: {
     backgroundColor: colors.raisinBlack,

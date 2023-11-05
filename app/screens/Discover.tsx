@@ -39,7 +39,7 @@ const DiscoverScreen = () => {
   }
 
   return (
-    <SafeAreaView style={layoutStyles.root}>
+    <SafeAreaView style={[layoutStyles.root, layoutStyles.bgDark]}>
       <View style={navStyles.root}>
         <View style={navStyles.list}>
           {TABS.map((page, index: number) => (

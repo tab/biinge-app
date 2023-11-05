@@ -37,7 +37,7 @@ const SearchModal = () => {
   }
 
   return (
-    <SafeAreaView style={layoutStyles.root}>
+    <SafeAreaView style={[layoutStyles.root, layoutStyles.bgLight]}>
       {/* @ts-ignore */}
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
       <List query={query} items={items} />

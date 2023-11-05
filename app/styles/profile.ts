@@ -30,7 +30,9 @@ export const profileStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
   },
-  actions: {},
+  actions: {
+    marginBottom: 15,
+  },
   logOut: {
     backgroundColor: colors.black,
   },

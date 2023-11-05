@@ -1,5 +1,5 @@
 import React from "react"
-import { SafeAreaView, View, Text } from "react-native"
+import { View, Text } from "react-native"
 import { useObject, useUser } from "@realm/react"
 import { useTranslation } from "react-i18next"
 
@@ -22,7 +22,7 @@ const ProfileScreen = () => {
   }
 
   return (
-    <SafeAreaView style={profileStyles.root}>
+    <View style={profileStyles.root}>
       <View style={profileStyles.content}>
         <View style={profileStyles.header}>
           <View style={profileStyles.section}>
@@ -55,7 +55,7 @@ const ProfileScreen = () => {
           </Button>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

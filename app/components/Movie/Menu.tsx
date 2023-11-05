@@ -1,5 +1,5 @@
 import React from "react"
-import { SafeAreaView, View } from "react-native"
+import { View, Pressable } from "react-native"
 import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
@@ -29,7 +29,7 @@ const MenuComponent = ({
   const handleCancel = () => onCancel()
 
   return (
-    <SafeAreaView style={overlayStyles.root}>
+    <View style={overlayStyles.root}>
       <BlurView
         style={overlayStyles.blur}
         blurType="dark"
@@ -84,7 +84,7 @@ const MenuComponent = ({
           {t("actions.cancel.title")}
         </Button>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
-import { SafeAreaView, ScrollView } from "react-native"
+import { View, ScrollView } from "react-native"
 
 import { useMovieDetails } from "hocs"
 import Poster from "components/Movie/Poster"
@@ -14,7 +14,7 @@ type Props = {
 
 const DetailsScreen = ({ item }: Props) => {
   return (
-    <SafeAreaView style={layoutStyles.root}>
+    <View style={[layoutStyles.root, layoutStyles.bgTransparent]}>
       <ScrollView
         contentContainerStyle={null}
         showsHorizontalScrollIndicator={false}
@@ -23,7 +23,7 @@ const DetailsScreen = ({ item }: Props) => {
         <Poster item={item} />
         <Content item={item} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 

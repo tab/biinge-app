@@ -4,7 +4,15 @@ import colors from "styles/colors"
 export const layoutStyles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  bgDark: {
     backgroundColor: colors.black,
+  },
+  bgLight: {
+    backgroundColor: colors.white,
+  },
+  bgTransparent: {
+    backgroundColor: "transparent",
   },
   content: {
     flex: 1,
