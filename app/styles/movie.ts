@@ -222,11 +222,15 @@ export const overlayStyles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  overlayButton: {
+    flex: 1,
+    backgroundColor: "transparent",
+    width: "100%",
+  },
   actions: {
-    position: "absolute",
-    bottom: 24,
-    left: 15,
-    right: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 22,
+    width: "100%",
   },
   button: {
     backgroundColor: colors.raisinBlack,

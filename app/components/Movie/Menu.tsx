@@ -1,6 +1,7 @@
 import React from "react"
-import { View, Pressable } from "react-native"
+import { Pressable } from "react-native"
 import { BlurView } from "@react-native-community/blur"
+import Animated, { FadeIn, FadeInDown } from "react-native-reanimated"
 import { useTranslation } from "react-i18next"
 
 import { overlayStyles } from "styles"
@@ -29,14 +30,15 @@ const MenuComponent = ({
   const handleCancel = () => onCancel()
 
   return (
-    <View style={overlayStyles.root}>
+    <Animated.View entering={FadeIn} style={overlayStyles.root}>
       <BlurView
         style={overlayStyles.blur}
         blurType="dark"
         blurAmount={10}
         reducedTransparencyFallbackColor={colors.white}
       />
-      <View style={overlayStyles.actions}>
+      <Pressable style={overlayStyles.overlayButton} onPress={handleCancel} />
+      <Animated.View entering={FadeInDown} style={overlayStyles.actions}>
         {want || watched ? (
           <>
             {want && (
@@ -83,8 +85,8 @@ const MenuComponent = ({
         >
           {t("actions.cancel.title")}
         </Button>
-      </View>
-    </View>
+      </Animated.View>
+    </Animated.View>
   )
 }
 
