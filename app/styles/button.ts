@@ -22,15 +22,3 @@ export const buttonStyles = StyleSheet.create({
     fontWeight: "bold",
   },
 })
-
-export const activeButtonStyles = StyleSheet.create({
-  button: {
-    ...buttonStyles.button,
-    backgroundColor: colors.orangeYellow,
-    width: "100%",
-  },
-  title: {
-    ...buttonStyles.title,
-    color: colors.white,
-  },
-})

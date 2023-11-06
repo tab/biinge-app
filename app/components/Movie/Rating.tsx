@@ -12,10 +12,8 @@ type Props = {
 const RatingComponent = ({ children }: Props) => {
   return (
     <View style={ratingStyles.root}>
-      <View style={ratingStyles.content}>
-        <Icon name="star" color={colors.orangeYellow} size={20} />
-        <Text style={ratingStyles.text}>{children}</Text>
-      </View>
+      <Icon name="star" color={colors.orangeYellow} size={20} />
+      <Text style={ratingStyles.text}>{children}</Text>
     </View>
   )
 }

@@ -93,12 +93,6 @@ export const actionStyles = StyleSheet.create({
 
 export const ratingStyles = StyleSheet.create({
   root: {
-    // position: "absolute",
-  },
-  content: {
-    // paddingVertical: 20,
-    // borderTopWidth: 0.5,
-    // borderColor: colors.americanSilver,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
@@ -140,13 +134,44 @@ export const statusStyles = StyleSheet.create({
 export const actionButtonStyles = StyleSheet.create({
   buttonWant: {
     ...buttonStyles.button,
-    marginRight: 5,
+    backgroundColor: colors.black,
+    marginRight: 7,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 1,
     width: "50%",
   },
   buttonWatched: {
     ...buttonStyles.button,
-    marginLeft: 5,
+    backgroundColor: colors.black,
+    marginLeft: 7,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    elevation: 1,
     width: "50%",
+  },
+  buttonActive: {
+    ...buttonStyles.button,
+    backgroundColor: colors.orangeYellow,
+    // shadowColor: colors.orangeYellow,
+    // shadowOffset: {
+    //   width: 1,
+    //   height: 3,
+    // },
+    // shadowOpacity: 0.5,
+    // shadowRadius: 5,
+    // elevation: 1,
+    width: "100%",
   },
 })
 
@@ -197,11 +222,15 @@ export const overlayStyles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  overlayButton: {
+    flex: 1,
+    backgroundColor: "transparent",
+    width: "100%",
+  },
   actions: {
-    position: "absolute",
-    bottom: 24,
-    left: 15,
-    right: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 22,
+    width: "100%",
   },
   button: {
     backgroundColor: colors.raisinBlack,

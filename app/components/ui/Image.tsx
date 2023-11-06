@@ -1,5 +1,6 @@
 import React from "react"
 import { View, Text, StyleProp, StyleSheet } from "react-native"
+import Animated, { FadeIn } from "react-native-reanimated"
 import FastImage from "react-native-fast-image"
 
 import { imageUrl } from "helpers/imageUrl"
@@ -15,7 +16,7 @@ type Props = {
 
 const ImageComponent = ({ title, path, size, style }: Props) => {
   return (
-    <View style={[style, styles.root]}>
+    <Animated.View entering={FadeIn} style={[style, styles.root]}>
       <View style={styles.content}>
         <Text style={styles.text}>{title}</Text>
       </View>
@@ -27,7 +28,7 @@ const ImageComponent = ({ title, path, size, style }: Props) => {
         }}
         resizeMode={FastImage.resizeMode.cover}
       />
-    </View>
+    </Animated.View>
   )
 }
 
