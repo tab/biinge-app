@@ -3,7 +3,7 @@ import { View, Modal } from "react-native"
 import { useTranslation } from "react-i18next"
 
 import { MovieContext } from "contexts/MovieContext"
-import { actionStyles, activeButtonStyles, actionButtonStyles } from "styles"
+import { actionStyles, actionButtonStyles } from "styles"
 import Button from "components/ui/Button"
 import Menu from "components/Movie/Menu"
 
@@ -47,7 +47,10 @@ const ActionsComponent = ({ item }: Props) => {
     <View style={actionStyles.root}>
       <View style={actionStyles.content}>
         {want || watched ? (
-          <Button style={activeButtonStyles.button} onPress={handleOverlay}>
+          <Button
+            style={actionButtonStyles.buttonActive}
+            onPress={handleOverlay}
+          >
             {want ? t("actions.want.title") : t("actions.watched.title")}
           </Button>
         ) : (
