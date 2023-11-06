@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { SafeAreaView } from "react-native"
+import { SafeAreaView, KeyboardAvoidingView, Platform } from "react-native"
 
 import i18n from "config/i18n"
 import { useAppDispatch, useAppSelector } from "redux/hooks"
@@ -7,7 +7,7 @@ import { searchMovie, resetSearchResults } from "redux/features/tmdb/tmdbThunk"
 import { selectAll, selectFetchStatus } from "redux/features/tmdb/tmdbSlice"
 import Form from "components/Search/Form"
 import List from "components/Search/List"
-import { layoutStyles } from "styles"
+import { layoutStyles, loginFormStyles } from "styles"
 import { SearchFormValues, SearchResultListType } from "types"
 
 const SearchModal = () => {
@@ -40,7 +40,12 @@ const SearchModal = () => {
     <SafeAreaView style={[layoutStyles.root, layoutStyles.bgLight]}>
       {/* @ts-ignore */}
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
-      <List query={query} items={items} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={loginFormStyles.root}
+      >
+        <List query={query} items={items} />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
