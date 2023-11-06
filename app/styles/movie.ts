@@ -163,14 +163,14 @@ export const actionButtonStyles = StyleSheet.create({
   buttonActive: {
     ...buttonStyles.button,
     backgroundColor: colors.orangeYellow,
-    shadowColor: colors.orangeYellow,
-    shadowOffset: {
-      width: 1,
-      height: 3,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-    elevation: 1,
+    // shadowColor: colors.orangeYellow,
+    // shadowOffset: {
+    //   width: 1,
+    //   height: 3,
+    // },
+    // shadowOpacity: 0.5,
+    // shadowRadius: 5,
+    // elevation: 1,
     width: "100%",
   },
 })
