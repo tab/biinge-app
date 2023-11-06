@@ -113,6 +113,17 @@
         "title": "watched"
       }
     },
+    "loading": {
+      "badRequest": {
+        "title": "Bad request"
+      },
+      "fetchError": {
+        "title": "Content loading error"
+      },
+      "internalError": {
+        "title": "Internal error"
+      }
+    },
     "validation": {
       "field": {
         "required": "{{field}} is required",

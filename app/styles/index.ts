@@ -1,9 +1,10 @@
 export * from "styles/layout"
 export * from "styles/avatar"
-export * from "styles/button"
 export * from "styles/badge"
+export * from "styles/button"
 export * from "styles/flash"
 export * from "styles/form"
+export * from "styles/loading"
 
 export * from "styles/login"
 export * from "styles/movie"

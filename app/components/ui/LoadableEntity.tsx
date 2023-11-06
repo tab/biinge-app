@@ -1,5 +1,6 @@
 import React from "react"
 import { Text } from "react-native"
+import { useTranslation } from "react-i18next"
 
 import { FetchStatusType } from "types"
 
@@ -19,11 +20,13 @@ const LoadableEntity = ({
   renderLoading,
   renderError,
 }: Props) => {
+  const { t } = useTranslation()
+
   if (fetchStatus.isFetching) {
     if (renderLoading) {
       return renderLoading()
     } else {
-      return <Text>InternalError</Text>
+      return <Text>{t("loading.internalError.title")}</Text>
     }
   }
 
@@ -31,7 +34,7 @@ const LoadableEntity = ({
     if (renderError) {
       return renderError()
     } else {
-      return <Text>Error</Text>
+      return <Text>{t("loading.fetchError.title")}</Text>
     }
   }
 
@@ -40,7 +43,7 @@ const LoadableEntity = ({
   } else if (renderError) {
     return renderError()
   } else {
-    return <Text>BadRequest</Text>
+    return <Text>{t("loading.badRequest.title")}</Text>
   }
 }
 
