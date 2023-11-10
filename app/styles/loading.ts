@@ -1,8 +1,15 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, Dimensions } from "react-native"
+
+const { height } = Dimensions.get("window")
 
 export const loadingStyles = StyleSheet.create({
   root: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    height: height,
+  },
+  content: {
     alignItems: "center",
     justifyContent: "center",
   },

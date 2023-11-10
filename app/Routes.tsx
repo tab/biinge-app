@@ -12,6 +12,7 @@ import Discover, { DISCOVER_SCREEN } from "screens/Discover"
 import Search, { SEARCH_SCREEN } from "screens/Search"
 import Profile, { PROFILE_SCREEN } from "screens/Profile"
 import Details, { DETAILS_SCREEN } from "screens/Details"
+import Person, { PERSON_SCREEN } from "screens/Person"
 import colors from "styles/colors"
 
 const Stack = createNativeStackNavigator()
@@ -54,6 +55,11 @@ const RouterComponent = () => {
           <Stack.Screen
             name={DETAILS_SCREEN.name}
             component={Details}
+            options={transparentModalOptions}
+          />
+          <Stack.Screen
+            name={PERSON_SCREEN.name}
+            component={Person}
             options={transparentModalOptions}
           />
         </Stack.Group>

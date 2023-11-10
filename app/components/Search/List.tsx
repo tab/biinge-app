@@ -60,7 +60,7 @@ const ListComponent = ({ query, items }: Props) => {
       }
       numColumns={2}
       data={items}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item, index: number) => index.toString()}
       renderItem={renderItem}
       ListHeaderComponent={renderHeader}
       ListFooterComponent={renderFooter}

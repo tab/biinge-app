@@ -5,7 +5,7 @@ import PagerView from "react-native-pager-view"
 import i18n from "config/i18n"
 import { MovieContext } from "contexts/MovieContext"
 import BottomTabBar from "components/Layout/BottomTabBar"
-import List from "components/Movie/List"
+import List from "components/ui/MovieList"
 import { layoutStyles, navStyles } from "styles"
 
 const DiscoverScreen = () => {
@@ -74,7 +74,7 @@ const DiscoverScreen = () => {
       >
         {TABS.map(({ id, items }) => (
           // @ts-ignore
-          <List key={id} items={items} />
+          <List key={id} showStatus={false} numColumns={2} items={items} />
         ))}
       </PagerView>
       <BottomTabBar />

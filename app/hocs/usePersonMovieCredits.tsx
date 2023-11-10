@@ -1,54 +1,58 @@
 import React, { useEffect } from "react"
 import { ActivityIndicator, View, Text } from "react-native"
-import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
 import { useAppDispatch, useAppSelector } from "redux/hooks"
-import { movieDetails } from "redux/features/tmdb/tmdbThunk"
+import { personMovieCredits } from "redux/features/tmdb/tmdbThunk"
+import { selectById as selectPersonById } from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import {
   selectById,
   selectFetchStatus,
-} from "redux/features/tmdb/tmdbMovieDetailsSlice"
+} from "redux/features/tmdb/tmdbPersonMovieCreditsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import { MovieDetails } from "types"
-import { loadingStyles } from "styles"
+import { PersonMovieCredits, PersonDetails } from "types"
+import { loadingStyles, layoutStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
   id: number
 }
 
-export function useMovieDetails<GenericType>(
+export function usePersonMovieCredits<GenericType>(
   WrappedComponent: React.ComponentType<GenericType>,
 ) {
-  const UseMovieDetails = ({ id, ...restProps }: Props) => {
+  const UsePersonMovieCredits = ({ id, ...restProps }: Props) => {
     const dispatch = useAppDispatch()
     const { t } = useTranslation()
 
+    const person = useAppSelector((state) =>
+      selectPersonById(state, id),
+    ) as PersonDetails
+
     const result = useAppSelector((state) =>
       selectById(state, id),
-    ) as MovieDetails
+    ) as PersonMovieCredits
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {
-        dispatch(movieDetails(id))
+        dispatch(personMovieCredits(id))
       }
     }, [])
 
     const renderLoader = () => {
       return (
-        <View style={loadingStyles.root}>
-          <BlurView
-            style={loadingStyles.blur}
-            blurType="light"
-            blurAmount={15}
-            reducedTransparencyFallbackColor={colors.white}
-          />
+        <View
+          style={[
+            layoutStyles.bgLight,
+            layoutStyles.roundCorners,
+            loadingStyles.root,
+          ]}
+        >
           <ActivityIndicator
             animating={true}
             size="small"
-            color={colors.white}
+            color={colors.black}
           />
         </View>
       )
@@ -69,11 +73,13 @@ export function useMovieDetails<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: MovieDetails) => (
+        {(result: PersonMovieCredits) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
-            item={result}
+            gender={person?.gender}
+            cast={result.cast}
+            crew={result.crew}
             fetchStatus={fetchStatus}
           />
         )}
@@ -81,5 +87,5 @@ export function useMovieDetails<GenericType>(
     )
   }
 
-  return UseMovieDetails
+  return UsePersonMovieCredits
 }

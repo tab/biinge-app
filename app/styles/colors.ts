@@ -11,6 +11,7 @@ const colors = {
   orangeYellow: "#eec01e",
   palmLeaf: "#699d3a",
   raisinBlack: "#221f1f",
+  spanishGray: "#999999",
   white: "#ffffff",
 }
 

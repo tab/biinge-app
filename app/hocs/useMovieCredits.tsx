@@ -1,16 +1,15 @@
 import React, { useEffect } from "react"
 import { ActivityIndicator, View, Text } from "react-native"
-import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
 import { useAppDispatch, useAppSelector } from "redux/hooks"
-import { movieDetails } from "redux/features/tmdb/tmdbThunk"
+import { movieCredits } from "redux/features/tmdb/tmdbThunk"
 import {
   selectById,
   selectFetchStatus,
-} from "redux/features/tmdb/tmdbMovieDetailsSlice"
+} from "redux/features/tmdb/tmdbMovieCreditsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import { MovieDetails } from "types"
+import { MovieCredits } from "types"
 import { loadingStyles } from "styles"
 import colors from "styles/colors"
 
@@ -18,37 +17,31 @@ type Props = {
   id: number
 }
 
-export function useMovieDetails<GenericType>(
+export function useMovieCredits<GenericType>(
   WrappedComponent: React.ComponentType<GenericType>,
 ) {
-  const UseMovieDetails = ({ id, ...restProps }: Props) => {
+  const UseMovieCredits = ({ id, ...restProps }: Props) => {
     const dispatch = useAppDispatch()
     const { t } = useTranslation()
 
     const result = useAppSelector((state) =>
       selectById(state, id),
-    ) as MovieDetails
+    ) as MovieCredits
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {
-        dispatch(movieDetails(id))
+        dispatch(movieCredits(id))
       }
     }, [])
 
     const renderLoader = () => {
       return (
-        <View style={loadingStyles.root}>
-          <BlurView
-            style={loadingStyles.blur}
-            blurType="light"
-            blurAmount={15}
-            reducedTransparencyFallbackColor={colors.white}
-          />
+        <View style={loadingStyles.content}>
           <ActivityIndicator
             animating={true}
             size="small"
-            color={colors.white}
+            color={colors.black}
           />
         </View>
       )
@@ -69,11 +62,11 @@ export function useMovieDetails<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: MovieDetails) => (
+        {(result: MovieCredits) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
-            item={result}
+            items={result.items}
             fetchStatus={fetchStatus}
           />
         )}
@@ -81,5 +74,5 @@ export function useMovieDetails<GenericType>(
     )
   }
 
-  return UseMovieDetails
+  return UseMovieCredits
 }

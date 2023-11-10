@@ -4,13 +4,13 @@ import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
 import { useAppDispatch, useAppSelector } from "redux/hooks"
-import { movieDetails } from "redux/features/tmdb/tmdbThunk"
+import { personDetails } from "redux/features/tmdb/tmdbThunk"
 import {
   selectById,
   selectFetchStatus,
-} from "redux/features/tmdb/tmdbMovieDetailsSlice"
+} from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import { MovieDetails } from "types"
+import { PersonDetails } from "types"
 import { loadingStyles } from "styles"
 import colors from "styles/colors"
 
@@ -18,21 +18,21 @@ type Props = {
   id: number
 }
 
-export function useMovieDetails<GenericType>(
+export function usePersonDetails<GenericType>(
   WrappedComponent: React.ComponentType<GenericType>,
 ) {
-  const UseMovieDetails = ({ id, ...restProps }: Props) => {
+  const UsePersonDetails = ({ id, ...restProps }: Props) => {
     const dispatch = useAppDispatch()
     const { t } = useTranslation()
 
     const result = useAppSelector((state) =>
       selectById(state, id),
-    ) as MovieDetails
+    ) as PersonDetails
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {
-        dispatch(movieDetails(id))
+        dispatch(personDetails(id))
       }
     }, [])
 
@@ -69,7 +69,7 @@ export function useMovieDetails<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: MovieDetails) => (
+        {(result: PersonDetails) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
@@ -81,5 +81,5 @@ export function useMovieDetails<GenericType>(
     )
   }
 
-  return UseMovieDetails
+  return UsePersonDetails
 }
