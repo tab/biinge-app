@@ -7,6 +7,7 @@ type Props = {
   style?: StyleProp<ViewStyle>
   textStyle?: StyleProp<TextStyle>
   disabled?: boolean
+  loading?: boolean
   children: React.ReactNode
   onPress: () => void
 }
@@ -15,13 +16,18 @@ const ButtonComponent = ({
   style,
   textStyle,
   disabled,
+  loading,
   children,
   onPress,
 }: Props) => {
   return (
     <Pressable
-      style={[buttonStyles.button, style]}
-      disabled={disabled}
+      style={
+        disabled || loading
+          ? [buttonStyles.button, buttonStyles.disabled, style]
+          : [buttonStyles.button, style]
+      }
+      disabled={disabled || loading}
       onPress={onPress}
     >
       <Text style={[buttonStyles.text, textStyle]}>{children}</Text>
@@ -31,6 +37,7 @@ const ButtonComponent = ({
 
 ButtonComponent.defaultProps = {
   disabled: false,
+  loading: false,
 }
 
 export default ButtonComponent
