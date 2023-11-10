@@ -5,36 +5,29 @@ import colors from "styles/colors"
 const { height, width } = Dimensions.get("window")
 
 export const movieStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  content: {
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+  },
   row: {
     flexDirection: "row",
     flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  rowTitle: {
-    alignItems: "flex-start",
-    marginBottom: 7,
-  },
-  title: {
-    color: colors.raisinBlack,
-    fontSize: 26,
-    fontWeight: "700",
-    lineHeight: 28,
-  },
-  full: {
-    flexBasis: "100%",
-  },
-  short: {
-    flexBasis: "75%",
-  },
   date: {
     color: colors.graniteGray,
-    fontSize: 18,
-    fontWeight: "500",
-    lineHeight: 20,
   },
   overview: {
-    paddingBottom: 60,
+    padding: 0,
+  },
+  overviewTitle: {
+    color: colors.graniteGray,
+    marginBottom: 7,
   },
 })
 
@@ -43,6 +36,8 @@ export const posterStyles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.7)",
     paddingVertical: 24,
     paddingHorizontal: 36,
+    paddingBottom: 48,
+    marginBottom: -24,
   },
   image: {
     alignSelf: "center",
@@ -75,6 +70,18 @@ export const posterStyles = StyleSheet.create({
   },
 })
 
+export const castStyles = StyleSheet.create({
+  root: {
+    backgroundColor: colors.white,
+    paddingBottom: 20,
+  },
+  title: {
+    color: colors.graniteGray,
+    marginBottom: 7,
+    paddingHorizontal: 15,
+  },
+})
+
 export const actionStyles = StyleSheet.create({
   root: {
     paddingVertical: 15,
@@ -101,14 +108,8 @@ export const ratingStyles = StyleSheet.create({
     color: colors.raisinBlack,
     fontSize: 24,
     fontWeight: "800",
+    lineHeight: 28,
     marginLeft: 5,
-  },
-})
-
-export const imdbLogoStyles = StyleSheet.create({
-  image: {
-    height: 32,
-    width: 64,
   },
 })
 
@@ -135,30 +136,32 @@ export const actionButtonStyles = StyleSheet.create({
   buttonWant: {
     ...buttonStyles.button,
     backgroundColor: colors.black,
-    marginRight: 7,
+    marinHorizontal: 5,
+    marginRight: 5,
     shadowColor: colors.black,
     shadowOffset: {
       width: 1,
-      height: 3,
+      height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.15,
     shadowRadius: 5,
     elevation: 1,
-    width: "50%",
+    width: "48%",
   },
   buttonWatched: {
     ...buttonStyles.button,
     backgroundColor: colors.black,
-    marginLeft: 7,
+    marinHorizontal: 5,
+    marginLeft: 5,
     shadowColor: colors.black,
     shadowOffset: {
       width: 1,
-      height: 3,
+      height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.15,
     shadowRadius: 5,
     elevation: 1,
-    width: "50%",
+    width: "48%",
   },
   buttonActive: {
     ...buttonStyles.button,
@@ -177,8 +180,10 @@ export const actionButtonStyles = StyleSheet.create({
 
 export const cardStyles = StyleSheet.create({
   container: {
-    flexBasis: width / 2,
-    padding: 15,
+    // padding: 15,
+    // width: width / 2,
+    flex: 1,
+    padding: 7,
   },
   image: {
     aspectRatio: "4/6",
@@ -193,12 +198,12 @@ export const cardStyles = StyleSheet.create({
     // elevation: 1,
   },
   even: {
-    paddingLeft: 10,
-    paddingBottom: 0,
+    // paddingLeft: 10,
+    // paddingBottom: 0,
   },
   odd: {
-    paddingRight: 10,
-    paddingBottom: 0,
+    // paddingRight: 10,
+    // paddingBottom: 0,
   },
   title: {
     fontSize: 14,

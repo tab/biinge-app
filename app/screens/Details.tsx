@@ -1,18 +1,18 @@
-import React, { ComponentType } from "react"
-import { compose } from "@reduxjs/toolkit"
+import React from "react"
 import { View, ScrollView } from "react-native"
 
-import { useMovieDetails } from "hocs"
-import Poster from "components/Movie/Poster"
 import Content from "components/Movie/Content"
+import People from "components/Movie/People"
 import { layoutStyles } from "styles"
-import { MovieDetails } from "types"
 
 type Props = {
-  item: MovieDetails
+  route: any
 }
 
-const DetailsScreen = ({ item }: Props) => {
+const DetailsScreen = ({ route }: Props) => {
+  const { params } = route
+  const { id } = params
+
   return (
     <View style={[layoutStyles.root, layoutStyles.bgTransparent]}>
       <ScrollView
@@ -20,8 +20,10 @@ const DetailsScreen = ({ item }: Props) => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={true}
       >
-        <Poster item={item} />
-        <Content item={item} />
+        {/* @ts-ignore */}
+        <Content id={id} />
+        {/* @ts-ignore */}
+        <People id={id} />
       </ScrollView>
     </View>
   )
@@ -32,4 +34,4 @@ export const DETAILS_SCREEN = {
   name: "com.biinge.Details",
 }
 
-export default compose<ComponentType>(useMovieDetails)(DetailsScreen)
+export default DetailsScreen

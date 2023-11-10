@@ -1,3 +1,9 @@
+export const TMDB_JOB_DIRECTOR = "Director"
+export const TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY = "Director of Photography"
+export const TMDB_JOB_SCREENPLAY = "Screenplay"
+export const TMDB_FEMALE_GENDER = 1
+export const TMDB_MALE_GENDER = 2
+
 export interface TMDBMovieDetails {
   id: number
   title: string
@@ -20,6 +26,62 @@ export interface TMDBMovieDetails {
   video: boolean
   vote_average: number
   vote_count: number
+}
+
+export interface TMDBPersonCast {
+  id: number
+  name: string
+  biography: string
+  adult: boolean
+  profile_path: string
+  popularity: number
+  character: string
+  order: number
+}
+
+export interface TMDBPersonCrew {
+  id: number
+  name: string
+  biography: string
+  adult: boolean
+  profile_path: string
+  popularity: number
+  department: string
+  job: string
+}
+
+export interface TMDBMovieCast {
+  id: number
+  title: string
+  overview: string
+  adult: boolean
+  backdrop_path: string
+  poster_path: string
+  release_date: string
+  original_language: string
+  original_title: string
+  popularity: number
+  vote_average: number
+  vote_count: number
+  character: string
+  order: number
+}
+
+export interface TMDBMovieCrew {
+  id: number
+  title: string
+  overview: string
+  adult: boolean
+  backdrop_path: string
+  poster_path: string
+  release_date: string
+  original_language: string
+  original_title: string
+  popularity: number
+  vote_average: number
+  vote_count: number
+  department: string
+  job: string
 }
 
 export interface TMDBSearchResult {

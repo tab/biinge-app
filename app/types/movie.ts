@@ -17,3 +17,48 @@ export interface MovieDetails {
   want: boolean
   watched: boolean
 }
+
+export interface PersonDetails {
+  name: string
+  biography: string
+  birthday: string
+  popularity: number
+  profile_path: string
+  gender: number
+  imdb_id: string
+}
+
+export interface PersonMovieCredits {
+  id: number
+  cast: MovieCastPerson[]
+  crew: MovieCrewPerson[]
+}
+
+export interface MovieCastPerson {
+  id: number
+  gender: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  character: string
+  order: number
+}
+
+export interface MovieCrewPerson {
+  id: number
+  gender: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string
+  department: string
+  job: string
+}
+
+export interface MovieCredits {
+  id: number
+  items: MovieCastPerson[]
+}

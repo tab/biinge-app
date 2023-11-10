@@ -1,12 +1,19 @@
-import React from "react"
-import { View, Text } from "react-native"
+import React, { ComponentType } from "react"
+import { compose } from "@reduxjs/toolkit"
+import { View } from "react-native"
+import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
-import { layoutStyles, contentStyles, movieStyles } from "styles"
+import { useMovieDetails } from "hocs"
+import { layoutStyles, movieStyles, posterStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
 import Status from "components/Movie/Status"
 import Rating from "components/Movie/Rating"
 import Actions from "components/Movie/Actions"
+import Title from "components/ui/Title"
+import Typography from "components/ui/Typography"
+import Image from "components/ui/Image"
+import colors from "styles/colors"
 
 type Props = {
   item: any
@@ -15,38 +22,53 @@ type Props = {
 const ContentComponent = ({ item }: Props) => {
   const { t } = useTranslation()
 
-  const { title, overview, vote_average, release_date, status } = item
+  const { title, overview, poster_path, vote_average, release_date, status } =
+    item
 
   const votes = vote_average > 0
 
   return (
-    <View style={layoutStyles.content}>
-      <View style={[movieStyles.row, movieStyles.rowTitle]}>
-        <Text
-          style={[
-            movieStyles.title,
-            votes ? movieStyles.short : movieStyles.full,
-          ]}
+    <>
+      <View style={posterStyles.root}>
+        <BlurView
+          style={posterStyles.blur}
+          blurType="light"
+          blurAmount={15}
+          reducedTransparencyFallbackColor={colors.white}
+        />
+        <Image style={posterStyles.image} size="w780" path={poster_path} />
+      </View>
+      <View
+        style={[
+          layoutStyles.roundCorners,
+          movieStyles.root,
+          movieStyles.content,
+        ]}
+      >
+        <Title
+          aside={<>{votes && <Rating>{vote_average.toFixed(1)}</Rating>}</>}
         >
           {title}
-        </Text>
-        {votes && <Rating>{vote_average.toFixed(1)}</Rating>}
-      </View>
-      <View style={movieStyles.row}>
-        <Text style={movieStyles.date}>{formatDate(release_date)}</Text>
-        <Status>{status}</Status>
-      </View>
+        </Title>
 
-      <Actions item={item} />
+        <View style={movieStyles.row}>
+          <Typography variant="headline" style={movieStyles.date}>
+            {formatDate(release_date)}
+          </Typography>
+          <Status>{status}</Status>
+        </View>
 
-      <View style={movieStyles.overview}>
-        <Text style={contentStyles.textBold}>
-          {t("movie.content.overview")}
-        </Text>
-        <Text style={contentStyles.text}>{overview}</Text>
+        <Actions item={item} />
+
+        <View style={movieStyles.overview}>
+          <Typography variant="callout" style={movieStyles.overviewTitle}>
+            {t("movie.content.overview")}
+          </Typography>
+          <Typography variant="body">{overview}</Typography>
+        </View>
       </View>
-    </View>
+    </>
   )
 }
 
-export default ContentComponent
+export default compose<ComponentType>(useMovieDetails)(ContentComponent)

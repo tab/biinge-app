@@ -14,10 +14,13 @@ export const layoutStyles = StyleSheet.create({
   bgTransparent: {
     backgroundColor: "transparent",
   },
+  roundCorners: {
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
   content: {
     flex: 1,
-    paddingVertical: 24,
-    paddingHorizontal: 24,
+    padding: 20,
     backgroundColor: colors.white,
   },
   list: {
@@ -40,28 +43,13 @@ export const layoutStyles = StyleSheet.create({
 
 export const contentStyles = StyleSheet.create({
   textBold: {
-    fontWeight: "500",
-    fontSize: 18,
-    lineHeight: 21,
-    color: colors.black,
+    color: colors.graniteGray,
     marginBottom: 7,
   },
   text: {
     fontWeight: "300",
     fontSize: 18,
     lineHeight: 21,
-    color: colors.black,
-  },
-})
-
-export const topBarStyles = StyleSheet.create({
-  content: {
-    backgroundColor: colors.orangeYellow,
-    padding: 15,
-  },
-  text: {
-    fontWeight: "600",
-    fontSize: 24,
     color: colors.black,
   },
 })
@@ -90,14 +78,51 @@ export const listStyles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    alignItems: "flex-start",
     justifyContent: "space-between",
     backgroundColor: colors.white,
+    padding: 10,
     paddingBottom: 15,
   },
-  empty: {
-    padding: 15,
-    width: "100%",
+  card: {
+    flex: 1,
+  },
+  cardMd: {
+    padding: 7,
+    maxWidth: "50%",
+  },
+  cardSm: {
+    padding: 5,
+    maxWidth: "33.3333%",
+  },
+  image: {
+    aspectRatio: "4/6",
+  },
+  imageMd: {
+    borderRadius: 12,
+  },
+  imageSm: {
+    borderRadius: 6,
+  },
+  icon: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    borderRadius: 3,
+    padding: 2,
+    position: "absolute",
+  },
+  iconMd: {
+    top: 16,
+    right: 16,
+  },
+  iconSm: {
+    top: 10,
+    right: 10,
+  },
+})
+
+export const horizontalListStyles = StyleSheet.create({
+  content: {
+    backgroundColor: colors.white,
+    marginHorizontal: 10,
   },
 })
 
@@ -131,43 +156,8 @@ export const listEmptyStyles = StyleSheet.create({
   },
 })
 
-export const navRoundStyles = StyleSheet.create({
-  root: {
-    backgroundColor: colors.gunmetal,
-    borderRadius: 50,
-    margin: 15,
-    marginBottom: 0,
-  },
-  list: {
-    alignItems: "center",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-    padding: 3,
-  },
-  item: {
-    backgroundColor: "transparent",
-    borderRadius: 50,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-  },
-  itemActive: {
-    backgroundColor: colors.white,
-  },
-  title: {
-    color: colors.white,
-    fontWeight: "500",
-    fontSize: 14,
-    lineHeight: 16,
-  },
-  titleActive: {
-    color: colors.black,
-  },
-})
-
 export const navStyles = StyleSheet.create({
   root: {
-    // backgroundColor: colors.gunmetal,
     backgroundColor: colors.black,
     margin: 0,
   },

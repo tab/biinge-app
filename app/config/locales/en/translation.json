@@ -71,7 +71,15 @@
     },
     "movie": {
       "content": {
-        "overview": "Synopsis:"
+        "overview": "Synopsis",
+        "cast": "Cast"
+      }
+    },
+    "person": {
+      "content": {
+        "actor": "Actor",
+        "actress": "Actress",
+        "director": "Director"
       }
     },
     "profile": {

@@ -2,8 +2,8 @@ import React from "react"
 import { View, Text } from "react-native"
 
 import { ratingStyles } from "styles"
-import colors from "../../styles/colors"
-import Icon from "../ui/Icon"
+import Icon from "components/ui/Icon"
+import colors from "styles/colors"
 
 type Props = {
   children: React.ReactNode

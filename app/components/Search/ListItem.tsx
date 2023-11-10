@@ -28,7 +28,7 @@ const ListItemComponent = ({ item, index }: Props) => {
 
   const handleClick = () => {
     // @ts-ignore
-    navigation.navigate(DETAILS_SCREEN.name, { id: item.id })
+    navigation.push(DETAILS_SCREEN.name, { id: item.id })
   }
 
   return (

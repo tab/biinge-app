@@ -4,10 +4,13 @@ import { SafeAreaView, KeyboardAvoidingView, Platform } from "react-native"
 import i18n from "config/i18n"
 import { useAppDispatch, useAppSelector } from "redux/hooks"
 import { searchMovie, resetSearchResults } from "redux/features/tmdb/tmdbThunk"
-import { selectAll, selectFetchStatus } from "redux/features/tmdb/tmdbSlice"
+import {
+  selectAll,
+  selectFetchStatus,
+} from "redux/features/tmdb/tmdbMovieSearchSlice"
 import Form from "components/Search/Form"
 import List from "components/Search/List"
-import { layoutStyles, loginFormStyles } from "styles"
+import { layoutStyles } from "styles"
 import { SearchFormValues, SearchResultListType } from "types"
 
 const SearchModal = () => {
@@ -42,7 +45,7 @@ const SearchModal = () => {
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={loginFormStyles.root}
+        style={layoutStyles.root}
       >
         <List query={query} items={items} />
       </KeyboardAvoidingView>
