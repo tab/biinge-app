@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import { useObject, useUser } from "@realm/react"
 import { useTranslation } from "react-i18next"
 
@@ -7,6 +7,7 @@ import i18n from "config/i18n"
 import { UserMovie } from "models"
 import Avatar from "components/ui/Avatar"
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 import { profileStyles } from "styles"
 
 const ProfileScreen = () => {
@@ -26,7 +27,7 @@ const ProfileScreen = () => {
       <View style={profileStyles.content}>
         <View style={profileStyles.header}>
           <View style={profileStyles.section}>
-            <Text style={profileStyles.email}>{user?.profile?.email}</Text>
+            <Typography variant="callout">{user?.profile?.email}</Typography>
             <Avatar
               style={profileStyles.avatar}
               size={210}
@@ -36,16 +37,16 @@ const ProfileScreen = () => {
 
           <View style={profileStyles.section}>
             <View style={profileStyles.counters}>
-              <Text style={profileStyles.bold}>{want.length}</Text>
-              <Text style={profileStyles.regular}>
+              <Typography variant="callout">{want.length}</Typography>
+              <Typography variant="footnote">
                 {t("profile.stats.want.title")}
-              </Text>
+              </Typography>
             </View>
             <View style={profileStyles.counters}>
-              <Text style={profileStyles.bold}>{watched.length}</Text>
-              <Text style={profileStyles.regular}>
+              <Typography variant="callout">{watched.length}</Typography>
+              <Typography variant="footnote">
                 {t("profile.stats.watched.title")}
-              </Text>
+              </Typography>
             </View>
           </View>
         </View>

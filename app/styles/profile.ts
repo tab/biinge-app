@@ -26,10 +26,6 @@ export const profileStyles = StyleSheet.create({
     height: 70,
     width: 70,
   },
-  email: {
-    fontSize: 18,
-    fontWeight: "700",
-  },
   actions: {
     marginBottom: 15,
   },
@@ -40,13 +36,5 @@ export const profileStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 15,
-  },
-  regular: {
-    fontSize: 14,
-    fontWeight: "400",
-  },
-  bold: {
-    fontSize: 20,
-    fontWeight: "700",
   },
 })
