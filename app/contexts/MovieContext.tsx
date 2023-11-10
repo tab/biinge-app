@@ -1,4 +1,4 @@
-import React, { createContext } from "react"
+import React, { createContext, useState } from "react"
 import type Realm from "realm"
 import { useObject, useUser, useRealm, useQuery } from "@realm/react"
 
@@ -6,6 +6,7 @@ import { UserMovie, Movie } from "models"
 import { TMDBMovieDetails } from "types"
 
 interface MovieContextType {
+  loading: boolean
   wantList: () => Realm.List<Movie> | never[]
   watchedList: () => Realm.List<Movie> | never[]
   inWantList: (tmdbId: number) => boolean
@@ -16,6 +17,7 @@ interface MovieContextType {
 }
 
 export const MovieContext = createContext<MovieContextType>({
+  loading: false,
   wantList(): Realm.List<Movie> | never[] {
     return []
   },
@@ -40,6 +42,8 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const movies = useQuery(Movie)
   const userMovie = useObject(UserMovie, user.id)
 
+  const [loading, setLoading] = useState(false)
+
   const wantList = () => userMovie?.want || []
 
   const watchedList = () => userMovie?.watched || []
@@ -53,78 +57,101 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const inWatchedList = (tmdbId: number) => watchedIds.includes(tmdbId)
 
   const addToWantList = (item: TMDBMovieDetails) => {
-    const { id, ...tmdbDetails } = item
-    const payload = {
-      ...tmdbDetails,
-      userId: user.id,
-      tmdb_id: id,
-      updatedAt: new Date(),
-    }
+    setLoading(true)
 
-    realm.write(() => {
-      const want = wantList()
-
-      if (!inWantList(id)) {
-        const movie = realm.create(Movie, payload, true)
-        // @ts-ignore
-        want.unshift(movie)
-      }
-
-      // @ts-ignore
-      realm.create(
-        UserMovie,
-        {
-          _id: user.id,
+    setTimeout(() => {
+      try {
+        const { id, ...tmdbDetails } = item
+        const payload = {
+          ...tmdbDetails,
           userId: user.id,
-          want,
-        },
-        true,
-      )
-    })
+          tmdb_id: id,
+          updatedAt: new Date(),
+        }
+
+        realm.write(() => {
+          const want = wantList()
+
+          if (!inWantList(id)) {
+            const movie = realm.create(Movie, payload, true)
+            // @ts-ignore
+            want.unshift(movie)
+          }
+
+          // @ts-ignore
+          realm.create(
+            UserMovie,
+            {
+              _id: user.id,
+              userId: user.id,
+              want,
+            },
+            true,
+          )
+        })
+      } finally {
+        setLoading(false)
+      }
+    }, 200)
   }
 
   const addToWatchedList = (item: TMDBMovieDetails) => {
-    const { id, ...tmdbDetails } = item
-    const payload = {
-      ...tmdbDetails,
-      userId: user.id,
-      tmdb_id: id,
-      updatedAt: new Date(),
-    }
+    setLoading(true)
 
-    realm.write(() => {
-      const watched = watchedList()
-
-      if (!inWatchedList(id)) {
-        const movie = realm.create(Movie, payload, true)
-        // @ts-ignore
-        watched.unshift(movie)
-      }
-
-      // @ts-ignore
-      realm.create(
-        UserMovie,
-        {
-          _id: user.id,
+    setTimeout(() => {
+      try {
+        const { id, ...tmdbDetails } = item
+        const payload = {
+          ...tmdbDetails,
           userId: user.id,
-          watched,
-        },
-        true,
-      )
-    })
+          tmdb_id: id,
+          updatedAt: new Date(),
+        }
+
+        realm.write(() => {
+          const watched = watchedList()
+
+          if (!inWatchedList(id)) {
+            const movie = realm.create(Movie, payload, true)
+            // @ts-ignore
+            watched.unshift(movie)
+          }
+
+          // @ts-ignore
+          realm.create(
+            UserMovie,
+            {
+              _id: user.id,
+              userId: user.id,
+              watched,
+            },
+            true,
+          )
+        })
+      } finally {
+        setLoading(false)
+      }
+    }, 200)
   }
 
   const removeFromList = (tmdbId: number) => {
-    const movie = movies.find(({ tmdb_id }) => tmdb_id === tmdbId)
+    setLoading(true)
 
-    realm.write(() => {
-      realm.delete(movie)
-    })
+    try {
+      const movie = movies.find(({ tmdb_id }) => tmdb_id === tmdbId)
+
+      realm.write(() => {
+        realm.delete(movie)
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <MovieContext.Provider
       value={{
+        loading,
         wantList,
         watchedList,
         inWantList,

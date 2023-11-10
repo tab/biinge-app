@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useContext, useState } from "react"
 import { View, Modal } from "react-native"
 import { useTranslation } from "react-i18next"
 
@@ -15,6 +15,7 @@ const ActionsComponent = ({ item }: Props) => {
   const { t } = useTranslation()
 
   const {
+    loading,
     inWantList,
     inWatchedList,
     addToWantList,
@@ -49,17 +50,26 @@ const ActionsComponent = ({ item }: Props) => {
         {want || watched ? (
           <Button
             style={actionButtonStyles.buttonActive}
+            loading={loading}
+            disabled={loading}
             onPress={handleOverlay}
           >
             {want ? t("actions.want.title") : t("actions.watched.title")}
           </Button>
         ) : (
           <>
-            <Button style={actionButtonStyles.buttonWant} onPress={handleWant}>
+            <Button
+              style={actionButtonStyles.buttonWant}
+              loading={loading}
+              disabled={loading}
+              onPress={handleWant}
+            >
               {t("actions.want.title")}
             </Button>
             <Button
               style={actionButtonStyles.buttonWatched}
+              loading={loading}
+              disabled={loading}
               onPress={handleWatched}
             >
               {t("actions.watched.title")}
