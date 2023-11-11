@@ -6,11 +6,11 @@ export class Movie extends Realm.Object<Movie> {
   tmdb_id!: number
   imdb_id!: string
   title!: string
-  tagline!: string
+  tagline?: string
   overview!: string
-  backdrop_path!: string
+  backdrop_path?: string
   poster_path!: string
-  homepage!: string
+  homepage?: string
   popularity!: number
   status!: string
   release_date!: string
@@ -27,11 +27,11 @@ export class Movie extends Realm.Object<Movie> {
       tmdb_id: "double",
       imdb_id: "string",
       title: { type: "string", indexed: true },
-      tagline: "string",
+      tagline: "string?",
       overview: "string",
-      backdrop_path: "string",
+      backdrop_path: "string?",
       poster_path: "string",
-      homepage: "string",
+      homepage: "string?",
       popularity: "double",
       status: "string",
       release_date: "string",
