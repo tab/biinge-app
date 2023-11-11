@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { ActivityIndicator, View, Text } from "react-native"
+import { ActivityIndicator, View } from "react-native"
 import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
@@ -10,8 +10,10 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
+import Title from "components/ui/Title"
+import Poster from "components/Person/Poster"
 import { PersonDetails } from "types"
-import { loadingStyles } from "styles"
+import { loadingStyles, textStyles, personStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -56,9 +58,14 @@ export function usePersonDetails<GenericType>(
 
     const renderError = () => {
       return (
-        <View>
-          <Text>{t("loading.fetchError.title")}</Text>
-        </View>
+        <>
+          <Poster poster_path={""} />
+          <View style={personStyles.content}>
+            <Title style={[personStyles.title, textStyles.center]}>
+              {t("loading.fetchError.title")}
+            </Title>
+          </View>
+        </>
       )
     }
 

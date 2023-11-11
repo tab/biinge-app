@@ -93,3 +93,12 @@ export const typographyStyles = StyleSheet.create({
     fontWeight: "600",
   },
 })
+
+export const textStyles = StyleSheet.create({
+  center: {
+    textAlign: "center",
+  },
+  light: {
+    color: colors.white,
+  },
+})

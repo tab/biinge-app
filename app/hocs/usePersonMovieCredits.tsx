@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { ActivityIndicator, View, Text } from "react-native"
+import { ActivityIndicator, View } from "react-native"
 import { useTranslation } from "react-i18next"
 
 import { useAppDispatch, useAppSelector } from "redux/hooks"
@@ -10,8 +10,9 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbPersonMovieCreditsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
+import Typography from "components/ui/Typography"
 import { PersonMovieCredits, PersonDetails } from "types"
-import { loadingStyles, layoutStyles } from "styles"
+import { loadingStyles, layoutStyles, textStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -60,8 +61,10 @@ export function usePersonMovieCredits<GenericType>(
 
     const renderError = () => {
       return (
-        <View>
-          <Text>{t("loading.fetchError.title")}</Text>
+        <View style={layoutStyles.content}>
+          <Typography variant="subhead" style={textStyles.center}>
+            {t("loading.fetchError.title")}
+          </Typography>
         </View>
       )
     }

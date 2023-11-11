@@ -9,8 +9,9 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbMovieCreditsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
+import Typography from "components/ui/Typography"
 import { MovieCredits } from "types"
-import { loadingStyles } from "styles"
+import { loadingStyles, layoutStyles, textStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -49,8 +50,10 @@ export function useMovieCredits<GenericType>(
 
     const renderError = () => {
       return (
-        <View>
-          <Text>{t("loading.fetchError.title")}</Text>
+        <View style={layoutStyles.content}>
+          <Typography variant="subhead" style={textStyles.center}>
+            {t("loading.fetchError.title")}
+          </Typography>
         </View>
       )
     }

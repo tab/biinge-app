@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { ActivityIndicator, View, Text } from "react-native"
+import { ActivityIndicator, View } from "react-native"
 import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
@@ -10,8 +10,10 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbMovieDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
+import Typography from "components/ui/Typography"
+import Poster from "components/Movie/Poster"
 import { MovieDetails } from "types"
-import { loadingStyles } from "styles"
+import { loadingStyles, layoutStyles, textStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -56,9 +58,14 @@ export function useMovieDetails<GenericType>(
 
     const renderError = () => {
       return (
-        <View>
-          <Text>{t("loading.fetchError.title")}</Text>
-        </View>
+        <>
+          <Poster poster_path="" />
+          <View style={[layoutStyles.root, layoutStyles.content]}>
+            <Typography variant="subhead" style={textStyles.center}>
+              {t("loading.fetchError.title")}
+            </Typography>
+          </View>
+        </>
       )
     }
 
