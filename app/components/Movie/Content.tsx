@@ -1,19 +1,17 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
 import { View } from "react-native"
-import { BlurView } from "@react-native-community/blur"
 import { useTranslation } from "react-i18next"
 
 import { useMovieDetails } from "hocs"
-import { layoutStyles, movieStyles, posterStyles } from "styles"
+import { layoutStyles, movieStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
+import Poster from "components/Movie/Poster"
 import Status from "components/Movie/Status"
 import Rating from "components/Movie/Rating"
 import Actions from "components/Movie/Actions"
 import Title from "components/ui/Title"
 import Typography from "components/ui/Typography"
-import Image from "components/ui/Image"
-import colors from "styles/colors"
 
 type Props = {
   item: any
@@ -29,15 +27,7 @@ const ContentComponent = ({ item }: Props) => {
 
   return (
     <>
-      <View style={posterStyles.root}>
-        <BlurView
-          style={posterStyles.blur}
-          blurType="light"
-          blurAmount={15}
-          reducedTransparencyFallbackColor={colors.white}
-        />
-        <Image style={posterStyles.image} size="w780" path={poster_path} />
-      </View>
+      <Poster poster_path={poster_path} />
       <View
         style={[
           layoutStyles.roundCorners,

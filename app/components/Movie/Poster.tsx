@@ -7,22 +7,22 @@ import Image from "components/ui/Image"
 import colors from "styles/colors"
 
 type Props = {
-  item: any
+  poster_path: string
 }
 
-const PosterComponent = ({ item }: Props) => {
-  const { poster_path } = item
-
+const PosterComponent = ({ poster_path }: Props) => {
   return (
-    <View style={posterStyles.root}>
+    <>
       <BlurView
         style={posterStyles.blur}
         blurType="light"
         blurAmount={15}
         reducedTransparencyFallbackColor={colors.white}
       />
-      <Image style={posterStyles.image} size="w780" path={poster_path} />
-    </View>
+      <View style={posterStyles.root}>
+        <Image style={posterStyles.image} size="w780" path={poster_path} />
+      </View>
+    </>
   )
 }
 

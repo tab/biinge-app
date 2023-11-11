@@ -1,6 +1,18 @@
 import { StyleSheet } from "react-native"
 import colors from "styles/colors"
 
+export const peopleStyles = StyleSheet.create({
+  root: {
+    backgroundColor: colors.white,
+    paddingBottom: 20,
+  },
+  title: {
+    color: colors.graniteGray,
+    marginBottom: 7,
+    paddingHorizontal: 15,
+  },
+})
+
 export const peopleListStyles = StyleSheet.create({
   root: {
     flexDirection: "column",

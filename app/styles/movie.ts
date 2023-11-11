@@ -33,11 +33,9 @@ export const movieStyles = StyleSheet.create({
 
 export const posterStyles = StyleSheet.create({
   root: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
     paddingVertical: 24,
     paddingHorizontal: 36,
-    paddingBottom: 48,
-    marginBottom: -24,
+    paddingBottom: 24,
   },
   image: {
     alignSelf: "center",
@@ -55,6 +53,7 @@ export const posterStyles = StyleSheet.create({
     elevation: 3,
   },
   blur: {
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
     position: "absolute",
     top: 0,
     left: 0,
@@ -67,18 +66,6 @@ export const posterStyles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 150,
-  },
-})
-
-export const castStyles = StyleSheet.create({
-  root: {
-    backgroundColor: colors.white,
-    paddingBottom: 20,
-  },
-  title: {
-    color: colors.graniteGray,
-    marginBottom: 7,
-    paddingHorizontal: 15,
   },
 })
 

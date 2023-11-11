@@ -4,7 +4,7 @@ import { View } from "react-native"
 import { useTranslation } from "react-i18next"
 
 import { useMovieCredits } from "hocs"
-import { contentStyles, castStyles } from "styles"
+import { peopleStyles } from "styles"
 import Typography from "components/ui/Typography"
 import List from "components/ui/PeopleList"
 import { MovieCredits } from "types"
@@ -17,11 +17,8 @@ const PeopleComponent = ({ items }: Props) => {
   const { t } = useTranslation()
 
   return (
-    <View style={castStyles.root}>
-      <Typography
-        variant="callout"
-        style={[castStyles.title, contentStyles.textBold]}
-      >
+    <View style={peopleStyles.root}>
+      <Typography variant="callout" style={peopleStyles.title}>
         {t("movie.content.cast")}
       </Typography>
       <List items={items} />

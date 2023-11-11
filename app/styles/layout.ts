@@ -23,35 +23,6 @@ export const layoutStyles = StyleSheet.create({
     padding: 20,
     backgroundColor: colors.white,
   },
-  list: {
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  title: {
-    color: colors.raisinBlack,
-    fontSize: 28,
-    fontWeight: "700",
-    lineHeight: 33,
-  },
-  text: {
-    fontWeight: "300",
-    fontSize: 18,
-    lineHeight: 21,
-    color: colors.black,
-  },
-})
-
-export const contentStyles = StyleSheet.create({
-  textBold: {
-    color: colors.graniteGray,
-    marginBottom: 7,
-  },
-  text: {
-    fontWeight: "300",
-    fontSize: 18,
-    lineHeight: 21,
-    color: colors.black,
-  },
 })
 
 export const tabBarStyles = StyleSheet.create({
@@ -122,7 +93,7 @@ export const listStyles = StyleSheet.create({
 export const horizontalListStyles = StyleSheet.create({
   content: {
     backgroundColor: colors.white,
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
   },
 })
 
@@ -173,6 +144,7 @@ export const navStyles = StyleSheet.create({
     borderBottomWidth: 1.5,
     paddingVertical: 12,
     paddingHorizontal: 24,
+    width: "50%",
   },
   itemActive: {
     borderBottomColor: colors.white,
@@ -182,6 +154,7 @@ export const navStyles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 16,
+    textAlign: "center",
   },
   titleActive: {
     color: colors.white,
