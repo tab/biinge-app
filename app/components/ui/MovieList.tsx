@@ -68,6 +68,7 @@ const MovieListComponent = ({ items, numColumns, showStatus }: Props) => {
   return (
     <FlatList
       style={listStyles.root}
+      keyboardShouldPersistTaps="handled"
       contentContainerStyle={listStyles.content}
       keyExtractor={(item, index: number) => index.toString()}
       numColumns={numColumns}

@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react"
-import { SafeAreaView, KeyboardAvoidingView, Platform } from "react-native"
+import React, { useState, useEffect } from "react"
+import { View } from "react-native"
 
-import i18n from "config/i18n"
-import { useAppDispatch, useAppSelector } from "redux/hooks"
-import { searchMovie, resetSearchResults } from "redux/features/tmdb/tmdbThunk"
+import { useAppSelector, useAppDispatch } from "redux/hooks"
 import {
-  selectAll,
-  selectFetchStatus,
-} from "redux/features/tmdb/tmdbMovieSearchSlice"
+  movieSearch,
+  personSearch,
+  resetResults,
+} from "redux/features/tmdb/tmdbThunk"
+import { selectFetchStatus } from "redux/features/tmdb/tmdbMovieSearchSlice"
+import KeyboardToggle from "components/ui/KeyboardToggle"
 import Form from "components/Search/Form"
-import List from "components/Search/List"
+import Movies from "components/Search/Movies"
+import People from "components/Search/People"
+import TrendingMovies from "components/Search/TrendingMovies"
+import TrendingPeople from "components/Search/TrendingPeople"
 import { layoutStyles } from "styles"
-import { SearchFormValues, SearchResultListType } from "types"
+import { SearchFormValues } from "types"
 
-const SearchModal = () => {
+const SearchScreen = () => {
   const dispatch = useAppDispatch()
 
   const [query, setQuery] = useState("")
@@ -21,41 +25,48 @@ const SearchModal = () => {
   // NOTE: reset search results
   useEffect(() => {
     if (query) {
-      dispatch(searchMovie(query))
+      dispatch(movieSearch(query))
+      dispatch(personSearch(query))
     } else {
-      dispatch(resetSearchResults())
+      dispatch(resetResults())
     }
   }, [])
 
-  const items = useAppSelector((state) =>
-    selectAll(state),
-  ) as SearchResultListType
   const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
   const handleSubmit = async (values: SearchFormValues) => {
     if (!fetchStatus.isFetching) {
       setQuery(values.query)
-      dispatch(searchMovie(values.query))
+      dispatch(movieSearch(values.query))
+      dispatch(personSearch(values.query))
     }
   }
 
   return (
-    <SafeAreaView style={[layoutStyles.root, layoutStyles.bgLight]}>
+    <>
       {/* @ts-ignore */}
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={layoutStyles.root}
-      >
-        <List query={query} items={items} />
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      <View style={[layoutStyles.root, layoutStyles.bgLight]}>
+        {query ? (
+          <>
+            <Movies />
+            <People />
+          </>
+        ) : (
+          <>
+            <TrendingMovies />
+            <TrendingPeople />
+          </>
+        )}
+      </View>
+      <KeyboardToggle />
+    </>
   )
 }
 
 export const SEARCH_SCREEN = {
+  id: "SEARCH_SCREEN",
   name: "com.biinge.Search",
-  title: i18n.t("search.title"),
 }
 
-export default SearchModal
+export default SearchScreen
