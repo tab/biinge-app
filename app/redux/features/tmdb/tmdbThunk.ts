@@ -9,6 +9,8 @@ import {
   TMDBPersonCast,
   TMDBPersonCrew,
   TMDB_JOB_DIRECTOR,
+  PersonResult,
+  MovieResult,
 } from "types"
 
 // NOTE: Movie screen
@@ -152,19 +154,20 @@ export const personMovieCredits = createAsyncThunk(
 )
 
 // NOTE: Search screen
-export const searchMovie = createAsyncThunk(
-  "tmdb/search/movie",
-  async (query: string) => {
+export const trendingMovie = createAsyncThunk(
+  "tmdb/trending/movie",
+  async () => {
     const response = await TMDB_API.get(
-      `/search/movie?query=${query}&include_adult=false&language=${LANG}`,
+      `/trending/movie/week?include_adult=false&language=${LANG}`,
     )
     const results = response.data.results
 
     return results
-      .filter(({ poster_path }: TMDBSearchResult) => poster_path)
-      .map(({ id, title, poster_path }: TMDBSearchResult) => {
+      .filter(({ poster_path }: MovieResult) => poster_path)
+      .map(({ id, title, poster_path }: MovieResult) => {
         return {
           id,
+          tmdb_id: id,
           title,
           poster_path,
         }
@@ -172,9 +175,69 @@ export const searchMovie = createAsyncThunk(
   },
 )
 
-export const resetSearchResults = createAsyncThunk(
-  "tmdb/search/reset",
+export const trendingPeople = createAsyncThunk(
+  "tmdb/trending/people",
   async () => {
-    return []
+    const response = await TMDB_API.get(
+      `/trending/person/week?include_adult=false&language=${LANG}`,
+    )
+    const results = response.data.results
+
+    return results
+      .filter(({ profile_path }: PersonResult) => profile_path)
+      .map(({ id, name, profile_path }: PersonResult) => {
+        return {
+          id,
+          tmdb_id: id,
+          name,
+          profile_path,
+        }
+      })
   },
 )
+
+export const movieSearch = createAsyncThunk(
+  "tmdb/movie/search",
+  async (query: string) => {
+    const response = await TMDB_API.get(
+      `/search/movie?query=${query}&include_adult=false&language=${LANG}`,
+    )
+    const results = response.data.results
+
+    return results
+      .filter(({ poster_path }: MovieResult) => poster_path)
+      .map(({ id, title, poster_path }: MovieResult) => {
+        return {
+          id,
+          tmdb_id: id,
+          title,
+          poster_path,
+        }
+      })
+  },
+)
+
+export const personSearch = createAsyncThunk(
+  "tmdb/person/search",
+  async (query: string) => {
+    const response = await TMDB_API.get(
+      `/search/person?query=${query}&include_adult=false&language=${LANG}`,
+    )
+    const results = response.data.results
+
+    return results
+      .filter(({ profile_path }: PersonResult) => profile_path)
+      .map(({ id, name, profile_path }: PersonResult) => {
+        return {
+          id,
+          tmdb_id: id,
+          name,
+          profile_path,
+        }
+      })
+  },
+)
+
+export const resetResults = createAsyncThunk("tmdb/results/reset", async () => {
+  return []
+})

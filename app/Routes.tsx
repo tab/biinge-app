@@ -50,7 +50,6 @@ const RouterComponent = () => {
             presentation: "modal",
           }}
         >
-          <Stack.Screen name={SEARCH_SCREEN.name} component={Search} />
           <Stack.Screen name={PROFILE_SCREEN.name} component={Profile} />
           <Stack.Screen
             name={DETAILS_SCREEN.name}
@@ -62,6 +61,14 @@ const RouterComponent = () => {
             component={Person}
             options={transparentModalOptions}
           />
+        </Stack.Group>
+        <Stack.Group
+          screenOptions={{
+            headerShown: false,
+            presentation: "modal",
+          }}
+        >
+          <Stack.Screen name={SEARCH_SCREEN.name} component={Search} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

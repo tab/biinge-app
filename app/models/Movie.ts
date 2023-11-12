@@ -4,7 +4,7 @@ export class Movie extends Realm.Object<Movie> {
   _id: BSON.ObjectId = new BSON.ObjectId()
   userId!: string
   tmdb_id!: number
-  imdb_id!: string
+  imdb_id?: string
   title!: string
   tagline?: string
   overview!: string
@@ -25,7 +25,7 @@ export class Movie extends Realm.Object<Movie> {
       _id: "objectId",
       userId: "string",
       tmdb_id: "double",
-      imdb_id: "string",
+      imdb_id: "string?",
       title: { type: "string", indexed: true },
       tagline: "string?",
       overview: "string",

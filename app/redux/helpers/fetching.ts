@@ -18,6 +18,12 @@ export const handleFetchFulfilled = (state: FetchType) => {
   state.fetchStatus.isFailed = false
 }
 
+export const handleFetchReset = (state: FetchType) => {
+  state.fetchStatus.isFetching = true
+  state.fetchStatus.isSuccess = false
+  state.fetchStatus.isFailed = false
+}
+
 export const handleFetchCollectionPending = (state: FetchCollectionType) => {
   state.fetchCollectionStatus.isFetching = true
   state.fetchCollectionStatus.isSuccess = false

@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, Dimensions } from "react-native"
 import colors from "styles/colors"
+
+const { width } = Dimensions.get("window")
 
 export const layoutStyles = StyleSheet.create({
   root: {
@@ -93,20 +95,63 @@ export const listStyles = StyleSheet.create({
 export const horizontalListStyles = StyleSheet.create({
   content: {
     backgroundColor: colors.white,
-    paddingHorizontal: 10,
+    paddingLeft: 10,
+  },
+  item: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginRight: 10,
+  },
+  image: {
+    aspectRatio: "4/6",
+    width: width * 0.3333,
+  },
+  imageMd: {
+    borderRadius: 8,
+  },
+  icon: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    borderRadius: 3,
+    padding: 2,
+    position: "absolute",
+  },
+  iconMd: {
+    top: 8,
+    right: 8,
+  },
+})
+
+export const horizontalStubListStyles = StyleSheet.create({
+  root: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 10,
+  },
+  item: {},
+  itemMovie: {
+    borderRadius: 8,
+    marginRight: 10,
+    height: (width * 0.3333 * 6) / 4,
+    width: width * 0.3333,
+  },
+  itemPerson: {
+    borderRadius: 50,
+    marginHorizontal: 10,
+    height: 70,
+    width: 70,
   },
 })
 
 export const listEmptyStyles = StyleSheet.create({
   root: {
     flex: 1,
+    width: width - 20,
   },
   content: {
-    backgroundColor: colors.white,
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 15,
+    padding: 20,
   },
   title: {
     color: colors.black,
@@ -124,6 +169,7 @@ export const listEmptyStyles = StyleSheet.create({
   },
   emoji: {
     fontSize: 44,
+    lineHeight: 60,
   },
 })
 

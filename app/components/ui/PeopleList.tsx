@@ -1,8 +1,9 @@
 import React from "react"
-import { FlatList, Pressable } from "react-native"
+import { FlatList, Pressable, View } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { useTranslation } from "react-i18next"
 
-import { horizontalListStyles, peopleListStyles } from "styles"
+import { horizontalListStyles, peopleListStyles, listEmptyStyles } from "styles"
 import { PERSON_SCREEN } from "screens/Person"
 import Image from "components/ui/BWImage"
 import Typography from "components/ui/Typography"
@@ -13,6 +14,22 @@ type Props = {
 
 const PeopleListComponent = ({ items }: Props) => {
   const navigation = useNavigation()
+  const { t } = useTranslation()
+
+  const renderEmpty = () => {
+    return (
+      <View style={listEmptyStyles.root}>
+        <View style={listEmptyStyles.content}>
+          <Typography variant="title1" style={listEmptyStyles.emoji}>
+            {t("search.empty.emoji")}
+          </Typography>
+          <Typography variant="callout">
+            {t("search.empty.subtitle")}
+          </Typography>
+        </View>
+      </View>
+    )
+  }
 
   const renderItem = ({ item }: { item: any }) => {
     const { profile_path, name, description } = item
@@ -25,12 +42,22 @@ const PeopleListComponent = ({ items }: Props) => {
     return (
       <Pressable style={peopleListStyles.root} onPress={handleClick}>
         <Image style={peopleListStyles.image} size="w185" path={profile_path} />
-        <Typography variant="caption1" style={peopleListStyles.name}>
+        <Typography
+          variant="caption1"
+          numberOfLines={2}
+          style={peopleListStyles.name}
+        >
           {name}
         </Typography>
-        <Typography variant="caption2" style={peopleListStyles.description}>
-          {description}
-        </Typography>
+        {description && (
+          <Typography
+            variant="caption2"
+            numberOfLines={2}
+            style={peopleListStyles.description}
+          >
+            {description}
+          </Typography>
+        )}
       </Pressable>
     )
   }
@@ -38,11 +65,13 @@ const PeopleListComponent = ({ items }: Props) => {
   return (
     <FlatList
       horizontal
+      keyboardShouldPersistTaps="handled"
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={horizontalListStyles.content}
       data={items}
       keyExtractor={(item, index: number) => index.toString()}
       renderItem={renderItem}
+      ListEmptyComponent={renderEmpty}
     />
   )
 }

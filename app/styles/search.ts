@@ -1,56 +1,45 @@
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet } from "react-native"
 import colors from "styles/colors"
 
-const { width } = Dimensions.get("window")
-
-export const searchFormStyles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.lotion,
-    borderBottomColor: colors.americanSilver,
-    borderBottomWidth: 0.5,
-    flexDirection: "column",
-    padding: 15,
-    paddingTop: 19,
-    paddingBottom: 18,
+export const searchStyles = StyleSheet.create({
+  root: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
   },
-  group: {
+  content: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    borderWidth: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.raisinBlack,
     borderRadius: 4,
-    borderColor: colors.gray,
-    paddingHorizontal: 8,
-    paddingTop: 1,
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowColor: colors.gray,
-    shadowOffset: { height: 0, width: 0 },
-  },
-  input: {
-    color: colors.black,
-    fontSize: 18,
-    paddingTop: 9,
-    paddingRight: 8,
-    paddingBottom: 10,
+    paddingTop: 2,
+    paddingBottom: 1,
     paddingLeft: 8,
-    width: width - 68,
-    borderWidth: 0,
+    paddingRight: 4,
+    marginRight: 7,
   },
-  submit: {
+  icon: {},
+  input: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: colors.gunmetal,
-    borderRadius: 50,
-    justifyContent: "center",
-    padding: 15,
-    marginHorizontal: 5,
+    color: colors.gray,
+    fontSize: 16,
+    padding: 5,
   },
-  text: {
+  button: {
     color: colors.white,
-    textAlign: "center",
-    fontSize: 17,
-    fontWeight: "bold",
+    fontSize: 16,
+  },
+})
+
+export const searchResultsStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+  content: {},
+  title: {
+    color: colors.grayDark,
+    padding: 12,
   },
 })

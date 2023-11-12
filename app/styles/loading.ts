@@ -13,6 +13,9 @@ export const loadingStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  block: {
+    paddingVertical: 60,
+  },
   blur: {
     position: "absolute",
     top: 0,

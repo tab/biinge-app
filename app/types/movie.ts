@@ -62,3 +62,19 @@ export interface MovieCredits {
   id: number
   items: MovieCastPerson[]
 }
+
+export interface MovieResult {
+  id: number
+  title: string
+  poster_path: string
+}
+
+export type MoviesListType = MovieResult[]
+
+export interface PersonResult {
+  id: number
+  name: string
+  profile_path: string
+}
+
+export type PeopleListType = PersonResult[]
