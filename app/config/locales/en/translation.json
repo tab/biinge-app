@@ -119,6 +119,11 @@
       }
     },
     "actions": {
+      "pin": {
+        "title": "Pin",
+        "add": "Pin to {{name}}",
+        "remove": "Unpin from {{name}}"
+      },
       "want": {
         "title": "Want",
         "add": "Move to Want",

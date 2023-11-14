@@ -13,17 +13,24 @@ type Props = {
   items: any[]
   numColumns: number
   showStatus?: boolean
+  showPin?: boolean
 }
 
-const MovieListComponent = ({ items, numColumns, showStatus }: Props) => {
+const MovieListComponent = ({
+  items,
+  numColumns,
+  showStatus,
+  showPin,
+}: Props) => {
   const navigation = useNavigation()
 
-  const { inWantList, inWatchedList } = useContext(MovieContext)
+  const { inWantList, inWatchedList, pinned } = useContext(MovieContext)
 
   const renderItem = ({ item }: { item: any }) => {
     const { title, poster_path } = item
 
     const inList = inWantList(item.tmdb_id) || inWatchedList(item.tmdb_id)
+    const isPinned = pinned(item.tmdb_id)
 
     const handleClick = () => {
       // @ts-ignore
@@ -47,19 +54,33 @@ const MovieListComponent = ({ items, numColumns, showStatus }: Props) => {
           title={title}
           path={poster_path}
         />
-        {showStatus && inList && (
-          <View
-            style={[
-              listStyles.icon,
-              numColumns === 2 ? listStyles.iconMd : listStyles.iconSm,
-            ]}
-          >
-            <Icon
-              name="checkmark-outline"
-              color={colors.white}
-              size={numColumns === 2 ? 20 : 15}
-            />
-          </View>
+        {inList && (
+          <>
+            {showStatus && (
+              <View
+                style={[
+                  listStyles.icon,
+                  numColumns === 2 ? listStyles.iconMd : listStyles.iconSm,
+                ]}
+              >
+                <Icon
+                  name="checkmark-outline"
+                  color={colors.white}
+                  size={numColumns === 2 ? 20 : 15}
+                />
+              </View>
+            )}
+            {showPin && isPinned && (
+              <View style={listStyles.pin}>
+                <Icon
+                  style={listStyles.pinIcon}
+                  name="pin-outline"
+                  color={colors.white}
+                  size={18}
+                />
+              </View>
+            )}
+          </>
         )}
       </Pressable>
     )
@@ -80,6 +101,7 @@ const MovieListComponent = ({ items, numColumns, showStatus }: Props) => {
 
 MovieListComponent.defaultProps = {
   showStatus: false,
+  showPin: false,
 }
 
 export default MovieListComponent

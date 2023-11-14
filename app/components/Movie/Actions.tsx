@@ -21,12 +21,24 @@ const ActionsComponent = ({ item }: Props) => {
     addToWantList,
     addToWatchedList,
     removeFromList,
+    pinned,
+    pinToList,
+    unpinFromList,
   } = useContext(MovieContext)
 
   const [visible, setVisible] = useState(false)
 
+  const isPinned = pinned(item.id)
   const want = inWantList(item.id)
   const watched = inWatchedList(item.id)
+
+  const handlePin = () => {
+    pinToList(item)
+  }
+
+  const handleUnpin = () => {
+    unpinFromList(item)
+  }
 
   const handleWant = () => {
     want ? removeFromList(item.id) : addToWantList(item)
@@ -79,8 +91,11 @@ const ActionsComponent = ({ item }: Props) => {
       </View>
       <Modal transparent animationType="none" visible={visible}>
         <Menu
+          pinned={isPinned}
           want={want}
           watched={watched}
+          onPin={handlePin}
+          onUnpin={handleUnpin}
           onWant={handleWant}
           onWatched={handleWatched}
           onCancel={handleCancel}
