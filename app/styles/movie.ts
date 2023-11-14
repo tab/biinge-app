@@ -165,40 +165,6 @@ export const actionButtonStyles = StyleSheet.create({
   },
 })
 
-export const cardStyles = StyleSheet.create({
-  container: {
-    // padding: 15,
-    // width: width / 2,
-    flex: 1,
-    padding: 7,
-  },
-  image: {
-    aspectRatio: "4/6",
-    borderRadius: 12,
-    // shadowColor: colors.black,
-    // shadowOffset: {
-    //   width: 1,
-    //   height: 3,
-    // },
-    // shadowOpacity: 0.07,
-    // shadowRadius: 5,
-    // elevation: 1,
-  },
-  even: {
-    // paddingLeft: 10,
-    // paddingBottom: 0,
-  },
-  odd: {
-    // paddingRight: 10,
-    // paddingBottom: 0,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: colors.raisinBlack,
-  },
-})
-
 export const overlayStyles = StyleSheet.create({
   root: {
     flex: 1,
@@ -225,11 +191,11 @@ export const overlayStyles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: colors.raisinBlack,
+    backgroundColor: colors.black,
     borderRadius: 0,
     margin: 0,
-    borderBottomColor: colors.gunmetal,
-    borderBottomWidth: 0.5,
+    borderBottomColor: colors.raisinBlack,
+    borderBottomWidth: 1,
   },
   buttonCancel: {
     borderBottomRightRadius: 5,

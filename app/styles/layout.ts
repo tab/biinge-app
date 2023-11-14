@@ -60,7 +60,7 @@ export const listStyles = StyleSheet.create({
     flex: 1,
   },
   cardMd: {
-    padding: 7,
+    padding: 5,
     maxWidth: "50%",
   },
   cardSm: {
@@ -89,6 +89,16 @@ export const listStyles = StyleSheet.create({
   iconSm: {
     top: 10,
     right: 10,
+  },
+  pin: {
+    borderRadius: 3,
+    padding: 2,
+    position: "absolute",
+    top: 10,
+    right: 10,
+  },
+  pinIcon: {
+    transform: [{ rotate: "25deg" }],
   },
 })
 

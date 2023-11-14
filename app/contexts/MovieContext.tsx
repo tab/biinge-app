@@ -14,6 +14,9 @@ interface MovieContextType {
   addToWantList: (item: TMDBMovieDetails) => void
   addToWatchedList: (item: TMDBMovieDetails) => void
   removeFromList: (tmdbId: number) => void
+  pinned: (tmdbId: number) => boolean
+  pinToList: (item: TMDBMovieDetails) => void
+  unpinFromList: (item: TMDBMovieDetails) => void
 }
 
 export const MovieContext = createContext<MovieContextType>({
@@ -33,6 +36,11 @@ export const MovieContext = createContext<MovieContextType>({
   addToWantList(item: TMDBMovieDetails): void {},
   addToWatchedList(item: TMDBMovieDetails): void {},
   removeFromList(tmdbId: number): void {},
+  pinned(tmdbId: number): boolean {
+    return false
+  },
+  pinToList(item: TMDBMovieDetails): void {},
+  unpinFromList(item: TMDBMovieDetails): void {},
 })
 
 const MovieProvider = ({ children }: { children: React.ReactNode }) => {
@@ -66,6 +74,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
           ...tmdbDetails,
           userId: user.id,
           tmdb_id: id,
+          pin: false,
           updatedAt: new Date(),
         }
 
@@ -105,6 +114,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
           ...tmdbDetails,
           userId: user.id,
           tmdb_id: id,
+          pin: false,
           updatedAt: new Date(),
         }
 
@@ -148,6 +158,60 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
+  const pinned = (tmdbId: number) => {
+    const movie = movies.find(({ tmdb_id }) => tmdb_id === tmdbId)
+
+    return movie?.pin || false
+  }
+
+  const pinToList = (item: TMDBMovieDetails) => {
+    const movie = movies.find(({ tmdb_id }) => tmdb_id === item.id)
+
+    if (movie) {
+      setLoading(true)
+
+      setTimeout(() => {
+        try {
+          const payload = {
+            _id: movie._id,
+            pin: true,
+            updatedAt: new Date(),
+          }
+
+          realm.write(() => {
+            realm.create(Movie, payload, true)
+          })
+        } finally {
+          setLoading(false)
+        }
+      }, 200)
+    }
+  }
+
+  const unpinFromList = (item: TMDBMovieDetails) => {
+    const movie = movies.find(({ tmdb_id }) => tmdb_id === item.id)
+
+    if (movie) {
+      setLoading(true)
+
+      setTimeout(() => {
+        try {
+          const payload = {
+            _id: movie._id,
+            pin: false,
+            updatedAt: new Date(),
+          }
+
+          realm.write(() => {
+            realm.create(Movie, payload, true)
+          })
+        } finally {
+          setLoading(false)
+        }
+      }, 200)
+    }
+  }
+
   return (
     <MovieContext.Provider
       value={{
@@ -159,6 +223,9 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
         addToWantList,
         addToWatchedList,
         removeFromList,
+        pinned,
+        pinToList,
+        unpinFromList,
       }}
     >
       {children}

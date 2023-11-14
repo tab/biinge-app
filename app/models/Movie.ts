@@ -16,6 +16,7 @@ export class Movie extends Realm.Object<Movie> {
   release_date!: string
   vote_average!: number
   vote_count!: number
+  pin!: boolean
   createdAt: Date = new Date()
   updatedAt: Date = new Date()
 
@@ -37,6 +38,7 @@ export class Movie extends Realm.Object<Movie> {
       release_date: "string",
       vote_average: "double",
       vote_count: "double",
+      pin: "boolean",
       createdAt: "date",
       updatedAt: "date",
     },

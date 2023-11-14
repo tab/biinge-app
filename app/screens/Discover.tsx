@@ -24,12 +24,14 @@ const DiscoverScreen = () => {
     {
       id: 1,
       label: i18n.t("discover.nav.want.title"),
-      items: wantList(),
+      // @ts-ignore
+      items: wantList().sorted("pin", true),
     },
     {
       id: 2,
       label: i18n.t("discover.nav.watched.title"),
-      items: watchedList(),
+      // @ts-ignore
+      items: watchedList().sorted("pin", true),
     },
   ]
 
@@ -74,7 +76,13 @@ const DiscoverScreen = () => {
       >
         {TABS.map(({ id, items }) => (
           // @ts-ignore
-          <List key={id} showStatus={false} numColumns={2} items={items} />
+          <List
+            key={id}
+            showStatus={false}
+            showPin={true}
+            numColumns={2}
+            items={items}
+          />
         ))}
       </PagerView>
       <BottomTabBar />

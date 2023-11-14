@@ -9,25 +9,27 @@ import Button from "components/ui/Button"
 import colors from "styles/colors"
 
 type Props = {
+  pinned: boolean
   want: boolean
   watched: boolean
+  onPin: () => void
+  onUnpin: () => void
   onWant: () => void
   onWatched: () => void
   onCancel: () => void
 }
 
 const MenuComponent = ({
+  pinned,
   want,
   watched,
+  onPin,
+  onUnpin,
   onWant,
   onWatched,
   onCancel,
 }: Props) => {
   const { t } = useTranslation()
-
-  const handleWant = () => onWant()
-  const handleWatched = () => onWatched()
-  const handleCancel = () => onCancel()
 
   return (
     <Animated.View entering={FadeIn} style={overlayStyles.root}>
@@ -37,7 +39,7 @@ const MenuComponent = ({
         blurAmount={10}
         reducedTransparencyFallbackColor={colors.white}
       />
-      <Pressable style={overlayStyles.overlayButton} onPress={handleCancel} />
+      <Pressable style={overlayStyles.overlayButton} onPress={onCancel} />
       <Animated.View entering={FadeInDown} style={overlayStyles.actions}>
         {want || watched ? (
           <>
@@ -45,7 +47,7 @@ const MenuComponent = ({
               <Button
                 style={[overlayStyles.button, overlayStyles.buttonDanger]}
                 textStyle={[overlayStyles.text, overlayStyles.textDanger]}
-                onPress={handleWant}
+                onPress={onWant}
               >
                 {t("actions.want.remove")}
               </Button>
@@ -54,9 +56,34 @@ const MenuComponent = ({
               <Button
                 style={[overlayStyles.button, overlayStyles.buttonDanger]}
                 textStyle={[overlayStyles.text, overlayStyles.textDanger]}
-                onPress={handleWatched}
+                onPress={onWatched}
               >
                 {t("actions.watched.remove")}
+              </Button>
+            )}
+            {pinned ? (
+              <Button
+                style={[overlayStyles.button]}
+                textStyle={[overlayStyles.text]}
+                onPress={onUnpin}
+              >
+                {t("actions.pin.remove", {
+                  name: want
+                    ? t("actions.want.title")
+                    : t("actions.watched.title"),
+                })}
+              </Button>
+            ) : (
+              <Button
+                style={[overlayStyles.button]}
+                textStyle={[overlayStyles.text]}
+                onPress={onPin}
+              >
+                {t("actions.pin.add", {
+                  name: want
+                    ? t("actions.want.title")
+                    : t("actions.watched.title"),
+                })}
               </Button>
             )}
           </>
@@ -65,14 +92,14 @@ const MenuComponent = ({
             <Button
               style={[overlayStyles.button]}
               textStyle={[overlayStyles.text]}
-              onPress={handleWant}
+              onPress={onWant}
             >
               {t("actions.want.add")}
             </Button>
             <Button
               style={[overlayStyles.button]}
               textStyle={[overlayStyles.text]}
-              onPress={handleWatched}
+              onPress={onWatched}
             >
               {t("actions.watched.add")}
             </Button>
@@ -81,7 +108,7 @@ const MenuComponent = ({
         <Button
           style={[overlayStyles.button, overlayStyles.buttonCancel]}
           textStyle={[overlayStyles.text]}
-          onPress={handleCancel}
+          onPress={onCancel}
         >
           {t("actions.cancel.title")}
         </Button>
