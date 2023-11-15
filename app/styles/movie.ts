@@ -181,6 +181,11 @@ export const overlayStyles = StyleSheet.create({
     right: 0,
   },
   overlayButton: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
     flex: 1,
     backgroundColor: "transparent",
     width: "100%",
@@ -191,26 +196,13 @@ export const overlayStyles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: colors.black,
+    backgroundColor: "transparent",
     borderRadius: 0,
     margin: 0,
-    borderBottomColor: colors.raisinBlack,
-    borderBottomWidth: 1,
-  },
-  buttonCancel: {
-    borderBottomRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomWidth: 0,
-  },
-  buttonDanger: {
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
   },
   text: {
-    color: colors.americanSilver,
-  },
-  textDanger: {
-    color: colors.darkCandyAppleRed,
+    color: colors.graniteGray,
+    fontWeight: "600",
   },
 })
 

@@ -5,10 +5,12 @@ import Animated, { FadeIn, FadeInDown } from "react-native-reanimated"
 import { useTranslation } from "react-i18next"
 
 import { overlayStyles } from "styles"
+import Poster from "components/Movie/Poster"
 import Button from "components/ui/Button"
 import colors from "styles/colors"
 
 type Props = {
+  poster_path: string
   pinned: boolean
   want: boolean
   watched: boolean
@@ -20,6 +22,7 @@ type Props = {
 }
 
 const MenuComponent = ({
+  poster_path,
   pinned,
   want,
   watched,
@@ -39,14 +42,17 @@ const MenuComponent = ({
         blurAmount={10}
         reducedTransparencyFallbackColor={colors.white}
       />
+      <Poster poster_path={poster_path} />
+
       <Pressable style={overlayStyles.overlayButton} onPress={onCancel} />
+
       <Animated.View entering={FadeInDown} style={overlayStyles.actions}>
         {want || watched ? (
           <>
             {want && (
               <Button
-                style={[overlayStyles.button, overlayStyles.buttonDanger]}
-                textStyle={[overlayStyles.text, overlayStyles.textDanger]}
+                style={overlayStyles.button}
+                textStyle={overlayStyles.text}
                 onPress={onWant}
               >
                 {t("actions.want.remove")}
@@ -54,8 +60,8 @@ const MenuComponent = ({
             )}
             {watched && (
               <Button
-                style={[overlayStyles.button, overlayStyles.buttonDanger]}
-                textStyle={[overlayStyles.text, overlayStyles.textDanger]}
+                style={overlayStyles.button}
+                textStyle={overlayStyles.text}
                 onPress={onWatched}
               >
                 {t("actions.watched.remove")}
@@ -63,8 +69,8 @@ const MenuComponent = ({
             )}
             {pinned ? (
               <Button
-                style={[overlayStyles.button]}
-                textStyle={[overlayStyles.text]}
+                style={overlayStyles.button}
+                textStyle={overlayStyles.text}
                 onPress={onUnpin}
               >
                 {t("actions.pin.remove", {
@@ -75,8 +81,8 @@ const MenuComponent = ({
               </Button>
             ) : (
               <Button
-                style={[overlayStyles.button]}
-                textStyle={[overlayStyles.text]}
+                style={overlayStyles.button}
+                textStyle={overlayStyles.text}
                 onPress={onPin}
               >
                 {t("actions.pin.add", {
@@ -90,15 +96,15 @@ const MenuComponent = ({
         ) : (
           <>
             <Button
-              style={[overlayStyles.button]}
-              textStyle={[overlayStyles.text]}
+              style={overlayStyles.button}
+              textStyle={overlayStyles.text}
               onPress={onWant}
             >
               {t("actions.want.add")}
             </Button>
             <Button
-              style={[overlayStyles.button]}
-              textStyle={[overlayStyles.text]}
+              style={overlayStyles.button}
+              textStyle={overlayStyles.text}
               onPress={onWatched}
             >
               {t("actions.watched.add")}
@@ -106,8 +112,8 @@ const MenuComponent = ({
           </>
         )}
         <Button
-          style={[overlayStyles.button, overlayStyles.buttonCancel]}
-          textStyle={[overlayStyles.text]}
+          style={overlayStyles.button}
+          textStyle={overlayStyles.text}
           onPress={onCancel}
         >
           {t("actions.cancel.title")}

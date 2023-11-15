@@ -91,6 +91,7 @@ const ActionsComponent = ({ item }: Props) => {
       </View>
       <Modal transparent animationType="none" visible={visible}>
         <Menu
+          poster_path={item.poster_path}
           pinned={isPinned}
           want={want}
           watched={watched}
