@@ -63,6 +63,18 @@ export interface MovieCredits {
   items: MovieCastPerson[]
 }
 
+export interface MovieVideo {
+  id: number
+  name: string
+  key: string
+  published_at: string
+}
+
+export interface MovieVideos {
+  id: number
+  items: MovieVideo[]
+}
+
 export interface MovieResult {
   id: number
   title: string

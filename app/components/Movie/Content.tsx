@@ -7,6 +7,7 @@ import { useMovieDetails } from "hocs"
 import { layoutStyles, movieStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
 import Poster from "components/Movie/Poster"
+import Play from "components/Movie/Play"
 import Status from "components/Movie/Status"
 import Rating from "components/Movie/Rating"
 import Actions from "components/Movie/Actions"
@@ -28,6 +29,9 @@ const ContentComponent = ({ item }: Props) => {
   return (
     <>
       <Poster poster_path={poster_path} />
+      {/* @ts-ignore */}
+      <Play id={item.id} />
+
       <View
         style={[
           layoutStyles.roundCorners,

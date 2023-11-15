@@ -4,6 +4,7 @@ import movieCredits from "redux/features/tmdb/tmdbMovieCreditsSlice"
 import movieDetails from "redux/features/tmdb/tmdbMovieDetailsSlice"
 import movieSearch from "redux/features/tmdb/tmdbMovieSearchSlice"
 import movieTrending from "redux/features/tmdb/tmdbMovieTrendingSlice"
+import movieVideos from "redux/features/tmdb/tmdbMovieVideosSlice"
 import peopleTrending from "redux/features/tmdb/tmdbPeopleTrendingSlice"
 import personDetails from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import personMovieCredits from "redux/features/tmdb/tmdbPersonMovieCreditsSlice"
@@ -14,6 +15,7 @@ export const features = combineReducers({
   movieDetails,
   movieSearch,
   movieTrending,
+  movieVideos,
   peopleTrending,
   personDetails,
   personMovieCredits,

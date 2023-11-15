@@ -3,6 +3,9 @@ export const TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY = "Director of Photography"
 export const TMDB_JOB_SCREENPLAY = "Screenplay"
 export const TMDB_FEMALE_GENDER = 1
 export const TMDB_MALE_GENDER = 2
+export const TMDB_YOUTUBE_TYPE = "YouTube"
+export const TMDB_TRAILER_TYPE = "Trailer"
+export const TMDB_VIDEO_NOT_EMBEDDABLE = "not_embeddable"
 
 export interface TMDBMovieDetails {
   id: number
@@ -82,6 +85,19 @@ export interface TMDBMovieCrew {
   vote_count: number
   department: string
   job: string
+}
+
+export interface TMDBMovieVideo {
+  id: number
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: true
+  published_at: string
+  iso_3166_1: string
+  iso_639_1: string
 }
 
 export interface TMDBSearchResult {

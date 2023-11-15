@@ -213,3 +213,22 @@ export const overlayStyles = StyleSheet.create({
     color: colors.darkCandyAppleRed,
   },
 })
+
+export const playStyles = StyleSheet.create({
+  root: {
+    position: "absolute",
+    top: 370,
+    right: 65,
+    height: 40,
+    width: 40,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    borderRadius: 50,
+    paddingLeft: 3,
+    height: "100%",
+    width: "100%",
+  },
+})

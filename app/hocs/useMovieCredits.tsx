@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { ActivityIndicator, View, Text } from "react-native"
+import { ActivityIndicator, View } from "react-native"
 import { useTranslation } from "react-i18next"
 
 import { useAppDispatch, useAppSelector } from "redux/hooks"

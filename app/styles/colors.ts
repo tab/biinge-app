@@ -1,6 +1,7 @@
 const colors = {
   americanSilver: "#d1cecf",
   black: "#181818",
+  darkBlack: "#000",
   darkBlue: "#2a3642",
   darkCandyAppleRed: "#9f0909",
   graniteGray: "#666666",

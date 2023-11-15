@@ -3,12 +3,14 @@ import { parseISO } from "date-fns"
 
 import { TMDB_API, LANG } from "redux/api/tmdb"
 import {
-  TMDBSearchResult,
   TMDBMovieCast,
   TMDBMovieCrew,
+  TMDBMovieVideo,
   TMDBPersonCast,
   TMDBPersonCrew,
   TMDB_JOB_DIRECTOR,
+  TMDB_TRAILER_TYPE,
+  TMDB_YOUTUBE_TYPE,
   PersonResult,
   MovieResult,
 } from "types"
@@ -86,6 +88,34 @@ export const movieCredits = createAsyncThunk(
     return {
       id,
       items: [...filteredCrew, ...filteredCast],
+    }
+  },
+)
+
+// NOTE: Movie screen, trailer
+export const movieVideos = createAsyncThunk(
+  "tmdb/movie/videos",
+  async (id: number) => {
+    const response = await TMDB_API.get(`/movie/${id}/videos?language=${LANG}`)
+    const { results } = response.data
+
+    const filteredVideos = results
+      .filter(({ official }: TMDBMovieVideo) => official)
+      .filter(({ site }: TMDBMovieVideo) => site === TMDB_YOUTUBE_TYPE)
+      .filter(({ type }: TMDBMovieVideo) => type === TMDB_TRAILER_TYPE)
+      .map(({ id, name, key, published_at }: TMDBMovieVideo) => {
+        return {
+          id,
+          tmdb_id: id,
+          name,
+          key,
+          published_at,
+        }
+      })
+
+    return {
+      id,
+      items: filteredVideos,
     }
   },
 )
