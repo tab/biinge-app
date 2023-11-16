@@ -110,6 +110,9 @@
         },
         "watched":  {
           "title": "watched"
+        },
+        "hours": {
+          "title": "hours spent"
         }
       },
       "actions": {
@@ -155,6 +158,13 @@
       },
       "internalError": {
         "title": "Internal error"
+      }
+    },
+    "format": {
+      "runtime": {
+        "title": "{{hours}}h{{minutes}}m",
+        "hours": "{{hours}}m",
+        "minutes": "{{minutes}}m"
       }
     },
     "validation": {

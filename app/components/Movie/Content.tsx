@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 import { useMovieDetails } from "hocs"
 import { layoutStyles, movieStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
+import { formatRuntime } from "helpers/formatRuntime"
 import Poster from "components/Movie/Poster"
 import Play from "components/Movie/Play"
 import Status from "components/Movie/Status"
@@ -21,8 +22,15 @@ type Props = {
 const ContentComponent = ({ item }: Props) => {
   const { t } = useTranslation()
 
-  const { title, overview, poster_path, vote_average, release_date, status } =
-    item
+  const {
+    title,
+    overview,
+    poster_path,
+    vote_average,
+    release_date,
+    runtime,
+    status,
+  } = item
 
   const votes = vote_average > 0
 
@@ -48,6 +56,9 @@ const ContentComponent = ({ item }: Props) => {
         <View style={movieStyles.row}>
           <Typography variant="headline" style={movieStyles.date}>
             {formatDate(release_date)}
+          </Typography>
+          <Typography variant="subhead" style={movieStyles.runtime}>
+            {formatRuntime(runtime)}
           </Typography>
           <Status>{status}</Status>
         </View>

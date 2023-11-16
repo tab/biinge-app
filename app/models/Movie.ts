@@ -14,6 +14,7 @@ export class Movie extends Realm.Object<Movie> {
   popularity!: number
   status!: string
   release_date!: string
+  runtime!: number
   vote_average!: number
   vote_count!: number
   pin!: boolean
@@ -36,6 +37,7 @@ export class Movie extends Realm.Object<Movie> {
       popularity: "double",
       status: "string",
       release_date: "string",
+      runtime: "double",
       vote_average: "double",
       vote_count: "double",
       pin: "boolean",

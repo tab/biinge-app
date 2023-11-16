@@ -22,6 +22,9 @@ export const movieStyles = StyleSheet.create({
   date: {
     color: colors.graniteGray,
   },
+  runtime: {
+    color: colors.spanishGray,
+  },
   overview: {
     padding: 0,
   },

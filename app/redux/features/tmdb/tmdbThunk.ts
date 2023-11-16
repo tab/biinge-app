@@ -31,6 +31,7 @@ export const movieDetails = createAsyncThunk(
       status,
       imdb_id,
       release_date,
+      runtime,
       vote_average,
       vote_count,
     } = response.data
@@ -47,6 +48,7 @@ export const movieDetails = createAsyncThunk(
       status,
       imdb_id,
       release_date,
+      runtime,
       vote_average,
       vote_count,
     }
