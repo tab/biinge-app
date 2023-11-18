@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { View } from "react-native"
-import { useObject, useUser } from "@realm/react"
+import { useUser } from "@realm/react"
 import { useTranslation } from "react-i18next"
 
 import i18n from "config/i18n"
-import { UserMovie } from "models"
+import { MovieContext } from "contexts/MovieContext"
+import { Movie } from "models"
 import Avatar from "components/ui/Avatar"
 import Button from "components/ui/Button"
 import Typography from "components/ui/Typography"
@@ -13,10 +14,18 @@ import { profileStyles } from "styles"
 const ProfileScreen = () => {
   const { t } = useTranslation()
 
+  const { wantList, watchedList } = useContext(MovieContext)
+
   const user = useUser()
-  const userMovie = useObject(UserMovie, user.id)
-  const want = userMovie?.want || []
-  const watched = userMovie?.watched || []
+  const want = wantList()
+  const watched = watchedList()
+
+  // @ts-ignore
+  const minutes = watched.reduce(
+    (index: number, item: Movie) => index + (item.runtime || 0),
+    0,
+  )
+  const hours = Math.floor(minutes / 60)
 
   const handleClick = () => {
     user.logOut()
@@ -46,6 +55,12 @@ const ProfileScreen = () => {
               <Typography variant="callout">{watched.length}</Typography>
               <Typography variant="footnote">
                 {t("profile.stats.watched.title")}
+              </Typography>
+            </View>
+            <View style={profileStyles.counters}>
+              <Typography variant="callout">{hours}</Typography>
+              <Typography variant="footnote">
+                {t("profile.stats.hours.title")}
               </Typography>
             </View>
           </View>
