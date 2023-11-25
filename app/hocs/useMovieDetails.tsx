@@ -12,7 +12,7 @@ import {
 import LoadableEntity from "components/ui/LoadableEntity"
 import Typography from "components/ui/Typography"
 import Poster from "components/Movie/Poster"
-import { MovieDetails } from "types"
+import { MovieDetails, FETCH_STATUS } from "types"
 import { loadingStyles, layoutStyles, textStyles } from "styles"
 import colors from "styles/colors"
 
@@ -30,7 +30,8 @@ export function useMovieDetails<GenericType>(
     const result = useAppSelector((state) =>
       selectById(state, id),
     ) as MovieDetails
-    const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
+    const fetchStatus =
+      useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {

@@ -23,13 +23,15 @@ export const tmdbMovieDetailsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(personMovieCredits.pending, (state) => handleFetchPending(state))
-      .addCase(personMovieCredits.rejected, (state) =>
-        handleFetchRejected(state),
+      .addCase(personMovieCredits.pending, (state, { meta }) =>
+        handleFetchPending(state, meta.arg),
       )
-      .addCase(personMovieCredits.fulfilled, (state, { payload }) => {
+      .addCase(personMovieCredits.rejected, (state, { meta }) =>
+        handleFetchRejected(state, meta.arg),
+      )
+      .addCase(personMovieCredits.fulfilled, (state, { payload, meta }) => {
         adapter.setOne(state, payload)
-        handleFetchFulfilled(state)
+        handleFetchFulfilled(state, meta.arg)
       })
   },
 })
@@ -38,7 +40,8 @@ export const { selectAll, selectById } = adapter.getSelectors(
   (state: RootState) => state.features.personMovieCredits,
 )
 
-export const selectFetchStatus = (state: RootState) =>
-  state.features.personMovieCredits.fetchStatus
+export const selectFetchStatus = (state: RootState, id: number) =>
+  // @ts-ignore
+  state.features.personMovieCredits.fetchStatus[id]
 
 export default tmdbMovieDetailsSlice.reducer

@@ -1,27 +1,27 @@
 import { FetchType, FetchCollectionType } from "types"
 
-export const handleFetchPending = (state: FetchType) => {
-  state.fetchStatus.isFetching = true
-  state.fetchStatus.isSuccess = false
-  state.fetchStatus.isFailed = false
+export const handleFetchPending = (state: FetchType, id: number) => {
+  state.fetchStatus[id] = {
+    isFetching: true,
+    isSuccess: false,
+    isFailed: false,
+  }
 }
 
-export const handleFetchRejected = (state: FetchType) => {
-  state.fetchStatus.isFetching = false
-  state.fetchStatus.isSuccess = false
-  state.fetchStatus.isFailed = true
+export const handleFetchRejected = (state: FetchType, id: number) => {
+  state.fetchStatus[id] = {
+    isFetching: false,
+    isSuccess: false,
+    isFailed: true,
+  }
 }
 
-export const handleFetchFulfilled = (state: FetchType) => {
-  state.fetchStatus.isFetching = false
-  state.fetchStatus.isSuccess = true
-  state.fetchStatus.isFailed = false
-}
-
-export const handleFetchReset = (state: FetchType) => {
-  state.fetchStatus.isFetching = true
-  state.fetchStatus.isSuccess = false
-  state.fetchStatus.isFailed = false
+export const handleFetchFulfilled = (state: FetchType, id: number) => {
+  state.fetchStatus[id] = {
+    isFetching: false,
+    isSuccess: true,
+    isFailed: false,
+  }
 }
 
 export const handleFetchCollectionPending = (state: FetchCollectionType) => {
@@ -37,6 +37,12 @@ export const handleFetchCollectionRejected = (state: FetchCollectionType) => {
 }
 
 export const handleFetchCollectionFulfilled = (state: FetchCollectionType) => {
+  state.fetchCollectionStatus.isFetching = false
+  state.fetchCollectionStatus.isSuccess = true
+  state.fetchCollectionStatus.isFailed = false
+}
+
+export const handleFetchCollectionReset = (state: FetchCollectionType) => {
   state.fetchCollectionStatus.isFetching = false
   state.fetchCollectionStatus.isSuccess = true
   state.fetchCollectionStatus.isFailed = false

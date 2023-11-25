@@ -92,7 +92,8 @@
     "movie": {
       "content": {
         "overview": "Synopsis",
-        "cast": "Cast"
+        "cast": "Cast",
+        "recommendations": "Recommendations"
       }
     },
     "person": {

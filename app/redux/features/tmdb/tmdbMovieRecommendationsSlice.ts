@@ -6,7 +6,7 @@ import {
   handleFetchRejected,
   handleFetchFulfilled,
 } from "redux/helpers/fetching"
-import { movieDetails } from "redux/features/tmdb/tmdbThunk"
+import { movieRecommendations } from "redux/features/tmdb/tmdbThunk"
 
 const adapter = createEntityAdapter()
 export const initialState = adapter.getInitialState({
@@ -18,30 +18,30 @@ export const initialState = adapter.getInitialState({
 })
 
 export const tmdbMovieDetailsSlice = createSlice({
-  name: "movieDetails",
+  name: "movieRecommendations",
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(movieDetails.pending, (state, { meta }) =>
+      .addCase(movieRecommendations.pending, (state, { meta }) =>
         handleFetchPending(state, meta.arg),
       )
-      .addCase(movieDetails.rejected, (state, { meta }) =>
+      .addCase(movieRecommendations.rejected, (state, { meta }) =>
         handleFetchRejected(state, meta.arg),
       )
-      .addCase(movieDetails.fulfilled, (state, { payload, meta }) => {
+      .addCase(movieRecommendations.fulfilled, (state, { payload, meta }) => {
         adapter.upsertOne(state, payload)
         handleFetchFulfilled(state, meta.arg)
       })
   },
 })
 
-export const { selectById } = adapter.getSelectors(
-  (state: RootState) => state.features.movieDetails,
+export const { selectAll, selectById } = adapter.getSelectors(
+  (state: RootState) => state.features.movieRecommendations,
 )
 
 export const selectFetchStatus = (state: RootState, id: number) =>
   // @ts-ignore
-  state.features.movieDetails.fetchStatus[id]
+  state.features.movieRecommendations.fetchStatus[id]
 
 export default tmdbMovieDetailsSlice.reducer

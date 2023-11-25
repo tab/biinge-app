@@ -3,6 +3,7 @@ import { View, ScrollView } from "react-native"
 
 import Content from "components/Movie/Content"
 import People from "components/Movie/People"
+import Recommendations from "components/Movie/Recommendations"
 import { layoutStyles } from "styles"
 
 type Props = {
@@ -24,6 +25,8 @@ const DetailsScreen = ({ route }: Props) => {
         <Content id={id} />
         {/* @ts-ignore */}
         <People id={id} />
+        {/* @ts-ignore */}
+        <Recommendations id={id} />
       </ScrollView>
     </View>
   )

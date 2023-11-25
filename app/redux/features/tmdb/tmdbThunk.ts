@@ -3,6 +3,9 @@ import { parseISO } from "date-fns"
 
 import { TMDB_API, LANG } from "redux/api/tmdb"
 import {
+  MovieRecommendation,
+  MovieResult,
+  PersonResult,
   TMDBMovieCast,
   TMDBMovieCrew,
   TMDBMovieVideo,
@@ -11,8 +14,6 @@ import {
   TMDB_JOB_DIRECTOR,
   TMDB_TRAILER_TYPE,
   TMDB_YOUTUBE_TYPE,
-  PersonResult,
-  MovieResult,
 } from "types"
 
 // NOTE: Movie screen
@@ -122,6 +123,33 @@ export const movieVideos = createAsyncThunk(
   },
 )
 
+// NOTE: Movie screen, trailer
+export const movieRecommendations = createAsyncThunk(
+  "tmdb/movie/recommendations",
+  async (id: number) => {
+    const response = await TMDB_API.get(
+      `/movie/${id}/recommendations?include_adult=false&language=${LANG}`,
+    )
+    const { results } = response.data
+
+    const filteredRecommendations = results
+      .filter(({ poster_path }: MovieRecommendation) => poster_path)
+      .map(({ id, title, poster_path }: MovieRecommendation) => {
+        return {
+          id,
+          tmdb_id: id,
+          title,
+          poster_path,
+        }
+      })
+
+    return {
+      id,
+      items: filteredRecommendations,
+    }
+  },
+)
+
 // NOTE: Person screen
 export const personDetails = createAsyncThunk(
   "tmdb/person/details",
@@ -192,7 +220,7 @@ export const trendingMovie = createAsyncThunk(
     const response = await TMDB_API.get(
       `/trending/movie/week?include_adult=false&language=${LANG}`,
     )
-    const results = response.data.results
+    const { results } = response.data
 
     return results
       .filter(({ poster_path }: MovieResult) => poster_path)
@@ -234,7 +262,7 @@ export const movieSearch = createAsyncThunk(
     const response = await TMDB_API.get(
       `/search/movie?query=${query}&include_adult=false&language=${LANG}`,
     )
-    const results = response.data.results
+    const { results } = response.data
 
     return results
       .filter(({ poster_path }: MovieResult) => poster_path)
@@ -255,7 +283,7 @@ export const personSearch = createAsyncThunk(
     const response = await TMDB_API.get(
       `/search/person?query=${query}&include_adult=false&language=${LANG}`,
     )
-    const results = response.data.results
+    const { results } = response.data
 
     return results
       .filter(({ profile_path }: PersonResult) => profile_path)

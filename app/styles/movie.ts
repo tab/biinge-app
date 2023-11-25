@@ -227,3 +227,15 @@ export const playStyles = StyleSheet.create({
     width: "100%",
   },
 })
+
+export const recommendationsStyles = StyleSheet.create({
+  root: {
+    backgroundColor: colors.white,
+    paddingBottom: 20,
+  },
+  title: {
+    color: colors.graniteGray,
+    marginBottom: 7,
+    paddingHorizontal: 15,
+  },
+})

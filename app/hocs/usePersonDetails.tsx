@@ -12,7 +12,7 @@ import {
 import LoadableEntity from "components/ui/LoadableEntity"
 import Title from "components/ui/Title"
 import Poster from "components/Person/Poster"
-import { PersonDetails } from "types"
+import { PersonDetails, FETCH_STATUS } from "types"
 import { loadingStyles, textStyles, personStyles } from "styles"
 import colors from "styles/colors"
 
@@ -30,7 +30,8 @@ export function usePersonDetails<GenericType>(
     const result = useAppSelector((state) =>
       selectById(state, id),
     ) as PersonDetails
-    const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
+    const fetchStatus =
+      useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {

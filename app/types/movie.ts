@@ -75,6 +75,17 @@ export interface MovieVideos {
   items: MovieVideo[]
 }
 
+export interface MovieRecommendation {
+  id: number
+  title: string
+  poster_path: string
+}
+
+export interface MovieRecommendations {
+  id: number
+  items: MovieRecommendation[]
+}
+
 export interface MovieResult {
   id: number
   title: string

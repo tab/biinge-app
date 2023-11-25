@@ -7,7 +7,7 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbMovieVideosSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import { MovieVideos } from "types"
+import { MovieVideos, FETCH_STATUS } from "types"
 
 type Props = {
   id: number
@@ -22,7 +22,8 @@ export function useMovieVideos<GenericType>(
     const result = useAppSelector((state) =>
       selectById(state, id),
     ) as MovieVideos
-    const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
+    const fetchStatus =
+      useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
     useEffect(() => {
       if (!fetchStatus.isFetching) {

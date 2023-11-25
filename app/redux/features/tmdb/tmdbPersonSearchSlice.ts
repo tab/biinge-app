@@ -2,16 +2,16 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit"
 
 import type { RootState } from "redux/store"
 import {
-  handleFetchPending,
-  handleFetchRejected,
-  handleFetchFulfilled,
-  handleFetchReset,
+  handleFetchCollectionPending,
+  handleFetchCollectionRejected,
+  handleFetchCollectionFulfilled,
+  handleFetchCollectionReset,
 } from "redux/helpers/fetching"
 import { personSearch, resetResults } from "redux/features/tmdb/tmdbThunk"
 
 const adapter = createEntityAdapter()
 export const initialState = adapter.getInitialState({
-  fetchStatus: {
+  fetchCollectionStatus: {
     isFetching: false,
     isSuccess: false,
     isFailed: false,
@@ -24,15 +24,19 @@ export const tmdbMovieSearchSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(personSearch.pending, (state) => handleFetchPending(state))
-      .addCase(personSearch.rejected, (state) => handleFetchRejected(state))
+      .addCase(personSearch.pending, (state) =>
+        handleFetchCollectionPending(state),
+      )
+      .addCase(personSearch.rejected, (state) =>
+        handleFetchCollectionRejected(state),
+      )
       .addCase(personSearch.fulfilled, (state, { payload }) => {
         adapter.setAll(state, payload)
-        handleFetchFulfilled(state)
+        handleFetchCollectionFulfilled(state)
       })
       .addCase(resetResults.fulfilled, (state, { payload }) => {
         adapter.setAll(state, payload)
-        handleFetchReset(state)
+        handleFetchCollectionReset(state)
       })
   },
 })
@@ -42,6 +46,6 @@ export const { selectTotal, selectAll } = adapter.getSelectors(
 )
 
 export const selectFetchStatus = (state: RootState) =>
-  state.features.personSearch.fetchStatus
+  state.features.personSearch.fetchCollectionStatus
 
 export default tmdbMovieSearchSlice.reducer

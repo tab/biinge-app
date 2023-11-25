@@ -1,5 +1,6 @@
 export * from "hocs/useMovieCredits"
 export * from "hocs/useMovieDetails"
+export * from "hocs/useMovieRecommendations"
 export * from "hocs/useMovieSearch"
 export * from "hocs/useMovieTrending"
 export * from "hocs/useMovieVideos"

@@ -1,8 +1,10 @@
 export interface FetchType {
   fetchStatus: {
-    isFetching: boolean
-    isSuccess: boolean
-    isFailed: boolean
+    [id: number]: {
+      isFetching: boolean
+      isSuccess: boolean
+      isFailed: boolean
+    }
   }
 }
 
@@ -15,3 +17,9 @@ export interface FetchCollectionType {
 }
 
 export type FetchStatusType = FetchType["fetchStatus"]
+
+export const FETCH_STATUS = {
+  isFetching: false,
+  isSuccess: false,
+  isFailed: false,
+}
