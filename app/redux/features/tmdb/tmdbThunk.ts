@@ -19,8 +19,8 @@ import {
 // NOTE: Movie screen
 export const movieDetails = createAsyncThunk(
   "tmdb/movie/details",
-  async (id: number) => {
-    const response = await TMDB_API.get(`/movie/${id}?language=${LANG}`)
+  async (movieId: number) => {
+    const response = await TMDB_API.get(`/movie/${movieId}?language=${LANG}`)
     const {
       title,
       tagline,
@@ -38,7 +38,7 @@ export const movieDetails = createAsyncThunk(
     } = response.data
 
     return {
-      id,
+      id: movieId,
       title,
       tagline,
       overview,
@@ -59,8 +59,10 @@ export const movieDetails = createAsyncThunk(
 // NOTE: Movie screen, people list
 export const movieCredits = createAsyncThunk(
   "tmdb/movie/credits",
-  async (id: number) => {
-    const response = await TMDB_API.get(`/movie/${id}/credits?language=${LANG}`)
+  async (movieId: number) => {
+    const response = await TMDB_API.get(
+      `/movie/${movieId}/credits?language=${LANG}`,
+    )
     const { cast, crew } = response.data
 
     const filteredCast = cast
@@ -89,7 +91,7 @@ export const movieCredits = createAsyncThunk(
       })
 
     return {
-      id,
+      id: movieId,
       items: [...filteredCrew, ...filteredCast],
     }
   },
@@ -98,8 +100,10 @@ export const movieCredits = createAsyncThunk(
 // NOTE: Movie screen, trailer
 export const movieVideos = createAsyncThunk(
   "tmdb/movie/videos",
-  async (id: number) => {
-    const response = await TMDB_API.get(`/movie/${id}/videos?language=${LANG}`)
+  async (movieId: number) => {
+    const response = await TMDB_API.get(
+      `/movie/${movieId}/videos?language=${LANG}`,
+    )
     const { results } = response.data
 
     const filteredVideos = results
@@ -117,7 +121,7 @@ export const movieVideos = createAsyncThunk(
       })
 
     return {
-      id,
+      id: movieId,
       items: filteredVideos,
     }
   },
@@ -126,9 +130,9 @@ export const movieVideos = createAsyncThunk(
 // NOTE: Movie screen, trailer
 export const movieRecommendations = createAsyncThunk(
   "tmdb/movie/recommendations",
-  async (id: number) => {
+  async (movieId: number) => {
     const response = await TMDB_API.get(
-      `/movie/${id}/recommendations?include_adult=false&language=${LANG}`,
+      `/movie/${movieId}/recommendations?include_adult=false&language=${LANG}`,
     )
     const { results } = response.data
 
@@ -144,7 +148,7 @@ export const movieRecommendations = createAsyncThunk(
       })
 
     return {
-      id,
+      id: movieId,
       items: filteredRecommendations,
     }
   },
@@ -153,13 +157,13 @@ export const movieRecommendations = createAsyncThunk(
 // NOTE: Person screen
 export const personDetails = createAsyncThunk(
   "tmdb/person/details",
-  async (id: number) => {
-    const response = await TMDB_API.get(`/person/${id}?language=${LANG}`)
+  async (personId: number) => {
+    const response = await TMDB_API.get(`/person/${personId}?language=${LANG}`)
     const { name, birthday, profile_path, gender, imdb_id } = response.data
 
     return {
-      id,
-      tmdb_id: id,
+      id: personId,
+      tmdb_id: personId,
       imdb_id,
       name,
       birthday,
@@ -195,14 +199,14 @@ const filterCredits = (items: (TMDBMovieCast | TMDBMovieCrew)[]): any[] => {
 // NOTE: Person screen, movies list
 export const personMovieCredits = createAsyncThunk(
   "tmdb/person/movieCredits",
-  async (id: number) => {
+  async (personId: number) => {
     const response = await TMDB_API.get(
-      `/person/${id}/credits?language=${LANG}`,
+      `/person/${personId}/credits?language=${LANG}`,
     )
     const { cast, crew } = response.data
 
     return {
-      id,
+      id: personId,
       cast: filterCredits(cast),
       crew: filterCredits(
         crew.filter(({ job }: TMDBPersonCrew) =>

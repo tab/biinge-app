@@ -67,7 +67,7 @@ export function usePersonSearch<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(items: PeopleListType) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

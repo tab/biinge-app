@@ -40,7 +40,7 @@ export function usePersonMovieCredits<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(personMovieCredits(id))
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching, id])
 
     const renderLoader = () => {
       return (
@@ -77,7 +77,7 @@ export function usePersonMovieCredits<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: PersonMovieCredits) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

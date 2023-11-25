@@ -37,7 +37,7 @@ export function usePersonDetails<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(personDetails(id))
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching, id])
 
     const renderLoader = () => {
       return (
@@ -77,7 +77,7 @@ export function usePersonDetails<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: PersonDetails) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

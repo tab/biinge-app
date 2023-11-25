@@ -29,7 +29,7 @@ export function useMovieVideos<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(movieVideos(id))
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching, id])
 
     const renderLoader = () => {
       return <></>
@@ -46,7 +46,7 @@ export function useMovieVideos<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: MovieVideos) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
