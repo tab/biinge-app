@@ -1,0 +1,30 @@
+name: PR checks
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+jobs:
+  lint:
+    name: ESLint
+    runs-on: lts-alpine3.18
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Install packages
+        run: yarn install
+      - name: ESLint checks
+        run: yarn run lint
+  test:
+    name: Tests
+    runs-on: lts-alpine3.18
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Install packages
+        run: yarn install
+      - name: Jest tests
+        run: yarn run test
