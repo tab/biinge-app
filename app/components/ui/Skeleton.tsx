@@ -36,7 +36,7 @@ export default function Skeleton({
   speed = 800,
   highlightColor = colors.lotion,
   direction = "right",
-}: SkeletonProps): JSX.Element {
+}: SkeletonProps) {
   const [layout, setLayout] = React.useState<LayoutRectangle>()
   const animated = useSharedValue(0)
   React.useEffect(() => {
@@ -47,7 +47,7 @@ export default function Skeleton({
       }),
       -1,
     )
-  }, [])
+  }, [animated, speed])
   const animatedStyle = useAnimatedStyle(() => {
     const translateX = interpolate(
       animated.value,
@@ -78,7 +78,7 @@ export default function Skeleton({
         (child: JSX.Element, index: number) => {
           let style: ViewStyle
           if (child.type.displayName === "SkeletonItem") {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
             const { children, ...styles } = child.props
             style = styles
           } else {
@@ -107,19 +107,15 @@ export default function Skeleton({
     <MaskedView
       style={{ height: layout.height, width: layout.width }}
       maskElement={
-        <View
-          style={{
-            backgroundColor: "transparent",
-          }}
-        >
-          {getChildren(children)}
-        </View>
+        <View style={styles.transparent}>{getChildren(children)}</View>
       }
     >
+      {/* eslint-disable-next-line react-native/no-inline-styles */}
       <View style={{ flexGrow: 1, backgroundColor }} />
       {speed > 0 && (
         <Animated.View
           style={[
+            // eslint-disable-next-line react-native/no-inline-styles
             {
               flexDirection: "row",
             },
@@ -143,7 +139,7 @@ export default function Skeleton({
                 StyleSheet.absoluteFill,
                 { backgroundColor: highlightColor },
               ]}
-            ></View>
+            />
           </MaskedView>
         </Animated.View>
       )}
@@ -175,6 +171,9 @@ Skeleton.Item.displayName = "SkeletonItem"
 const styles = StyleSheet.create({
   childContainer: {
     position: "relative",
+  },
+  transparent: {
+    backgroundColor: "transparent",
   },
   gradient: {
     flex: 1,

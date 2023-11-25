@@ -34,7 +34,7 @@ export function useMovieTrending<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(trendingMovie())
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching])
 
     const renderLoader = () => {
       return (
@@ -73,7 +73,7 @@ export function useMovieTrending<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(items: MoviesListType) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

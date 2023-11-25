@@ -34,7 +34,7 @@ export function usePeopleTrending<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(trendingPeople())
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching])
 
     const renderLoader = () => {
       return (
@@ -75,7 +75,7 @@ export function usePeopleTrending<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(items: PeopleListType) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

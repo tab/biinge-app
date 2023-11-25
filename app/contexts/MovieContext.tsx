@@ -27,20 +27,20 @@ export const MovieContext = createContext<MovieContextType>({
   watchedList(): Realm.List<Movie> | never[] {
     return []
   },
-  inWantList(tmdbId: number): boolean {
+  inWantList(): boolean {
     return false
   },
-  inWatchedList(tmdbId: number): boolean {
+  inWatchedList(): boolean {
     return false
   },
-  addToWantList(item: TMDBMovieDetails): void {},
-  addToWatchedList(item: TMDBMovieDetails): void {},
-  removeFromList(tmdbId: number): void {},
-  pinned(tmdbId: number): boolean {
+  addToWantList(): void {},
+  addToWatchedList(): void {},
+  removeFromList(): void {},
+  pinned(): boolean {
     return false
   },
-  pinToList(item: TMDBMovieDetails): void {},
-  unpinFromList(item: TMDBMovieDetails): void {},
+  pinToList(): void {},
+  unpinFromList(): void {},
 })
 
 const MovieProvider = ({ children }: { children: React.ReactNode }) => {

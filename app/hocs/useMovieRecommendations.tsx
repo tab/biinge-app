@@ -35,7 +35,7 @@ export function useMovieRecommendations<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(movieRecommendations(id))
       }
-    }, [])
+    }, [dispatch, fetchStatus.isFetching, id])
 
     const renderLoader = () => {
       return (
@@ -66,7 +66,7 @@ export function useMovieRecommendations<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(result: MovieRecommendations) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}
