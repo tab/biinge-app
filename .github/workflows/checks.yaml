@@ -1,30 +1,32 @@
-name: PR checks
+name: Pull Request Checks
+
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
+
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
+
 jobs:
-  lint:
-    name: ESLint
-    runs-on: lts-alpine3.18
+  pr_checks:
+    name: PR Checks
+    runs-on: ubuntu-latest
+
     if: github.event.pull_request.draft == false
+
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-      - name: Install packages
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.5.1
+          cache: 'yarn'
+
+      - name: Install Dependencies
         run: yarn install
-      - name: ESLint checks
+
+      - name: Lint Code
         run: yarn run lint
-  test:
-    name: Tests
-    runs-on: lts-alpine3.18
-    if: github.event.pull_request.draft == false
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-      - name: Install packages
-        run: yarn install
-      - name: Jest tests
-        run: yarn run test
