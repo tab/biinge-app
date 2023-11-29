@@ -23,6 +23,7 @@
     "baseUrl": "app"
   },
   "include": [
-    "app"
+    "app",
+    "__tests__"
   ]
 }
