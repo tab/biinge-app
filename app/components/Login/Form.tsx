@@ -53,6 +53,7 @@ const LoginForm = ({
     >
       <View style={loginFormStyles.group}>
         <TextInput
+          testID="email-input"
           autoCapitalize="none"
           autoComplete="email"
           autoCorrect={false}
@@ -70,6 +71,7 @@ const LoginForm = ({
       </View>
       <View style={loginFormStyles.group}>
         <TextInput
+          testID="password-input"
           autoCapitalize="none"
           autoComplete="password"
           autoCorrect={false}
@@ -88,6 +90,7 @@ const LoginForm = ({
       </View>
       <View style={loginFormStyles.actions}>
         <Button
+          testID="login-button"
           style={
             isLoading
               ? [loginFormStyles.submit, loginFormStyles.disabled]

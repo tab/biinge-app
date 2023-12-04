@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "flex-start",
+      "flexDirection": "row",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-between",
+      "marginBottom": 7,
+    }
+  }
+>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 26,
+          "fontWeight": "700",
+          "lineHeight": 28,
+        },
+        [
+          {
+            "flexBasis": "100%",
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Movie title
+  </Text>
+</View>
+`;
+
+exports[`Title renders correctly with aside 1`] = `
+<View
+  style={
+    {
+      "alignItems": "flex-start",
+      "flexDirection": "row",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-between",
+      "marginBottom": 7,
+    }
+  }
+>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 26,
+          "fontWeight": "700",
+          "lineHeight": 28,
+        },
+        [
+          {
+            "flexBasis": 635,
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Movie title
+  </Text>
+  <Text>
+    Aside
+  </Text>
+</View>
+`;
