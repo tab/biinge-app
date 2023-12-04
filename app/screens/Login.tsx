@@ -84,7 +84,11 @@ const LoginScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={loginFormStyles.root}
       >
-        <Pressable style={loginStyles.button} onPress={handleClick} />
+        <Pressable
+          testID="login-backdrop"
+          style={loginStyles.button}
+          onPress={handleClick}
+        />
         <From
           initialValues={{ ...values }}
           isLoading={result.pending}

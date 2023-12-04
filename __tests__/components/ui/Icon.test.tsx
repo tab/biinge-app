@@ -4,13 +4,14 @@ import { render } from "@testing-library/react-native"
 
 import { it } from "@jest/globals"
 
-import FormError from "components/ui/FormError"
+import Icon from "components/ui/Icon"
+import colors from "styles/colors"
 
-describe("FormError", () => {
-  const error = "Error message"
-
+describe("Icon", () => {
   it("renders correctly", () => {
-    const tree = render(<FormError>{error}</FormError>)
+    const tree = render(
+      <Icon name="star" color={colors.orangeYellow} size={20} />,
+    )
     expect(tree).toMatchSnapshot()
   })
 })

@@ -4,13 +4,15 @@ import { render } from "@testing-library/react-native"
 
 import { it } from "@jest/globals"
 
-import FormError from "components/ui/FormError"
+import Player from "components/ui/Player"
 
-describe("FormError", () => {
-  const error = "Error message"
+describe("Player", () => {
+  const videoId = "123456789"
+
+  const handlePlayer = jest.fn()
 
   it("renders correctly", () => {
-    const tree = render(<FormError>{error}</FormError>)
+    const tree = render(<Player videoId={videoId} onClose={handlePlayer} />)
     expect(tree).toMatchSnapshot()
   })
 })

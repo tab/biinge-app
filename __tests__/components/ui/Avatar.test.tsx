@@ -4,13 +4,13 @@ import { render } from "@testing-library/react-native"
 
 import { it } from "@jest/globals"
 
-import FormError from "components/ui/FormError"
+import Avatar from "components/ui/Avatar"
 
-describe("FormError", () => {
-  const error = "Error message"
+describe("Avatar", () => {
+  const email = "test@local"
 
   it("renders correctly", () => {
-    const tree = render(<FormError>{error}</FormError>)
+    const tree = render(<Avatar email={email} />)
     expect(tree).toMatchSnapshot()
   })
 })

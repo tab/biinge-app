@@ -1,8 +1,8 @@
 import React from "react"
 import "react-native"
+import { render } from "@testing-library/react-native"
 
 import { it } from "@jest/globals"
-import renderer from "react-test-renderer"
 
 import Button from "components/ui/Button"
 
@@ -13,7 +13,7 @@ describe("Button", () => {
   it("renders disabled button", () => {
     const disabled = true
 
-    const tree = renderer.create(
+    const tree = render(
       <Button disabled={disabled} onPress={handleClick}>
         {title}
       </Button>,
@@ -24,7 +24,7 @@ describe("Button", () => {
   it("renders button", () => {
     const disabled = false
 
-    const tree = renderer.create(
+    const tree = render(
       <Button disabled={disabled} onPress={handleClick}>
         {title}
       </Button>,
