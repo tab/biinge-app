@@ -30,7 +30,7 @@ const SearchScreen = () => {
     } else {
       dispatch(resetResults())
     }
-  }, [])
+  }, [dispatch, query])
 
   const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 

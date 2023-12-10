@@ -65,7 +65,7 @@ export function useMovieSearch<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
-        {(items: MoviesListType) => (
+        {() => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

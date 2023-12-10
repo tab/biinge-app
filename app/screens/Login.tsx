@@ -41,7 +41,7 @@ const LoginScreen = () => {
     if (result.success && result.operation === AuthOperationName.Register) {
       logIn(values)
     }
-  }, [result, values])
+  }, [logIn, register, result, values])
 
   const handleError = (message: string) => {
     showMessage({
@@ -56,9 +56,9 @@ const LoginScreen = () => {
     Keyboard.dismiss()
   }
 
-  const handleSubmit = (values: LoginFormValues) => {
-    setValues(values)
-    logIn(values)
+  const handleSubmit = (params: LoginFormValues) => {
+    setValues(params)
+    logIn(params)
   }
 
   return (
