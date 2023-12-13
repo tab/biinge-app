@@ -18,7 +18,7 @@
     "@react-navigation/native": "6.1.9",
     "@react-navigation/native-stack": "6.9.17",
     "@realm/react": "^0.6.1",
-    "@reduxjs/toolkit": "^1.9.7",
+    "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.5.1",
     "crypto-js": "^4.2.0",
     "date-fns": "^2.30.0",
