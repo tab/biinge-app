@@ -519,7 +519,7 @@ PODS:
     - React-perflogger (= 0.72.7)
   - RealmJS (12.3.0):
     - React
-  - RNCMaskedView (0.3.0):
+  - RNCMaskedView (0.3.1):
     - React-Core
   - RNFastImage (8.6.3):
     - React-Core
@@ -848,7 +848,7 @@ SPEC CHECKSUMS:
   React-utils: 56838edeaaf651220d1e53cd0b8934fb8ce68415
   ReactCommon: 5f704096ccf7733b390f59043b6fa9cc180ee4f6
   RealmJS: 4c52a15602e70b64cd9230b0a17a9c12741371f4
-  RNCMaskedView: f7c74478c83c4fdfc5cf4df51f80c0dd5cf125c6
+  RNCMaskedView: 090213d32d8b3bb83a4dcb7d12c18f0152591906
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNGestureHandler: 6e46dde1f87e5f018a54fe5d40cd0e0b942b49ee
   RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
