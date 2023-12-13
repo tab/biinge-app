@@ -7068,10 +7068,10 @@ readline@^1.3.0:
   resolved "https://registry.yarnpkg.com/readline/-/readline-1.3.0.tgz#c580d77ef2cfc8752b132498060dc9793a7ac01c"
   integrity sha512-k2d6ACCkiNYz222Fs/iNze30rRJ1iIicW7JuX/7/cozvih6YCkFZH+J6mAFDVgv0dRBaAyr4jDqC95R2y4IADg==
 
-realm@^12.1.0:
-  version "12.3.0"
-  resolved "https://registry.yarnpkg.com/realm/-/realm-12.3.0.tgz#d18eb34086df42dac9330c12f20d7dff0f0aa513"
-  integrity sha512-qlWu8RpgGQhCllwutGZUJ+B37AF+7RNNXlyo5SftZoQFiTKVlmhN5w6B2fBmTd7R9J7Tw+lJcYUbvCZuZ4es0w==
+realm@^12.4.0:
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-12.4.0.tgz#05ff556f08ac6a107e915531f13fe5673c021459"
+  integrity sha512-YdElmGA24DRU1FHBzw9KIyWIHXSjwHCO65GeGWjGiqO0Pth10hkgkYrBDKnfgR/OLwfX4zHsgsz3/3HxHi4dQQ==
   dependencies:
     bson "^4.7.2"
     debug "^4.3.4"
