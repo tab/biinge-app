@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton renders correctly 1`] = `
+<View
+  onLayout={[Function]}
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "paddingLeft": 10,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "position": "relative",
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "height": 374.9625,
+              "marginRight": 10,
+              "width": 249.975,
+            },
+            {
+              "backgroundColor": "#d1cecf",
+              "overflow": "hidden",
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        {
+          "position": "relative",
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "height": 374.9625,
+              "marginRight": 10,
+              "width": 249.975,
+            },
+            {
+              "backgroundColor": "#d1cecf",
+              "overflow": "hidden",
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        {
+          "position": "relative",
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "height": 374.9625,
+              "marginRight": 10,
+              "width": 249.975,
+            },
+            {
+              "backgroundColor": "#d1cecf",
+              "overflow": "hidden",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

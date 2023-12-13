@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login renders correctly 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "transform": [
+          {
+            "translateY": -48,
+          },
+        ],
+        "zIndex": 99,
+      }
+    }
+  />
+  <Image
+    source={
+      {
+        "testUri": "../../../app/assets/background.png",
+      }
+    }
+    style={
+      {
+        "bottom": 0,
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "width": "100%",
+      }
+    }
+  />
+  <BVLinearGradient
+    colors={
+      [
+        0,
+        2566914048,
+        4278190080,
+      ]
+    }
+    endPoint={
+      {
+        "x": 0.5,
+        "y": 1,
+      }
+    }
+    locations={null}
+    startPoint={
+      {
+        "x": 0.5,
+        "y": 0,
+      }
+    }
+    style={
+      {
+        "bottom": 0,
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "width": "100%",
+      }
+    }
+  />
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "center",
+        },
+        {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "backgroundColor": "transparent",
+          "flex": 1,
+          "width": "100%",
+        }
+      }
+      testID="login-backdrop"
+    />
+    <View
+      style={
+        {
+          "paddingBottom": 60,
+          "paddingHorizontal": 24,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "marginBottom": 15,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={false}
+          autoCapitalize="none"
+          autoComplete="email"
+          autoCorrect={false}
+          autoFocus={true}
+          onChangeText={[Function]}
+          placeholder="Email"
+          placeholderTextColor="#b5b5b5"
+          style={
+            {
+              "backgroundColor": "#ffffff",
+              "borderRadius": 4,
+              "fontSize": 16,
+              "padding": 12,
+            }
+          }
+          testID="email-input"
+          textContentType="emailAddress"
+        />
+      </View>
+      <View
+        style={
+          {
+            "marginBottom": 15,
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={false}
+          autoCapitalize="none"
+          autoComplete="password"
+          autoCorrect={false}
+          autoFocus={false}
+          onChangeText={[Function]}
+          placeholder="Password"
+          placeholderTextColor="#b5b5b5"
+          secureTextEntry={true}
+          style={
+            {
+              "backgroundColor": "#ffffff",
+              "borderRadius": 4,
+              "fontSize": 16,
+              "padding": 12,
+            }
+          }
+          testID="password-input"
+          textContentType="password"
+        />
+      </View>
+      <View
+        style={
+          {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#2b2835",
+                "borderRadius": 50,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 15,
+              },
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#181818",
+                  "borderRadius": 4,
+                  "justifyContent": "center",
+                  "padding": 15,
+                },
+              ],
+            ]
+          }
+          testID="login-button"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#ffffff",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                undefined,
+              ]
+            }
+          >
+            Login or Register
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

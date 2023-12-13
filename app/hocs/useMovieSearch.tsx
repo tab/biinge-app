@@ -65,6 +65,7 @@ export function useMovieSearch<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(items: MoviesListType) => (
           // @ts-ignore
           <WrappedComponent

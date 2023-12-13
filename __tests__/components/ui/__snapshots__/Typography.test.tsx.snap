@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography renders correctly body variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 18,
+        "fontWeight": "300",
+        "lineHeight": 22,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly callout variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 18,
+        "fontWeight": "600",
+        "lineHeight": 24,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly caption1 variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 14,
+        "fontWeight": "700",
+        "lineHeight": 17,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly caption2 variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 14,
+        "fontWeight": "600",
+        "lineHeight": 17,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly footnote variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "lineHeight": 18,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly headline variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 17,
+        "fontWeight": "600",
+        "lineHeight": 22,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly subhead variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 16,
+        "fontWeight": "700",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly title1 variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 26,
+        "fontWeight": "700",
+        "lineHeight": 28,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly title2 variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 22,
+        "fontWeight": "400",
+        "lineHeight": 28,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;
+
+exports[`Typography renders correctly title3 variant 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 20,
+        "fontWeight": "400",
+        "lineHeight": 25,
+      },
+      undefined,
+    ]
+  }
+>
+  Title
+</Text>
+`;

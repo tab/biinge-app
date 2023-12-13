@@ -30,6 +30,7 @@ const SearchScreen = () => {
     } else {
       dispatch(resetResults())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const fetchStatus = useAppSelector((state) => selectFetchStatus(state))

@@ -67,6 +67,7 @@ export function usePersonSearch<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(items: PeopleListType) => (
           // @ts-ignore
           <WrappedComponent

@@ -34,6 +34,7 @@ export function useMovieTrending<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(trendingMovie())
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLoader = () => {
@@ -73,6 +74,7 @@ export function useMovieTrending<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(items: MoviesListType) => (
           // @ts-ignore
           <WrappedComponent
