@@ -41,6 +41,7 @@ const LoginScreen = () => {
     if (result.success && result.operation === AuthOperationName.Register) {
       logIn(values)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result, values])
 
   const handleError = (message: string) => {
@@ -56,9 +57,9 @@ const LoginScreen = () => {
     Keyboard.dismiss()
   }
 
-  const handleSubmit = (values: LoginFormValues) => {
-    setValues(values)
-    logIn(values)
+  const handleSubmit = (params: LoginFormValues) => {
+    setValues(params)
+    logIn(params)
   }
 
   return (
@@ -84,7 +85,11 @@ const LoginScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={loginFormStyles.root}
       >
-        <Pressable style={loginStyles.button} onPress={handleClick} />
+        <Pressable
+          testID="login-backdrop"
+          style={loginStyles.button}
+          onPress={handleClick}
+        />
         <From
           initialValues={{ ...values }}
           isLoading={result.pending}

@@ -9,14 +9,14 @@ interface MovieContextType {
   loading: boolean
   wantList: () => Realm.List<Movie> | never[]
   watchedList: () => Realm.List<Movie> | never[]
-  inWantList: (tmdbId: number) => boolean
-  inWatchedList: (tmdbId: number) => boolean
-  addToWantList: (item: TMDBMovieDetails) => void
-  addToWatchedList: (item: TMDBMovieDetails) => void
-  removeFromList: (tmdbId: number) => void
-  pinned: (tmdbId: number) => boolean
-  pinToList: (item: TMDBMovieDetails) => void
-  unpinFromList: (item: TMDBMovieDetails) => void
+  inWantList: (_tmdbId: number) => boolean
+  inWatchedList: (_tmdbId: number) => boolean
+  addToWantList: (_item: TMDBMovieDetails) => void
+  addToWatchedList: (_item: TMDBMovieDetails) => void
+  removeFromList: (_tmdbId: number) => void
+  pinned: (_tmdbId: number) => boolean
+  pinToList: (_item: TMDBMovieDetails) => void
+  unpinFromList: (_item: TMDBMovieDetails) => void
 }
 
 export const MovieContext = createContext<MovieContextType>({
@@ -27,20 +27,20 @@ export const MovieContext = createContext<MovieContextType>({
   watchedList(): Realm.List<Movie> | never[] {
     return []
   },
-  inWantList(tmdbId: number): boolean {
+  inWantList(_tmdbId: number): boolean {
     return false
   },
-  inWatchedList(tmdbId: number): boolean {
+  inWatchedList(_tmdbId: number): boolean {
     return false
   },
-  addToWantList(item: TMDBMovieDetails): void {},
-  addToWatchedList(item: TMDBMovieDetails): void {},
-  removeFromList(tmdbId: number): void {},
-  pinned(tmdbId: number): boolean {
+  addToWantList(_item: TMDBMovieDetails): void {},
+  addToWatchedList(_item: TMDBMovieDetails): void {},
+  removeFromList(_tmdbId: number): void {},
+  pinned(_tmdbId: number): boolean {
     return false
   },
-  pinToList(item: TMDBMovieDetails): void {},
-  unpinFromList(item: TMDBMovieDetails): void {},
+  pinToList(_item: TMDBMovieDetails): void {},
+  unpinFromList(_item: TMDBMovieDetails): void {},
 })
 
 const MovieProvider = ({ children }: { children: React.ReactNode }) => {

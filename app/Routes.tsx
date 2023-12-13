@@ -36,6 +36,7 @@ const RouterComponent = () => {
           screenOptions={{
             headerTitle: t("app.name"),
             headerShadowVisible: false,
+            // eslint-disable-next-line react/no-unstable-nested-components
             headerBackground: () => (
               <HeaderBackground style={{ backgroundColor: colors.black }} />
             ),

@@ -40,6 +40,7 @@ export function usePersonMovieCredits<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(personMovieCredits(id))
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLoader = () => {
@@ -77,6 +78,7 @@ export function usePersonMovieCredits<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(result: PersonMovieCredits) => (
           // @ts-ignore
           <WrappedComponent

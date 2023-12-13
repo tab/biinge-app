@@ -29,6 +29,7 @@ export function useMovieVideos<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(movieVideos(id))
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLoader = () => {
@@ -46,6 +47,7 @@ export function useMovieVideos<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(result: MovieVideos) => (
           // @ts-ignore
           <WrappedComponent

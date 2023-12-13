@@ -35,6 +35,7 @@ export function useMovieRecommendations<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(movieRecommendations(id))
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLoader = () => {
@@ -66,6 +67,7 @@ export function useMovieRecommendations<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(result: MovieRecommendations) => (
           // @ts-ignore
           <WrappedComponent

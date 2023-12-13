@@ -37,6 +37,7 @@ export function usePersonDetails<GenericType>(
       if (!fetchStatus.isFetching) {
         dispatch(personDetails(id))
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLoader = () => {
@@ -77,6 +78,7 @@ export function usePersonDetails<GenericType>(
         renderLoading={renderLoader}
         renderError={renderError}
       >
+        {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
         {(result: PersonDetails) => (
           // @ts-ignore
           <WrappedComponent

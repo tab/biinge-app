@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next"
 import { FetchStatusType } from "types"
 
 type Props = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   entity: any
   fetchStatus: FetchStatusType
   children(entity: object): React.ReactNode

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormError renders correctly 1`] = `
+<View
+  style={
+    {
+      "marginBottom": 15,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#9f0909",
+        "fontSize": 15,
+        "textAlign": "center",
+      }
+    }
+  >
+    Error message
+  </Text>
+</View>
+`;

@@ -8,6 +8,7 @@ type Props = {
   textStyle?: StyleProp<TextStyle>
   disabled?: boolean
   loading?: boolean
+  testID?: string
   children: React.ReactNode
   onPress: () => void
 }
@@ -17,11 +18,13 @@ const ButtonComponent = ({
   textStyle,
   disabled,
   loading,
+  testID,
   children,
   onPress,
 }: Props) => {
   return (
     <Pressable
+      testID={testID}
       style={
         disabled || loading
           ? [buttonStyles.button, buttonStyles.disabled, style]
