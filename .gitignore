@@ -64,3 +64,11 @@ yarn-error.log
 
 # testing
 /coverage
+
+# realm
+/mongodb-realm
+/realm-sync-test
+/realm-sync-test.management
+default.realm.lock
+realm-sync-test.lock
+*.realm

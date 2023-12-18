@@ -5,18 +5,18 @@ import { useObject, useUser, useRealm, useQuery } from "@realm/react"
 import { UserMovie, Movie } from "models"
 import { TMDBMovieDetails } from "types"
 
-interface MovieContextType {
+type MovieContextType = {
   loading: boolean
   wantList: () => Realm.List<Movie> | never[]
   watchedList: () => Realm.List<Movie> | never[]
-  inWantList: (_tmdbId: number) => boolean
-  inWatchedList: (_tmdbId: number) => boolean
-  addToWantList: (_item: TMDBMovieDetails) => void
-  addToWatchedList: (_item: TMDBMovieDetails) => void
-  removeFromList: (_tmdbId: number) => void
-  pinned: (_tmdbId: number) => boolean
-  pinToList: (_item: TMDBMovieDetails) => void
-  unpinFromList: (_item: TMDBMovieDetails) => void
+  inWantList: (tmdbId: number) => boolean
+  inWatchedList: (tmdbId: number) => boolean
+  addToWantList: (item: TMDBMovieDetails) => void
+  addToWatchedList: (item: TMDBMovieDetails) => void
+  removeFromList: (tmdbId: number) => void
+  pinned: (tmdbId: number) => boolean
+  pinToList: (item: TMDBMovieDetails) => void
+  unpinFromList: (item: TMDBMovieDetails) => void
 }
 
 export const MovieContext = createContext<MovieContextType>({

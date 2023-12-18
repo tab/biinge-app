@@ -1,6 +1,6 @@
 import Config from "react-native-config"
 
-export const APP_ID = Config.APP_ID
+export const APP_ID = Config.APP_ID || "realm-sync-app"
 
 export const DEFAULT_LOCALE = "en"
 
