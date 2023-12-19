@@ -5,28 +5,20 @@ import { useObject, useUser, useRealm, useQuery } from "@realm/react"
 import { UserMovie, Movie } from "models"
 import { TMDBMovieDetails } from "types"
 
-interface MovieContextType {
+type MovieContextType = {
   loading: boolean
-  wantList: () => Realm.List<Movie> | never[]
-  watchedList: () => Realm.List<Movie> | never[]
-  inWantList: (_tmdbId: number) => boolean
-  inWatchedList: (_tmdbId: number) => boolean
-  addToWantList: (_item: TMDBMovieDetails) => void
-  addToWatchedList: (_item: TMDBMovieDetails) => void
-  removeFromList: (_tmdbId: number) => void
-  pinned: (_tmdbId: number) => boolean
-  pinToList: (_item: TMDBMovieDetails) => void
-  unpinFromList: (_item: TMDBMovieDetails) => void
+  inWantList: (tmdbId: number) => boolean
+  inWatchedList: (tmdbId: number) => boolean
+  addToWantList: (item: TMDBMovieDetails) => void
+  addToWatchedList: (item: TMDBMovieDetails) => void
+  removeFromList: (tmdbId: number) => void
+  pinned: (tmdbId: number) => boolean
+  pinToList: (item: TMDBMovieDetails) => void
+  unpinFromList: (item: TMDBMovieDetails) => void
 }
 
 export const MovieContext = createContext<MovieContextType>({
   loading: false,
-  wantList(): Realm.List<Movie> | never[] {
-    return []
-  },
-  watchedList(): Realm.List<Movie> | never[] {
-    return []
-  },
   inWantList(_tmdbId: number): boolean {
     return false
   },
@@ -47,21 +39,18 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const realm = useRealm()
   const user = useUser()
 
-  const movies = useQuery(Movie)
-  const userMovie = useObject(UserMovie, user.id)
+  const movies = useQuery<Movie>(Movie)
+  const userMovie = useObject<UserMovie>(UserMovie, user.id)
 
   const [loading, setLoading] = useState(false)
 
-  const wantList = () => userMovie?.want || []
+  const wantList = userMovie?.want || []
+  const watchedList = userMovie?.watched || []
 
-  const watchedList = () => userMovie?.watched || []
-
-  const wantIds = wantList().map(({ tmdb_id }: Movie) => tmdb_id)
-
-  const watchedIds = watchedList().map(({ tmdb_id }: Movie) => tmdb_id)
+  const wantIds = wantList.map(({ tmdb_id }: Movie) => tmdb_id)
+  const watchedIds = watchedList.map(({ tmdb_id }: Movie) => tmdb_id)
 
   const inWantList = (tmdbId: number) => wantIds.includes(tmdbId)
-
   const inWatchedList = (tmdbId: number) => watchedIds.includes(tmdbId)
 
   const addToWantList = (item: TMDBMovieDetails) => {
@@ -79,12 +68,10 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         realm.write(() => {
-          const want = wantList()
-
           if (!inWantList(id)) {
             const movie = realm.create(Movie, payload, true)
             // @ts-ignore
-            want.unshift(movie)
+            wantList.unshift(movie)
           }
 
           // @ts-ignore
@@ -93,7 +80,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
             {
               _id: user.id,
               userId: user.id,
-              want,
+              want: wantList,
             },
             true,
           )
@@ -119,12 +106,10 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         realm.write(() => {
-          const watched = watchedList()
-
           if (!inWatchedList(id)) {
             const movie = realm.create(Movie, payload, true)
             // @ts-ignore
-            watched.unshift(movie)
+            watchedList.unshift(movie)
           }
 
           // @ts-ignore
@@ -133,7 +118,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
             {
               _id: user.id,
               userId: user.id,
-              watched,
+              watched: watchedList,
             },
             true,
           )
@@ -216,8 +201,6 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     <MovieContext.Provider
       value={{
         loading,
-        wantList,
-        watchedList,
         inWantList,
         inWatchedList,
         addToWantList,

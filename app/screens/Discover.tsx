@@ -1,18 +1,21 @@
-import React, { useEffect, useRef, useState, useContext } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { SafeAreaView, View, Text, Pressable } from "react-native"
+import { useUser, useObject } from "@realm/react"
 import PagerView from "react-native-pager-view"
 
 import i18n from "config/i18n"
-import { MovieContext } from "contexts/MovieContext"
 import BottomTabBar from "components/Layout/BottomTabBar"
 import List from "components/ui/MovieList"
 import { layoutStyles, navStyles } from "styles"
+import { UserMovie } from "models"
 
 const DiscoverScreen = () => {
+  const user = useUser()
+
+  const userMovie = useObject<UserMovie>(UserMovie, user.id)
+
   const [tabIndex, setPageIndex] = useState(0)
   const pager = useRef<PagerView>(null)
-
-  const { wantList, watchedList } = useContext(MovieContext)
 
   useEffect(() => {
     if (pager.current) {
@@ -24,14 +27,12 @@ const DiscoverScreen = () => {
     {
       id: 1,
       label: i18n.t("discover.nav.want.title"),
-      // @ts-ignore
-      items: wantList().sorted("pin", true),
+      items: userMovie?.want?.sorted("pin", true) || [],
     },
     {
       id: 2,
       label: i18n.t("discover.nav.watched.title"),
-      // @ts-ignore
-      items: watchedList().sorted("pin", true),
+      items: userMovie?.watched?.sorted("pin", true) || [],
     },
   ]
 
@@ -40,6 +41,7 @@ const DiscoverScreen = () => {
     setPageIndex(position)
   }
 
+  // @ts-ignore
   return (
     <SafeAreaView style={[layoutStyles.root, layoutStyles.bgDark]}>
       <View style={navStyles.root}>
@@ -75,7 +77,6 @@ const DiscoverScreen = () => {
         onPageSelected={handleSelect}
       >
         {TABS.map(({ id, items }) => (
-          // @ts-ignore
           <List
             key={id}
             showStatus={false}

@@ -1,16 +1,18 @@
 import React, { useContext } from "react"
 import { FlatList, View, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import type Realm from "realm"
 
 import { MovieContext } from "contexts/MovieContext"
 import { DETAILS_SCREEN } from "screens/Details"
 import Image from "components/ui/Image"
 import Icon from "components/ui/Icon"
+import { Movie } from "models"
 import { listStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
-  items: any[]
+  items: Realm.Results<Movie> | never[]
   numColumns: number
   showStatus?: boolean
   showPin?: boolean
