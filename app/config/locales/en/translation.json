@@ -106,10 +106,10 @@
     "profile": {
       "title": "Profile",
       "stats": {
-        "want":  {
+        "want": {
           "title": "want"
         },
-        "watched":  {
+        "watched": {
           "title": "watched"
         },
         "hours": {
