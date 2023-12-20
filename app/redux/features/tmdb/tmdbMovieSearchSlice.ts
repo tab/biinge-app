@@ -22,7 +22,7 @@ export const tmdbMovieSearchSlice = createSlice({
   name: "movieSearch",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(movieSearch.pending, (state) =>
         handleFetchCollectionPending(state),

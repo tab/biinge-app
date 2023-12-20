@@ -17,11 +17,11 @@ export const initialState = adapter.getInitialState({
   },
 })
 
-export const tmdbMovieDetailsSlice = createSlice({
+export const tmdbMovieVideosSlice = createSlice({
   name: "movieVideos",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(movieVideos.pending, (state, { meta }) =>
         handleFetchPending(state, meta.arg),
@@ -44,4 +44,4 @@ export const selectFetchStatus = (state: RootState, id: number) =>
   // @ts-ignore
   state.features.movieVideos.fetchStatus[id]
 
-export default tmdbMovieDetailsSlice.reducer
+export default tmdbMovieVideosSlice.reducer

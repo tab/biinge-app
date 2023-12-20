@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react"
-import type Realm from "realm"
 import { useObject, useUser, useRealm, useQuery } from "@realm/react"
 
 import { UserMovie, Movie } from "models"

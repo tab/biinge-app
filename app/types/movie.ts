@@ -1,7 +1,9 @@
+import { EntityId } from "@reduxjs/toolkit"
 import { BSON } from "realm"
 
 export interface MovieDetails {
   _id: BSON.ObjectId
+  id: EntityId
   tmdb_id: number
   imdb_id: string
   title: string
@@ -19,6 +21,7 @@ export interface MovieDetails {
 }
 
 export interface PersonDetails {
+  id: EntityId
   name: string
   biography: string
   birthday: string
@@ -29,13 +32,13 @@ export interface PersonDetails {
 }
 
 export interface PersonMovieCredits {
-  id: number
+  id: EntityId
   cast: MovieCastPerson[]
   crew: MovieCrewPerson[]
 }
 
 export interface MovieCastPerson {
-  id: number
+  id: EntityId
   gender: number
   known_for_department: string
   name: string
@@ -47,7 +50,7 @@ export interface MovieCastPerson {
 }
 
 export interface MovieCrewPerson {
-  id: number
+  id: EntityId
   gender: number
   known_for_department: string
   name: string
@@ -59,35 +62,35 @@ export interface MovieCrewPerson {
 }
 
 export interface MovieCredits {
-  id: number
+  id: EntityId
   items: MovieCastPerson[]
 }
 
 export interface MovieVideo {
-  id: number
+  id: EntityId
   name: string
   key: string
   published_at: string
 }
 
 export interface MovieVideos {
-  id: number
+  id: EntityId
   items: MovieVideo[]
 }
 
 export interface MovieRecommendation {
-  id: number
+  id: EntityId
   title: string
   poster_path: string
 }
 
 export interface MovieRecommendations {
-  id: number
+  id: EntityId
   items: MovieRecommendation[]
 }
 
 export interface MovieResult {
-  id: number
+  id: EntityId
   title: string
   poster_path: string
 }
@@ -95,7 +98,7 @@ export interface MovieResult {
 export type MoviesListType = MovieResult[]
 
 export interface PersonResult {
-  id: number
+  id: EntityId
   name: string
   profile_path: string
 }
