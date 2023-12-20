@@ -17,7 +17,7 @@ export const initialState = adapter.getInitialState({
   },
 })
 
-export const tmdbMovieDetailsSlice = createSlice({
+export const tmdbPersonMovieCreditsSlice = createSlice({
   name: "personMovieCredits",
   initialState,
   reducers: {},
@@ -44,4 +44,4 @@ export const selectFetchStatus = (state: RootState, id: number) =>
   // @ts-ignore
   state.features.personMovieCredits.fetchStatus[id]
 
-export default tmdbMovieDetailsSlice.reducer
+export default tmdbPersonMovieCreditsSlice.reducer

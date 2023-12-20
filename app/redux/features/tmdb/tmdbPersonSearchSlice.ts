@@ -18,7 +18,7 @@ export const initialState = adapter.getInitialState({
   },
 })
 
-export const tmdbMovieSearchSlice = createSlice({
+export const tmdbPersonSearchSlice = createSlice({
   name: "personSearch",
   initialState,
   reducers: {},
@@ -48,4 +48,4 @@ export const { selectTotal, selectAll } = adapter.getSelectors(
 export const selectFetchStatus = (state: RootState) =>
   state.features.personSearch.fetchCollectionStatus
 
-export default tmdbMovieSearchSlice.reducer
+export default tmdbPersonSearchSlice.reducer
