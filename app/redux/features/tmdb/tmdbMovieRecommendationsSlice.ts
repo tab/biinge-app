@@ -21,7 +21,7 @@ export const tmdbMovieDetailsSlice = createSlice({
   name: "movieRecommendations",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(movieRecommendations.pending, (state, { meta }) =>
         handleFetchPending(state, meta.arg),

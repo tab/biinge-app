@@ -22,7 +22,7 @@ export const tmdbMovieTrendingSlice = createSlice({
   name: "movieTrending",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(trendingMovie.pending, (state) =>
         handleFetchCollectionPending(state),

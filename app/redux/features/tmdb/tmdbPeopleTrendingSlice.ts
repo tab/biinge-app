@@ -22,7 +22,7 @@ export const tmdbPeopleTrendingSlice = createSlice({
   name: "peopleTrending",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(trendingPeople.pending, (state) =>
         handleFetchCollectionPending(state),
