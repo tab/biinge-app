@@ -42,7 +42,7 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-youtube": "^2.0.2",
     "react-redux": "^9.0.4",
-    "realm": "^12.1.0",
+    "realm": "^12.5.0",
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
