@@ -394,7 +394,7 @@ PODS:
     - glog
   - react-native-blur (4.3.2):
     - React-Core
-  - react-native-color-matrix-image-filters (6.0.3):
+  - react-native-color-matrix-image-filters (6.0.7):
     - React-Core
   - react-native-config (1.5.1):
     - react-native-config/App (= 1.5.1)
@@ -569,7 +569,7 @@ PODS:
     - Sentry/HybridSDK (= 8.17.1)
   - RNSVG (14.1.0):
     - React-Core
-  - RNVectorIcons (10.0.2):
+  - RNVectorIcons (10.0.3):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - SDWebImage (5.11.1):
@@ -848,7 +848,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 8baadae51f01d867c3921213a25ab78ab4fbcd91
   React-logger: 8edc785c47c8686c7962199a307015e2ce9a0e4f
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
-  react-native-color-matrix-image-filters: c945260077dabac82d8e25af937c18fff4021707
+  react-native-color-matrix-image-filters: d10824dc8db18e57cafe7d99b8d8aa46414eaf52
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-get-random-values: 384787fd76976f5aec9465aff6fa9e9129af1e74
   react-native-pager-view: e26d35e382d86950c936f8917e3beb9188115ccc
@@ -879,7 +879,7 @@ SPEC CHECKSUMS:
   RNScreens: 3c2d122f5e08c192e254c510b212306da97d2581
   RNSentry: 9a8aebd354d3b47c428c72ec7264b7822cf4f3c2
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
-  RNVectorIcons: 23b6e11af4aaf104d169b1b0afa7e5cf96c676ce
+  RNVectorIcons: 64e6a523ac30a3241efa9baf1ffbcc5e76ff747a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   Sentry: d9f99f9cc13777c5d938650c1e1c85047bb4f0d1
