@@ -1,8 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit"
-import { BSON } from "realm"
 
 export interface MovieDetails {
-  _id: BSON.ObjectId
   id: EntityId
   tmdb_id: number
   imdb_id: string
@@ -16,8 +14,7 @@ export interface MovieDetails {
   status: string
   release_date: string
   vote_average: number
-  want: boolean
-  watched: boolean
+  vote_count: number
 }
 
 export interface PersonDetails {

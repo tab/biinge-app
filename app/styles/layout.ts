@@ -51,21 +51,19 @@ export const listStyles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    justifyContent: "space-between",
     backgroundColor: colors.white,
-    padding: 10,
-    paddingBottom: 15,
+    padding: 5,
   },
   card: {
     flex: 1,
   },
   cardMd: {
     padding: 5,
-    maxWidth: "50%",
+    width: "50%",
   },
   cardSm: {
     padding: 5,
-    maxWidth: "33.3333%",
+    width: "33.3333%",
   },
   image: {
     aspectRatio: "4/6",
@@ -103,6 +101,10 @@ export const listStyles = StyleSheet.create({
 })
 
 export const horizontalListStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+    height: 200,
+  },
   content: {
     backgroundColor: colors.white,
     paddingLeft: 10,
@@ -120,6 +122,10 @@ export const horizontalListStyles = StyleSheet.create({
   imageMd: {
     borderRadius: 8,
   },
+  imageSm: {
+    borderRadius: 4,
+    width: width * 0.28,
+  },
   icon: {
     backgroundColor: "rgba(0, 0, 0, 0.7)",
     borderRadius: 3,
@@ -129,6 +135,10 @@ export const horizontalListStyles = StyleSheet.create({
   iconMd: {
     top: 8,
     right: 8,
+  },
+  iconSm: {
+    top: 5,
+    right: 5,
   },
 })
 
@@ -140,6 +150,12 @@ export const horizontalStubListStyles = StyleSheet.create({
   },
   item: {},
   itemMovie: {
+    borderRadius: 8,
+    marginRight: 10,
+    height: (width * 0.3333 * 6) / 4,
+    width: width * 0.3333,
+  },
+  itemTv: {
     borderRadius: 8,
     marginRight: 10,
     height: (width * 0.3333 * 6) / 4,
@@ -201,6 +217,9 @@ export const navStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     width: "50%",
+  },
+  itemTv: {
+    width: "33.3333%",
   },
   itemActive: {
     borderBottomColor: colors.white,

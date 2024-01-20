@@ -80,3 +80,18 @@ export const personMoviesStyles = StyleSheet.create({
     marginBottom: 5,
   },
 })
+
+export const personTvStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  content: {
+    padding: 10,
+  },
+  title: {
+    color: colors.grayDark,
+    marginHorizontal: 5,
+    // marginBottom: 5,
+  },
+})

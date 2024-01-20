@@ -3,14 +3,14 @@ import { initReactI18next } from "react-i18next"
 
 import en from "config/locales/en/translation.json"
 
-import { DEFAULT_LOCALE, NODE_ENV } from "config"
+import { DEFAULT_LOCALE } from "config"
 
 i18n.use(initReactI18next).init({
   compatibilityJSON: "v3",
   resources: { en },
   lng: "en",
   fallbackLng: DEFAULT_LOCALE,
-  debug: NODE_ENV === "development",
+  debug: __DEV__,
   interpolation: {
     escapeValue: false,
   },

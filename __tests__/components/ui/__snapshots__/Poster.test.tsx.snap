@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Poster renders correctly 1`] = `
+[
+  <BlurView
+    blurAmount={15}
+    blurType="light"
+    reducedTransparencyFallbackColor="#ffffff"
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+        },
+        {
+          "backgroundColor": "rgba(255, 255, 255, 0.7)",
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  />,
+  <View
+    style={
+      {
+        "paddingBottom": 24,
+        "paddingHorizontal": 36,
+        "paddingVertical": 24,
+      }
+    }
+  >
+    <View
+      animatedStyle={
+        {
+          "value": {},
+        }
+      }
+      collapsable={false}
+      entering={[Function]}
+      style={
+        {
+          "alignSelf": "center",
+          "aspectRatio": "4/6",
+          "backgroundColor": "#d1cecf",
+          "borderRadius": 12,
+          "elevation": 3,
+          "shadowColor": "#181818",
+          "shadowOffset": {
+            "height": 5,
+            "width": 2,
+          },
+          "shadowOpacity": 0.7,
+          "shadowRadius": 25,
+          "width": 525,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#ffffff",
+              "fontSize": 16,
+              "fontWeight": "600",
+              "textAlign": "center",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "alignSelf": "center",
+              "aspectRatio": "4/6",
+              "backgroundColor": "#d1cecf",
+              "borderRadius": 12,
+              "elevation": 3,
+              "shadowColor": "#181818",
+              "shadowOffset": {
+                "height": 5,
+                "width": 2,
+              },
+              "shadowOpacity": 0.7,
+              "shadowRadius": 25,
+              "width": 525,
+            },
+          ]
+        }
+      >
+        <FastImageView
+          defaultSource={null}
+          resizeMode="cover"
+          source={
+            {
+              "priority": "normal",
+              "uri": "https://image.tmdb.org/t/p/w780eO3r38fwnhb58M1YgcjQBd3VNcp.jpg",
+            }
+          }
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>,
+]
+`;

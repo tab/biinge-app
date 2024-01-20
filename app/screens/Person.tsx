@@ -1,8 +1,10 @@
 import React from "react"
-import { FlatList, View } from "react-native"
+import { View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 import Content from "components/Person/Content"
 import Movies from "components/Person/Movies"
+import TvShows from "components/Person/TvShows"
 import { layoutStyles } from "styles"
 
 type Props = {
@@ -28,6 +30,13 @@ const PersonScreen = ({ route }: Props) => {
         <Movies id={id} />
       ),
     },
+    {
+      key: "tv",
+      component: (
+        // @ts-ignore
+        <TvShows id={id} />
+      ),
+    },
   ]
 
   const renderItem = ({ item }: { item: any }) => {
@@ -36,12 +45,13 @@ const PersonScreen = ({ route }: Props) => {
 
   return (
     <View style={[layoutStyles.root, layoutStyles.bgTransparent]}>
-      <FlatList
+      <FlashList
         data={SECTIONS}
         renderItem={renderItem}
-        keyExtractor={(item, index: number) => index.toString()}
+        keyExtractor={(_, index: number) => index.toString()}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={true}
+        estimatedItemSize={500}
       />
     </View>
   )

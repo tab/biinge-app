@@ -9,7 +9,14 @@ import movieVideos from "redux/features/tmdb/tmdbMovieVideosSlice"
 import peopleTrending from "redux/features/tmdb/tmdbPeopleTrendingSlice"
 import personDetails from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import personMovieCredits from "redux/features/tmdb/tmdbPersonMovieCreditsSlice"
+import personTvCredits from "redux/features/tmdb/tmdbPersonTvCreditsSlice"
 import personSearch from "redux/features/tmdb/tmdbPersonSearchSlice"
+import tvDetails from "redux/features/tmdb/tmdbTvDetailsSlice"
+import tvCredits from "redux/features/tmdb/tmdbTvCreditsSlice"
+import tvSeasons from "redux/features/tmdb/tmdbTvSeasonsSlice"
+import tvVideos from "redux/features/tmdb/tmdbTvVideosSlice"
+import tvSearch from "redux/features/tmdb/tmdbTvSearchSlice"
+import tvTrending from "redux/features/tmdb/tmdbTvTrendingSlice"
 
 export const features = combineReducers({
   movieCredits,
@@ -21,5 +28,12 @@ export const features = combineReducers({
   peopleTrending,
   personDetails,
   personMovieCredits,
+  personTvCredits,
   personSearch,
+  tvDetails,
+  tvCredits,
+  tvSeasons,
+  tvVideos,
+  tvSearch,
+  tvTrending,
 })

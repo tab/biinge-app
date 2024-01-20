@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "flex-start",
+    }
+  }
+>
+  <Text
+    allowFontScaling={false}
+    selectable={false}
+    style={
+      [
+        {
+          "color": "#eec01e",
+          "fontSize": 20,
+        },
+        undefined,
+        {
+          "fontFamily": "Ionicons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        {},
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "color": "#221f1f",
+          "fontSize": 24,
+          "fontWeight": "800",
+          "lineHeight": 28,
+          "marginLeft": 5,
+        },
+        undefined,
+      ]
+    }
+  >
+    7.3
+  </Text>
+</View>
+`;

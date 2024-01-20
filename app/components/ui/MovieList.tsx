@@ -1,10 +1,12 @@
 import React, { useContext } from "react"
-import { FlatList, View, Pressable } from "react-native"
+import { View, Pressable } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import type Realm from "realm"
 
 import { MovieContext } from "contexts/MovieContext"
 import { DETAILS_SCREEN } from "screens/Details"
+import { DETAILS_MOVIE_TYPE } from "config"
 import Image from "components/ui/Image"
 import Icon from "components/ui/Icon"
 import { Movie } from "models"
@@ -36,7 +38,10 @@ const MovieListComponent = ({
 
     const handleClick = () => {
       // @ts-ignore
-      navigation.push(DETAILS_SCREEN.name, { id: item.tmdb_id })
+      navigation.push(DETAILS_SCREEN.name, {
+        id: item.tmdb_id,
+        type: DETAILS_MOVIE_TYPE,
+      })
     }
 
     return (
@@ -89,15 +94,19 @@ const MovieListComponent = ({
   }
 
   return (
-    <FlatList
-      style={listStyles.root}
-      keyboardShouldPersistTaps="handled"
-      contentContainerStyle={listStyles.content}
-      keyExtractor={(item, index: number) => index.toString()}
-      numColumns={numColumns}
-      data={items}
-      renderItem={renderItem}
-    />
+    <View style={listStyles.root}>
+      <FlashList
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={listStyles.content}
+        keyExtractor={(_, index: number) => index.toString()}
+        numColumns={numColumns}
+        // @ts-ignore
+        data={items}
+        renderItem={renderItem}
+        windowSize={10}
+        estimatedItemSize={numColumns === 2 ? 282 : 175}
+      />
+    </View>
   )
 }
 

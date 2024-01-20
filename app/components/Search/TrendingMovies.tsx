@@ -7,10 +7,10 @@ import { useMovieTrending } from "hocs"
 import { searchResultsStyles } from "styles"
 import List from "components/ui/MovieHorizontalList"
 import Typography from "components/ui/Typography"
-import { MoviesListType } from "types"
+import { TrendingListType } from "types"
 
 type Props = {
-  items: MoviesListType
+  items: TrendingListType
 }
 
 const TrendingMoviesComponent = ({ items }: Props) => {

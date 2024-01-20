@@ -1,18 +1,21 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, Fragment } from "react"
 import { SafeAreaView, View, Text, Pressable } from "react-native"
 import { useUser, useObject } from "@realm/react"
 import PagerView from "react-native-pager-view"
 
 import i18n from "config/i18n"
-import BottomTabBar from "components/Layout/BottomTabBar"
-import List from "components/ui/MovieList"
+import List from "components/ui/TvList"
 import { layoutStyles, navStyles } from "styles"
-import { UserMovie } from "models"
+import { UserTvShow } from "models"
 
-const DiscoverScreen = () => {
+const TvScreen = () => {
   const user = useUser()
 
-  const userMovie = useObject<UserMovie>(UserMovie, user.id)
+  const userTvShow = useObject<UserTvShow>(UserTvShow, user.id)
+
+  const wantList = userTvShow!.want.sorted("pin", true) || []
+  const watchingList = userTvShow!.watching.sorted("pin", true) || []
+  const watchedList = userTvShow!.watched.sorted("pin", true) || []
 
   const [tabIndex, setPageIndex] = useState(0)
   const pager = useRef<PagerView>(null)
@@ -26,13 +29,20 @@ const DiscoverScreen = () => {
   const TABS = [
     {
       id: 1,
-      label: i18n.t("discover.nav.want.title"),
-      items: userMovie?.want?.sorted("pin", true) || [],
+      label: i18n.t("nav.want.title"),
+      component: <List showStatus showPin numColumns={2} items={wantList} />,
     },
     {
       id: 2,
-      label: i18n.t("discover.nav.watched.title"),
-      items: userMovie?.watched?.sorted("pin", true) || [],
+      label: i18n.t("nav.watching.title"),
+      component: (
+        <List showStatus showPin numColumns={2} items={watchingList} />
+      ),
+    },
+    {
+      id: 3,
+      label: i18n.t("nav.watched.title"),
+      component: <List showStatus showPin numColumns={2} items={watchedList} />,
     },
   ]
 
@@ -50,8 +60,8 @@ const DiscoverScreen = () => {
             <Pressable
               style={
                 tabIndex === index
-                  ? [navStyles.item, navStyles.itemActive]
-                  : [navStyles.item]
+                  ? [navStyles.item, navStyles.itemTv, navStyles.itemActive]
+                  : [navStyles.item, navStyles.itemTv]
               }
               key={index}
               onPress={() => pager?.current?.setPage(page.id - 1)}
@@ -76,24 +86,17 @@ const DiscoverScreen = () => {
         orientation="horizontal"
         onPageSelected={handleSelect}
       >
-        {TABS.map(({ id, items }) => (
-          <List
-            key={id}
-            showStatus={false}
-            showPin={true}
-            numColumns={2}
-            items={items}
-          />
+        {TABS.map(({ id, component }) => (
+          <Fragment key={id}>{component}</Fragment>
         ))}
       </PagerView>
-      <BottomTabBar />
     </SafeAreaView>
   )
 }
 
-export const DISCOVER_SCREEN = {
-  name: "com.biinge.Discover",
-  title: i18n.t("discover.title"),
+export const TV_SCREEN = {
+  id: "TV_SCREEN",
+  name: "com.biinge.Tv",
 }
 
-export default DiscoverScreen
+export default TvScreen

@@ -32,6 +32,7 @@ const MoviesComponent = ({ gender, cast, crew }: Props) => {
                 : t("person.content.actor")}
             </Typography>
           )}
+          {/* @ts-ignore */}
           <List showStatus numColumns={3} items={cast} />
         </View>
       )}
@@ -40,6 +41,7 @@ const MoviesComponent = ({ gender, cast, crew }: Props) => {
           <Typography variant="subhead" style={personMoviesStyles.title}>
             {t("person.content.director")}
           </Typography>
+          {/* @ts-ignore */}
           <List showStatus numColumns={3} items={crew} />
         </View>
       )}
