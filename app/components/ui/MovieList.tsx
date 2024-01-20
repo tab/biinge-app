@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
-import { FlatList, View, Pressable } from "react-native"
+import { View, Pressable } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import type Realm from "realm"
 
@@ -93,16 +94,19 @@ const MovieListComponent = ({
   }
 
   return (
-    <FlatList
-      style={listStyles.root}
-      keyboardShouldPersistTaps="handled"
-      contentContainerStyle={listStyles.content}
-      keyExtractor={(_, index: number) => index.toString()}
-      numColumns={numColumns}
-      data={items}
-      windowSize={10}
-      renderItem={renderItem}
-    />
+    <View style={listStyles.root}>
+      <FlashList
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={listStyles.content}
+        keyExtractor={(_, index: number) => index.toString()}
+        numColumns={numColumns}
+        // @ts-ignore
+        data={items}
+        renderItem={renderItem}
+        windowSize={10}
+        estimatedItemSize={numColumns === 2 ? 282 : 175}
+      />
+    </View>
   )
 }
 

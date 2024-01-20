@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 
 import debounce from "helpers/debounce"
 import { SearchFormValues } from "types"
-import { searchStyles } from "styles"
+import { searchStyles, layoutStyles } from "styles"
 import Icon from "components/ui/Icon"
 import colors from "styles/colors"
 
@@ -31,7 +31,7 @@ const SearchForm = ({ initialValues, onSubmit }: Props) => {
   )
 
   return (
-    <View style={searchStyles.root}>
+    <View style={[searchStyles.root, layoutStyles.bgDark]}>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ setFieldValue, values }) => (
           <View style={searchStyles.content}>

@@ -1,5 +1,6 @@
 import React from "react"
-import { FlatList, View } from "react-native"
+import { View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 import Content from "components/Person/Content"
 import Movies from "components/Person/Movies"
@@ -44,12 +45,13 @@ const PersonScreen = ({ route }: Props) => {
 
   return (
     <View style={[layoutStyles.root, layoutStyles.bgTransparent]}>
-      <FlatList
+      <FlashList
         data={SECTIONS}
         renderItem={renderItem}
         keyExtractor={(_, index: number) => index.toString()}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={true}
+        estimatedItemSize={500}
       />
     </View>
   )

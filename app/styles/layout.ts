@@ -51,21 +51,19 @@ export const listStyles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    justifyContent: "space-between",
     backgroundColor: colors.white,
     padding: 5,
-    paddingBottom: 15,
   },
   card: {
     flex: 1,
   },
   cardMd: {
     padding: 5,
-    maxWidth: "50%",
+    width: "50%",
   },
   cardSm: {
     padding: 5,
-    maxWidth: "33.3333%",
+    width: "33.3333%",
   },
   image: {
     aspectRatio: "4/6",
@@ -103,6 +101,10 @@ export const listStyles = StyleSheet.create({
 })
 
 export const horizontalListStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+    height: 200,
+  },
   content: {
     backgroundColor: colors.white,
     paddingLeft: 10,

@@ -1,5 +1,6 @@
 import React from "react"
-import { FlatList, View } from "react-native"
+import { View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 import { episodesListStyles } from "styles"
 import Episode from "components/ui/Episode"
@@ -18,11 +19,12 @@ const EpisodesListComponent = ({ show, season, items }: Props) => {
 
   return (
     <View style={episodesListStyles.root}>
-      <FlatList
+      <FlashList
         keyboardShouldPersistTaps="handled"
         showsHorizontalScrollIndicator={false}
         keyExtractor={(_, index: number) => index.toString()}
         data={items}
+        estimatedItemSize={64}
         renderItem={renderItem}
       />
     </View>

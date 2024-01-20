@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
-import { FlatList, View, Pressable } from "react-native"
+import { View, Pressable } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
 
@@ -68,7 +69,7 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
   }
 
   return (
-    <FlatList
+    <FlashList
       horizontal
       keyboardShouldPersistTaps="handled"
       showsHorizontalScrollIndicator={false}
@@ -76,6 +77,7 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
       data={items}
       keyExtractor={(_, index: number) => index.toString()}
       renderItem={renderItem}
+      estimatedItemSize={140}
       ListEmptyComponent={renderEmpty}
     />
   )

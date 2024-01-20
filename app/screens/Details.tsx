@@ -1,5 +1,6 @@
 import React from "react"
-import { View, FlatList } from "react-native"
+import { View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 import { DETAILS_MOVIE_TYPE } from "config"
 import MovieContent from "components/Movie/Content"
@@ -74,12 +75,13 @@ const DetailsScreen = ({ route }: Props) => {
 
   return (
     <View style={[layoutStyles.root, layoutStyles.bgTransparent]}>
-      <FlatList
+      <FlashList
         keyboardShouldPersistTaps="handled"
         showsHorizontalScrollIndicator={false}
         keyExtractor={(_, index: number) => index.toString()}
         data={SECTIONS}
         renderItem={renderItem}
+        estimatedItemSize={500}
       />
     </View>
   )

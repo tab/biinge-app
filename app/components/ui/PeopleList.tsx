@@ -1,5 +1,6 @@
 import React from "react"
-import { FlatList, Pressable, View } from "react-native"
+import { Pressable, View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
 
@@ -63,7 +64,7 @@ const PeopleListComponent = ({ items }: Props) => {
   }
 
   return (
-    <FlatList
+    <FlashList
       horizontal
       keyboardShouldPersistTaps="handled"
       showsHorizontalScrollIndicator={false}
@@ -71,6 +72,7 @@ const PeopleListComponent = ({ items }: Props) => {
       data={items}
       keyExtractor={(_, index: number) => index.toString()}
       renderItem={renderItem}
+      estimatedItemSize={90}
       ListEmptyComponent={renderEmpty}
     />
   )

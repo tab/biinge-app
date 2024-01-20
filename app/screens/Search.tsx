@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { ScrollView, View } from "react-native"
+import { View } from "react-native"
+import { FlashList } from "@shopify/flash-list"
 
 import { useAppSelector, useAppDispatch } from "redux/hooks"
 import {
@@ -48,30 +49,55 @@ const SearchScreen = () => {
     }
   }
 
+  const SEARCH_ITEMS = [
+    {
+      key: "searchMovies",
+      component: <Movies />,
+    },
+    {
+      key: "searchTvShows",
+      component: <TvShows />,
+    },
+    {
+      key: "searchPeople",
+      component: <People />,
+    },
+  ]
+
+  const TRENDING_ITEMS = [
+    {
+      key: "trendingMovies",
+      component: <TrendingMovies />,
+    },
+    {
+      key: "trendingTvShows",
+      component: <TrendingTvShows />,
+    },
+    {
+      key: "trendingPeople",
+      component: <TrendingPeople />,
+    },
+  ]
+
+  const SECTIONS = query ? SEARCH_ITEMS : TRENDING_ITEMS
+
+  const renderItem = ({ item }: { item: any }) => {
+    return item.component
+  }
+
   return (
-    <View style={[layoutStyles.root, layoutStyles.bgDark]}>
+    <View style={[layoutStyles.root, layoutStyles.bgLight]}>
       {/* @ts-ignore */}
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
-      <ScrollView
-        contentContainerStyle={[layoutStyles.root, layoutStyles.bgLight]}
+      <FlashList
+        keyboardShouldPersistTaps="handled"
         showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={true}
-      >
-        {query ? (
-          <>
-            <Movies />
-            <TvShows />
-            <People />
-          </>
-        ) : (
-          <>
-            <TrendingMovies />
-            <TrendingTvShows />
-            <TrendingPeople />
-          </>
-        )}
-        <KeyboardToggle />
-      </ScrollView>
+        keyExtractor={(_, index: number) => index.toString()}
+        data={SECTIONS}
+        renderItem={renderItem}
+        estimatedItemSize={500}
+      />
+      <KeyboardToggle />
     </View>
   )
 }
