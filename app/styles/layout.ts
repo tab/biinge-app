@@ -53,7 +53,7 @@ export const listStyles = StyleSheet.create({
   content: {
     justifyContent: "space-between",
     backgroundColor: colors.white,
-    padding: 10,
+    padding: 5,
     paddingBottom: 15,
   },
   card: {
@@ -120,6 +120,10 @@ export const horizontalListStyles = StyleSheet.create({
   imageMd: {
     borderRadius: 8,
   },
+  imageSm: {
+    borderRadius: 4,
+    width: width * 0.28,
+  },
   icon: {
     backgroundColor: "rgba(0, 0, 0, 0.7)",
     borderRadius: 3,
@@ -129,6 +133,10 @@ export const horizontalListStyles = StyleSheet.create({
   iconMd: {
     top: 8,
     right: 8,
+  },
+  iconSm: {
+    top: 5,
+    right: 5,
   },
 })
 
@@ -140,6 +148,12 @@ export const horizontalStubListStyles = StyleSheet.create({
   },
   item: {},
   itemMovie: {
+    borderRadius: 8,
+    marginRight: 10,
+    height: (width * 0.3333 * 6) / 4,
+    width: width * 0.3333,
+  },
+  itemTv: {
     borderRadius: 8,
     marginRight: 10,
     height: (width * 0.3333 * 6) / 4,
@@ -201,6 +215,9 @@ export const navStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     width: "50%",
+  },
+  itemTv: {
+    width: "33.3333%",
   },
   itemActive: {
     borderBottomColor: colors.white,

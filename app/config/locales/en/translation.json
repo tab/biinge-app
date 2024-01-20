@@ -3,6 +3,32 @@
     "app": {
       "name": "Biinge"
     },
+    "nav": {
+      "movies": {
+        "title": "Movies"
+      },
+      "tvShows": {
+        "title": "Series"
+      },
+      "search": {
+        "title": "Search"
+      },
+      "profile": {
+        "title": "Profile"
+      },
+      "want": {
+        "title": "Want"
+      },
+      "watching": {
+        "title": "Watching"
+      },
+      "watched": {
+        "title": "Watched"
+      },
+      "tv": {
+        "title": "Series"
+      }
+    },
     "login": {
       "apple": {
         "title": "Continue with Apple"
@@ -29,25 +55,6 @@
         "title": "Invalid username or password"
       }
     },
-    "discover": {
-      "title": "Discover",
-      "nav": {
-        "want": {
-          "title": "Want"
-        },
-        "watched": {
-          "title": "Watched"
-        },
-        "series": {
-          "title": "Series"
-        }
-      },
-      "help": {
-        "emoji": "\uD83D\uDC4B\uD83C\uDFFB",
-        "title": "Your list is empty",
-        "subtitle": "Add movie or series into Want or Watched lists"
-      }
-    },
     "search": {
       "title": "Search",
       "form": {
@@ -67,6 +74,14 @@
         },
         "results": {
           "title": "Movies"
+        }
+      },
+      "tv": {
+        "trending": {
+          "title": "Popular series"
+        },
+        "results": {
+          "title": "Series"
         }
       },
       "people": {
@@ -96,18 +111,37 @@
         "recommendations": "Recommendations"
       }
     },
+    "tv": {
+      "content": {
+        "cast": "Cast",
+        "seasons": "Seasons"
+      },
+      "season": {
+        "title": "Season {{number}}"
+      }
+    },
     "person": {
       "content": {
         "actor": "Actor",
         "actress": "Actress",
-        "director": "Director"
+        "director": "Director",
+        "tv": "Series"
       }
     },
     "profile": {
       "title": "Profile",
+      "movies": {
+        "title": "Movies"
+      },
+      "tv": {
+        "title": "Series"
+      },
       "stats": {
         "want": {
           "title": "want"
+        },
+        "watching": {
+          "title": "watching"
         },
         "watched": {
           "title": "watched"
@@ -125,18 +159,26 @@
     "actions": {
       "pin": {
         "title": "Pin",
-        "add": "Pin to {{name}}",
-        "remove": "Unpin from {{name}}"
+        "add": "Pin",
+        "remove": "Unpin"
       },
       "want": {
         "title": "Want",
         "add": "Move to Want",
-        "remove": "Remove from Want"
+        "remove": "Remove from Want",
+        "watched": "Move to Watched"
+      },
+      "watching": {
+        "title": "Watching",
+        "add": "Move to Watching",
+        "remove": "Remove from Watching",
+        "watched": "Move to Watched"
       },
       "watched": {
         "title": "Watched",
         "add": "Move to Watched",
-        "remove": "Remove from Watched"
+        "remove": "Remove from Watched",
+        "want": "Move to Want"
       },
       "cancel": {
         "title": "Cancel"
@@ -164,7 +206,7 @@
     "format": {
       "runtime": {
         "title": "{{hours}}h{{minutes}}m",
-        "hours": "{{hours}}m",
+        "hours": "{{hours}}h0m",
         "minutes": "{{minutes}}m"
       }
     },

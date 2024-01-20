@@ -4,6 +4,8 @@ import colors from "styles/colors"
 
 const { height, width } = Dimensions.get("window")
 
+const POSTER_HEIGHT = (width * 0.7 * 6) / 4
+
 export const movieStyles = StyleSheet.create({
   root: {
     flex: 1,
@@ -24,13 +26,6 @@ export const movieStyles = StyleSheet.create({
   },
   runtime: {
     color: colors.spanishGray,
-  },
-  overview: {
-    padding: 0,
-  },
-  overviewTitle: {
-    color: colors.graniteGray,
-    marginBottom: 7,
   },
 })
 
@@ -103,6 +98,16 @@ export const ratingStyles = StyleSheet.create({
   },
 })
 
+export const overviewStyles = StyleSheet.create({
+  root: {
+    padding: 0,
+  },
+  title: {
+    color: colors.graniteGray,
+    marginBottom: 7,
+  },
+})
+
 export const statusStyles = StyleSheet.create({
   root: {
     borderColor: colors.gunmetal,
@@ -128,6 +133,21 @@ export const actionButtonStyles = StyleSheet.create({
     backgroundColor: colors.black,
     marinHorizontal: 5,
     marginRight: 5,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 5,
+    elevation: 1,
+    width: "48%",
+  },
+  buttonWatching: {
+    ...buttonStyles.button,
+    backgroundColor: colors.black,
+    marinHorizontal: 5,
+    marginLeft: 5,
     shadowColor: colors.black,
     shadowOffset: {
       width: 1,
@@ -194,14 +214,14 @@ export const overlayStyles = StyleSheet.create({
     width: "100%",
   },
   actions: {
-    paddingHorizontal: 15,
-    paddingVertical: 22,
+    padding: 15,
     width: "100%",
   },
   button: {
     backgroundColor: "transparent",
     borderRadius: 0,
     margin: 0,
+    padding: 10,
   },
   text: {
     color: colors.graniteGray,
@@ -212,7 +232,7 @@ export const overlayStyles = StyleSheet.create({
 export const playStyles = StyleSheet.create({
   root: {
     position: "absolute",
-    top: 370,
+    top: POSTER_HEIGHT - 20,
     right: 65,
     height: 40,
     width: 40,

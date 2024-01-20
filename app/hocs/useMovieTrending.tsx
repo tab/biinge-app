@@ -11,7 +11,7 @@ import {
 import LoadableEntity from "components/ui/LoadableEntity"
 import Typography from "components/ui/Typography"
 import Skeleton from "components/ui/Skeleton"
-import { MoviesListType } from "types"
+import { TrendingListType } from "types"
 import {
   textStyles,
   searchResultsStyles,
@@ -27,7 +27,9 @@ export function useMovieTrending<GenericType>(
     const dispatch = useAppDispatch()
     const { t } = useTranslation()
 
-    const items = useAppSelector((state) => selectAll(state)) as MoviesListType
+    const items = useAppSelector((state) =>
+      selectAll(state),
+    ) as TrendingListType
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     useEffect(() => {
@@ -75,7 +77,7 @@ export function useMovieTrending<GenericType>(
         renderError={renderError}
       >
         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
-        {(items: MoviesListType) => (
+        {(items: TrendingListType) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

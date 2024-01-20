@@ -11,7 +11,7 @@ import {
 } from "redux/features/tmdb/tmdbMovieDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
 import Typography from "components/ui/Typography"
-import Poster from "components/Movie/Poster"
+import Poster from "components/ui/Poster"
 import { MovieDetails, FETCH_STATUS } from "types"
 import { loadingStyles, layoutStyles, textStyles } from "styles"
 import colors from "styles/colors"

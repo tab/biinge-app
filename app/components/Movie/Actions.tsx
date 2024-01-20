@@ -15,7 +15,6 @@ const ActionsComponent = ({ item }: Props) => {
   const { t } = useTranslation()
 
   const {
-    loading,
     inWantList,
     inWatchedList,
     addToWantList,
@@ -26,6 +25,7 @@ const ActionsComponent = ({ item }: Props) => {
     unpinFromList,
   } = useContext(MovieContext)
 
+  const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(false)
 
   const isPinned = pinned(item.id)
@@ -33,19 +33,71 @@ const ActionsComponent = ({ item }: Props) => {
   const watched = inWatchedList(item.id)
 
   const handlePin = () => {
-    pinToList(item)
+    setLoading(true)
+
+    pinToList(item).finally(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 150)
+    })
   }
 
   const handleUnpin = () => {
-    unpinFromList(item)
+    setLoading(true)
+
+    unpinFromList(item).finally(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 150)
+    })
+  }
+
+  const handleAddToWant = () => {
+    setLoading(true)
+
+    addToWantList(item).finally(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 150)
+    })
+  }
+
+  const handleAddToWatched = () => {
+    setLoading(true)
+
+    addToWatchedList(item).finally(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 150)
+    })
+  }
+
+  const handleRemove = () => {
+    setLoading(true)
+
+    removeFromList(item.id).finally(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 150)
+    })
   }
 
   const handleWant = () => {
-    want ? removeFromList(item.id) : addToWantList(item)
+    want ? handleRemove() : handleAddToWant()
   }
 
   const handleWatched = () => {
-    watched ? removeFromList(item.id) : addToWatchedList(item)
+    watched ? handleRemove() : handleAddToWatched()
+  }
+
+  const handleMoveWantToWatched = () => {
+    handleRemove()
+    handleAddToWatched()
+  }
+
+  const handleMoveWatchedToWant = () => {
+    handleRemove()
+    handleAddToWant()
   }
 
   const handleOverlay = () => {
@@ -99,6 +151,8 @@ const ActionsComponent = ({ item }: Props) => {
           onUnpin={handleUnpin}
           onWant={handleWant}
           onWatched={handleWatched}
+          onMoveToWant={handleMoveWatchedToWant}
+          onMoveToWatched={handleMoveWantToWatched}
           onCancel={handleCancel}
         />
       </Modal>

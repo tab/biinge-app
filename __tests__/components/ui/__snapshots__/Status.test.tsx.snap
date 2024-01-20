@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Status renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "borderColor": "#2b2835",
+      "borderRadius": 50,
+      "borderWidth": 2,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "paddingBottom": 2,
+      "paddingHorizontal": 12,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#2b2835",
+        "fontSize": 12,
+        "fontWeight": "700",
+        "lineHeight": 22,
+      }
+    }
+  >
+    Post Production
+  </Text>
+</View>
+`;

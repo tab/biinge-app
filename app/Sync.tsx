@@ -5,13 +5,23 @@ import { RealmProvider, useUser } from "@realm/react"
 import { Provider } from "react-redux"
 
 import MovieProvider from "contexts/MovieContext"
-import { Movie, UserMovie } from "models"
+import TvProvider from "contexts/TvContext"
+import {
+  Movie,
+  UserMovie,
+  TvShow,
+  UserTvShow,
+  TvSeason,
+  UserTvSeason,
+  TvEpisode,
+  UserTvEpisode,
+} from "models"
 import { Store } from "redux/store"
 
 const realmAccessBehavior: Realm.OpenRealmBehaviorConfiguration = {
   type: OpenRealmBehaviorType.DownloadBeforeOpen,
   timeOutBehavior: OpenRealmTimeOutBehavior?.OpenLocalRealm ?? "openLocalRealm",
-  timeOut: 1000,
+  timeOut: 100,
 }
 
 type Props = {
@@ -24,7 +34,16 @@ const Sync = ({ children }: Props) => {
 
   return (
     <RealmProvider
-      schema={[Movie, UserMovie]}
+      schema={[
+        Movie,
+        UserMovie,
+        TvShow,
+        UserTvShow,
+        TvSeason,
+        UserTvSeason,
+        TvEpisode,
+        UserTvEpisode,
+      ]}
       sync={{
         partitionValue,
         newRealmFileBehavior: realmAccessBehavior,
@@ -32,7 +51,9 @@ const Sync = ({ children }: Props) => {
       }}
     >
       <Provider store={Store}>
-        <MovieProvider>{children}</MovieProvider>
+        <MovieProvider>
+          <TvProvider>{children}</TvProvider>
+        </MovieProvider>
       </Provider>
     </RealmProvider>
   )

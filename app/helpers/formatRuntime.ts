@@ -14,7 +14,7 @@ function formatRuntime(value: number) {
       })
     }
 
-    if (hours > 0) {
+    if (hours > 0 && minutes === 0) {
       return i18n.t("format.runtime.hours", {
         hours,
       })

@@ -69,7 +69,7 @@ const PeopleListComponent = ({ items }: Props) => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={horizontalListStyles.content}
       data={items}
-      keyExtractor={(item, index: number) => index.toString()}
+      keyExtractor={(_, index: number) => index.toString()}
       renderItem={renderItem}
       ListEmptyComponent={renderEmpty}
     />

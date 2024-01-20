@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { View, TextInput, Keyboard } from "react-native"
+import { View, TextInput, Keyboard, useColorScheme } from "react-native"
 import { FormikErrors, FormikProps, withFormik } from "formik"
 import { useTranslation } from "react-i18next"
 
@@ -25,7 +25,10 @@ const LoginForm = ({
   setFieldValue,
   handleSubmit,
 }: Props) => {
+  const scheme = useColorScheme()
   const { t } = useTranslation()
+
+  const dark = scheme === "dark"
 
   const [visible, setVisible] = useState(false)
 
@@ -53,6 +56,7 @@ const LoginForm = ({
     >
       <View style={loginFormStyles.group}>
         <TextInput
+          style={loginFormStyles.input}
           testID="email-input"
           autoCapitalize="none"
           autoComplete="email"
@@ -60,9 +64,9 @@ const LoginForm = ({
           autoFocus={true}
           allowFontScaling={false}
           textContentType="emailAddress"
-          style={loginFormStyles.input}
           placeholder={t("login.form.email.placeholder.title")}
           placeholderTextColor={colors.gray}
+          keyboardAppearance={dark ? "dark" : "light"}
           onChangeText={(newValue: string) => {
             setFieldValue("email", newValue)
           }}
@@ -71,6 +75,7 @@ const LoginForm = ({
       </View>
       <View style={loginFormStyles.group}>
         <TextInput
+          style={loginFormStyles.input}
           testID="password-input"
           autoCapitalize="none"
           autoComplete="password"
@@ -79,9 +84,9 @@ const LoginForm = ({
           allowFontScaling={false}
           secureTextEntry
           textContentType="password"
-          style={loginFormStyles.input}
           placeholder={t("login.form.password.placeholder.title")}
           placeholderTextColor={colors.gray}
+          keyboardAppearance={dark ? "dark" : "light"}
           onChangeText={(newValue: string) => {
             setFieldValue("password", newValue)
           }}

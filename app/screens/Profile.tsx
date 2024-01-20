@@ -3,8 +3,7 @@ import { View } from "react-native"
 import { useUser, useObject } from "@realm/react"
 import { useTranslation } from "react-i18next"
 
-import i18n from "config/i18n"
-import { Movie, UserMovie } from "models"
+import { Movie, UserMovie, UserTvShow, TvEpisode, UserTvEpisode } from "models"
 import Avatar from "components/ui/Avatar"
 import Button from "components/ui/Button"
 import Typography from "components/ui/Typography"
@@ -15,16 +14,32 @@ const ProfileScreen = () => {
   const user = useUser()
 
   const userMovie = useObject<UserMovie>(UserMovie, user.id)
-  const want = userMovie?.want
-  const watched = userMovie?.watched
+  const moviesWant = userMovie?.want
+  const moviesWatched = userMovie?.watched
+
+  const userTvShow = useObject<UserTvShow>(UserTvShow, user.id)
+  const showWant = userTvShow?.want
+  const showWatching = userTvShow?.watching
+  const showWatched = userTvShow?.watched
+
+  const userTvEpisode = useObject<UserTvEpisode>(UserTvEpisode, user.id)
+  const episodesWatched = userTvEpisode?.watched
 
   // @ts-ignore
-  const minutes =
-    watched?.reduce(
+  const movieMinutes =
+    moviesWatched?.reduce(
       (index: number, item: Movie) => index + (item.runtime || 0),
       0,
     ) || 0
-  const hours = Math.floor(minutes / 60)
+  const movieHours = Math.floor(movieMinutes / 60)
+
+  // @ts-ignore
+  const tvMinutes =
+    episodesWatched?.reduce(
+      (index: number, item: TvEpisode) => index + (item.runtime || 0),
+      0,
+    ) || 0
+  const tvHours = Math.floor(tvMinutes / 60)
 
   const handleClick = () => {
     user.logOut()
@@ -44,20 +59,59 @@ const ProfileScreen = () => {
           </View>
 
           <View style={profileStyles.section}>
+            <Typography variant="callout">
+              {t("profile.movies.title")}
+            </Typography>
             <View style={profileStyles.counters}>
-              <Typography variant="callout">{want?.length || 0}</Typography>
+              <Typography variant="callout">
+                {moviesWant?.length || 0}
+              </Typography>
               <Typography variant="footnote">
                 {t("profile.stats.want.title")}
               </Typography>
             </View>
             <View style={profileStyles.counters}>
-              <Typography variant="callout">{watched?.length || 0}</Typography>
+              <Typography variant="callout">
+                {moviesWatched?.length || 0}
+              </Typography>
               <Typography variant="footnote">
                 {t("profile.stats.watched.title")}
               </Typography>
             </View>
             <View style={profileStyles.counters}>
-              <Typography variant="callout">{hours}</Typography>
+              <Typography variant="callout">{movieHours}</Typography>
+              <Typography variant="footnote">
+                {t("profile.stats.hours.title")}
+              </Typography>
+            </View>
+          </View>
+
+          <View style={profileStyles.section}>
+            <Typography variant="callout">{t("profile.tv.title")}</Typography>
+            <View style={profileStyles.counters}>
+              <Typography variant="callout">{showWant?.length || 0}</Typography>
+              <Typography variant="footnote">
+                {t("profile.stats.want.title")}
+              </Typography>
+            </View>
+            <View style={profileStyles.counters}>
+              <Typography variant="callout">
+                {showWatching?.length || 0}
+              </Typography>
+              <Typography variant="footnote">
+                {t("profile.stats.watching.title")}
+              </Typography>
+            </View>
+            <View style={profileStyles.counters}>
+              <Typography variant="callout">
+                {showWatched?.length || 0}
+              </Typography>
+              <Typography variant="footnote">
+                {t("profile.stats.watched.title")}
+              </Typography>
+            </View>
+            <View style={profileStyles.counters}>
+              <Typography variant="callout">{tvHours}</Typography>
               <Typography variant="footnote">
                 {t("profile.stats.hours.title")}
               </Typography>
@@ -75,8 +129,8 @@ const ProfileScreen = () => {
 }
 
 export const PROFILE_SCREEN = {
+  id: "PROFILE_SCREEN",
   name: "com.biinge.Profile",
-  title: i18n.t("profile.title"),
 }
 
 export default ProfileScreen

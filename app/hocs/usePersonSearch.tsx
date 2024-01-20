@@ -10,7 +10,7 @@ import {
 import LoadableEntity from "components/ui/LoadableEntity"
 import Typography from "components/ui/Typography"
 import Skeleton from "components/ui/Skeleton"
-import { PeopleListType } from "types"
+import { TMDBPersonListType } from "types"
 import {
   searchResultsStyles,
   horizontalStubListStyles,
@@ -25,7 +25,9 @@ export function usePersonSearch<GenericType>(
   const UsePersonSearch = ({ ...restProps }: Props) => {
     const { t } = useTranslation()
 
-    const items = useAppSelector((state) => selectAll(state)) as PeopleListType
+    const items = useAppSelector((state) =>
+      selectAll(state),
+    ) as TMDBPersonListType
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     const renderLoader = () => {
@@ -68,7 +70,7 @@ export function usePersonSearch<GenericType>(
         renderError={renderError}
       >
         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
-        {(items: PeopleListType) => (
+        {(items: TMDBPersonListType) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

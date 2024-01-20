@@ -7,10 +7,10 @@ import { usePeopleTrending } from "hocs"
 import { searchResultsStyles } from "styles"
 import List from "components/ui/PeopleList"
 import Typography from "components/ui/Typography"
-import { PeopleListType } from "types"
+import { TrendingListType } from "types"
 
 type Props = {
-  items: PeopleListType
+  items: TrendingListType
 }
 
 const PeopleComponent = ({ items }: Props) => {

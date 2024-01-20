@@ -18,7 +18,6 @@ export const searchStyles = StyleSheet.create({
     paddingBottom: 1,
     paddingLeft: 8,
     paddingRight: 4,
-    marginRight: 7,
   },
   icon: {},
   input: {
@@ -37,7 +36,9 @@ export const searchResultsStyles = StyleSheet.create({
   root: {
     flex: 1,
   },
-  content: {},
+  content: {
+    paddingBottom: 5,
+  },
   title: {
     color: colors.grayDark,
     padding: 12,

@@ -26,9 +26,7 @@ export const profileStyles = StyleSheet.create({
     height: 70,
     width: 70,
   },
-  actions: {
-    marginBottom: 15,
-  },
+  actions: {},
   logOut: {
     backgroundColor: colors.black,
   },

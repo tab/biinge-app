@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 
 import { MovieContext } from "contexts/MovieContext"
 import { DETAILS_SCREEN } from "screens/Details"
+import { DETAILS_MOVIE_TYPE } from "config"
 import Image from "components/ui/Image"
 import Check from "components/ui/Check"
 import Typography from "components/ui/Typography"
@@ -43,7 +44,10 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
 
     const handleClick = () => {
       // @ts-ignore
-      navigation.push(DETAILS_SCREEN.name, { id: item.tmdb_id })
+      navigation.push(DETAILS_SCREEN.name, {
+        id: item.tmdb_id,
+        type: DETAILS_MOVIE_TYPE,
+      })
     }
 
     return (
@@ -70,7 +74,7 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={horizontalListStyles.content}
       data={items}
-      keyExtractor={(item, index: number) => index.toString()}
+      keyExtractor={(_, index: number) => index.toString()}
       renderItem={renderItem}
       ListEmptyComponent={renderEmpty}
     />

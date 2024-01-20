@@ -10,7 +10,7 @@ import {
 import LoadableEntity from "components/ui/LoadableEntity"
 import Typography from "components/ui/Typography"
 import Skeleton from "components/ui/Skeleton"
-import { MoviesListType } from "types"
+import { TMDBMovieListType } from "types"
 import {
   textStyles,
   searchResultsStyles,
@@ -25,7 +25,9 @@ export function useMovieSearch<GenericType>(
   const UseMovieSearch = ({ ...restProps }: Props) => {
     const { t } = useTranslation()
 
-    const items = useAppSelector((state) => selectAll(state)) as MoviesListType
+    const items = useAppSelector((state) =>
+      selectAll(state),
+    ) as TMDBMovieListType
     const fetchStatus = useAppSelector((state) => selectFetchStatus(state))
 
     const renderLoader = () => {
@@ -66,7 +68,7 @@ export function useMovieSearch<GenericType>(
         renderError={renderError}
       >
         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
-        {(items: MoviesListType) => (
+        {(items: TMDBMovieListType) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

@@ -1,18 +1,18 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
 import { View } from "react-native"
-import { useTranslation } from "react-i18next"
 
 import { useMovieDetails } from "hocs"
 import { layoutStyles, movieStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
 import { formatRuntime } from "helpers/formatRuntime"
-import Poster from "components/Movie/Poster"
 import Play from "components/Movie/Play"
-import Status from "components/Movie/Status"
-import Rating from "components/Movie/Rating"
 import Actions from "components/Movie/Actions"
+import Poster from "components/ui/Poster"
+import Status from "components/ui/Status"
+import Rating from "components/ui/Rating"
 import Title from "components/ui/Title"
+import Overview from "components/ui/Overview"
 import Typography from "components/ui/Typography"
 
 type Props = {
@@ -20,8 +20,6 @@ type Props = {
 }
 
 const ContentComponent = ({ item }: Props) => {
-  const { t } = useTranslation()
-
   const {
     title,
     overview,
@@ -48,7 +46,9 @@ const ContentComponent = ({ item }: Props) => {
         ]}
       >
         <Title
-          aside={<>{votes && <Rating>{vote_average.toFixed(1)}</Rating>}</>}
+          aside={
+            <>{votes && <Rating size={20}>{vote_average.toFixed(1)}</Rating>}</>
+          }
         >
           {title}
         </Title>
@@ -65,12 +65,7 @@ const ContentComponent = ({ item }: Props) => {
 
         <Actions item={item} />
 
-        <View style={movieStyles.overview}>
-          <Typography variant="callout" style={movieStyles.overviewTitle}>
-            {t("movie.content.overview")}
-          </Typography>
-          <Typography variant="body">{overview}</Typography>
-        </View>
+        <Overview>{overview}</Overview>
       </View>
     </>
   )
