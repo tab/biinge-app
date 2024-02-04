@@ -5,6 +5,7 @@ import { render } from "@testing-library/react-native"
 import { it } from "@jest/globals"
 
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 
 describe("Button", () => {
   const title = "Button title"
@@ -15,7 +16,7 @@ describe("Button", () => {
 
     const tree = render(
       <Button disabled={disabled} onPress={handleClick}>
-        {title}
+        <Typography variant="body">{title}</Typography>
       </Button>,
     )
     expect(tree).toMatchSnapshot()
@@ -26,7 +27,7 @@ describe("Button", () => {
 
     const tree = render(
       <Button disabled={disabled} onPress={handleClick}>
-        {title}
+        <Typography variant="body">{title}</Typography>
       </Button>,
     )
     expect(tree).toMatchSnapshot()

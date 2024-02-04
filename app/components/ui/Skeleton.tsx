@@ -16,27 +16,33 @@ import Animated, {
 } from "react-native-reanimated"
 import MaskedView from "@react-native-masked-view/masked-view"
 import LinearGradient from "react-native-linear-gradient"
+import { useTheme } from "@react-navigation/native"
 
-import colors from "styles/colors"
+import { darkTheme, lightTheme } from "styles/theme"
 
 const SCREEN_WIDTH = Dimensions.get("window").width
 
 interface SkeletonProps {
   // eslint-disable-next-line no-undef
   children: JSX.Element | JSX.Element[]
-  backgroundColor?: string
-  highlightColor?: string
   speed?: number
   direction?: "left" | "right"
 }
 
 export default function Skeleton({
   children,
-  backgroundColor = colors.americanSilver,
   speed = 800,
-  highlightColor = colors.lotion,
   direction = "right",
 }: SkeletonProps) {
+  const { dark } = useTheme()
+
+  const backgroundColor = dark
+    ? darkTheme.colors.card
+    : lightTheme.colors.border
+  const highlightColor = dark
+    ? darkTheme.colors.background
+    : lightTheme.colors.card
+
   const [layout, setLayout] = React.useState<LayoutRectangle>()
   const animated = useSharedValue(0)
 

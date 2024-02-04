@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overview renders correctly 1`] = `
+<View
+  style={
+    {
+      "padding": 0,
+    }
+  }
+>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "lineHeight": 24,
+        },
+        {
+          "color": "#666666",
+          "marginBottom": 7,
+        },
+      ]
+    }
+  >
+    Synopsis
+  </Text>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 18,
+          "fontWeight": "300",
+          "lineHeight": 22,
+        },
+        {
+          "color": "#181818",
+        },
+      ]
+    }
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </Text>
+</View>
+`;

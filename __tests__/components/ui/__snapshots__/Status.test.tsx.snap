@@ -3,26 +3,38 @@
 exports[`Status renders correctly 1`] = `
 <View
   style={
-    {
-      "alignItems": "center",
-      "borderColor": "#2b2835",
-      "borderRadius": 50,
-      "borderWidth": 2,
-      "flexDirection": "row",
-      "justifyContent": "center",
-      "paddingBottom": 2,
-      "paddingHorizontal": 12,
-    }
+    [
+      {
+        "alignItems": "center",
+        "borderColor": "#2b2835",
+        "borderRadius": 50,
+        "borderWidth": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingBottom": 2,
+        "paddingHorizontal": 12,
+      },
+      {
+        "borderColor": "#2b2835",
+        "color": "#2b2835",
+      },
+    ]
   }
 >
   <Text
     style={
-      {
-        "color": "#2b2835",
-        "fontSize": 12,
-        "fontWeight": "700",
-        "lineHeight": 22,
-      }
+      [
+        {
+          "color": "#2b2835",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "lineHeight": 22,
+        },
+        {
+          "borderColor": "#2b2835",
+          "color": "#2b2835",
+        },
+      ]
     }
   >
     Post Production

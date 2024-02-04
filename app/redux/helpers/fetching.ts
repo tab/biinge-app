@@ -1,6 +1,6 @@
-import { FetchType, FetchCollectionType } from "types"
+import { FetchItemType, FetchCollectionType } from "types"
 
-export const handleFetchPending = (state: FetchType, id: number) => {
+export const handleFetchPending = (state: FetchItemType, id: number) => {
   state.fetchStatus[id] = {
     isFetching: true,
     isSuccess: false,
@@ -8,7 +8,7 @@ export const handleFetchPending = (state: FetchType, id: number) => {
   }
 }
 
-export const handleFetchRejected = (state: FetchType, id: number) => {
+export const handleFetchRejected = (state: FetchItemType, id: number) => {
   state.fetchStatus[id] = {
     isFetching: false,
     isSuccess: false,
@@ -16,7 +16,7 @@ export const handleFetchRejected = (state: FetchType, id: number) => {
   }
 }
 
-export const handleFetchFulfilled = (state: FetchType, id: number) => {
+export const handleFetchFulfilled = (state: FetchItemType, id: number) => {
   state.fetchStatus[id] = {
     isFetching: false,
     isSuccess: true,

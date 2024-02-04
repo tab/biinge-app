@@ -1,33 +1,40 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
-import { View } from "react-native"
+import Animated, { SlideInDown } from "react-native-reanimated"
+import { useTheme } from "@react-navigation/native"
 
 import { usePersonDetails } from "hocs"
-import { formatDate } from "helpers/formatDate"
 import Poster from "components/Person/Poster"
-import Title from "components/ui/Title"
-import Typography from "components/ui/Typography"
-import { personImageStyles, personStyles } from "styles"
+import Movies from "components/Person/Movies"
+import TvShows from "components/Person/TvShows"
+import { personStyles, layoutStyles } from "styles"
 
 type Props = {
   item: any
 }
 
 const ContentComponent = ({ item }: Props) => {
-  const { name, birthday, profile_path } = item
+  const { dark } = useTheme()
+
+  const { name, birthday, profile_path, gender, credits, tv_credits } = item
 
   return (
-    <View style={personImageStyles.root}>
-      <Poster poster_path={profile_path} />
-      <View style={personStyles.content}>
-        <Title style={personStyles.title}>{name}</Title>
-        {birthday && (
-          <Typography variant="headline" style={personStyles.date}>
-            {formatDate(birthday)}
-          </Typography>
-        )}
-      </View>
-    </View>
+    <>
+      <Poster poster_path={profile_path} name={name} birthday={birthday} />
+      <Animated.View
+        style={[
+          layoutStyles.roundCorners,
+          layoutStyles.card,
+          personStyles.root,
+          personStyles.content,
+          dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
+        ]}
+        entering={SlideInDown}
+      >
+        <Movies gender={gender} items={credits} />
+        <TvShows items={tv_credits} />
+      </Animated.View>
+    </>
   )
 }
 

@@ -7,3 +7,5 @@ export * from "models/TvSeason"
 export * from "models/UserTvSeason"
 export * from "models/TvEpisode"
 export * from "models/UserTvEpisode"
+
+export * from "models/Profile"

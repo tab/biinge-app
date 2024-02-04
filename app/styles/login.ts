@@ -41,7 +41,6 @@ export const loginFormStyles = StyleSheet.create({
   input: {
     fontSize: 16,
     padding: 12,
-    backgroundColor: colors.white,
     borderRadius: 4,
   },
   actions: {

@@ -1,11 +1,13 @@
 import React from "react"
 import { View, Text, StyleProp, StyleSheet } from "react-native"
-import Animated, { FadeIn } from "react-native-reanimated"
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated"
 import FastImage from "react-native-fast-image"
+import { useTheme } from "@react-navigation/native"
 
 import { imageUrl } from "helpers/imageUrl"
-import colors from "styles/colors"
 import { TMDBPosterSizeType } from "types"
+import { darkTheme, lightTheme } from "styles/theme"
+import colors from "styles/colors"
 
 type Props = {
   title?: string
@@ -15,8 +17,14 @@ type Props = {
 }
 
 const ImageComponent = ({ title, path, size, style }: Props) => {
+  const { dark } = useTheme()
+
   return (
-    <Animated.View entering={FadeIn} style={[style, styles.root]}>
+    <Animated.View
+      entering={FadeIn.delay(250)}
+      exiting={FadeOut}
+      style={[style, dark ? styles.bgDark : styles.bgLight]}
+    >
       <View style={styles.content}>
         <Text style={styles.text}>{title}</Text>
       </View>
@@ -35,8 +43,11 @@ const ImageComponent = ({ title, path, size, style }: Props) => {
 export default ImageComponent
 
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: colors.americanSilver,
+  bgDark: {
+    backgroundColor: darkTheme.colors.card,
+  },
+  bgLight: {
+    backgroundColor: lightTheme.colors.card,
   },
   content: {
     position: "absolute",
@@ -48,9 +59,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
+    color: colors.spanishGray,
     fontSize: 16,
     fontWeight: "600",
-    color: colors.white,
     textAlign: "center",
   },
 })

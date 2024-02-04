@@ -12,19 +12,22 @@ export const searchStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: colors.raisinBlack,
     borderRadius: 4,
-    paddingTop: 2,
-    paddingBottom: 1,
+    padding: 4,
     paddingLeft: 8,
     paddingRight: 4,
   },
-  icon: {},
   input: {
     flex: 1,
-    color: colors.gray,
+    // color: colors.gray,
     fontSize: 16,
     padding: 5,
+  },
+  inputDark: {
+    color: colors.grayDark,
+  },
+  inputLight: {
+    color: colors.black,
   },
   button: {
     color: colors.white,

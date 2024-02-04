@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Version renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "lineHeight": 17,
+        },
+        {
+          "color": "#666666",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    app.version
+  </Text>
+  <Text
+    numberOfLines={0}
+    style={
+      [
+        {
+          "color": "#181818",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "lineHeight": 17,
+        },
+        {
+          "color": "#666666",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "lineHeight": 24,
+        },
+      ]
+    }
+  >
+    app.name
+  </Text>
+</View>
+`;

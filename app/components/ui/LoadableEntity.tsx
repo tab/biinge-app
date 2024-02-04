@@ -2,11 +2,11 @@ import React from "react"
 import { Text } from "react-native"
 import { useTranslation } from "react-i18next"
 
-import { FetchStatusType } from "types"
+import { FetchType } from "types"
 
 type Props = {
   entity: any
-  fetchStatus: FetchStatusType
+  fetchStatus: FetchType
   children(entity: object): React.ReactNode
   renderLoading?: () => React.ReactElement
   renderError?: () => React.ReactElement

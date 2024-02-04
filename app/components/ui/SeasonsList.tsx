@@ -3,7 +3,6 @@ import { FlatList, Pressable, Text } from "react-native"
 import { useTranslation } from "react-i18next"
 
 import List from "components/ui/EpisodesList"
-import Actions from "components/Tv/SeasonActions"
 import { seasonsListStyles } from "styles"
 
 type Props = {
@@ -55,7 +54,6 @@ const SeasonsListComponent = ({ show, items }: Props) => {
         renderItem={renderItem}
       />
       <List show={show} season={currentSeason} items={currentSeason.items} />
-      <Actions show={show} item={currentSeason} />
     </>
   )
 }

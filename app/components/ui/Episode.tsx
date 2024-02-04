@@ -3,6 +3,7 @@ import { View, Text } from "react-native"
 import Animated, { FadeIn } from "react-native-reanimated"
 import { RectButton } from "react-native-gesture-handler"
 import Swipeable from "react-native-gesture-handler/Swipeable"
+import { useTheme } from "@react-navigation/native"
 
 import { TvContext } from "contexts/TvContext"
 import { formatDate } from "helpers/formatDate"
@@ -10,7 +11,7 @@ import { formatRuntime } from "helpers/formatRuntime"
 import Icon from "components/ui/Icon"
 import Rating from "components/ui/Rating"
 import Typography from "components/ui/Typography"
-import { episodesListStyles } from "styles"
+import { episodesListStyles, titleStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -22,6 +23,7 @@ type Props = {
 
 const EpisodeComponent = ({ show, season, item, index }: Props) => {
   const swipeable = useRef(null)
+  const { dark } = useTheme()
 
   const { inWatchedEpisodeList, addToWatchedList, removeFromList } =
     useContext(TvContext)
@@ -71,7 +73,17 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
   )
 
   return (
-    <View style={index === 0 ? {} : episodesListStyles.divider}>
+    <View
+      style={
+        index === 0
+          ? {}
+          : [
+              dark
+                ? episodesListStyles.dividerDark
+                : episodesListStyles.dividerLight,
+            ]
+      }
+    >
       <Swipeable
         ref={swipeable}
         overshootLeft
@@ -94,7 +106,10 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
               <Typography
                 variant="subhead"
                 numberOfLines={2}
-                style={episodesListStyles.title}
+                style={[
+                  episodesListStyles.title,
+                  dark ? titleStyles.dark : titleStyles.light,
+                ]}
               >
                 {title}
               </Typography>

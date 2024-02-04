@@ -17,3 +17,7 @@ export const DETAILS_MOVIE_TYPE = "movie"
 export const DETAILS_TV_TYPE = "tv"
 
 export const TV_IN_PRODUCTION_STATUS = "Returning Series"
+
+export const APP_APPEARANCE_SYSTEM = "system"
+export const APP_APPEARANCE_DARK = "dark"
+export const APP_APPEARANCE_LIGHT = "light"

@@ -3,7 +3,6 @@ import colors from "styles/colors"
 
 export const peopleStyles = StyleSheet.create({
   root: {
-    backgroundColor: colors.white,
     paddingBottom: 20,
   },
   title: {

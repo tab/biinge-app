@@ -35,7 +35,6 @@ exports[`Button renders button 1`] = `
     [
       {
         "alignItems": "center",
-        "backgroundColor": "#2b2835",
         "borderRadius": 50,
         "flexDirection": "row",
         "justifyContent": "center",
@@ -46,13 +45,14 @@ exports[`Button renders button 1`] = `
   }
 >
   <Text
+    numberOfLines={0}
     style={
       [
         {
-          "color": "#ffffff",
+          "color": "#181818",
           "fontSize": 18,
-          "fontWeight": "bold",
-          "textAlign": "center",
+          "fontWeight": "300",
+          "lineHeight": 22,
         },
         undefined,
       ]
@@ -98,7 +98,6 @@ exports[`Button renders disabled button 1`] = `
     [
       {
         "alignItems": "center",
-        "backgroundColor": "#2b2835",
         "borderRadius": 50,
         "flexDirection": "row",
         "justifyContent": "center",
@@ -112,13 +111,14 @@ exports[`Button renders disabled button 1`] = `
   }
 >
   <Text
+    numberOfLines={0}
     style={
       [
         {
-          "color": "#ffffff",
+          "color": "#181818",
           "fontSize": 18,
-          "fontWeight": "bold",
-          "textAlign": "center",
+          "fontWeight": "300",
+          "lineHeight": 22,
         },
         undefined,
       ]

@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native"
+
+import { darkTheme, lightTheme } from "styles/theme"
 import colors from "styles/colors"
 
 export const inputStyles = StyleSheet.create({
@@ -10,6 +12,14 @@ export const inputStyles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 4,
     borderColor: colors.black,
+  },
+  dark: {
+    backgroundColor: darkTheme.colors.card,
+    color: darkTheme.colors.text,
+  },
+  light: {
+    backgroundColor: lightTheme.colors.card,
+    color: lightTheme.colors.text,
   },
   text: {
     color: colors.white,
@@ -25,7 +35,7 @@ export const inputErrorStyles = StyleSheet.create({
     marginTop: 5,
   },
   text: {
-    color: colors.darkCandyAppleRed,
+    color: colors.white,
     textAlign: "center",
     fontSize: 15,
   },

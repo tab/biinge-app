@@ -6,10 +6,10 @@ import { useTranslation } from "react-i18next"
 import { peopleStyles, layoutStyles } from "styles"
 import Typography from "components/ui/Typography"
 import List from "components/ui/PeopleList"
-import { MovieCredits } from "types"
+import { CastPerson, CrewPerson } from "types"
 
 type Props = {
-  items: MovieCredits[]
+  items: CastPerson[] | CrewPerson[]
 }
 
 const PeopleComponent = ({ items }: Props) => {
@@ -20,11 +20,11 @@ const PeopleComponent = ({ items }: Props) => {
     <View
       style={[
         peopleStyles.root,
-        dark ? layoutStyles.bgDarkCard : layoutStyles.bgLight,
+        dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
       ]}
     >
       <Typography variant="callout" style={peopleStyles.title}>
-        {t("movie.content.cast")}
+        {t("content.cast")}
       </Typography>
       <List items={items} />
     </View>

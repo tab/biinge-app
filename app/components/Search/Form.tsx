@@ -1,8 +1,10 @@
 import React, { useCallback } from "react"
-import { View, TextInput, useColorScheme } from "react-native"
+import { View, TextInput } from "react-native"
 import { Formik, FormikProps } from "formik"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
+import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import debounce from "helpers/debounce"
 import { SearchFormValues } from "types"
 import { searchStyles, layoutStyles } from "styles"
@@ -17,10 +19,8 @@ interface FormProps {
 type Props = FormikProps<SearchFormValues> & FormProps
 
 const SearchForm = ({ initialValues, onSubmit }: Props) => {
-  const scheme = useColorScheme()
   const { t } = useTranslation()
-
-  const dark = scheme === "dark"
+  const { dark } = useTheme()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleQueryChange = useCallback(
@@ -31,13 +31,26 @@ const SearchForm = ({ initialValues, onSubmit }: Props) => {
   )
 
   return (
-    <View style={[searchStyles.root, layoutStyles.bgDark]}>
+    <View
+      style={[
+        searchStyles.root,
+        dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
+      ]}
+    >
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ setFieldValue, values }) => (
-          <View style={searchStyles.content}>
+          <View
+            style={[
+              searchStyles.content,
+              dark ? layoutStyles.bgDark : layoutStyles.bgLight,
+            ]}
+          >
             <Icon name="search" color={colors.gray} size={18} />
             <TextInput
-              style={searchStyles.input}
+              style={[
+                searchStyles.input,
+                dark ? searchStyles.inputDark : searchStyles.inputLight,
+              ]}
               autoCapitalize="none"
               autoComplete="off"
               autoCorrect={false}
@@ -46,7 +59,9 @@ const SearchForm = ({ initialValues, onSubmit }: Props) => {
               clearButtonMode="always"
               placeholder={t("search.form.placeholder.title")}
               placeholderTextColor={colors.gray}
-              keyboardAppearance={dark ? "dark" : "light"}
+              keyboardAppearance={
+                dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT
+              }
               value={values.query}
               onChangeText={(newValue: string) => {
                 setFieldValue("query", newValue)

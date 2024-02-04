@@ -12,7 +12,7 @@ exports[`InputError renders correctly 1`] = `
   <Text
     style={
       {
-        "color": "#9f0909",
+        "color": "#ffffff",
         "fontSize": 15,
         "textAlign": "center",
       }

@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native"
 import colors from "styles/colors"
 import { buttonStyles } from "./button"
+import { darkTheme, lightTheme } from "./theme"
 
 const { width } = Dimensions.get("screen")
 
@@ -26,7 +27,6 @@ export const tvStyles = StyleSheet.create({
 
 export const seasonsStyles = StyleSheet.create({
   root: {
-    backgroundColor: colors.white,
     paddingBottom: 20,
   },
   title: {
@@ -38,7 +38,6 @@ export const seasonsStyles = StyleSheet.create({
 
 export const seasonsListStyles = StyleSheet.create({
   content: {
-    backgroundColor: colors.white,
     paddingHorizontal: 10,
     padding: 10,
   },
@@ -47,7 +46,6 @@ export const seasonsListStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     borderRadius: 50,
-    backgroundColor: colors.white,
     paddingHorizontal: 12,
     paddingVertical: 5,
     paddingTop: 4,
@@ -92,11 +90,13 @@ export const seasonActionsStyles = StyleSheet.create({
     elevation: 1,
     width: "100%",
   },
+  text: {
+    color: colors.white,
+  },
 })
 
 export const episodesListStyles = StyleSheet.create({
   root: {
-    backgroundColor: colors.white,
     paddingHorizontal: 15,
   },
   item: {
@@ -108,8 +108,12 @@ export const episodesListStyles = StyleSheet.create({
     paddingBottom: 10,
     paddingHorizontal: 0,
   },
-  divider: {
-    borderTopColor: colors.americanSilver,
+  dividerDark: {
+    borderTopColor: darkTheme.colors.border,
+    borderTopWidth: 0.5,
+  },
+  dividerLight: {
+    borderTopColor: lightTheme.colors.border,
     borderTopWidth: 0.5,
   },
   row: {

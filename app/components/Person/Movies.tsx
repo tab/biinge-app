@@ -1,32 +1,37 @@
-import React, { ComponentType } from "react"
-import { compose } from "@reduxjs/toolkit"
+import React from "react"
 import { View } from "react-native"
 import { useTranslation } from "react-i18next"
 
-import { usePersonMovieCredits } from "hocs"
-import { personMoviesStyles } from "styles"
+import { personListStyles } from "styles"
 import List from "components/ui/MovieList"
 import Typography from "components/ui/Typography"
-import { MovieCastPerson, MovieCrewPerson, TMDB_FEMALE_GENDER } from "types"
+import {
+  CastPerson,
+  CrewPerson,
+  TMDB_FEMALE_GENDER,
+  TMDB_JOB_DIRECTOR,
+} from "types"
 
 type Props = {
   gender?: number
-  cast: MovieCastPerson[]
-  crew: MovieCrewPerson[]
+  items: CastPerson[] | CrewPerson[]
 }
 
-const MoviesComponent = ({ gender, cast, crew }: Props) => {
+const MoviesComponent = ({ gender, items }: Props) => {
   const { t } = useTranslation()
+
+  const cast = items.filter((item) => item.type !== TMDB_JOB_DIRECTOR)
+  const crew = items.filter((item) => item.type === TMDB_JOB_DIRECTOR)
 
   const isCast = cast && cast.length > 0
   const isCrew = crew && crew.length > 0
 
   return (
-    <View style={personMoviesStyles.root}>
+    <>
       {isCast && (
-        <View style={personMoviesStyles.content}>
+        <View style={personListStyles.content}>
           {gender !== undefined && (
-            <Typography variant="subhead" style={personMoviesStyles.title}>
+            <Typography variant="subhead" style={personListStyles.title}>
               {gender === TMDB_FEMALE_GENDER
                 ? t("person.content.actress")
                 : t("person.content.actor")}
@@ -37,16 +42,16 @@ const MoviesComponent = ({ gender, cast, crew }: Props) => {
         </View>
       )}
       {isCrew && (
-        <View style={personMoviesStyles.content}>
-          <Typography variant="subhead" style={personMoviesStyles.title}>
+        <View style={personListStyles.content}>
+          <Typography variant="subhead" style={personListStyles.title}>
             {t("person.content.director")}
           </Typography>
           {/* @ts-ignore */}
           <List showStatus numColumns={3} items={crew} />
         </View>
       )}
-    </View>
+    </>
   )
 }
 
-export default compose<ComponentType>(usePersonMovieCredits)(MoviesComponent)
+export default MoviesComponent

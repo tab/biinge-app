@@ -8,10 +8,31 @@ exports[`Image renders correctly 1`] = `
     }
   }
   collapsable={false}
-  entering={[Function]}
+  entering={
+    FadeIn {
+      "build": [Function],
+      "callbackV": undefined,
+      "dampingRatioV": undefined,
+      "dampingV": undefined,
+      "delayV": 250,
+      "durationV": undefined,
+      "easingV": undefined,
+      "initialValues": undefined,
+      "massV": undefined,
+      "overshootClampingV": undefined,
+      "randomizeDelay": false,
+      "reduceMotionV": "system",
+      "restDisplacementThresholdV": undefined,
+      "restSpeedThresholdV": undefined,
+      "rotateV": undefined,
+      "stiffnessV": undefined,
+      "type": undefined,
+    }
+  }
+  exiting={[Function]}
   style={
     {
-      "backgroundColor": "#d1cecf",
+      "backgroundColor": "#fafafa",
     }
   }
 >
@@ -31,7 +52,7 @@ exports[`Image renders correctly 1`] = `
     <Text
       style={
         {
-          "color": "#ffffff",
+          "color": "#999999",
           "fontSize": 16,
           "fontWeight": "600",
           "textAlign": "center",

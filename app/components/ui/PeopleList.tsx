@@ -3,19 +3,27 @@ import { Pressable, View } from "react-native"
 import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
-import { horizontalListStyles, peopleListStyles, listEmptyStyles } from "styles"
+import {
+  horizontalListStyles,
+  peopleListStyles,
+  listEmptyStyles,
+  titleStyles,
+} from "styles"
 import { PERSON_SCREEN } from "screens/Person"
 import Image from "components/ui/BWImage"
 import Typography from "components/ui/Typography"
+import { CastPerson, CrewPerson } from "types"
 
 type Props = {
-  items: any[]
+  items: CastPerson[] | CrewPerson[]
 }
 
 const PeopleListComponent = ({ items }: Props) => {
   const navigation = useNavigation()
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
   const renderEmpty = () => {
     return (
@@ -24,7 +32,10 @@ const PeopleListComponent = ({ items }: Props) => {
           <Typography variant="title1" style={listEmptyStyles.emoji}>
             {t("search.empty.emoji")}
           </Typography>
-          <Typography variant="callout">
+          <Typography
+            variant="callout"
+            style={dark ? titleStyles.dark : titleStyles.light}
+          >
             {t("search.empty.subtitle")}
           </Typography>
         </View>

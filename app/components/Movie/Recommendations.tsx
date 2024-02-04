@@ -24,11 +24,11 @@ const RecommendationsComponent = ({ items }: Props) => {
         <View
           style={[
             recommendationsStyles.root,
-            dark ? layoutStyles.bgDarkCard : layoutStyles.bgLight,
+            dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
           ]}
         >
           <Typography variant="callout" style={recommendationsStyles.title}>
-            {t("movie.content.recommendations")}
+            {t("content.recommendations")}
           </Typography>
           <List showStatus items={items} />
         </View>

@@ -4,11 +4,13 @@ import colors from "styles/colors"
 const { width } = Dimensions.get("window")
 
 export const personStyles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   content: {
-    position: "absolute",
-    bottom: 15,
-    left: 15,
-    right: 15,
+    paddingHorizontal: 7,
+    paddingVertical: 20,
+    marginTop: -20,
   },
   row: {
     flexDirection: "row",
@@ -32,20 +34,16 @@ export const personStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: 20,
   },
-  overview: {
-    padding: 0,
-  },
 })
 
-export const personImageStyles = StyleSheet.create({
+export const personPosterStyles = StyleSheet.create({
   root: {
     flex: 1,
   },
+  card: {},
   image: {
     alignSelf: "center",
     aspectRatio: "4/6",
-    backgroundColor: colors.americanSilver,
-    filter: "grayscale(100%)",
     width: width,
   },
   blur: {
@@ -62,36 +60,23 @@ export const personImageStyles = StyleSheet.create({
     right: 0,
     height: 150,
   },
-})
-
-export const personMoviesStyles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-  },
   content: {
-    padding: 10,
-  },
-  title: {
-    color: colors.grayDark,
-    marginHorizontal: 5,
-    marginBottom: 5,
+    position: "absolute",
+    bottom: 35,
+    left: 15,
+    right: 0,
   },
 })
 
-export const personTvStyles = StyleSheet.create({
+export const personListStyles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: colors.white,
   },
   content: {
-    padding: 10,
+    minHeight: 200,
   },
   title: {
     color: colors.grayDark,
-    marginHorizontal: 5,
-    // marginBottom: 5,
+    marginHorizontal: 10,
   },
 })

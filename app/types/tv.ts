@@ -1,5 +1,8 @@
 import { EntityId } from "@reduxjs/toolkit"
 
+import { CastPerson, CrewPerson } from "types/person"
+import { Video } from "types/video"
+
 export interface TvDetails {
   id: EntityId
   tmdb_id: number
@@ -21,6 +24,9 @@ export interface TvDetails {
   vote_count: number
   number_of_seasons: number
   number_of_episodes: number
+  seasons: TvSeason[]
+  credits: CastPerson[] | CrewPerson[]
+  videos: Video[]
 }
 
 export interface TvShow {
@@ -61,47 +67,13 @@ export interface TvEpisode {
   vote_count: number
 }
 
-export interface TvEpisodes {
+export interface TvRecommendation {
   id: EntityId
-  items: TvEpisode[]
+  title: string
+  poster_path: string
 }
 
-export interface TvCastPerson {
+export interface TvRecommendations {
   id: EntityId
-  gender: number
-  known_for_department: string
-  name: string
-  original_name: string
-  popularity: number
-  profile_path: string
-  character: string
-}
-
-export interface TvCrewPerson {
-  id: EntityId
-  gender: number
-  known_for_department: string
-  name: string
-  original_name: string
-  popularity: number
-  profile_path: string
-  department: string
-  job: string
-}
-
-export interface PersonTvCredits {
-  id: EntityId
-  items: TvCastPerson[] | TvCrewPerson[]
-}
-
-export interface TvVideo {
-  id: EntityId
-  name: string
-  key: string
-  published_at: string
-}
-
-export interface TvVideos {
-  id: EntityId
-  items: TvVideo[]
+  items: TvRecommendation[]
 }

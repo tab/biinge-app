@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react"
 import { View, Modal } from "react-native"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
 import { TvContext } from "contexts/TvContext"
 import { TV_IN_PRODUCTION_STATUS } from "config"
-import { actionStyles, actionButtonStyles } from "styles"
+import { actionStyles, actionButtonStyles, textStyles } from "styles"
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 import Menu from "components/Tv/Menu"
 
 type Props = {
@@ -14,6 +16,7 @@ type Props = {
 
 const ActionsComponent = ({ item }: Props) => {
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
   const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -129,29 +132,54 @@ const ActionsComponent = ({ item }: Props) => {
             disabled={loading}
             onPress={handleOverlay}
           >
-            {want
-              ? t("actions.want.title")
-              : t(`actions.${watching ? "watching" : "watched"}.title`)}
+            <Typography
+              variant="callout"
+              style={actionButtonStyles.buttonTextActive}
+            >
+              {want
+                ? t("actions.want.title")
+                : t(`actions.${watching ? "watching" : "watched"}.title`)}
+            </Typography>
           </Button>
         ) : (
           <>
             <Button
-              style={actionButtonStyles.buttonWant}
+              style={[
+                actionButtonStyles.buttonWant,
+                dark
+                  ? actionButtonStyles.buttonDark
+                  : actionButtonStyles.buttonLight,
+              ]}
               loading={loading}
               disabled={loading}
               onPress={handleWant}
             >
-              {t("actions.want.title")}
+              <Typography
+                variant="callout"
+                style={dark ? textStyles.textLight : textStyles.textDark}
+              >
+                {t("actions.want.title")}
+              </Typography>
             </Button>
             <Button
-              style={actionButtonStyles.buttonWatched}
+              style={[
+                actionButtonStyles.buttonWatched,
+                dark
+                  ? actionButtonStyles.buttonDark
+                  : actionButtonStyles.buttonLight,
+              ]}
               loading={loading}
               disabled={loading}
               onPress={handleWatched}
             >
-              {inProduction
-                ? t("actions.watching.title")
-                : t("actions.watched.title")}
+              <Typography
+                variant="callout"
+                style={dark ? textStyles.textLight : textStyles.textDark}
+              >
+                {inProduction
+                  ? t("actions.watching.title")
+                  : t("actions.watched.title")}
+              </Typography>
             </Button>
           </>
         )}

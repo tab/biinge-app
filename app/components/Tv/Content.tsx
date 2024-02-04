@@ -1,17 +1,22 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
 import { View } from "react-native"
+import Animated, { SlideInDown } from "react-native-reanimated"
+import { useTheme } from "@react-navigation/native"
 
 import { useTvDetails } from "hocs"
 import { layoutStyles, tvStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
-import Play from "components/Tv/Play"
 import Actions from "components/Tv/Actions"
 import Poster from "components/ui/Poster"
+import Play from "components/ui/Play"
 import Status from "components/ui/Status"
 import Rating from "components/ui/Rating"
 import Title from "components/ui/Title"
 import Overview from "components/ui/Overview"
+import People from "components/ui/People"
+import Seasons from "components/Tv/Seasons"
+import Recommendations from "components/Tv/Recommendations"
 import Typography from "components/ui/Typography"
 
 type Props = {
@@ -19,6 +24,8 @@ type Props = {
 }
 
 const ContentComponent = ({ item }: Props) => {
+  const { dark } = useTheme()
+
   const {
     title,
     overview,
@@ -28,22 +35,33 @@ const ContentComponent = ({ item }: Props) => {
     end_date,
     status,
     in_production,
+    credits,
+    recommendations,
+    videos,
   } = item
 
-  const votes = vote_average > 0
+  const isVotes = vote_average > 0
 
   return (
     <>
       <Poster poster_path={poster_path} />
-      {/* @ts-ignore */}
-      <Play id={item.id} />
+      <Play items={videos} />
 
-      <View
-        style={[layoutStyles.roundCorners, tvStyles.root, tvStyles.content]}
+      <Animated.View
+        style={[
+          layoutStyles.roundCorners,
+          layoutStyles.card,
+          tvStyles.root,
+          tvStyles.content,
+          dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
+        ]}
+        entering={SlideInDown.delay(50)}
       >
         <Title
           aside={
-            <>{votes && <Rating size={20}>{vote_average.toFixed(1)}</Rating>}</>
+            <>
+              {isVotes && <Rating size={20}>{vote_average.toFixed(1)}</Rating>}
+            </>
           }
         >
           {title}
@@ -67,7 +85,11 @@ const ContentComponent = ({ item }: Props) => {
         <Actions item={item} />
 
         <Overview>{overview}</Overview>
-      </View>
+      </Animated.View>
+
+      <Seasons show={item} />
+      <People items={credits} />
+      <Recommendations items={recommendations} />
     </>
   )
 }

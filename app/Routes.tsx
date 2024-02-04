@@ -1,27 +1,27 @@
 import React, { useRef } from "react"
 import { useColorScheme } from "react-native"
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native"
+import { NavigationContainer, ThemeProvider } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { useObject, useUser } from "@realm/react"
 
-import i18n from "config/i18n"
 import { routingInstrumentation } from "../App"
-import Movies, { MOVIES_SCREEN } from "screens/Movies"
-import Tv, { TV_SCREEN } from "screens/Tv"
-import Search, { SEARCH_SCREEN } from "screens/Search"
-import Profile, { PROFILE_SCREEN } from "screens/Profile"
+import {
+  APP_APPEARANCE_SYSTEM,
+  APP_APPEARANCE_DARK,
+  APP_APPEARANCE_LIGHT,
+} from "config"
+import { Profile } from "models"
+import Root from "screens/Root"
+import { MOVIES_SCREEN } from "screens/Movies"
 import Details, { DETAILS_SCREEN } from "screens/Details"
 import Person, { PERSON_SCREEN } from "screens/Person"
-import Icon from "components/ui/Icon"
-import ProfileIcon from "components/Layout/ProfileIcon"
-import colors from "styles/colors"
+import Appearance, { APPEARANCE_SCREEN } from "screens/Appearance"
+import Statistics, { STATISTICS_SCREEN } from "screens/Statistics"
+import Privacy, { PRIVACY_SCREEN } from "screens/Privacy"
+import Terms, { TERMS_SCREEN } from "screens/Terms"
+import { darkTheme, lightTheme } from "styles/theme"
 
 const Stack = createNativeStackNavigator()
-const Tab = createBottomTabNavigator()
 
 const transparentModalOptions = {
   contentStyle: {
@@ -29,125 +29,80 @@ const transparentModalOptions = {
   },
 }
 
-const Root = () => {
-  return (
-    <Tab.Navigator
-      initialRouteName={MOVIES_SCREEN.name}
-      screenOptions={{
-        tabBarStyle: {
-          borderTopWidth: 2,
-          borderTopColor: colors.black,
-          backgroundColor: colors.black,
-        },
-        tabBarActiveTintColor: colors.white,
-      }}
-    >
-      <Tab.Group
-        screenOptions={{
-          tabBarShowLabel: false,
-          headerStyle: {
-            backgroundColor: colors.black,
-          },
-          headerTintColor: colors.white,
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-          headerShadowVisible: false,
-        }}
-      >
-        <Tab.Screen
-          name={MOVIES_SCREEN.name}
-          component={Movies}
-          options={{
-            title: i18n.t("nav.movies.title"),
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="film-outline" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={TV_SCREEN.name}
-          component={Tv}
-          options={{
-            title: i18n.t("nav.tvShows.title"),
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="tv-outline" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={SEARCH_SCREEN.name}
-          component={Search}
-          options={{
-            title: i18n.t("nav.search.title"),
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="search-outline" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={PROFILE_SCREEN.name}
-          component={Profile}
-          options={{
-            title: i18n.t("nav.profile.title"),
-            headerStyle: {
-              backgroundColor: colors.lotion,
-            },
-            headerTintColor: colors.black,
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-            tabBarIcon: () => <ProfileIcon />,
-          }}
-        />
-      </Tab.Group>
-    </Tab.Navigator>
-  )
-}
-
 const RouterComponent = () => {
   const navigation = useRef()
 
+  const user = useUser()
+  const profile = useObject<Profile>(Profile, user.id)
+
   const scheme = useColorScheme()
-  const dark = scheme === "dark"
+  const dark =
+    profile?.appearance != null
+      ? profile?.appearance === APP_APPEARANCE_DARK ||
+        (profile?.appearance === APP_APPEARANCE_SYSTEM &&
+          scheme === APP_APPEARANCE_DARK)
+      : scheme === APP_APPEARANCE_DARK
+  const theme = dark ? darkTheme : lightTheme
 
   return (
-    <NavigationContainer
-      // @ts-ignore
-      ref={navigation}
-      theme={dark ? DarkTheme : DefaultTheme}
-      onReady={() => {
-        routingInstrumentation.registerNavigationContainer(navigation)
-      }}
-    >
-      <Stack.Navigator initialRouteName={MOVIES_SCREEN.name}>
-        <Stack.Screen
-          name="Root"
-          component={Root}
-          options={{
-            headerShown: false,
-            statusBarStyle: "light",
-          }}
-        />
-        <Stack.Group
-          screenOptions={{
-            headerShown: false,
-            presentation: "modal",
-          }}
-        >
+    <ThemeProvider value={theme}>
+      <NavigationContainer
+        // @ts-ignore
+        ref={navigation}
+        theme={theme}
+        onReady={() => {
+          routingInstrumentation.registerNavigationContainer(navigation)
+        }}
+      >
+        <Stack.Navigator initialRouteName={MOVIES_SCREEN.name}>
           <Stack.Screen
-            name={DETAILS_SCREEN.name}
-            component={Details}
-            options={transparentModalOptions}
+            name="Root"
+            component={Root}
+            options={{
+              headerShown: false,
+              statusBarStyle: dark ? APP_APPEARANCE_LIGHT : APP_APPEARANCE_DARK,
+            }}
           />
-          <Stack.Screen
-            name={PERSON_SCREEN.name}
-            component={Person}
-            options={transparentModalOptions}
-          />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Group
+            screenOptions={{
+              headerShown: false,
+              presentation: "modal",
+            }}
+          >
+            <Stack.Screen
+              name={DETAILS_SCREEN.name}
+              component={Details}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={PERSON_SCREEN.name}
+              component={Person}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={APPEARANCE_SCREEN.name}
+              component={Appearance}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={STATISTICS_SCREEN.name}
+              component={Statistics}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={PRIVACY_SCREEN.name}
+              component={Privacy}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={TERMS_SCREEN.name}
+              component={Terms}
+              options={transparentModalOptions}
+            />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   )
 }
 

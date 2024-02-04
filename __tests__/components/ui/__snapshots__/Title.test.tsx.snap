@@ -26,6 +26,9 @@ exports[`Title renders correctly 1`] = `
           {
             "flexBasis": "100%",
           },
+          {
+            "color": "#181818",
+          },
           undefined,
         ],
       ]
@@ -61,6 +64,9 @@ exports[`Title renders correctly with aside 1`] = `
         [
           {
             "flexBasis": 635,
+          },
+          {
+            "color": "#181818",
           },
           undefined,
         ],

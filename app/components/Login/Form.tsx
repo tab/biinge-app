@@ -4,11 +4,13 @@ import { FormikErrors, FormikProps, withFormik } from "formik"
 import { useTranslation } from "react-i18next"
 
 import i18n from "config/i18n"
+import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import InputError from "components/ui/InputError"
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 import { EMAIL_REGEX, PASSWORD_LENGTH } from "helpers/validation"
 import { LoginFormValues } from "types"
-import { loginFormStyles } from "styles"
+import { loginFormStyles, inputStyles, textStyles } from "styles"
 import colors from "styles/colors"
 
 interface FormProps {
@@ -25,9 +27,8 @@ const LoginForm = ({
   setFieldValue,
   handleSubmit,
 }: Props) => {
-  const scheme = useColorScheme()
   const { t } = useTranslation()
-
+  const scheme = useColorScheme()
   const dark = scheme === "dark"
 
   const [visible, setVisible] = useState(false)
@@ -56,7 +57,10 @@ const LoginForm = ({
     >
       <View style={loginFormStyles.group}>
         <TextInput
-          style={loginFormStyles.input}
+          style={[
+            loginFormStyles.input,
+            dark ? inputStyles.dark : inputStyles.light,
+          ]}
           testID="email-input"
           autoCapitalize="none"
           autoComplete="email"
@@ -66,7 +70,7 @@ const LoginForm = ({
           textContentType="emailAddress"
           placeholder={t("login.form.email.placeholder.title")}
           placeholderTextColor={colors.gray}
-          keyboardAppearance={dark ? "dark" : "light"}
+          keyboardAppearance={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
           onChangeText={(newValue: string) => {
             setFieldValue("email", newValue)
           }}
@@ -75,7 +79,10 @@ const LoginForm = ({
       </View>
       <View style={loginFormStyles.group}>
         <TextInput
-          style={loginFormStyles.input}
+          style={[
+            loginFormStyles.input,
+            dark ? inputStyles.dark : inputStyles.light,
+          ]}
           testID="password-input"
           autoCapitalize="none"
           autoComplete="password"
@@ -86,7 +93,7 @@ const LoginForm = ({
           textContentType="password"
           placeholder={t("login.form.password.placeholder.title")}
           placeholderTextColor={colors.gray}
-          keyboardAppearance={dark ? "dark" : "light"}
+          keyboardAppearance={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
           onChangeText={(newValue: string) => {
             setFieldValue("password", newValue)
           }}
@@ -104,7 +111,9 @@ const LoginForm = ({
           disabled={isLoading}
           onPress={handleSubmit}
         >
-          {t("login.form.submit.title")}
+          <Typography variant="callout" style={textStyles.textDark}>
+            {t("login.form.submit.title")}
+          </Typography>
         </Button>
       </View>
     </View>

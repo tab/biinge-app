@@ -1,36 +1,42 @@
-import React, { ComponentType } from "react"
-import { compose } from "@reduxjs/toolkit"
+import React from "react"
 import { View } from "react-native"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
-import { useTvSeasons } from "hocs"
-import { seasonsStyles } from "styles"
+import { seasonsStyles, layoutStyles } from "styles"
 import Typography from "components/ui/Typography"
 import List from "components/ui/SeasonsList"
-import { TvSeason, TvDetails } from "types"
+import { TvDetails } from "types"
 
 type Props = {
   show: TvDetails
-  items: TvSeason[]
 }
 
-const SeasonsComponent = ({ show, items }: Props) => {
+const SeasonsComponent = ({ show }: Props) => {
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
-  const visible = items.length > 0
+  const { seasons } = show
+
+  const visible = seasons.length > 0
 
   return (
     <>
       {visible && (
-        <View style={seasonsStyles.root}>
+        <View
+          style={[
+            seasonsStyles.root,
+            dark ? layoutStyles.bgDarkCard : layoutStyles.bgLightCard,
+          ]}
+        >
           <Typography variant="callout" style={seasonsStyles.title}>
             {t("tv.content.seasons")}
           </Typography>
-          <List show={show} items={items} />
+          <List show={show} items={seasons} />
         </View>
       )}
     </>
   )
 }
 
-export default compose<ComponentType>(useTvSeasons)(SeasonsComponent)
+export default SeasonsComponent

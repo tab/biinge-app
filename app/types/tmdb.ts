@@ -106,6 +106,7 @@ export interface TMDBMovieCast {
   vote_average: number
   vote_count: number
   character: string
+  job?: string
   order: number
 }
 
@@ -124,9 +125,10 @@ export interface TMDBMovieCrew {
   vote_count: number
   department: string
   job: string
+  character?: string
 }
 
-export interface TMDBMovieVideo {
+export interface TMDBVideo {
   id: number
   name: string
   key: string
@@ -217,17 +219,19 @@ export interface TMDBTvCrew {
   episode_count: number
 }
 
-export interface TMDBTvVideo {
+export interface TMDBRecommendation {
   id: number
-  name: string
-  key: string
-  site: string
-  size: number
-  type: string
-  official: true
-  published_at: string
-  iso_3166_1: string
-  iso_639_1: string
+  title: string
+  overview: string
+  adult: boolean
+  backdrop_path: string
+  poster_path: string
+  release_date: string
+  original_language: string
+  original_title: string
+  popularity: number
+  vote_average: number
+  vote_count: number
 }
 
 export type TMDBPosterSizeType =

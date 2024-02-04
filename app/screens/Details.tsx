@@ -4,11 +4,7 @@ import { FlashList } from "@shopify/flash-list"
 
 import { DETAILS_MOVIE_TYPE } from "config"
 import MovieContent from "components/Movie/Content"
-import MoviePeople from "components/Movie/People"
-import MovieRecommendations from "components/Movie/Recommendations"
 import TvContent from "components/Tv/Content"
-import TvPeople from "components/Tv/People"
-import TvSeasons from "components/Tv/Seasons"
 import { layoutStyles } from "styles"
 
 type Props = {
@@ -27,20 +23,6 @@ const DetailsScreen = ({ route }: Props) => {
         <MovieContent id={id} />
       ),
     },
-    {
-      key: "MoviePeople",
-      component: (
-        // @ts-ignore
-        <MoviePeople id={id} />
-      ),
-    },
-    {
-      key: "MovieRecommendations",
-      component: (
-        // @ts-ignore
-        <MovieRecommendations id={id} />
-      ),
-    },
   ]
 
   const TV_ITEMS = [
@@ -49,20 +31,6 @@ const DetailsScreen = ({ route }: Props) => {
       component: (
         // @ts-ignore
         <TvContent id={id} />
-      ),
-    },
-    {
-      key: "TvSeasons",
-      component: (
-        // @ts-ignore
-        <TvSeasons id={id} />
-      ),
-    },
-    {
-      key: "TvPeople",
-      component: (
-        // @ts-ignore
-        <TvPeople id={id} />
       ),
     },
   ]

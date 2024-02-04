@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native"
+
+import { darkTheme, lightTheme } from "styles/theme"
 import colors from "styles/colors"
 
 const { width } = Dimensions.get("window")
@@ -8,22 +10,38 @@ export const layoutStyles = StyleSheet.create({
     flex: 1,
   },
   bgDark: {
-    backgroundColor: colors.black,
+    backgroundColor: darkTheme.colors.background,
+  },
+  bgDarkCard: {
+    backgroundColor: darkTheme.colors.card,
   },
   bgLight: {
-    backgroundColor: colors.white,
+    backgroundColor: lightTheme.colors.background,
+  },
+  bgLightCard: {
+    backgroundColor: lightTheme.colors.card,
   },
   bgTransparent: {
     backgroundColor: "transparent",
   },
   roundCorners: {
+    borderRadius: 0,
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
   content: {
     flex: 1,
     padding: 20,
-    backgroundColor: colors.white,
+  },
+  card: {
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 25,
+    elevation: 3,
   },
 })
 
@@ -51,7 +69,6 @@ export const listStyles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    backgroundColor: colors.white,
     padding: 5,
   },
   card: {
@@ -106,7 +123,6 @@ export const horizontalListStyles = StyleSheet.create({
     height: 200,
   },
   content: {
-    backgroundColor: colors.white,
     paddingLeft: 10,
   },
   item: {
@@ -201,7 +217,6 @@ export const listEmptyStyles = StyleSheet.create({
 
 export const navStyles = StyleSheet.create({
   root: {
-    backgroundColor: colors.black,
     margin: 0,
   },
   list: {
@@ -218,20 +233,28 @@ export const navStyles = StyleSheet.create({
     paddingHorizontal: 24,
     width: "50%",
   },
-  itemTv: {
-    width: "33.3333%",
-  },
-  itemActive: {
+  itemActiveDark: {
     borderBottomColor: colors.white,
   },
+  itemActiveLight: {
+    borderBottomColor: colors.black,
+  },
   title: {
-    color: colors.americanSilver,
     fontWeight: "500",
     fontSize: 14,
     lineHeight: 16,
     textAlign: "center",
   },
-  titleActive: {
+  titleDark: {
+    color: colors.americanSilver,
+  },
+  titleLight: {
+    color: colors.graniteGray,
+  },
+  titleActiveDark: {
     color: colors.white,
+  },
+  titleActiveLight: {
+    color: colors.black,
   },
 })

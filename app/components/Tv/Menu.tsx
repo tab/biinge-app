@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next"
 import { overlayStyles } from "styles"
 import Poster from "components/ui/Poster"
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 import colors from "styles/colors"
 
 type Props = {
@@ -59,100 +60,78 @@ const MenuComponent = ({
           <>
             {want && (
               <>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onWant}
-                >
-                  {t("actions.want.remove")}
+                <Button style={overlayStyles.button} onPress={onWant}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.want.remove")}
+                  </Typography>
                 </Button>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onMoveToWatched}
-                >
-                  {t("actions.want.watched")}
+                <Button style={overlayStyles.button} onPress={onMoveToWatched}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.want.watched")}
+                  </Typography>
                 </Button>
               </>
             )}
             {watching && (
               <>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onWatching}
-                >
-                  {t("actions.watching.remove")}
+                <Button style={overlayStyles.button} onPress={onWatching}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.watching.remove")}
+                  </Typography>
                 </Button>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onMoveToWant}
-                >
-                  {t("actions.watched.want")}
+                <Button style={overlayStyles.button} onPress={onMoveToWant}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.watched.want")}
+                  </Typography>
                 </Button>
               </>
             )}
             {watched && (
               <>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onWatched}
-                >
-                  {t("actions.watched.remove")}
+                <Button style={overlayStyles.button} onPress={onWatched}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.watched.remove")}
+                  </Typography>
                 </Button>
-                <Button
-                  style={overlayStyles.button}
-                  textStyle={overlayStyles.text}
-                  onPress={onMoveToWant}
-                >
-                  {t("actions.watched.want")}
+                <Button style={overlayStyles.button} onPress={onMoveToWant}>
+                  <Typography variant="body" style={overlayStyles.text}>
+                    {t("actions.watched.want")}
+                  </Typography>
                 </Button>
               </>
             )}
             {pinned ? (
-              <Button
-                style={overlayStyles.button}
-                textStyle={overlayStyles.text}
-                onPress={onUnpin}
-              >
-                {t("actions.pin.remove")}
+              <Button style={overlayStyles.button} onPress={onUnpin}>
+                <Typography variant="body" style={overlayStyles.text}>
+                  {t("actions.pin.remove")}
+                </Typography>
               </Button>
             ) : (
-              <Button
-                style={overlayStyles.button}
-                textStyle={overlayStyles.text}
-                onPress={onPin}
-              >
-                {t("actions.pin.add")}
+              <Button style={overlayStyles.button} onPress={onPin}>
+                <Typography variant="body" style={overlayStyles.text}>
+                  {t("actions.pin.add")}
+                </Typography>
               </Button>
             )}
           </>
         ) : (
           <>
-            <Button
-              style={overlayStyles.button}
-              textStyle={overlayStyles.text}
-              onPress={onWant}
-            >
-              {t("actions.want.add")}
+            <Button style={overlayStyles.button} onPress={onWant}>
+              <Typography variant="body" style={overlayStyles.text}>
+                {t("actions.want.add")}
+              </Typography>
             </Button>
-            <Button
-              style={overlayStyles.button}
-              textStyle={overlayStyles.text}
-              onPress={onWatched}
-            >
-              {t("actions.watched.add")}
+            <Button style={overlayStyles.button} onPress={onWatched}>
+              <Typography variant="body" style={overlayStyles.text}>
+                {t("actions.watched.add")}
+              </Typography>
             </Button>
           </>
         )}
-        <Button
-          style={overlayStyles.button}
-          textStyle={overlayStyles.text}
-          onPress={onCancel}
-        >
-          {t("actions.cancel.title")}
+        <Button style={overlayStyles.button} onPress={onCancel}>
+          <Typography variant="body" style={overlayStyles.text}>
+            {t("actions.cancel.title")}
+          </Typography>
         </Button>
       </Animated.View>
     </Animated.View>

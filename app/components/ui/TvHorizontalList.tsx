@@ -3,6 +3,7 @@ import { View, Pressable } from "react-native"
 import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
 import { MovieContext } from "contexts/MovieContext"
 import { DETAILS_SCREEN } from "screens/Details"
@@ -10,7 +11,7 @@ import { DETAILS_TV_TYPE } from "config"
 import Image from "components/ui/Image"
 import Check from "components/ui/Check"
 import Typography from "components/ui/Typography"
-import { horizontalListStyles, listEmptyStyles } from "styles"
+import { horizontalListStyles, listEmptyStyles, titleStyles } from "styles"
 
 type Props = {
   items: any[]
@@ -20,6 +21,7 @@ type Props = {
 const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
   const navigation = useNavigation()
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
   const { inWantList, inWatchedList } = useContext(MovieContext)
 
@@ -30,7 +32,10 @@ const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
           <Typography variant="title1" style={listEmptyStyles.emoji}>
             {t("search.empty.emoji")}
           </Typography>
-          <Typography variant="callout">
+          <Typography
+            variant="callout"
+            style={dark ? titleStyles.dark : titleStyles.light}
+          >
             {t("search.empty.subtitle")}
           </Typography>
         </View>

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { ActivityIndicator, View } from "react-native"
 import { BlurView } from "@react-native-community/blur"
-import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
+import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import { useAppDispatch, useAppSelector } from "redux/hooks"
 import { tvDetails } from "redux/features/tmdb/tmdbThunk"
 import {
@@ -10,10 +11,8 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbTvDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import Typography from "components/ui/Typography"
-import Poster from "components/ui/Poster"
 import { TvDetails, FETCH_STATUS } from "types"
-import { loadingStyles, layoutStyles, textStyles } from "styles"
+import { loadingStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -25,14 +24,14 @@ export function useTvDetails<GenericType>(
 ) {
   const UseTvDetails = ({ id, ...restProps }: Props) => {
     const dispatch = useAppDispatch()
-    const { t } = useTranslation()
+    const { dark } = useTheme()
 
     const result = useAppSelector((state) => selectById(state, id)) as TvDetails
     const fetchStatus =
       useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
     useEffect(() => {
-      if (!fetchStatus.isFetching) {
+      if (result === undefined && !fetchStatus.isFetching) {
         dispatch(tvDetails(id))
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +42,7 @@ export function useTvDetails<GenericType>(
         <View style={loadingStyles.root}>
           <BlurView
             style={loadingStyles.blur}
-            blurType="light"
+            blurType={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
             blurAmount={15}
             reducedTransparencyFallbackColor={colors.white}
           />
@@ -57,16 +56,7 @@ export function useTvDetails<GenericType>(
     }
 
     const renderError = () => {
-      return (
-        <>
-          <Poster poster_path="" />
-          <View style={[layoutStyles.root, layoutStyles.content]}>
-            <Typography variant="subhead" style={textStyles.center}>
-              {t("loading.fetchError.title")}
-            </Typography>
-          </View>
-        </>
-      )
+      return <></>
     }
 
     return (

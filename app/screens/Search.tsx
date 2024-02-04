@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { View } from "react-native"
 import { FlashList } from "@shopify/flash-list"
+import { useTheme } from "@react-navigation/native"
 
 import { useAppSelector, useAppDispatch } from "redux/hooks"
 import {
@@ -23,6 +24,8 @@ import { SearchFormValues } from "types"
 
 const SearchScreen = () => {
   const dispatch = useAppDispatch()
+
+  const { dark } = useTheme()
 
   const [query, setQuery] = useState("")
 
@@ -86,7 +89,12 @@ const SearchScreen = () => {
   }
 
   return (
-    <View style={[layoutStyles.root, layoutStyles.bgLight]}>
+    <View
+      style={[
+        layoutStyles.root,
+        dark ? layoutStyles.bgDark : layoutStyles.bgLight,
+      ]}
+    >
       {/* @ts-ignore */}
       <Form initialValues={{ query: "" }} onSubmit={handleSubmit} />
       <FlashList

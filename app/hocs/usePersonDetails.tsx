@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { ActivityIndicator, View } from "react-native"
 import { BlurView } from "@react-native-community/blur"
-import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
+import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import { useAppDispatch, useAppSelector } from "redux/hooks"
 import { personDetails } from "redux/features/tmdb/tmdbThunk"
 import {
@@ -10,10 +11,8 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import Title from "components/ui/Title"
-import Poster from "components/Person/Poster"
 import { PersonDetails, FETCH_STATUS } from "types"
-import { loadingStyles, textStyles, personStyles } from "styles"
+import { loadingStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
@@ -25,7 +24,7 @@ export function usePersonDetails<GenericType>(
 ) {
   const UsePersonDetails = ({ id, ...restProps }: Props) => {
     const dispatch = useAppDispatch()
-    const { t } = useTranslation()
+    const { dark } = useTheme()
 
     const result = useAppSelector((state) =>
       selectById(state, id),
@@ -34,7 +33,7 @@ export function usePersonDetails<GenericType>(
       useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
     useEffect(() => {
-      if (!fetchStatus.isFetching) {
+      if (result === undefined && !fetchStatus.isFetching) {
         dispatch(personDetails(id))
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,7 +44,7 @@ export function usePersonDetails<GenericType>(
         <View style={loadingStyles.root}>
           <BlurView
             style={loadingStyles.blur}
-            blurType="light"
+            blurType={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
             blurAmount={15}
             reducedTransparencyFallbackColor={colors.white}
           />
@@ -59,16 +58,7 @@ export function usePersonDetails<GenericType>(
     }
 
     const renderError = () => {
-      return (
-        <>
-          <Poster poster_path={""} />
-          <View style={personStyles.content}>
-            <Title style={[personStyles.title, textStyles.center]}>
-              {t("loading.fetchError.title")}
-            </Title>
-          </View>
-        </>
-      )
+      return <></>
     }
 
     return (

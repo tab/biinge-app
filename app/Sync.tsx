@@ -15,13 +15,14 @@ import {
   UserTvSeason,
   TvEpisode,
   UserTvEpisode,
+  Profile,
 } from "models"
 import { Store } from "redux/store"
 
 const realmAccessBehavior: Realm.OpenRealmBehaviorConfiguration = {
   type: OpenRealmBehaviorType.DownloadBeforeOpen,
   timeOutBehavior: OpenRealmTimeOutBehavior?.OpenLocalRealm ?? "openLocalRealm",
-  timeOut: 100,
+  timeOut: 1000,
 }
 
 type Props = {
@@ -43,6 +44,7 @@ const Sync = ({ children }: Props) => {
         UserTvSeason,
         TvEpisode,
         UserTvEpisode,
+        Profile,
       ]}
       sync={{
         partitionValue,

@@ -1,3 +1,140 @@
+export const TMDB_MOVIE_CREDITS = {
+  id: 438631,
+  cast: [
+    {
+      adult: false,
+      gender: 2,
+      id: 1190668,
+      known_for_department: "Acting",
+      name: "Timothée Chalamet",
+      original_name: "Timothée Chalamet",
+      popularity: 95.832,
+      profile_path: "/BE2sdjpgsa2rNTFa66f7upkaOP.jpg",
+      cast_id: 13,
+      character: "Paul Atreides",
+      credit_id: "5b4d01bac3a36823d803cd45",
+      order: 0,
+    },
+    {
+      adult: false,
+      gender: 1,
+      id: 933238,
+      known_for_department: "Acting",
+      name: "Rebecca Ferguson",
+      original_name: "Rebecca Ferguson",
+      popularity: 40.914,
+      profile_path: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
+      cast_id: 14,
+      character: "Lady Jessica Atreides",
+      credit_id: "5b90742fc3a368222e002f41",
+      order: 1,
+    },
+    {
+      adult: false,
+      gender: 2,
+      id: 25072,
+      known_for_department: "Acting",
+      name: "Oscar Isaac",
+      original_name: "Oscar Isaac",
+      popularity: 32.878,
+      profile_path: "/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg",
+      cast_id: 53,
+      character: "Duke Leto Atreides",
+      credit_id: "5c50bc070e0a2612cccedcb3",
+      order: 2,
+    },
+  ],
+  crew: [
+    {
+      adult: false,
+      gender: 2,
+      id: 137427,
+      known_for_department: "Directing",
+      name: "Denis Villeneuve",
+      original_name: "Denis Villeneuve",
+      popularity: 16.176,
+      profile_path: "/zdDx9Xs93UIrJFWYApYR28J8M6b.jpg",
+      credit_id: "58920db99251412dd10093b4",
+      department: "Directing",
+      job: "Director",
+    },
+  ],
+}
+
+export const TMDB_MOVIE_RECOMMENDATIONS = {
+  page: 1,
+  results: [
+    {
+      adult: false,
+      backdrop_path: "/yij0LEulEH41FkEVdM4HNx5huec.jpg",
+      id: 688177,
+      title: "A-Symmetry",
+      original_language: "en",
+      original_title: "A-Symmetry",
+      overview:
+        "An obsessive serial killer's world turns awry when a victim's tormented husband lands on his doorstep.",
+      poster_path: "/9iaCwIkAMY62S3zUFA79i3A8FFj.jpg",
+      media_type: "movie",
+      genre_ids: [27],
+      popularity: 3.746,
+      release_date: "2019-01-23",
+      video: false,
+      vote_average: 6,
+      vote_count: 2,
+    },
+    {
+      adult: false,
+      backdrop_path: "/r2GAjd4rNOHJh6i6Y0FntmYuPQW.jpg",
+      id: 370172,
+      title: "No Time to Die",
+      original_language: "en",
+      original_title: "No Time to Die",
+      overview:
+        "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
+      poster_path: "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+      media_type: "movie",
+      genre_ids: [28, 12, 53],
+      popularity: 97.75,
+      release_date: "2021-09-29",
+      video: false,
+      vote_average: 7.4,
+      vote_count: 5642,
+    },
+  ],
+  total_pages: 2,
+  total_results: 40,
+}
+
+export const TMDB_MOVIE_VIDEOS = {
+  id: 438631,
+  results: [
+    {
+      iso_639_1: "en",
+      iso_3166_1: "US",
+      name: "Official Trailer",
+      key: "n9xhJrPXop4",
+      site: "YouTube",
+      size: 1080,
+      type: "Trailer",
+      official: true,
+      published_at: "2020-09-09T16:18:02.000Z",
+      id: "5f59011dbefb090036571115",
+    },
+    {
+      iso_639_1: "en",
+      iso_3166_1: "US",
+      name: "Final Trailer",
+      key: "w0HgHet0sxg",
+      site: "YouTube",
+      size: 1080,
+      type: "Trailer",
+      official: true,
+      published_at: "2021-10-07T16:00:27.000Z",
+      id: "615f6a958e2ba600434e8c0b",
+    },
+  ],
+}
+
 export const TMDB_MOVIE_DETAILS = {
   adult: false,
   backdrop_path: "/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
@@ -62,7 +199,73 @@ export const TMDB_MOVIE_DETAILS = {
   video: false,
   vote_average: 7.786,
   vote_count: 9699,
+  credits: TMDB_MOVIE_CREDITS,
+  recommendations: TMDB_MOVIE_RECOMMENDATIONS,
+  videos: TMDB_MOVIE_VIDEOS,
 }
+
+export const MOVIE_CREDITS = [
+  {
+    id: 137427,
+    tmdb_id: 137427,
+    profile_path: "/zdDx9Xs93UIrJFWYApYR28J8M6b.jpg",
+    name: "Denis Villeneuve",
+    description: "Director",
+  },
+  {
+    id: 1190668,
+    tmdb_id: 1190668,
+    profile_path: "/BE2sdjpgsa2rNTFa66f7upkaOP.jpg",
+    name: "Timothée Chalamet",
+    description: "Paul Atreides",
+  },
+  {
+    id: 933238,
+    tmdb_id: 933238,
+    profile_path: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
+    name: "Rebecca Ferguson",
+    description: "Lady Jessica Atreides",
+  },
+  {
+    id: 25072,
+    tmdb_id: 25072,
+    profile_path: "/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg",
+    name: "Oscar Isaac",
+    description: "Duke Leto Atreides",
+  },
+]
+
+export const MOVIE_RECOMMENDATIONS = [
+  {
+    id: 688177,
+    tmdb_id: 688177,
+    title: "A-Symmetry",
+    poster_path: "/9iaCwIkAMY62S3zUFA79i3A8FFj.jpg",
+  },
+  {
+    id: 370172,
+    tmdb_id: 370172,
+    title: "No Time to Die",
+    poster_path: "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+  },
+]
+
+export const MOVIE_VIDEOS = [
+  {
+    id: "5f59011dbefb090036571115",
+    tmdb_id: "5f59011dbefb090036571115",
+    name: "Official Trailer",
+    key: "n9xhJrPXop4",
+    published_at: "2020-09-09T16:18:02.000Z",
+  },
+  {
+    id: "615f6a958e2ba600434e8c0b",
+    tmdb_id: "615f6a958e2ba600434e8c0b",
+    name: "Final Trailer",
+    key: "w0HgHet0sxg",
+    published_at: "2021-10-07T16:00:27.000Z",
+  },
+]
 
 export const MOVIE_DETAILS = {
   id: 438631,
@@ -80,213 +283,7 @@ export const MOVIE_DETAILS = {
   runtime: 155,
   vote_average: 7.786,
   vote_count: 9699,
-}
-
-export const TMDB_MOVIE_CREDITS = {
-  id: 438631,
-  cast: [
-    {
-      adult: false,
-      gender: 2,
-      id: 1190668,
-      known_for_department: "Acting",
-      name: "Timothée Chalamet",
-      original_name: "Timothée Chalamet",
-      popularity: 95.832,
-      profile_path: "/BE2sdjpgsa2rNTFa66f7upkaOP.jpg",
-      cast_id: 13,
-      character: "Paul Atreides",
-      credit_id: "5b4d01bac3a36823d803cd45",
-      order: 0,
-    },
-    {
-      adult: false,
-      gender: 1,
-      id: 933238,
-      known_for_department: "Acting",
-      name: "Rebecca Ferguson",
-      original_name: "Rebecca Ferguson",
-      popularity: 40.914,
-      profile_path: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
-      cast_id: 14,
-      character: "Lady Jessica Atreides",
-      credit_id: "5b90742fc3a368222e002f41",
-      order: 1,
-    },
-    {
-      adult: false,
-      gender: 2,
-      id: 25072,
-      known_for_department: "Acting",
-      name: "Oscar Isaac",
-      original_name: "Oscar Isaac",
-      popularity: 32.878,
-      profile_path: "/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg",
-      cast_id: 53,
-      character: "Duke Leto Atreides",
-      credit_id: "5c50bc070e0a2612cccedcb3",
-      order: 2,
-    },
-  ],
-  crew: [
-    {
-      adult: false,
-      gender: 2,
-      id: 137427,
-      known_for_department: "Directing",
-      name: "Denis Villeneuve",
-      original_name: "Denis Villeneuve",
-      popularity: 16.176,
-      profile_path: "/zdDx9Xs93UIrJFWYApYR28J8M6b.jpg",
-      credit_id: "58920db99251412dd10093b4",
-      department: "Directing",
-      job: "Director",
-    },
-  ],
-}
-
-export const MOVIE_CREDITS = {
-  id: 438631,
-  items: [
-    {
-      id: 137427,
-      tmdb_id: 137427,
-      profile_path: "/zdDx9Xs93UIrJFWYApYR28J8M6b.jpg",
-      name: "Denis Villeneuve",
-      description: "Director",
-    },
-    {
-      id: 1190668,
-      tmdb_id: 1190668,
-      profile_path: "/BE2sdjpgsa2rNTFa66f7upkaOP.jpg",
-      name: "Timothée Chalamet",
-      description: "Paul Atreides",
-    },
-    {
-      id: 933238,
-      tmdb_id: 933238,
-      profile_path: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
-      name: "Rebecca Ferguson",
-      description: "Lady Jessica Atreides",
-    },
-    {
-      id: 25072,
-      tmdb_id: 25072,
-      profile_path: "/dW5U5yrIIPmMjRThR9KT2xH6nTz.jpg",
-      name: "Oscar Isaac",
-      description: "Duke Leto Atreides",
-    },
-  ],
-}
-
-export const TMDB_MOVIE_RECOMMENDATIONS = {
-  page: 1,
-  results: [
-    {
-      adult: false,
-      backdrop_path: "/yij0LEulEH41FkEVdM4HNx5huec.jpg",
-      id: 688177,
-      title: "A-Symmetry",
-      original_language: "en",
-      original_title: "A-Symmetry",
-      overview:
-        "An obsessive serial killer's world turns awry when a victim's tormented husband lands on his doorstep.",
-      poster_path: "/9iaCwIkAMY62S3zUFA79i3A8FFj.jpg",
-      media_type: "movie",
-      genre_ids: [27],
-      popularity: 3.746,
-      release_date: "2019-01-23",
-      video: false,
-      vote_average: 6,
-      vote_count: 2,
-    },
-    {
-      adult: false,
-      backdrop_path: "/r2GAjd4rNOHJh6i6Y0FntmYuPQW.jpg",
-      id: 370172,
-      title: "No Time to Die",
-      original_language: "en",
-      original_title: "No Time to Die",
-      overview:
-        "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
-      poster_path: "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
-      media_type: "movie",
-      genre_ids: [28, 12, 53],
-      popularity: 97.75,
-      release_date: "2021-09-29",
-      video: false,
-      vote_average: 7.4,
-      vote_count: 5642,
-    },
-  ],
-  total_pages: 2,
-  total_results: 40,
-}
-
-export const MOVIE_RECOMMENDATIONS = {
-  id: 438631,
-  items: [
-    {
-      id: 688177,
-      tmdb_id: 688177,
-      title: "A-Symmetry",
-      poster_path: "/9iaCwIkAMY62S3zUFA79i3A8FFj.jpg",
-    },
-    {
-      id: 370172,
-      tmdb_id: 370172,
-      title: "No Time to Die",
-      poster_path: "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
-    },
-  ],
-}
-
-export const TMDB_MOVIE_VIDEOS = {
-  id: 438631,
-  results: [
-    {
-      iso_639_1: "en",
-      iso_3166_1: "US",
-      name: "Official Trailer",
-      key: "n9xhJrPXop4",
-      site: "YouTube",
-      size: 1080,
-      type: "Trailer",
-      official: true,
-      published_at: "2020-09-09T16:18:02.000Z",
-      id: "5f59011dbefb090036571115",
-    },
-    {
-      iso_639_1: "en",
-      iso_3166_1: "US",
-      name: "Final Trailer",
-      key: "w0HgHet0sxg",
-      site: "YouTube",
-      size: 1080,
-      type: "Trailer",
-      official: true,
-      published_at: "2021-10-07T16:00:27.000Z",
-      id: "615f6a958e2ba600434e8c0b",
-    },
-  ],
-}
-
-export const MOVIE_VIDEOS = {
-  id: 438631,
-  items: [
-    {
-      id: "5f59011dbefb090036571115",
-      tmdb_id: "5f59011dbefb090036571115",
-      name: "Official Trailer",
-      key: "n9xhJrPXop4",
-      published_at: "2020-09-09T16:18:02.000Z",
-    },
-    {
-      id: "615f6a958e2ba600434e8c0b",
-      tmdb_id: "615f6a958e2ba600434e8c0b",
-      name: "Final Trailer",
-      key: "w0HgHet0sxg",
-      published_at: "2021-10-07T16:00:27.000Z",
-    },
-  ],
+  credits: MOVIE_CREDITS,
+  recommendations: MOVIE_RECOMMENDATIONS,
+  videos: MOVIE_VIDEOS,
 }

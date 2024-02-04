@@ -1,5 +1,5 @@
 import React from "react"
-import { Pressable, Text, ViewStyle, TextStyle, StyleProp } from "react-native"
+import { Pressable, ViewStyle, TextStyle, StyleProp } from "react-native"
 
 import { buttonStyles } from "styles"
 
@@ -15,7 +15,6 @@ type Props = {
 
 const ButtonComponent = ({
   style,
-  textStyle,
   disabled,
   loading,
   testID,
@@ -33,7 +32,7 @@ const ButtonComponent = ({
       disabled={disabled || loading}
       onPress={onPress}
     >
-      <Text style={[buttonStyles.text, textStyle]}>{children}</Text>
+      {children}
     </Pressable>
   )
 }

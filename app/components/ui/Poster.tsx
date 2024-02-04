@@ -1,7 +1,9 @@
 import React from "react"
 import { View } from "react-native"
 import { BlurView } from "@react-native-community/blur"
+import { useTheme } from "@react-navigation/native"
 
+import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import { posterStyles } from "styles"
 import Image from "components/ui/Image"
 import colors from "styles/colors"
@@ -11,11 +13,16 @@ type Props = {
 }
 
 const PosterComponent = ({ poster_path }: Props) => {
+  const { dark } = useTheme()
+
   return (
     <>
       <BlurView
-        style={posterStyles.blur}
-        blurType="light"
+        style={[
+          posterStyles.blur,
+          dark ? posterStyles.blurDark : posterStyles.blurLight,
+        ]}
+        blurType={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
         blurAmount={15}
         reducedTransparencyFallbackColor={colors.white}
       />

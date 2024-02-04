@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react"
 import { View } from "react-native"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "@react-navigation/native"
 
 import { TvContext } from "contexts/TvContext"
-import { seasonActionsStyles } from "styles"
+import { seasonActionsStyles, actionButtonStyles, buttonStyles } from "styles"
 import Button from "components/ui/Button"
+import Typography from "components/ui/Typography"
 
 type Props = {
   show: any
@@ -13,6 +15,7 @@ type Props = {
 
 const SeasonActionsComponent = ({ show, item }: Props) => {
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
   const [loading, setLoading] = useState(false)
 
@@ -47,12 +50,22 @@ const SeasonActionsComponent = ({ show, item }: Props) => {
     <View style={seasonActionsStyles.root}>
       <View style={seasonActionsStyles.content}>
         <Button
-          style={seasonActionsStyles.button}
+          style={[
+            seasonActionsStyles.button,
+            dark
+              ? actionButtonStyles.buttonDark
+              : actionButtonStyles.buttonLight,
+          ]}
           loading={loading}
           disabled={loading}
           onPress={handleWatched}
         >
-          {watched ? t("actions.watched.remove") : t("actions.watched.add")}
+          <Typography
+            variant="callout"
+            style={dark ? buttonStyles.textLight : buttonStyles.textDark}
+          >
+            {watched ? t("actions.watched.remove") : t("actions.watched.add")}
+          </Typography>
         </Button>
       </View>
     </View>

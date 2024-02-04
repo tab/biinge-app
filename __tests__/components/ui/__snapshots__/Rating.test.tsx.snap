@@ -35,11 +35,13 @@ exports[`Rating renders correctly 1`] = `
     style={
       [
         {
-          "color": "#221f1f",
           "fontSize": 24,
           "fontWeight": "800",
           "lineHeight": 28,
           "marginLeft": 5,
+        },
+        {
+          "color": "#181818",
         },
         undefined,
       ]

@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native"
+
+import { darkTheme, lightTheme } from "styles/theme"
 import colors from "styles/colors"
 
 const { width } = Dimensions.get("window")
@@ -16,6 +18,12 @@ export const titleStyles = StyleSheet.create({
   },
   short: {
     flexBasis: width - 115,
+  },
+  dark: {
+    color: darkTheme.colors.text,
+  },
+  light: {
+    color: lightTheme.colors.text,
   },
 })
 
@@ -98,7 +106,16 @@ export const textStyles = StyleSheet.create({
   center: {
     textAlign: "center",
   },
-  light: {
-    color: colors.white,
+  textDark: {
+    color: darkTheme.colors.text,
+  },
+  textSecondaryDark: {
+    color: darkTheme.colors.textSecondary,
+  },
+  textLight: {
+    color: lightTheme.colors.text,
+  },
+  textSecondaryLight: {
+    color: lightTheme.colors.textSecondary,
   },
 })

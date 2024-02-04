@@ -1,7 +1,8 @@
 {
   "translation": {
     "app": {
-      "name": "Biinge"
+      "name": "Biinge",
+      "version": "Version 1.0.0"
     },
     "nav": {
       "movies": {
@@ -104,16 +105,15 @@
         "subtitle": "There are no results"
       }
     },
+    "content": {
+      "overview": "Synopsis",
+      "cast": "Cast",
+      "recommendations": "Recommendations"
+    },
     "movie": {
-      "content": {
-        "overview": "Synopsis",
-        "cast": "Cast",
-        "recommendations": "Recommendations"
-      }
     },
     "tv": {
       "content": {
-        "cast": "Cast",
         "seasons": "Seasons"
       },
       "season": {
@@ -148,13 +148,55 @@
         },
         "hours": {
           "title": "hours spent"
+        },
+        "days": {
+          "title": "days spent"
+        },
+        "weeks": {
+          "title": "weeks spent"
         }
       },
       "actions": {
+        "theme": {
+          "title": "Theme"
+        },
+        "statistics": {
+          "title": "Statistics"
+        },
+        "privacy": {
+          "title": "Privacy Policy"
+        },
+        "terms": {
+          "title": "Terms of Service"
+        },
         "logOut": {
           "title": "Logout"
         }
       }
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": {
+        "title": "Theme",
+        "light": {
+          "title": "Light"
+        },
+        "dark": {
+          "title": "Dark"
+        },
+        "system": {
+          "title": "System"
+        }
+      }
+    },
+    "statistics": {
+      "title": "Statistics"
+    },
+    "privacy": {
+      "title": "Privacy Policy"
+    },
+    "terms": {
+      "title": "Terms of Service"
     },
     "actions": {
       "pin": {

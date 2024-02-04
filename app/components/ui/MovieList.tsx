@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { View, Pressable } from "react-native"
+import Animated, { FadeIn } from "react-native-reanimated"
 import { FlashList } from "@shopify/flash-list"
 import { useNavigation } from "@react-navigation/native"
 import type Realm from "realm"
@@ -64,18 +65,19 @@ const MovieListComponent = ({
         {inList && (
           <>
             {showStatus && (
-              <View
+              <Animated.View
                 style={[
                   listStyles.icon,
                   numColumns === 2 ? listStyles.iconMd : listStyles.iconSm,
                 ]}
+                entering={FadeIn.delay(500)}
               >
                 <Icon
                   name="checkmark-outline"
                   color={colors.white}
                   size={numColumns === 2 ? 20 : 15}
                 />
-              </View>
+              </Animated.View>
             )}
             {showPin && isPinned && (
               <View style={listStyles.pin}>

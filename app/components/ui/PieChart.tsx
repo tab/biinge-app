@@ -48,6 +48,7 @@ const PieChartComponent = ({ percent, color, style }: Props) => {
         innerRadius={0}
         startAngle={0}
         endAngle={50}
+        // @ts-ignore
         data={data}
       />
     </Animated.View>

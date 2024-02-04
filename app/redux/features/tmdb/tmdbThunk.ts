@@ -8,21 +8,18 @@ import {
   TMDBPersonResult,
   TMDBMovieCast,
   TMDBMovieCrew,
-  TMDBMovieVideo,
+  TMDBVideo,
   TMDBPersonCast,
   TMDBPersonCrew,
   TMDBTvSeason,
   TMDBTvEpisode,
   TMDBTvCast,
   TMDBTvCrew,
+  TMDBRecommendation,
   TMDB_JOB_DIRECTOR,
   TMDB_TRAILER_TYPE,
   TMDB_YOUTUBE_TYPE,
-  TMDB_JOB_EXECUTIVE_PRODUCER,
-  TMDB_JOB_WRITER,
   TMDB_TV_EXCLUDED_GENRE_IDS,
-  MovieRecommendation,
-  TMDBTvVideo,
 } from "types"
 
 const uniqById = <T extends { id: number }>(items: T[]): T[] => {
@@ -52,14 +49,23 @@ const filterMovieCredits = (
         )
       },
     )
-    .map(({ id, poster_path, title }: TMDBMovieCast | TMDBMovieCrew) => {
-      return {
+    .map(
+      ({
         id,
-        tmdb_id: id,
-        title,
         poster_path,
-      }
-    })
+        title,
+        job,
+        character,
+      }: TMDBMovieCast | TMDBMovieCrew) => {
+        return {
+          id,
+          tmdb_id: id,
+          title,
+          poster_path,
+          type: job ? job : character,
+        }
+      },
+    )
 }
 
 const filterTvCredits = (items: (TMDBTvCast | TMDBTvCrew)[]): any[] => {
@@ -97,7 +103,10 @@ const filterTvCredits = (items: (TMDBTvCast | TMDBTvCrew)[]): any[] => {
 export const movieDetails = createAsyncThunk(
   "tmdb/movie/details",
   async (movieId: number) => {
-    const response = await TMDB_API.get(`/movie/${movieId}?language=${LANG}`)
+    const response = await TMDB_API.get(
+      `/movie/${movieId}?language=${LANG}&append_to_response=credits,recommendations,videos`,
+    )
+
     const {
       title,
       tagline,
@@ -112,7 +121,60 @@ export const movieDetails = createAsyncThunk(
       runtime,
       vote_average,
       vote_count,
+      credits,
+      videos,
+      recommendations,
     } = response.data
+
+    const filteredCast = credits.cast
+      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
+      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
+        return {
+          id,
+          tmdb_id: id,
+          profile_path,
+          name,
+          description: character,
+        }
+      })
+
+    const filteredCrew = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdb_id: id,
+          profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredRecommendations = recommendations.results
+      .filter(({ poster_path }: TMDBRecommendation) => poster_path)
+      .map(({ id, title, poster_path }: TMDBRecommendation) => {
+        return {
+          id,
+          tmdb_id: id,
+          title,
+          poster_path,
+        }
+      })
+
+    const filteredVideos = videos.results
+      .filter(({ official }: TMDBVideo) => official)
+      .filter(({ site }: TMDBVideo) => site === TMDB_YOUTUBE_TYPE)
+      .filter(({ type }: TMDBVideo) => type === TMDB_TRAILER_TYPE)
+      .map(({ id, name, key, published_at }: TMDBVideo) => {
+        return {
+          id,
+          tmdb_id: id,
+          name,
+          key,
+          published_at,
+        }
+      })
 
     return {
       id: movieId,
@@ -129,104 +191,9 @@ export const movieDetails = createAsyncThunk(
       runtime,
       vote_average,
       vote_count,
-    }
-  },
-)
-
-// NOTE: Movie screen, people list
-export const movieCredits = createAsyncThunk(
-  "tmdb/movie/credits",
-  async (movieId: number) => {
-    const response = await TMDB_API.get(
-      `/movie/${movieId}/credits?language=${LANG}`,
-    )
-    const { cast, crew } = response.data
-
-    const filteredCast = cast
-      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
-      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
-        return {
-          id,
-          tmdb_id: id,
-          profile_path,
-          name,
-          description: character,
-        }
-      })
-
-    const filteredCrew = crew
-      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
-      .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
-      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
-        return {
-          id,
-          tmdb_id: id,
-          profile_path,
-          name,
-          description: job,
-        }
-      })
-
-    return {
-      id: movieId,
-      items: [...filteredCrew, ...filteredCast],
-    }
-  },
-)
-
-// NOTE: Movie screen, trailer
-export const movieVideos = createAsyncThunk(
-  "tmdb/movie/videos",
-  async (movieId: number) => {
-    const response = await TMDB_API.get(
-      `/movie/${movieId}/videos?language=${LANG}`,
-    )
-    const { results } = response.data
-
-    const filteredVideos = results
-      .filter(({ official }: TMDBMovieVideo) => official)
-      .filter(({ site }: TMDBMovieVideo) => site === TMDB_YOUTUBE_TYPE)
-      .filter(({ type }: TMDBMovieVideo) => type === TMDB_TRAILER_TYPE)
-      .map(({ id, name, key, published_at }: TMDBMovieVideo) => {
-        return {
-          id,
-          tmdb_id: id,
-          name,
-          key,
-          published_at,
-        }
-      })
-
-    return {
-      id: movieId,
-      items: filteredVideos,
-    }
-  },
-)
-
-// NOTE: Movie screen, recommendations
-export const movieRecommendations = createAsyncThunk(
-  "tmdb/movie/recommendations",
-  async (movieId: number) => {
-    const response = await TMDB_API.get(
-      `/movie/${movieId}/recommendations?include_adult=false&language=${LANG}`,
-    )
-    const { results } = response.data
-
-    const filteredRecommendations = results
-      .filter(({ poster_path }: MovieRecommendation) => poster_path)
-      .map(({ id, title, poster_path }: MovieRecommendation) => {
-        return {
-          id,
-          tmdb_id: id,
-          title,
-          poster_path,
-        }
-      })
-
-    return {
-      id: movieId,
-      items: filteredRecommendations,
+      credits: [...filteredCrew, ...filteredCast],
+      recommendations: filteredRecommendations,
+      videos: filteredVideos,
     }
   },
 )
@@ -235,7 +202,9 @@ export const movieRecommendations = createAsyncThunk(
 export const tvDetails = createAsyncThunk(
   "tmdb/tv/details",
   async (tvId: number, { dispatch }) => {
-    const response = await TMDB_API.get(`/tv/${tvId}?language=${LANG}`)
+    const response = await TMDB_API.get(
+      `/tv/${tvId}?language=${LANG}&append_to_response=credits,recommendations,videos`,
+    )
     const {
       name,
       tagline,
@@ -254,6 +223,9 @@ export const tvDetails = createAsyncThunk(
       number_of_seasons,
       number_of_episodes,
       seasons,
+      credits,
+      recommendations,
+      videos,
     } = response.data
 
     const filteredSeasons = await Promise.all(
@@ -278,6 +250,56 @@ export const tvDetails = createAsyncThunk(
           }
         }),
     )
+
+    const filteredCast = credits.cast
+      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
+      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
+        return {
+          id,
+          tmdb_id: id,
+          profile_path,
+          name,
+          description: character,
+        }
+      })
+
+    const filteredCrew = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdb_id: id,
+          profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredRecommendations = recommendations.results
+      .filter(({ poster_path }: TMDBRecommendation) => poster_path)
+      .map(({ id, title, poster_path }: TMDBRecommendation) => {
+        return {
+          id,
+          tmdb_id: id,
+          title,
+          poster_path,
+        }
+      })
+
+    const filteredVideos = videos.results
+      .filter(({ official }: TMDBVideo) => official)
+      .filter(({ site }: TMDBVideo) => site === TMDB_YOUTUBE_TYPE)
+      .filter(({ type }: TMDBVideo) => type === TMDB_TRAILER_TYPE)
+      .map(({ id, name, key, published_at }: TMDBVideo) => {
+        return {
+          id,
+          tmdb_id: id,
+          name,
+          key,
+          published_at,
+        }
+      })
 
     return {
       id: tvId,
@@ -300,91 +322,10 @@ export const tvDetails = createAsyncThunk(
       vote_count,
       number_of_seasons,
       number_of_episodes,
-      items: filteredSeasons,
-    }
-  },
-)
-
-// NOTE: Tv screen, people list
-export const tvCredits = createAsyncThunk(
-  "tmdb/tv/credits",
-  async (tvId: number) => {
-    const response = await TMDB_API.get(`/tv/${tvId}/credits?language=${LANG}`)
-    const { cast, crew } = response.data
-
-    const filteredCast = cast
-      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
-      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
-        return {
-          id,
-          tmdb_id: id,
-          profile_path,
-          name,
-          description: character,
-        }
-      })
-
-    const filteredCrew = crew
-      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
-      .filter(({ job }: TMDBPersonCrew) =>
-        [
-          TMDB_JOB_DIRECTOR,
-          TMDB_JOB_EXECUTIVE_PRODUCER,
-          TMDB_JOB_WRITER,
-        ].includes(job),
-      )
-      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
-        return {
-          id,
-          tmdb_id: id,
-          profile_path,
-          name,
-          description: job,
-        }
-      })
-
-    return {
-      id: tvId,
-      items: [...filteredCrew, ...filteredCast],
-    }
-  },
-)
-
-// NOTE: tvSeasons + tvEpisodes list
-export const tvSeasons = createAsyncThunk(
-  "tmdb/tv/seasons",
-  async (tvId: number, { dispatch }) => {
-    const response = await TMDB_API.get(
-      `/tv/${tvId}?include_adult=false&language=${LANG}`,
-    )
-    const { seasons } = response.data
-
-    const filteredSeasons = await Promise.all(
-      seasons
-        .filter(({ poster_path }: TMDBTvSeason) => poster_path)
-        .filter(({ season_number }: TMDBTvSeason) => season_number > 0)
-        .map(async ({ id, name, poster_path, season_number }: TMDBTvSeason) => {
-          const result = await dispatch(
-            tvEpisodes({ tvId, number: season_number }),
-          )
-          const { payload } = result
-
-          return {
-            id,
-            tmdb_id: id,
-            tmdb_show_id: tvId,
-            title: name,
-            number: season_number,
-            poster_path: poster_path,
-            // @ts-ignore
-            items: payload?.items || [],
-          }
-        }),
-    )
-
-    return {
-      id: tvId,
-      items: filteredSeasons,
+      seasons: filteredSeasons,
+      credits: [...filteredCrew, ...filteredCast],
+      recommendations: filteredRecommendations,
+      videos: filteredVideos,
     }
   },
 )
@@ -434,40 +375,41 @@ export const tvEpisodes = createAsyncThunk(
   },
 )
 
-// NOTE: Tv screen, trailer
-export const tvVideos = createAsyncThunk(
-  "tmdb/tv/videos",
-  async (tvId: number) => {
-    const response = await TMDB_API.get(`/tv/${tvId}/videos?language=${LANG}`)
-    const { results } = response.data
-
-    const filteredVideos = results
-      .filter(({ official }: TMDBTvVideo) => official)
-      .filter(({ site }: TMDBTvVideo) => site === TMDB_YOUTUBE_TYPE)
-      .filter(({ type }: TMDBTvVideo) => type === TMDB_TRAILER_TYPE)
-      .map(({ id, name, key, published_at }: TMDBTvVideo) => {
-        return {
-          id,
-          tmdb_id: id,
-          name,
-          key,
-          published_at,
-        }
-      })
-
-    return {
-      id: tvId,
-      items: filteredVideos,
-    }
-  },
-)
-
 // NOTE: Person screen
 export const personDetails = createAsyncThunk(
   "tmdb/person/details",
   async (personId: number) => {
-    const response = await TMDB_API.get(`/person/${personId}?language=${LANG}`)
-    const { name, birthday, profile_path, gender, imdb_id } = response.data
+    const response = await TMDB_API.get(
+      `/person/${personId}?language=${LANG}&append_to_response=credits,tv_credits`,
+    )
+
+    const {
+      name,
+      birthday,
+      profile_path,
+      gender,
+      imdb_id,
+      credits,
+      tv_credits,
+    } = response.data
+
+    const filterdMovieCastAndCredits = [
+      ...filterMovieCredits(credits.cast),
+      ...filterMovieCredits(
+        credits.crew.filter(({ job }: TMDBPersonCrew) =>
+          [TMDB_JOB_DIRECTOR].includes(job),
+        ),
+      ),
+    ]
+
+    const filteredTvCastAndCredits = [
+      ...filterTvCredits(tv_credits.cast),
+      ...filterTvCredits(
+        tv_credits.crew.filter(({ job }: TMDBPersonCrew) =>
+          [TMDB_JOB_DIRECTOR].includes(job),
+        ),
+      ),
+    ]
 
     return {
       id: personId,
@@ -477,51 +419,8 @@ export const personDetails = createAsyncThunk(
       birthday,
       profile_path,
       gender,
-    }
-  },
-)
-
-// NOTE: Person screen, movies list
-export const personMovieCredits = createAsyncThunk(
-  "tmdb/person/movieCredits",
-  async (personId: number) => {
-    const response = await TMDB_API.get(
-      `/person/${personId}/credits?language=${LANG}`,
-    )
-    const { cast, crew } = response.data
-
-    return {
-      id: personId,
-      cast: filterMovieCredits(cast),
-      crew: filterMovieCredits(
-        crew.filter(({ job }: TMDBPersonCrew) =>
-          [TMDB_JOB_DIRECTOR].includes(job),
-        ),
-      ),
-    }
-  },
-)
-
-// NOTE: Person screen, movies list
-export const personTvCredits = createAsyncThunk(
-  "tmdb/person/tvCredits",
-  async (personId: number) => {
-    const response = await TMDB_API.get(
-      `/person/${personId}/tv_credits?language=${LANG}`,
-    )
-    const { cast, crew } = response.data
-    const items = [
-      ...filterTvCredits(cast),
-      ...filterTvCredits(
-        crew.filter(({ job }: TMDBPersonCrew) =>
-          [TMDB_JOB_DIRECTOR].includes(job),
-        ),
-      ),
-    ]
-
-    return {
-      id: personId,
-      items: uniqById(items),
+      credits: filterdMovieCastAndCredits,
+      tv_credits: uniqById(filteredTvCastAndCredits),
     }
   },
 )

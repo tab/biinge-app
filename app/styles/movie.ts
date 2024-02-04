@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native"
-import { buttonStyles } from "./button"
 import colors from "styles/colors"
+import { darkTheme, lightTheme } from "./theme"
 
 const { height, width } = Dimensions.get("window")
 
@@ -9,7 +9,6 @@ const POSTER_HEIGHT = (width * 0.7 * 6) / 4
 export const movieStyles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: colors.white,
   },
   content: {
     paddingHorizontal: 15,
@@ -38,7 +37,6 @@ export const posterStyles = StyleSheet.create({
   image: {
     alignSelf: "center",
     aspectRatio: "4/6",
-    backgroundColor: colors.americanSilver,
     borderRadius: 12,
     width: width * 0.7,
     shadowColor: colors.black,
@@ -51,12 +49,17 @@ export const posterStyles = StyleSheet.create({
     elevation: 3,
   },
   blur: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
     position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  blurDark: {
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+  },
+  blurLight: {
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
   },
   gradient: {
     position: "absolute",
@@ -90,11 +93,16 @@ export const ratingStyles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text: {
-    color: colors.raisinBlack,
     fontSize: 24,
     fontWeight: "800",
     lineHeight: 28,
     marginLeft: 5,
+  },
+  dark: {
+    color: darkTheme.colors.text,
+  },
+  light: {
+    color: lightTheme.colors.text,
   },
 })
 
@@ -105,6 +113,12 @@ export const overviewStyles = StyleSheet.create({
   title: {
     color: colors.graniteGray,
     marginBottom: 7,
+  },
+  dark: {
+    color: darkTheme.colors.text,
+  },
+  light: {
+    color: lightTheme.colors.text,
   },
 })
 
@@ -125,66 +139,13 @@ export const statusStyles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 22,
   },
-})
-
-export const actionButtonStyles = StyleSheet.create({
-  buttonWant: {
-    ...buttonStyles.button,
-    backgroundColor: colors.black,
-    marinHorizontal: 5,
-    marginRight: 5,
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 1,
-    width: "48%",
+  dark: {
+    borderColor: darkTheme.colors.textSecondary,
+    color: darkTheme.colors.textSecondary,
   },
-  buttonWatching: {
-    ...buttonStyles.button,
-    backgroundColor: colors.black,
-    marinHorizontal: 5,
-    marginLeft: 5,
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 1,
-    width: "48%",
-  },
-  buttonWatched: {
-    ...buttonStyles.button,
-    backgroundColor: colors.black,
-    marinHorizontal: 5,
-    marginLeft: 5,
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 1,
-    width: "48%",
-  },
-  buttonActive: {
-    ...buttonStyles.button,
-    backgroundColor: colors.orangeYellow,
-    // shadowColor: colors.orangeYellow,
-    // shadowOffset: {
-    //   width: 1,
-    //   height: 3,
-    // },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 5,
-    // elevation: 1,
-    width: "100%",
+  light: {
+    borderColor: lightTheme.colors.textSecondary,
+    color: lightTheme.colors.textSecondary,
   },
 })
 

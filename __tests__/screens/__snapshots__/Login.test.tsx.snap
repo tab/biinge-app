@@ -158,12 +158,17 @@ exports[`Login renders correctly 1`] = `
           placeholder="Email"
           placeholderTextColor="#b5b5b5"
           style={
-            {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "fontSize": 16,
-              "padding": 12,
-            }
+            [
+              {
+                "borderRadius": 4,
+                "fontSize": 16,
+                "padding": 12,
+              },
+              {
+                "backgroundColor": "#fafafa",
+                "color": "#181818",
+              },
+            ]
           }
           testID="email-input"
           textContentType="emailAddress"
@@ -188,12 +193,17 @@ exports[`Login renders correctly 1`] = `
           placeholderTextColor="#b5b5b5"
           secureTextEntry={true}
           style={
-            {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "fontSize": 16,
-              "padding": 12,
-            }
+            [
+              {
+                "borderRadius": 4,
+                "fontSize": 16,
+                "padding": 12,
+              },
+              {
+                "backgroundColor": "#fafafa",
+                "color": "#181818",
+              },
+            ]
           }
           testID="password-input"
           textContentType="password"
@@ -240,7 +250,6 @@ exports[`Login renders correctly 1`] = `
             [
               {
                 "alignItems": "center",
-                "backgroundColor": "#2b2835",
                 "borderRadius": 50,
                 "flexDirection": "row",
                 "justifyContent": "center",
@@ -260,15 +269,18 @@ exports[`Login renders correctly 1`] = `
           testID="login-button"
         >
           <Text
+            numberOfLines={0}
             style={
               [
                 {
-                  "color": "#ffffff",
+                  "color": "#181818",
                   "fontSize": 18,
-                  "fontWeight": "bold",
-                  "textAlign": "center",
+                  "fontWeight": "600",
+                  "lineHeight": 24,
                 },
-                undefined,
+                {
+                  "color": "#fafafa",
+                },
               ]
             }
           >
