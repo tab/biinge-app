@@ -1,5 +1,6 @@
 import React, { createContext } from "react"
 import { useObject, useUser, useRealm, useQuery } from "@realm/react"
+import * as Sentry from "@sentry/react-native"
 
 import { TV_IN_PRODUCTION_STATUS } from "config"
 import {
@@ -210,6 +211,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           )
         })
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -246,6 +248,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           true,
         )
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -282,6 +285,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           true,
         )
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -317,6 +321,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           true,
         )
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -352,6 +357,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           true,
         )
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -445,6 +451,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
 
         resolve()
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
     })
@@ -461,6 +468,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           realm.delete(tvShowList)
         }
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -479,6 +487,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           realm.delete(tvSeasonList)
         }
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -497,6 +506,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           realm.delete(tvEpisodeList)
         }
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -544,6 +554,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
           updateShowList(show!)
         })
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -573,6 +584,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
             realm.create(TvShow, payload, true)
           })
         } catch (error) {
+          Sentry.captureException(error)
           reject(error)
         }
 
@@ -599,6 +611,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
             realm.create(TvShow, payload, true)
           })
         } catch (error) {
+          Sentry.captureException(error)
           reject(error)
         }
 

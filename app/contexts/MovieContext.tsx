@@ -1,5 +1,6 @@
 import React, { createContext } from "react"
 import { useObject, useUser, useRealm, useQuery } from "@realm/react"
+import * as Sentry from "@sentry/react-native"
 
 import { UserMovie, Movie } from "models"
 import { TMDBMovieDetails } from "types"
@@ -99,6 +100,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
           )
         })
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -137,6 +139,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
           )
         })
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -153,6 +156,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
           realm.delete(movie)
         })
       } catch (error) {
+        Sentry.captureException(error)
         reject(error)
       }
 
@@ -182,6 +186,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
             realm.create(Movie, payload, true)
           })
         } catch (error) {
+          Sentry.captureException(error)
           reject(error)
         }
 
@@ -208,6 +213,7 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
             realm.create(Movie, payload, true)
           })
         } catch (error) {
+          Sentry.captureException(error)
           reject(error)
         }
 
