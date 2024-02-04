@@ -1,10 +1,9 @@
-import React, { ComponentType } from "react"
-import { compose } from "@reduxjs/toolkit"
+import React from "react"
 import { View } from "react-native"
+import { useTheme } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
 
-import { useTvCredits } from "hocs"
-import { peopleStyles } from "styles"
+import { peopleStyles, layoutStyles } from "styles"
 import Typography from "components/ui/Typography"
 import List from "components/ui/PeopleList"
 import { MovieCredits } from "types"
@@ -15,15 +14,21 @@ type Props = {
 
 const PeopleComponent = ({ items }: Props) => {
   const { t } = useTranslation()
+  const { dark } = useTheme()
 
   return (
-    <View style={peopleStyles.root}>
+    <View
+      style={[
+        peopleStyles.root,
+        dark ? layoutStyles.bgDarkCard : layoutStyles.bgLight,
+      ]}
+    >
       <Typography variant="callout" style={peopleStyles.title}>
-        {t("tv.content.cast")}
+        {t("movie.content.cast")}
       </Typography>
       <List items={items} />
     </View>
   )
 }
 
-export default compose<ComponentType>(useTvCredits)(PeopleComponent)
+export default PeopleComponent

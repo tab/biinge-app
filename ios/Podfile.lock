@@ -562,7 +562,7 @@ PODS:
   - RNScreens (3.27.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNSentry (5.16.0):
+  - RNSentry (5.17.0):
     - hermes-engine
     - React-Core
     - React-hermes
@@ -877,7 +877,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 6e46dde1f87e5f018a54fe5d40cd0e0b942b49ee
   RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
   RNScreens: 3c2d122f5e08c192e254c510b212306da97d2581
-  RNSentry: 9a8aebd354d3b47c428c72ec7264b7822cf4f3c2
+  RNSentry: ed42b1443bef1fec1fc9273b5193a79b0cab1a01
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   RNVectorIcons: 64e6a523ac30a3241efa9baf1ffbcc5e76ff747a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
@@ -891,4 +891,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8f58813c4963f6111c5668f99f4cf1aae9ec74cc
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3
