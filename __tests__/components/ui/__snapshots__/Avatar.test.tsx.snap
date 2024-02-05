@@ -28,12 +28,6 @@ exports[`Avatar renders correctly 1`] = `
     <FastImageView
       defaultSource={null}
       resizeMode="cover"
-      source={
-        {
-          "priority": "normal",
-          "uri": "https://www.gravatar.com/avatar/00a95fd18d173c5542ca052cc7ad9638/?s=150&d=mp",
-        }
-      }
       style={
         {
           "bottom": 0,

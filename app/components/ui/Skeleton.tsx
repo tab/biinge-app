@@ -23,8 +23,7 @@ import { darkTheme, lightTheme } from "styles/theme"
 const SCREEN_WIDTH = Dimensions.get("window").width
 
 interface SkeletonProps {
-  // eslint-disable-next-line no-undef
-  children: JSX.Element | JSX.Element[]
+  children: React.JSX.Element | React.JSX.Element[]
   speed?: number
   direction?: "left" | "right"
 }
@@ -78,12 +77,10 @@ export default function Skeleton({
   )
 
   const getChildren = React.useCallback(
-    // eslint-disable-next-line no-undef
-    (element: JSX.Element | JSX.Element[]) => {
+    (element: React.JSX.Element | React.JSX.Element[]) => {
       return React.Children.map(
         element,
-        // eslint-disable-next-line no-undef
-        (child: JSX.Element, index: number) => {
+        (child: React.JSX.Element, index: number) => {
           let style: ViewStyle
           if (child.type.displayName === "SkeletonItem") {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
@@ -164,12 +161,10 @@ export default function Skeleton({
 }
 
 interface SkeletonItem extends ViewStyle {
-  // eslint-disable-next-line no-undef
-  children?: JSX.Element | JSX.Element[]
+  children?: React.JSX.Element | React.JSX.Element[]
 }
 
-// eslint-disable-next-line no-undef
-Skeleton.Item = ({ children, ...style }: SkeletonItem): JSX.Element => (
+Skeleton.Item = ({ children, ...style }: SkeletonItem): React.JSX.Element => (
   <View style={style}>{children}</View>
 )
 

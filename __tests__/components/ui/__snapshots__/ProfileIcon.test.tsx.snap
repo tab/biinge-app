@@ -31,12 +31,6 @@ exports[`ProfileIcon renders correctly 1`] = `
     <FastImageView
       defaultSource={null}
       resizeMode="cover"
-      source={
-        {
-          "priority": "normal",
-          "uri": "https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e/?s=150&d=mp",
-        }
-      }
       style={
         {
           "bottom": 0,
