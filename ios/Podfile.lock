@@ -1146,7 +1146,7 @@ PODS:
     - React-jsi (= 0.73.3)
     - React-logger (= 0.73.3)
     - React-perflogger (= 0.73.3)
-  - RealmJS (12.3.0):
+  - RealmJS (12.6.0):
     - React
   - RNCMaskedView (0.3.1):
     - React-Core
@@ -1512,7 +1512,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: aa382ce525689b88459e1181b3649220f175dc31
   React-utils: b22b4a51aa578b3aac1e7c19501c0b9ba358ed79
   ReactCommon: e708b8be8cb317b83e31c6ccfeda8bf6c0d1a2b3
-  RealmJS: 4c52a15602e70b64cd9230b0a17a9c12741371f4
+  RealmJS: a62dc7a1f94b888fe9e8712cd650167ad97dc636
   RNCMaskedView: 090213d32d8b3bb83a4dcb7d12c18f0152591906
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
