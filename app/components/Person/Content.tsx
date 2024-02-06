@@ -4,6 +4,7 @@ import Animated, { SlideInDown } from "react-native-reanimated"
 import { useTheme } from "@react-navigation/native"
 
 import { usePersonDetails } from "hocs"
+import Close from "components/ui/Close"
 import Poster from "components/Person/Poster"
 import Movies from "components/Person/Movies"
 import TvShows from "components/Person/TvShows"
@@ -20,6 +21,7 @@ const ContentComponent = ({ item }: Props) => {
 
   return (
     <>
+      <Close />
       <Poster poster_path={profile_path} name={name} birthday={birthday} />
       <Animated.View
         style={[

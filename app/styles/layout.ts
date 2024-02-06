@@ -258,3 +258,20 @@ export const navStyles = StyleSheet.create({
     color: colors.black,
   },
 })
+
+export const closeStyles = StyleSheet.create({
+  root: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    padding: 12,
+    zIndex: 10,
+  },
+  content: {
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 28,
+    width: 28,
+  },
+})

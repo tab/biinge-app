@@ -7,6 +7,7 @@ import { useTheme } from "@react-navigation/native"
 import { useTvDetails } from "hocs"
 import { layoutStyles, tvStyles } from "styles"
 import { formatDate } from "helpers/formatDate"
+import Close from "components/ui/Close"
 import Actions from "components/Tv/Actions"
 import Poster from "components/ui/Poster"
 import Play from "components/ui/Play"
@@ -44,6 +45,7 @@ const ContentComponent = ({ item }: Props) => {
 
   return (
     <>
+      <Close />
       <Poster poster_path={poster_path} />
       <Play items={videos} />
 
