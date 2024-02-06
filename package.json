@@ -29,7 +29,7 @@
     "formik": "^2.4.5",
     "i18next": "^23.8.2",
     "react": "18.2.0",
-    "react-i18next": "^14.0.3",
+    "react-i18next": "^14.0.5",
     "react-native": "^0.73.0",
     "react-native-color-matrix-image-filters": "^6.0.7",
     "react-native-config": "^1.5.1",
