@@ -77,9 +77,9 @@ exports[`Close renders correctly 1`] = `
         "alignItems": "center",
         "backgroundColor": "#fff",
         "borderRadius": 50,
-        "height": 25,
+        "height": 28,
         "justifyContent": "center",
-        "width": 25,
+        "width": 28,
       }
     }
   >
@@ -90,7 +90,7 @@ exports[`Close renders correctly 1`] = `
         [
           {
             "color": "#666666",
-            "fontSize": 18,
+            "fontSize": 21,
           },
           undefined,
           {
