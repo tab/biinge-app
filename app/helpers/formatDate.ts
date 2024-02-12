@@ -1,21 +1,19 @@
-import { parseISO, isValid } from "date-fns"
-import { formatInTimeZone } from "date-fns-tz"
+import { parseISO, isValid, format } from "date-fns"
 
 function formatDate(
   value?: string,
-  format: string = "d MMMM yyyy",
+  formatString: string = "dd.MM.yyyy",
 ): string | undefined {
   if (value) {
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
     const date = parseISO(value)
 
     if (isValid(date)) {
-      return formatInTimeZone(value, timeZone, format)
+      return format(date, formatString)
     } else {
       return "-"
     }
   } else {
-    return
+    return undefined
   }
 }
 
