@@ -2295,9 +2295,9 @@
     reselect "^5.0.1"
 
 "@rnx-kit/align-deps@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@rnx-kit/align-deps/-/align-deps-2.3.3.tgz#f2259bb1e540a05ecdd23c0bd7f533dd5766a4d1"
-  integrity sha512-JB/EwNjputnD3C4cPBu8vLUeH5hc7GD+AabysJPTTY5lf+fl6/6YskJ2h3erMaPjvYKuyOacYx60qeYMfn1y3A==
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@rnx-kit/align-deps/-/align-deps-2.3.4.tgz#f27434ac7b0f8d6a9338d68e6013b02848a47e3f"
+  integrity sha512-UO6dm7/VQnu+2V3cjOGrAdvAQfmqB2Exj10h1NATCwOonwa0JpRNCpXCqgeeMgE/mNVudaWpIE/6GZ1G9oZ8Hw==
 
 "@sentry-internal/tracing@7.81.1":
   version "7.81.1"
@@ -6975,7 +6975,7 @@ react-native-safe-area-context@^4.8.2:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.9.0.tgz#21a570ca3594cb4259ba65f93befaa60d91bcbd0"
   integrity sha512-/OJD9Pb8IURyvn+1tWTszWPJqsbZ4hyHBU9P0xhOmk7h5owSuqL0zkfagU0pg7Vh0G2NKQkaPpUKUMMCUMDh/w==
 
-react-native-screens@^3.21.0:
+react-native-screens@^3.28.0:
   version "3.29.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.29.0.tgz#1dee0326defbc1d4ef4e68287abb32a8e6b76b29"
   integrity sha512-yB1GoAMamFAcYf4ku94uBPn0/ani9QG7NdI98beJ5cet2YFESYYzuEIuU+kt+CNRcO8qqKeugxlfgAa3HyTqlg==
