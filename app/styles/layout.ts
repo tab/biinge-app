@@ -216,29 +216,6 @@ export const listEmptyStyles = StyleSheet.create({
 })
 
 export const navStyles = StyleSheet.create({
-  root: {
-    margin: 0,
-  },
-  list: {
-    alignItems: "center",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-around",
-    paddingBottom: 0.5,
-  },
-  item: {
-    borderBottomColor: "transparent",
-    borderBottomWidth: 1.5,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    width: "50%",
-  },
-  itemActiveDark: {
-    borderBottomColor: colors.white,
-  },
-  itemActiveLight: {
-    borderBottomColor: colors.black,
-  },
   title: {
     fontWeight: "500",
     fontSize: 14,
@@ -256,6 +233,14 @@ export const navStyles = StyleSheet.create({
   },
   titleActiveLight: {
     color: colors.black,
+  },
+  indicatorDark: {
+    backgroundColor: colors.white,
+    height: 1,
+  },
+  indicatorLight: {
+    backgroundColor: colors.black,
+    height: 1.5,
   },
 })
 

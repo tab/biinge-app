@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState, Fragment } from "react"
-import { SafeAreaView } from "react-native"
+import React from "react"
+import { SafeAreaView, useWindowDimensions } from "react-native"
+import { TabView, SceneRendererProps } from "react-native-tab-view"
 import { useTheme } from "@react-navigation/native"
 import { useUser, useObject } from "@realm/react"
-import PagerView from "react-native-pager-view"
 
 import i18n from "config/i18n"
-import Tabs from "components/ui/Tabs"
 import List from "components/ui/TvList"
-import { layoutStyles } from "styles"
+import Tabs from "components/ui/Tabs"
 import { UserTvShow } from "models"
+import { layoutStyles } from "styles"
 
 const TvScreen = () => {
   const { dark } = useTheme()
@@ -20,41 +20,30 @@ const TvScreen = () => {
   const watchingList = userTvShow!.watching.sorted("pin", true) || []
   const watchedList = userTvShow!.watched.sorted("pin", true) || []
 
-  const [tabIndex, setPageIndex] = useState(0)
-  const pager = useRef<PagerView>(null)
+  const layout = useWindowDimensions()
 
-  useEffect(() => {
-    if (pager.current) {
-      pager.current.setPage(tabIndex)
+  const [index, setIndex] = React.useState(0)
+  const [routes] = React.useState([
+    { key: "want", title: i18n.t("nav.want.title") },
+    { key: "watching", title: i18n.t("nav.watching.title") },
+    { key: "watched", title: i18n.t("nav.watched.title") },
+  ])
+
+  const renderScene = ({
+    route: { key },
+  }: SceneRendererProps & { route: { key: string; title: string } }) => {
+    switch (key) {
+      case "want":
+        return <List showStatus showPin numColumns={2} items={wantList} />
+      case "watching":
+        return <List showStatus showPin numColumns={2} items={watchingList} />
+      case "watched":
+        return <List showStatus showPin numColumns={2} items={watchedList} />
+      default:
+        return null
     }
-  }, [tabIndex])
-
-  const TABS = [
-    {
-      id: 1,
-      label: i18n.t("nav.want.title"),
-      component: <List showStatus showPin numColumns={2} items={wantList} />,
-    },
-    {
-      id: 2,
-      label: i18n.t("nav.watching.title"),
-      component: (
-        <List showStatus showPin numColumns={2} items={watchingList} />
-      ),
-    },
-    {
-      id: 3,
-      label: i18n.t("nav.watched.title"),
-      component: <List showStatus showPin numColumns={2} items={watchedList} />,
-    },
-  ]
-
-  // @ts-ignore
-  const handleSelect = ({ nativeEvent: { position } }) => {
-    setPageIndex(position)
   }
 
-  // @ts-ignore
   return (
     <SafeAreaView
       style={[
@@ -62,18 +51,13 @@ const TvScreen = () => {
         dark ? layoutStyles.bgDark : layoutStyles.bgLight,
       ]}
     >
-      <Tabs items={TABS} tabIndex={tabIndex} pager={pager} />
-      <PagerView
-        style={layoutStyles.content}
-        ref={pager}
-        initialPage={0}
-        orientation="horizontal"
-        onPageSelected={handleSelect}
-      >
-        {TABS.map(({ id, component }) => (
-          <Fragment key={id}>{component}</Fragment>
-        ))}
-      </PagerView>
+      <TabView
+        navigationState={{ index, routes }}
+        renderTabBar={(props) => <Tabs {...props} />}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+      />
     </SafeAreaView>
   )
 }
