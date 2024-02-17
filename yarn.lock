@@ -2218,12 +2218,12 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@react-navigation/bottom-tabs@^6.5.11":
-  version "6.5.11"
-  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-6.5.11.tgz#b6e67a3aa19e60ed9c1139fa0253586c479832d5"
-  integrity sha512-CBN/NOdxnMvmjw+AJQI1kltOYaClTZmGec5pQ3ZNTPX86ytbIOylDIITKMfTgHZcIEFQDymx1SHeS++PIL3Szw==
+"@react-navigation/bottom-tabs@^6.5.12":
+  version "6.5.12"
+  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-6.5.12.tgz#73adce8b147debe909985257bf436757894e99f6"
+  integrity sha512-8gBHHvgmJSRGfQ5fcFUgDFcXj1MzDzEZJ/llDYvcSb6ZxgN5xVq+4oVkwPMxOM6v+Qm2nKvXiUKuB/YydhzpLw==
   dependencies:
-    "@react-navigation/elements" "^1.3.21"
+    "@react-navigation/elements" "^1.3.22"
     color "^4.2.3"
     warn-once "^0.1.0"
 
@@ -2239,23 +2239,23 @@
     react-is "^16.13.0"
     use-latest-callback "^0.1.7"
 
-"@react-navigation/elements@^1.3.21":
-  version "1.3.21"
-  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.21.tgz#debac6becc6b6692da09ec30e705e476a780dfe1"
-  integrity sha512-eyS2C6McNR8ihUoYfc166O1D8VYVh9KIl0UQPI8/ZJVsStlfSTgeEEh+WXge6+7SFPnZ4ewzEJdSAHH+jzcEfg==
+"@react-navigation/elements@^1.3.22":
+  version "1.3.22"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.22.tgz#37e25e46ca4715049795471056a9e7e58ac4a14e"
+  integrity sha512-HYKucs0TwQT8zMvgoZbJsY/3sZfzeP8Dk9IDv4agst3zlA7ReTx4+SROCG6VGC7JKqBCyQykHIwkSwxhapoc+Q==
 
-"@react-navigation/native-stack@6.9.17":
-  version "6.9.17"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-6.9.17.tgz#4fc370b14be07296423ae8c00940fb002c6001b5"
-  integrity sha512-X8p8aS7JptQq7uZZNFEvfEcPf6tlK4PyVwYDdryRbG98B4bh2wFQYMThxvqa+FGEN7USEuHdv2mF0GhFKfX0ew==
+"@react-navigation/native-stack@6.9.18":
+  version "6.9.18"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-6.9.18.tgz#60380b058bf916f69db46cdb32b3127d0589f055"
+  integrity sha512-PSe0qjROy8zD78ehW048NSuzWRktioSCJmB8LzWSR65ndgVaC2rO+xvgyjhHjqm01YdyVM1XTct2EorSjDV2Ow==
   dependencies:
-    "@react-navigation/elements" "^1.3.21"
+    "@react-navigation/elements" "^1.3.22"
     warn-once "^0.1.0"
 
-"@react-navigation/native@^6.0.8":
-  version "6.1.9"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-6.1.9.tgz#8ef87095cd9c2ed094308c726157c7f6fc28796e"
-  integrity sha512-AMuJDpwXE7UlfyhIXaUCCynXmv69Kb8NzKgKJO7v0k0L+u6xUTbt6xvshmJ79vsvaFyaEH9Jg5FMzek5/S5qNw==
+"@react-navigation/native@^6.1.10":
+  version "6.1.10"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-6.1.10.tgz#d108423ae3acbe13f11d9b7351c1f5522d8391a5"
+  integrity sha512-jDG89TbZItY7W7rIcS1RqT63vWOPD4XuQLNKqZO0DY7mKnKh/CGBd0eg3nDMXUl143Qp//IxJKe2TfBQRDEU4A==
   dependencies:
     "@react-navigation/core" "^6.4.10"
     escape-string-regexp "^4.0.0"
@@ -2673,9 +2673,9 @@
     csstype "^3.0.2"
 
 "@types/react@^18.2.40":
-  version "18.2.55"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.55.tgz#38141821b7084404b5013742bc4ae08e44da7a67"
-  integrity sha512-Y2Tz5P4yz23brwm2d7jNon39qoAtMMmalOQv6+fEFt1mT+FcM3D841wDpoUvFXhaYenuROCy3FZYqdTjM7qVyA==
+  version "18.2.56"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.56.tgz#2d3e9021a0b6eb5bfc227761cc61b1c6dc6e0cd8"
+  integrity sha512-NpwHDMkS/EFZF2dONFQHgkPRwhvgq/OAvIaGQzxGSBmaeR++kTg6njr15Vatz0/2VcCEwJQFi6Jf4Q0qBu0rLA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4934,10 +4934,10 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-i18next@^23.8.2:
-  version "23.8.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.8.2.tgz#f3ff6ea929e0927d9717f0ed195ae46d05919900"
-  integrity sha512-Z84zyEangrlERm0ZugVy4bIt485e/H8VecGUZkZWrH7BDePG6jT73QdL9EA1tRTTVVMpry/MgWIP1FjEn0DRXA==
+i18next@^23.8.3:
+  version "23.8.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.8.3.tgz#7e03e6bbc45f819452a9d1aed20bdebde01a1db7"
+  integrity sha512-IQn6Tfn+XkIRHjC/z3uQSGLhsRC6Y14kgyrsgoPqnFD9MqbNt2B9MF3Ch4p114pEVPQ2qktE2nd0aYr7UxRLKA==
   dependencies:
     "@babel/runtime" "^7.23.2"
 
