@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieRuntime renders correctly 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 16,
+        "fontWeight": "700",
+        "lineHeight": 20,
+      },
+      {
+        "color": "#999999",
+      },
+    ]
+  }
+>
+  2h4m
+</Text>
+`;

@@ -6,11 +6,11 @@ import { useTheme } from "@react-navigation/native"
 
 import { useTvDetails } from "hocs"
 import { layoutStyles, tvStyles } from "styles"
-import { formatDate } from "helpers/formatDate"
 import Close from "components/ui/Close"
 import Actions from "components/Tv/Actions"
 import Poster from "components/ui/Poster"
 import Play from "components/ui/Play"
+import ReleaseDate from "components/ui/TvReleaseDate"
 import Status from "components/ui/Status"
 import Rating from "components/ui/Rating"
 import Title from "components/ui/Title"
@@ -18,7 +18,6 @@ import Overview from "components/ui/Overview"
 import People from "components/ui/People"
 import Seasons from "components/Tv/Seasons"
 import Recommendations from "components/Tv/Recommendations"
-import Typography from "components/ui/Typography"
 
 type Props = {
   item: any
@@ -70,17 +69,11 @@ const ContentComponent = ({ item }: Props) => {
         </Title>
 
         <View style={tvStyles.row}>
-          <Typography variant="headline" style={tvStyles.date}>
-            {in_production ? (
-              <>{formatDate(release_date, "d MMMM yyyy")}</>
-            ) : (
-              <>
-                {formatDate(release_date, "dd.MM.yyyy")}
-                &nbsp;&ndash;&nbsp;
-                {formatDate(end_date, "dd.MM.yyyy")}
-              </>
-            )}
-          </Typography>
+          <ReleaseDate
+            in_production={in_production}
+            release_date={release_date}
+            end_date={end_date}
+          />
           <Status>{status}</Status>
         </View>
 

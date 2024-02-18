@@ -6,19 +6,18 @@ import { useTheme } from "@react-navigation/native"
 
 import { useMovieDetails } from "hocs"
 import { layoutStyles, movieStyles } from "styles"
-import { formatDate } from "helpers/formatDate"
-import { formatRuntime } from "helpers/formatRuntime"
 import Close from "components/ui/Close"
 import Actions from "components/Movie/Actions"
 import Poster from "components/ui/Poster"
 import Play from "components/ui/Play"
+import ReleaseDate from "components/ui/MovieReleaseDate"
+import Runtime from "components/ui/MovieRuntime"
 import Status from "components/ui/Status"
 import Rating from "components/ui/Rating"
 import Title from "components/ui/Title"
 import Overview from "components/ui/Overview"
 import People from "components/ui/People"
 import Recommendations from "components/Movie/Recommendations"
-import Typography from "components/ui/Typography"
 
 type Props = {
   item: any
@@ -69,12 +68,8 @@ const ContentComponent = ({ item }: Props) => {
         </Title>
 
         <View style={movieStyles.row}>
-          <Typography variant="headline" style={movieStyles.date}>
-            {formatDate(release_date)}
-          </Typography>
-          <Typography variant="subhead" style={movieStyles.runtime}>
-            {formatRuntime(runtime)}
-          </Typography>
+          <ReleaseDate>{release_date}</ReleaseDate>
+          <Runtime>{runtime}</Runtime>
           <Status>{status}</Status>
         </View>
 

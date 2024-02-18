@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieReleaseDate renders correctly 1`] = `
+<Text
+  numberOfLines={0}
+  style={
+    [
+      {
+        "color": "#181818",
+        "fontSize": 17,
+        "fontWeight": "600",
+        "lineHeight": 22,
+      },
+      {
+        "color": "#666666",
+      },
+    ]
+  }
+>
+  27.02.2024
+</Text>
+`;
