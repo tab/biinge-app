@@ -19,9 +19,8 @@ export const searchStyles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    // color: colors.gray,
     fontSize: 16,
-    padding: 5,
+    padding: 4,
   },
   inputDark: {
     color: colors.grayDark,
@@ -29,9 +28,18 @@ export const searchStyles = StyleSheet.create({
   inputLight: {
     color: colors.black,
   },
-  button: {
+  cancel: {
+    marginLeft: 10,
+  },
+  textDark: {
     color: colors.white,
     fontSize: 16,
+    fontWeight: "500",
+  },
+  textLight: {
+    color: colors.black,
+    fontSize: 16,
+    fontWeight: "500",
   },
 })
 
