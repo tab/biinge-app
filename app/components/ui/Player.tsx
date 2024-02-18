@@ -10,7 +10,7 @@ import {
 import YouTube from "react-native-youtube"
 
 import { YOUTUBE_API_KEY } from "config"
-import Icon from "components/ui/Icon"
+import Close from "components/ui/Close"
 import colors from "styles/colors"
 import { TMDB_VIDEO_NOT_EMBEDDABLE } from "types"
 
@@ -37,7 +37,7 @@ const PlayerComponent: React.FC<PlayerProps> = ({ videoId, onClose }) => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.content}>
-        <Icon style={styles.icon} name="close" color={colors.white} size={30} />
+        <Close />
         <Pressable style={styles.close} onPress={onClose} />
         <YouTube
           apiKey={YOUTUBE_API_KEY}
