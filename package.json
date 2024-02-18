@@ -20,7 +20,7 @@
     "@react-navigation/native-stack": "6.9.18",
     "@realm/react": "^0.6.1",
     "@reduxjs/toolkit": "^2.1.0",
-    "@sentry/react-native": "^5.18.0",
+    "@sentry/react-native": "^5.19.0",
     "@shopify/flash-list": "^1.6.3",
     "axios": "^1.5.1",
     "crypto-js": "^4.2.0",
