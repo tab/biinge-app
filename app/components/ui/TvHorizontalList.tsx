@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native"
 import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
-import { MovieContext } from "contexts/MovieContext"
+import { TvContext } from "contexts/TvContext.tsx"
 import { DETAILS_SCREEN } from "screens/Details"
 import { DETAILS_TV_TYPE } from "config"
 import Image from "components/ui/Image"
@@ -23,7 +23,7 @@ const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
 
-  const { inWantList, inWatchedList } = useContext(MovieContext)
+  const { inWantList, inWatchingList, inWatchedList } = useContext(TvContext)
 
   const renderEmpty = () => {
     return (
@@ -46,7 +46,10 @@ const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
   const renderItem = ({ item }: { item: any }) => {
     const { title, poster_path } = item
 
-    const inList = inWantList(item.tmdb_id) || inWatchedList(item.tmdb_id)
+    const inList =
+      inWantList(item.tmdb_id) ||
+      inWatchingList(item.tmdb_id) ||
+      inWatchedList(item.tmdb_id)
 
     const handleClick = () => {
       // @ts-ignore

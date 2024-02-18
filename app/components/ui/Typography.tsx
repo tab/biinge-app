@@ -19,7 +19,11 @@ const TypographyComponent = ({
   const getVariantStyle = () => typographyStyles[variant] || {}
 
   return (
-    <Text numberOfLines={numberOfLines} style={[getVariantStyle(), style]}>
+    <Text
+      ellipsizeMode="tail"
+      numberOfLines={numberOfLines}
+      style={[getVariantStyle(), style]}
+    >
       {children}
     </Text>
   )

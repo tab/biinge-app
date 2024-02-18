@@ -54,21 +54,29 @@ const PeopleListComponent = ({ items }: Props) => {
     return (
       <Pressable style={peopleListStyles.root} onPress={handleClick}>
         <Image style={peopleListStyles.image} size="w185" path={profile_path} />
-        <Typography
-          variant="caption1"
-          numberOfLines={2}
-          style={peopleListStyles.name}
-        >
-          {name}
-        </Typography>
+        <View style={peopleListStyles.name}>
+          {name.split(" ").map((n: string, index: number) => (
+            <Typography
+              key={index.toString()}
+              variant="caption1"
+              style={peopleListStyles.textDark}
+            >
+              {n}
+            </Typography>
+          ))}
+        </View>
         {description && (
-          <Typography
-            variant="caption2"
-            numberOfLines={2}
-            style={peopleListStyles.description}
-          >
-            {description}
-          </Typography>
+          <View>
+            {description.split(" ").map((n: string, index: number) => (
+              <Typography
+                key={index.toString()}
+                variant="caption2"
+                style={peopleListStyles.textLight}
+              >
+                {n}
+              </Typography>
+            ))}
+          </View>
         )}
       </Pressable>
     )
@@ -83,7 +91,7 @@ const PeopleListComponent = ({ items }: Props) => {
       data={items}
       keyExtractor={(_, index: number) => index.toString()}
       renderItem={renderItem}
-      estimatedItemSize={90}
+      estimatedItemSize={100}
       ListEmptyComponent={renderEmpty}
     />
   )

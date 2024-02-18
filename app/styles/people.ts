@@ -22,19 +22,18 @@ export const peopleListStyles = StyleSheet.create({
   image: {
     aspectRatio: "1",
     borderRadius: 50,
-    width: 70,
-    height: 70,
+    height: 65,
+    width: 65,
   },
   name: {
+    marginVertical: 5,
+  },
+  textDark: {
     color: colors.grayDark,
     textAlign: "center",
-    marginHorizontal: 2,
-    marginTop: 7,
   },
-  description: {
+  textLight: {
     color: colors.spanishGray,
     textAlign: "center",
-    marginHorizontal: 2,
-    marginTop: 3,
   },
 })
