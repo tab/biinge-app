@@ -9,6 +9,7 @@ exports[`Overview renders correctly 1`] = `
   }
 >
   <Text
+    ellipsizeMode="tail"
     numberOfLines={0}
     style={
       [
@@ -28,6 +29,7 @@ exports[`Overview renders correctly 1`] = `
     Synopsis
   </Text>
   <Text
+    ellipsizeMode="tail"
     numberOfLines={0}
     style={
       [

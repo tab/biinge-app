@@ -269,6 +269,7 @@ exports[`Login renders correctly 1`] = `
           testID="login-button"
         >
           <Text
+            ellipsizeMode="tail"
             numberOfLines={0}
             style={
               [

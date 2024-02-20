@@ -2,6 +2,7 @@
 
 exports[`MovieReleaseDate renders correctly 1`] = `
 <Text
+  ellipsizeMode="tail"
   numberOfLines={0}
   style={
     [

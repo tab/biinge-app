@@ -13,6 +13,7 @@ exports[`Title renders correctly 1`] = `
   }
 >
   <Text
+    ellipsizeMode="tail"
     numberOfLines={0}
     style={
       [
@@ -52,6 +53,7 @@ exports[`Title renders correctly with aside 1`] = `
   }
 >
   <Text
+    ellipsizeMode="tail"
     numberOfLines={0}
     style={
       [
