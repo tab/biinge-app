@@ -16,9 +16,9 @@ const TvScreen = () => {
   const user = useUser()
   const userTvShow = useObject<UserTvShow>(UserTvShow, user.id)
 
-  const wantList = userTvShow!.want.sorted("pin", true) || []
-  const watchingList = userTvShow!.watching.sorted("pin", true) || []
-  const watchedList = userTvShow!.watched.sorted("pin", true) || []
+  const wantList = userTvShow?.want.sorted("pin", true) || []
+  const watchingList = userTvShow?.watching.sorted("pin", true) || []
+  const watchedList = userTvShow?.watched.sorted("pin", true) || []
 
   const layout = useWindowDimensions()
 
