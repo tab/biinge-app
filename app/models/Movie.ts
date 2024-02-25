@@ -14,7 +14,7 @@ export class Movie extends Realm.Object<Movie> {
   popularity!: number
   status!: string
   release_date!: string
-  runtime!: number
+  runtime?: number
   vote_average!: number
   vote_count!: number
   pin!: boolean
