@@ -3,21 +3,16 @@ import { View } from "react-native"
 import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
-import { UserMovie } from "models"
-import Typography from "components/ui/Typography"
-import { statsStyles, textStyles, layoutStyles } from "styles"
+import Typography from "components/ui/Typography.tsx"
+import { statsStyles, layoutStyles, textStyles } from "styles"
 
 type Props = {
-  object: UserMovie | null
   minutes: number
 }
 
-const MovieStatsComponent = ({ object, minutes }: Props) => {
+const TotalStatsComponent = ({ minutes }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
-
-  const want = object?.want
-  const watched = object?.watched
 
   const hours = Math.floor(minutes / 60)
   const days = Math.floor(hours / 24)
@@ -35,57 +30,8 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
           variant="callout"
           style={dark ? textStyles.textDark : textStyles.textLight}
         >
-          {t("profile.movies.title")}
+          {t("profile.total.title")}
         </Typography>
-
-        <View style={statsStyles.row}>
-          <View style={statsStyles.cell}>
-            <Typography
-              variant="headline"
-              style={dark ? textStyles.textDark : textStyles.textLight}
-            >
-              {want?.length || 0}
-            </Typography>
-            <Typography
-              variant="footnote"
-              style={
-                dark
-                  ? textStyles.textSecondaryDark
-                  : textStyles.textSecondaryLight
-              }
-            >
-              {t("profile.stats.want.title")}
-            </Typography>
-          </View>
-
-          <View style={statsStyles.cell}>
-            <Typography
-              variant="headline"
-              style={textStyles.textSecondaryLight}
-            >
-              <>&mdash;</>
-            </Typography>
-          </View>
-
-          <View style={statsStyles.cell}>
-            <Typography
-              variant="headline"
-              style={dark ? textStyles.textDark : textStyles.textLight}
-            >
-              {watched?.length || 0}
-            </Typography>
-            <Typography
-              variant="footnote"
-              style={
-                dark
-                  ? textStyles.textSecondaryDark
-                  : textStyles.textSecondaryLight
-              }
-            >
-              {t("profile.stats.watched.title")}
-            </Typography>
-          </View>
-        </View>
 
         <View style={statsStyles.row}>
           <View style={statsStyles.cell}>
@@ -150,4 +96,4 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
   )
 }
 
-export default MovieStatsComponent
+export default TotalStatsComponent

@@ -1,33 +1,25 @@
 import React from "react"
 import { View } from "react-native"
+import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
-import { UserTvShow, UserTvEpisode, TvEpisode } from "models"
+import { UserTvShow } from "models"
 import Typography from "components/ui/Typography"
 import { statsStyles, textStyles, layoutStyles } from "styles"
-import { useUser, useObject } from "@realm/react"
-import { useTranslation } from "react-i18next"
 
-const MovieStatsComponent = () => {
+type Props = {
+  object: UserTvShow | null
+  minutes: number
+}
+
+const MovieStatsComponent = ({ object, minutes }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
 
-  const user = useUser()
+  const want = object?.want
+  const watching = object?.watching
+  const watched = object?.watched
 
-  const userTvShow = useObject<UserTvShow>(UserTvShow, user.id)
-  const want = userTvShow?.want
-  const watching = userTvShow?.watching
-  const watched = userTvShow?.watched
-
-  const userTvEpisode = useObject<UserTvEpisode>(UserTvEpisode, user.id)
-  const episodesWatched = userTvEpisode?.watched
-
-  // @ts-ignore
-  const minutes =
-    episodesWatched?.reduce(
-      (index: number, item: TvEpisode) => index + (item.runtime || 0),
-      0,
-    ) || 0
   const hours = Math.floor(minutes / 60)
   const days = Math.floor(hours / 24)
   const weeks = Math.floor(days / 7)
@@ -112,7 +104,7 @@ const MovieStatsComponent = () => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {hours || 0}
+              {weeks || 0}
             </Typography>
             <Typography
               variant="footnote"
@@ -122,7 +114,7 @@ const MovieStatsComponent = () => {
                   : textStyles.textSecondaryLight
               }
             >
-              {t("profile.stats.hours.title")}
+              {t("profile.stats.weeks.title")}
             </Typography>
           </View>
 
@@ -150,7 +142,7 @@ const MovieStatsComponent = () => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {weeks || 0}
+              {hours || 0}
             </Typography>
             <Typography
               variant="footnote"
@@ -160,7 +152,7 @@ const MovieStatsComponent = () => {
                   : textStyles.textSecondaryLight
               }
             >
-              {t("profile.stats.weeks.title")}
+              {t("profile.stats.hours.title")}
             </Typography>
           </View>
         </View>

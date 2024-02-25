@@ -110,8 +110,7 @@
       "cast": "Cast",
       "recommendations": "Recommendations"
     },
-    "movie": {
-    },
+    "movie": {},
     "tv": {
       "content": {
         "seasons": "Seasons"
@@ -135,6 +134,9 @@
       },
       "tv": {
         "title": "Series"
+      },
+      "total": {
+        "title": "Total"
       },
       "stats": {
         "want": {
