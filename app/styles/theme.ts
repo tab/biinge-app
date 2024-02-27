@@ -4,6 +4,7 @@ export interface Theme {
     primary: string
     background: string
     card: string
+    lightCard: string
     text: string
     textSecondary: string
     border: string
@@ -17,6 +18,7 @@ export const lightTheme: Theme = {
     primary: "#eec01e",
     background: "#fff",
     card: "#fafafa",
+    lightCard: "#eaeaea",
     text: "#181818",
     textSecondary: "#2b2835",
     border: "#d1cecf",
@@ -30,6 +32,7 @@ export const darkTheme: Theme = {
     primary: "#eec01e",
     background: "#000",
     card: "#181818",
+    lightCard: "#282828",
     text: "#fafafa",
     textSecondary: "#d4d7ca",
     border: "#2e3130",

@@ -25,7 +25,7 @@ const MenuSectionComponent = ({ items }: Props) => {
     <View
       style={[
         menuSectionStyles.root,
-        dark ? layoutStyles.bgDark : layoutStyles.bgLight,
+        dark ? layoutStyles.bgDarkSecondCard : layoutStyles.bgLightSecondCard,
       ]}
     >
       {items.map(({ id, title, icon, onPress }: ItemType) => (

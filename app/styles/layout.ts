@@ -15,11 +15,17 @@ export const layoutStyles = StyleSheet.create({
   bgDarkCard: {
     backgroundColor: darkTheme.colors.card,
   },
+  bgDarkSecondCard: {
+    backgroundColor: darkTheme.colors.lightCard,
+  },
   bgLight: {
     backgroundColor: lightTheme.colors.background,
   },
   bgLightCard: {
     backgroundColor: lightTheme.colors.card,
+  },
+  bgLightSecondCard: {
+    backgroundColor: lightTheme.colors.lightCard,
   },
   bgTransparent: {
     backgroundColor: "transparent",

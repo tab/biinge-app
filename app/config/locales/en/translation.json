@@ -165,6 +165,9 @@
         "statistics": {
           "title": "Statistics"
         },
+        "about": {
+          "title": "About"
+        },
         "privacy": {
           "title": "Privacy Policy"
         },
@@ -193,6 +196,9 @@
     },
     "statistics": {
       "title": "Statistics"
+    },
+    "about": {
+      "title": "About"
     },
     "privacy": {
       "title": "Privacy Policy"

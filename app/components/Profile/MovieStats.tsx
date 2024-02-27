@@ -27,7 +27,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
     <View
       style={[
         statsStyles.root,
-        dark ? layoutStyles.bgDark : layoutStyles.bgLight,
+        dark ? layoutStyles.bgDarkSecondCard : layoutStyles.bgLightSecondCard,
       ]}
     >
       <View style={statsStyles.content}>

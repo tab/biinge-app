@@ -6,6 +6,7 @@ import { useUser } from "@realm/react"
 
 import { APPEARANCE_SCREEN } from "screens/Appearance"
 import { STATISTICS_SCREEN } from "screens/Statistics"
+import { ABOUT_SCREEN } from "screens/About"
 import { PRIVACY_SCREEN } from "screens/Privacy"
 import { TERMS_SCREEN } from "screens/Terms"
 import Section from "components/Profile/MenuSection"
@@ -35,13 +36,20 @@ const MenuComponent = () => {
     },
     {
       id: 3,
+      title: t("profile.actions.about.title"),
+      icon: "document-text-outline",
+      // @ts-ignore
+      onPress: () => navigation.push(ABOUT_SCREEN.name),
+    },
+    {
+      id: 4,
       title: t("profile.actions.privacy.title"),
       icon: "document-text-outline",
       // @ts-ignore
       onPress: () => navigation.push(PRIVACY_SCREEN.name),
     },
     {
-      id: 4,
+      id: 5,
       title: t("profile.actions.terms.title"),
       icon: "document-text-outline",
       // @ts-ignore
@@ -51,7 +59,7 @@ const MenuComponent = () => {
 
   const LOGOUT = [
     {
-      id: 5,
+      id: 6,
       title: t("profile.actions.logOut.title"),
       icon: "log-out-outline",
       onPress: () => user.logOut(),

@@ -17,6 +17,7 @@ import Details, { DETAILS_SCREEN } from "screens/Details"
 import Person, { PERSON_SCREEN } from "screens/Person"
 import Appearance, { APPEARANCE_SCREEN } from "screens/Appearance"
 import Statistics, { STATISTICS_SCREEN } from "screens/Statistics"
+import About, { ABOUT_SCREEN } from "screens/About"
 import Privacy, { PRIVACY_SCREEN } from "screens/Privacy"
 import Terms, { TERMS_SCREEN } from "screens/Terms"
 import { darkTheme, lightTheme } from "styles/theme"
@@ -87,6 +88,11 @@ const RouterComponent = () => {
             <Stack.Screen
               name={STATISTICS_SCREEN.name}
               component={Statistics}
+              options={transparentModalOptions}
+            />
+            <Stack.Screen
+              name={ABOUT_SCREEN.name}
+              component={About}
               options={transparentModalOptions}
             />
             <Stack.Screen

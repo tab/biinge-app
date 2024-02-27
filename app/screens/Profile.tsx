@@ -23,7 +23,9 @@ const ProfileScreen = () => {
         <View
           style={[
             profileStyles.section,
-            dark ? layoutStyles.bgDark : layoutStyles.bgLight,
+            dark
+              ? layoutStyles.bgDarkSecondCard
+              : layoutStyles.bgLightSecondCard,
           ]}
         >
           <Typography
