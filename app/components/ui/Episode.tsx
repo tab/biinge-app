@@ -30,8 +30,8 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
 
   const watched = inWatchedEpisodeList(item.id)
 
-  const { title, air_date, runtime, vote_average } = item
-  const votes = vote_average > 0
+  const { title, airDate, runtime, rating } = item
+  const votes = rating > 0
 
   const handleAdd = () => {
     addToWatchedList({
@@ -116,13 +116,13 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
             </View>
             {votes && (
               <Rating style={episodesListStyles.rating} size={16}>
-                {vote_average.toFixed(1)}
+                {rating.toFixed(1)}
               </Rating>
             )}
           </View>
           <View style={episodesListStyles.row}>
             <Typography variant="caption2" style={episodesListStyles.date}>
-              {formatDate(air_date)}
+              {formatDate(airDate)}
               {runtime && (
                 <>
                   &nbsp;&middot;&nbsp;

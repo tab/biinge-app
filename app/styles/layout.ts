@@ -105,11 +105,11 @@ export const listStyles = StyleSheet.create({
   },
   iconMd: {
     top: 16,
-    right: 16,
+    left: 16,
   },
   iconSm: {
     top: 10,
-    right: 10,
+    left: 10,
   },
   pin: {
     borderRadius: 3,
@@ -126,7 +126,6 @@ export const listStyles = StyleSheet.create({
 export const horizontalListStyles = StyleSheet.create({
   root: {
     flex: 1,
-    height: 200,
   },
   content: {
     paddingLeft: 10,

@@ -1,19 +1,20 @@
 import React, { createContext } from "react"
-import { useObject, useUser, useRealm, useQuery } from "@realm/react"
+import { BSON } from "realm"
+import { useUser, useRealm, useQuery } from "@realm/react"
 import * as Sentry from "@sentry/react-native"
 
-import { UserMovie, Movie } from "models"
-import { TMDBMovieDetails } from "types"
+import { Movie } from "models"
+import { MovieDetails } from "types"
 
 type MovieContextType = {
   inWantList: (tmdbId: number) => boolean
   inWatchedList: (tmdbId: number) => boolean
-  addToWantList: (item: TMDBMovieDetails) => Promise<void>
-  addToWatchedList: (item: TMDBMovieDetails) => Promise<void>
+  inPinList: (tmdbId: number) => boolean
+  addToWantList: (item: MovieDetails) => Promise<void>
+  addToWatchedList: (item: MovieDetails) => Promise<void>
   removeFromList: (tmdbId: number) => Promise<void>
-  pinned: (tmdbId: number) => boolean
-  pinToList: (item: TMDBMovieDetails) => Promise<void>
-  unpinFromList: (item: TMDBMovieDetails) => Promise<void>
+  pinToList: (item: MovieDetails) => Promise<void>
+  unpinFromList: (item: MovieDetails) => Promise<void>
 }
 
 export const MovieContext = createContext<MovieContextType>({
@@ -23,12 +24,15 @@ export const MovieContext = createContext<MovieContextType>({
   inWatchedList(_tmdbId: number): boolean {
     return false
   },
-  addToWantList(_item: TMDBMovieDetails): Promise<void> {
+  inPinList(_tmdbId: number): boolean {
+    return false
+  },
+  addToWantList(_item: MovieDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
   },
-  addToWatchedList(_item: TMDBMovieDetails): Promise<void> {
+  addToWatchedList(_item: MovieDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
@@ -38,15 +42,12 @@ export const MovieContext = createContext<MovieContextType>({
       resolve()
     })
   },
-  pinned(_tmdbId: number): boolean {
-    return false
-  },
-  pinToList(_item: TMDBMovieDetails): Promise<void> {
+  pinToList(_item: MovieDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
   },
-  unpinFromList(_item: TMDBMovieDetails): Promise<void> {
+  unpinFromList(_item: MovieDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
@@ -58,46 +59,41 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const user = useUser()
 
   const movies = useQuery<Movie>(Movie)
-  const userMovie = useObject<UserMovie>(UserMovie, user.id)
 
-  const wantList = userMovie?.want || []
-  const watchedList = userMovie?.watched || []
+  const wantList = movies.filtered("want == $0", true)
+  const watchedList = movies.filtered("watched == $0", true)
+  const pinList = movies.filtered("pin == $0", true)
 
-  const wantIds = wantList.map(({ tmdb_id }: Movie) => tmdb_id)
-  const watchedIds = watchedList.map(({ tmdb_id }: Movie) => tmdb_id)
+  const wantIds = wantList.map(({ tmdbId }: Movie) => tmdbId)
+  const watchedIds = watchedList.map(({ tmdbId }: Movie) => tmdbId)
+  const pinIds = pinList.map(({ tmdbId }: Movie) => tmdbId)
 
   const inWantList = (tmdbId: number) => wantIds.includes(tmdbId)
   const inWatchedList = (tmdbId: number) => watchedIds.includes(tmdbId)
+  const inPinList = (tmdbId: number) => pinIds.includes(tmdbId)
 
-  const addToWantList = (item: TMDBMovieDetails) => {
+  const addToWantList = (item: MovieDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const { id, ...tmdbDetails } = item
+        const { id, imdbId, title, posterPath, runtime } = item
+        const movie = movies.find(({ tmdbId }) => tmdbId === id)
+
         const payload = {
-          ...tmdbDetails,
+          _id: movie ? movie._id : new BSON.ObjectId(),
           userId: user.id,
-          tmdb_id: id,
+          tmdbId: id,
+          imdbId,
+          title,
+          posterPath,
+          runtime,
+          want: true,
+          watched: false,
           pin: false,
           updatedAt: new Date(),
         }
 
         realm.write(() => {
-          if (!inWantList(id)) {
-            const movie = realm.create(Movie, payload, true)
-            // @ts-ignore
-            wantList.unshift(movie)
-          }
-
-          // @ts-ignore
-          realm.create(
-            UserMovie,
-            {
-              _id: user.id,
-              userId: user.id,
-              want: wantList,
-            },
-            true,
-          )
+          realm.create(Movie, payload, true)
         })
       } catch (error) {
         Sentry.captureException(error)
@@ -108,35 +104,28 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const addToWatchedList = (item: TMDBMovieDetails) => {
+  const addToWatchedList = (item: MovieDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const { id, ...tmdbDetails } = item
+        const { id, imdbId, title, posterPath, runtime } = item
+        const movie = movies.find(({ tmdbId }) => tmdbId === id)
+
         const payload = {
-          ...tmdbDetails,
+          _id: movie ? movie._id : new BSON.ObjectId(),
           userId: user.id,
-          tmdb_id: id,
+          tmdbId: id,
+          imdbId,
+          title,
+          posterPath,
+          runtime,
+          want: false,
+          watched: true,
           pin: false,
           updatedAt: new Date(),
         }
 
         realm.write(() => {
-          if (!inWatchedList(id)) {
-            const movie = realm.create(Movie, payload, true)
-            // @ts-ignore
-            watchedList.unshift(movie)
-          }
-
-          // @ts-ignore
-          realm.create(
-            UserMovie,
-            {
-              _id: user.id,
-              userId: user.id,
-              watched: watchedList,
-            },
-            true,
-          )
+          realm.create(Movie, payload, true)
         })
       } catch (error) {
         Sentry.captureException(error)
@@ -147,10 +136,10 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const removeFromList = (tmdbId: number) => {
+  const removeFromList = (id: number) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const movie = movies.find(({ tmdb_id }) => tmdb_id === tmdbId)
+        const movie = movies.find(({ tmdbId }) => tmdbId === id)
 
         realm.write(() => {
           realm.delete(movie)
@@ -164,15 +153,9 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const pinned = (tmdbId: number) => {
-    const movie = movies.find(({ tmdb_id }) => tmdb_id === tmdbId)
-
-    return movie?.pin || false
-  }
-
-  const pinToList = (item: TMDBMovieDetails) => {
+  const pinToList = (item: MovieDetails) => {
     return new Promise<void>((resolve, reject) => {
-      const movie = movies.find(({ tmdb_id }) => tmdb_id === item.id)
+      const movie = movies.find(({ tmdbId }) => tmdbId === item.id)
 
       if (movie) {
         try {
@@ -197,9 +180,9 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const unpinFromList = (item: TMDBMovieDetails) => {
+  const unpinFromList = (item: MovieDetails) => {
     return new Promise<void>((resolve, reject) => {
-      const movie = movies.find(({ tmdb_id }) => tmdb_id === item.id)
+      const movie = movies.find(({ tmdbId }) => tmdbId === item.id)
 
       if (movie) {
         try {
@@ -229,10 +212,10 @@ const MovieProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         inWantList,
         inWatchedList,
+        inPinList,
         addToWantList,
         addToWatchedList,
         removeFromList,
-        pinned,
         pinToList,
         unpinFromList,
       }}

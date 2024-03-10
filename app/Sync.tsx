@@ -6,17 +6,7 @@ import { Provider } from "react-redux"
 
 import MovieProvider from "contexts/MovieContext"
 import TvProvider from "contexts/TvContext"
-import {
-  Movie,
-  UserMovie,
-  TvShow,
-  UserTvShow,
-  TvSeason,
-  UserTvSeason,
-  TvEpisode,
-  UserTvEpisode,
-  Profile,
-} from "models"
+import { Movie, TvShow, TvSeason, TvEpisode, Profile } from "models"
 import { Store } from "redux/store"
 
 const realmAccessBehavior: Realm.OpenRealmBehaviorConfiguration = {
@@ -35,17 +25,7 @@ const Sync = ({ children }: Props) => {
 
   return (
     <RealmProvider
-      schema={[
-        Movie,
-        UserMovie,
-        TvShow,
-        UserTvShow,
-        TvSeason,
-        UserTvSeason,
-        TvEpisode,
-        UserTvEpisode,
-        Profile,
-      ]}
+      schema={[Movie, TvShow, TvSeason, TvEpisode, Profile]}
       sync={{
         partitionValue,
         newRealmFileBehavior: realmAccessBehavior,

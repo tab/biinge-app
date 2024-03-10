@@ -8,11 +8,13 @@ import {
   Dimensions,
 } from "react-native"
 import YouTube from "react-native-youtube"
+import { useTheme } from "@react-navigation/native"
 
 import { YOUTUBE_API_KEY } from "config"
 import Close from "components/ui/Close"
 import colors from "styles/colors"
 import { TMDB_VIDEO_NOT_EMBEDDABLE } from "types"
+import { layoutStyles } from "styles"
 
 type PlayerProps = {
   videoId: string
@@ -35,9 +37,9 @@ const PlayerComponent: React.FC<PlayerProps> = ({ videoId, onClose }) => {
   }
 
   return (
-    <SafeAreaView style={styles.root}>
+    <SafeAreaView style={[layoutStyles.root, layoutStyles.bgDark]}>
       <View style={styles.content}>
-        <Close />
+        <Close isDark onPress={onClose} />
         <Pressable style={styles.close} onPress={onClose} />
         <YouTube
           apiKey={YOUTUBE_API_KEY}
@@ -65,10 +67,6 @@ const PlayerComponent: React.FC<PlayerProps> = ({ videoId, onClose }) => {
 const { width } = Dimensions.get("window")
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.darkBlack,
-  },
   content: {
     flex: 1,
     justifyContent: "center",
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
   player: {
     alignItems: "center",
     justifyContent: "center",
-    aspectRatio: "1",
+    aspectRatio: "3/2",
     width: width,
   },
   loader: {

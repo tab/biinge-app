@@ -9,10 +9,10 @@ import Image from "components/ui/Image"
 import colors from "styles/colors"
 
 type Props = {
-  poster_path: string
+  posterPath: string
 }
 
-const PosterComponent = ({ poster_path }: Props) => {
+const PosterComponent = ({ posterPath }: Props) => {
   const { dark } = useTheme()
 
   return (
@@ -27,7 +27,7 @@ const PosterComponent = ({ poster_path }: Props) => {
         reducedTransparencyFallbackColor={colors.white}
       />
       <View style={posterStyles.root}>
-        <Image style={posterStyles.image} size="w780" path={poster_path} />
+        <Image style={posterStyles.image} size="w780" path={posterPath} />
       </View>
     </>
   )

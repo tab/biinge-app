@@ -6,19 +6,19 @@ import { useTheme } from "@react-navigation/native"
 import { seasonsStyles, layoutStyles } from "styles"
 import Typography from "components/ui/Typography"
 import List from "components/ui/SeasonsList"
-import { TvDetails } from "types"
+import { TvShowDetails } from "types"
 
 type Props = {
-  show: TvDetails
+  show: TvShowDetails
 }
 
 const SeasonsComponent = ({ show }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
 
-  const { seasons } = show
+  const { items } = show
 
-  const visible = seasons.length > 0
+  const visible = items.length > 0
 
   return (
     <>
@@ -32,7 +32,7 @@ const SeasonsComponent = ({ show }: Props) => {
           <Typography variant="callout" style={seasonsStyles.title}>
             {t("tv.content.seasons")}
           </Typography>
-          <List show={show} items={seasons} />
+          <List show={show} items={items} />
         </View>
       )}
     </>

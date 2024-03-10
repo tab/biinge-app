@@ -11,7 +11,7 @@ import Typography from "components/ui/Typography"
 import colors from "styles/colors"
 
 type Props = {
-  poster_path: string
+  posterPath: string
   pinned: boolean
   want: boolean
   watching: boolean
@@ -27,7 +27,7 @@ type Props = {
 }
 
 const MenuComponent = ({
-  poster_path,
+  posterPath,
   pinned,
   want,
   watching,
@@ -51,7 +51,7 @@ const MenuComponent = ({
         blurAmount={10}
         reducedTransparencyFallbackColor={colors.white}
       />
-      <Poster poster_path={poster_path} />
+      <Poster posterPath={posterPath} />
 
       <Pressable style={overlayStyles.overlayButton} onPress={onCancel} />
 

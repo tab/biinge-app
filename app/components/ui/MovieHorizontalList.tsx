@@ -12,9 +12,10 @@ import Image from "components/ui/Image"
 import Check from "components/ui/Check"
 import Typography from "components/ui/Typography"
 import { horizontalListStyles, listEmptyStyles, titleStyles } from "styles"
+import { MovieListItem } from "types"
 
 type Props = {
-  items: any[]
+  items: MovieListItem[]
   showStatus?: boolean
 }
 
@@ -43,15 +44,15 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
     )
   }
 
-  const renderItem = ({ item }: { item: any }) => {
-    const { title, poster_path } = item
+  const renderItem = ({ item }: { item: MovieListItem }) => {
+    const { title, tmdbId, posterPath } = item
 
-    const inList = inWantList(item.tmdb_id) || inWatchedList(item.tmdb_id)
+    const inList = inWantList(tmdbId) || inWatchedList(tmdbId)
 
     const handleClick = () => {
       // @ts-ignore
       navigation.push(DETAILS_SCREEN.name, {
-        id: item.tmdb_id,
+        id: tmdbId,
         type: DETAILS_MOVIE_TYPE,
       })
     }
@@ -62,7 +63,7 @@ const MovieHorizontalListComponent = ({ items, showStatus }: Props) => {
           style={[horizontalListStyles.image, horizontalListStyles.imageMd]}
           size="w342"
           title={title}
-          path={poster_path}
+          path={posterPath}
         />
         {showStatus && inList && (
           <Check

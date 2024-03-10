@@ -1,38 +1,29 @@
 import React, { createContext } from "react"
-import { useObject, useUser, useRealm, useQuery } from "@realm/react"
+import { useUser, useRealm, useQuery } from "@realm/react"
 import * as Sentry from "@sentry/react-native"
 
 import { TV_IN_PRODUCTION_STATUS } from "config"
-import {
-  TvShow,
-  UserTvShow,
-  TvSeason,
-  UserTvSeason,
-  TvEpisode,
-  UserTvEpisode,
-} from "models"
-import {
-  TvShow as TMDBTvShow,
-  TvSeason as TMDBTvSeason,
-  TvEpisode as TMDBTvEpisode,
-} from "types"
+import { TvShow, TvSeason, TvEpisode } from "models"
+import { TvShowDetails, TvSeasonDetails, TvEpisodeDetails } from "types"
+import { BSON } from "realm"
 
 type TvContextType = {
   inWantList: (tmdbId: number) => boolean
   inWatchingList: (tmdbId: number) => boolean
   inWatchedList: (tmdbId: number) => boolean
+  inPinList: (tmdbId: number) => boolean
   inWatchedSeasonList: (tmdbId: number) => boolean
   inWatchedEpisodeList: (tmdbId: number) => boolean
-  addToWantList: (show: TMDBTvShow) => Promise<void>
+  addToWantList: (show: TvShowDetails) => Promise<void>
   addToWatchedList: ({
     show,
     season,
     episode,
     type,
   }: {
-    show: TMDBTvShow
-    season?: TMDBTvSeason
-    episode?: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }) => Promise<void>
   removeFromList: ({
@@ -41,14 +32,13 @@ type TvContextType = {
     episode,
     type,
   }: {
-    show: TMDBTvShow
-    season?: TMDBTvSeason
-    episode?: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }) => Promise<void>
-  pinned: (tmdbId: number) => boolean
-  pinToList: (item: TMDBTvShow) => Promise<void>
-  unpinFromList: (item: TMDBTvShow) => Promise<void>
+  pinToList: (item: TvShowDetails) => Promise<void>
+  unpinFromList: (item: TvShowDetails) => Promise<void>
 }
 
 export const TvContext = createContext<TvContextType>({
@@ -61,13 +51,16 @@ export const TvContext = createContext<TvContextType>({
   inWatchedList(_tmdbId: number): boolean {
     return false
   },
+  inPinList(_tmdbId: number): boolean {
+    return false
+  },
   inWatchedSeasonList(_tmdbId: number): boolean {
     return false
   },
   inWatchedEpisodeList(_tmdbId: number): boolean {
     return false
   },
-  addToWantList(_show: TMDBTvShow): Promise<void> {
+  addToWantList(_show: TvShowDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
@@ -82,9 +75,9 @@ export const TvContext = createContext<TvContextType>({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type,
   }: {
-    show: TMDBTvShow
-    season?: TMDBTvSeason
-    episode?: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }): Promise<void> {
     return new Promise((resolve, _) => {
@@ -101,24 +94,21 @@ export const TvContext = createContext<TvContextType>({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type,
   }: {
-    show: TMDBTvShow
-    season?: TMDBTvSeason
-    episode?: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
   },
-  pinned(_tmdbId: number): boolean {
-    return false
-  },
-  pinToList(_item: TMDBTvShow): Promise<void> {
+  pinToList(_item: TvShowDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
   },
-  unpinFromList(_item: TMDBTvShow): Promise<void> {
+  unpinFromList(_item: TvShowDetails): Promise<void> {
     return new Promise((resolve, _) => {
       resolve()
     })
@@ -131,31 +121,28 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
 
   // tv-shows
   const tvShows = useQuery<TvShow>(TvShow)
-  const userTvShow = useObject<UserTvShow>(UserTvShow, user.id)
 
-  const wantShowList = userTvShow?.want || []
-  const wantShowIds = wantShowList.map(({ tmdb_id }: TvShow) => tmdb_id)
-  const watchingShowList = userTvShow?.watching || []
-  const watchingShowIds = watchingShowList.map(({ tmdb_id }: TvShow) => tmdb_id)
-  const watchedShowList = userTvShow?.watched || []
-  const watchedShowIds = watchedShowList.map(({ tmdb_id }: TvShow) => tmdb_id)
+  const wantShowList = tvShows.filtered("want == $0", true)
+  const watchingShowList = tvShows.filtered("watching == $0", true)
+  const watchedShowList = tvShows.filtered("watched == $0", true)
+  const pinList = tvShows.filtered("pin == $0", true)
+
+  const pinIds = pinList.map(({ tmdbId }: TvShow) => tmdbId)
+
+  const wantShowIds = wantShowList.map(({ tmdbId }: TvShow) => tmdbId)
+  const watchingShowIds = watchingShowList.map(({ tmdbId }: TvShow) => tmdbId)
+  const watchedShowIds = watchedShowList.map(({ tmdbId }: TvShow) => tmdbId)
 
   // tv-seasons
-  const tvSeasons = useQuery<TvSeason>(TvSeason)
-  const userTvSeason = useObject<UserTvSeason>(UserTvSeason, user.id)
-
-  const watchedSeasonList = userTvSeason?.watched || []
+  const watchedSeasonList = useQuery<TvSeason>(TvSeason)
   const watchedSeasonIds = watchedSeasonList.map(
-    ({ tmdb_id }: TvSeason) => tmdb_id,
+    ({ tmdbId }: TvSeason) => tmdbId,
   )
 
   // tv-episodes
-  const tvEpisodes = useQuery<TvEpisode>(TvEpisode)
-  const userTvEpisode = useObject<UserTvEpisode>(UserTvEpisode, user.id)
-
-  const watchedEpisodeList = userTvEpisode?.watched || []
+  const watchedEpisodeList = useQuery<TvEpisode>(TvEpisode)
   const watchedEpisodeIds = watchedEpisodeList.map(
-    ({ tmdb_id }: TvEpisode) => tmdb_id,
+    ({ tmdbId }: TvEpisode) => tmdbId,
   )
 
   const inWantList = (tmdbId: number) => wantShowIds.includes(tmdbId)
@@ -164,51 +151,48 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
 
   const inWatchedList = (tmdbId: number) => watchedShowIds.includes(tmdbId)
 
+  const inPinList = (tmdbId: number) => pinIds.includes(tmdbId)
+
   const inWatchedSeasonList = (tmdbId: number) =>
     watchedSeasonIds.includes(tmdbId)
 
   const inWatchedEpisodeList = (tmdbId: number) =>
     watchedEpisodeIds.includes(tmdbId)
 
-  const isWatchedSeason = (season: TMDBTvSeason) => {
-    const episodeIds = season.items.map(({ tmdb_id }) => tmdb_id).sort()
+  const isWatchedSeason = (season: TvSeasonDetails) => {
+    const episodeIds = season.items.map(({ tmdbId }) => tmdbId).sort()
     const watchedIds = watchedEpisodeList
-      .filter(({ tmdb_season_id }) => tmdb_season_id === season.tmdb_id)
-      .map(({ tmdb_id }: TvEpisode) => tmdb_id)
+      .filter(({ tmdbSeasonId }) => tmdbSeasonId === season.tmdbId)
+      .map(({ tmdbId }: TvEpisode) => tmdbId)
       .sort()
 
     return JSON.stringify(episodeIds) === JSON.stringify(watchedIds)
   }
 
-  const addToWantList = (show: TMDBTvShow) => {
+  const addToWantList = (item: TvShowDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
+        const { id, imdbId, title, posterPath, episodesCount, status } = item
+        const tvShow = tvShows.find(({ tmdbId }) => tmdbId === id)
+
+        const payload = {
+          _id: tvShow ? tvShow._id : new BSON.ObjectId(),
+          userId: user.id,
+          tmdbId: id,
+          imdbId,
+          title,
+          posterPath,
+          episodesCount,
+          status,
+          want: true,
+          watching: false,
+          watched: false,
+          pin: false,
+          updatedAt: new Date(),
+        }
+
         realm.write(() => {
-          const { id, ...tmdbDetails } = show
-          const payload = {
-            ...tmdbDetails,
-            userId: user.id,
-            tmdb_id: id,
-            pin: false,
-            updatedAt: new Date(),
-          }
-
-          if (!inWantList(id)) {
-            const tvShow = realm.create(TvShow, payload, true)
-            // @ts-ignore
-            wantShowList.unshift(tvShow)
-          }
-
-          // @ts-ignore
-          realm.create(
-            UserTvShow,
-            {
-              _id: user.id,
-              userId: user.id,
-              want: wantShowList,
-            },
-            true,
-          )
+          realm.create(TvShow, payload, true)
         })
       } catch (error) {
         Sentry.captureException(error)
@@ -219,34 +203,60 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const addShowToWatchingList = (show: TMDBTvShow) => {
+  const addShowToWatchingList = (item: TvShowDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const { id, ...tmdbDetails } = show
+        const { id, imdbId, title, posterPath, episodesCount, status } = item
+        const tvShow = tvShows.find(({ tmdbId }) => tmdbId === id)
+
         const payload = {
-          ...tmdbDetails,
+          _id: tvShow ? tvShow._id : new BSON.ObjectId(),
           userId: user.id,
-          tmdb_id: id,
+          tmdbId: id,
+          imdbId,
+          title,
+          posterPath,
+          episodesCount,
+          status,
+          want: false,
+          watching: true,
+          watched: false,
+          pin: false,
+          updatedAt: new Date(),
+        }
+        realm.create(TvShow, payload, true)
+      } catch (error) {
+        Sentry.captureException(error)
+        reject(error)
+      }
+
+      resolve()
+    })
+  }
+
+  const addShowToWatchedList = (item: TvShowDetails) => {
+    return new Promise<void>((resolve, reject) => {
+      try {
+        const { id, imdbId, title, posterPath, episodesCount, status } = item
+        const tvShow = tvShows.find(({ tmdbId }) => tmdbId === id)
+
+        const payload = {
+          _id: tvShow ? tvShow._id : new BSON.ObjectId(),
+          userId: user.id,
+          tmdbId: id,
+          imdbId,
+          title,
+          posterPath,
+          episodesCount,
+          status,
+          want: false,
+          watching: false,
+          watched: true,
           pin: false,
           updatedAt: new Date(),
         }
 
-        if (!inWatchingList(id)) {
-          const tvShow = realm.create(TvShow, payload, true)
-          // @ts-ignore
-          watchingShowList.unshift(tvShow)
-        }
-
-        // @ts-ignore
-        realm.create(
-          UserTvShow,
-          {
-            _id: user.id,
-            userId: user.id,
-            watching: watchingShowList,
-          },
-          true,
-        )
+        realm.create(TvShow, payload, true)
       } catch (error) {
         Sentry.captureException(error)
         reject(error)
@@ -256,34 +266,24 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const addShowToWatchedList = (show: TMDBTvShow) => {
+  const addSeasonToWatchedList = (item: TvSeasonDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const { id, ...tmdbDetails } = show
+        const { id, tmdbShowId, title, number, posterPath } = item
+        const tvSeason = watchedSeasonList.find(({ tmdbId }) => tmdbId === id)
+
         const payload = {
-          ...tmdbDetails,
+          _id: tvSeason ? tvSeason._id : new BSON.ObjectId(),
           userId: user.id,
-          tmdb_id: id,
-          pin: false,
+          tmdbId: id,
+          tmdbShowId,
+          title,
+          number,
+          posterPath,
           updatedAt: new Date(),
         }
 
-        if (!inWatchedList(id)) {
-          const tvShow = realm.create(TvShow, payload, true)
-          // @ts-ignore
-          watchedShowList.unshift(tvShow)
-        }
-
-        // @ts-ignore
-        realm.create(
-          UserTvShow,
-          {
-            _id: user.id,
-            userId: user.id,
-            watched: watchedShowList,
-          },
-          true,
-        )
+        realm.create(TvSeason, payload, true)
       } catch (error) {
         Sentry.captureException(error)
         reject(error)
@@ -293,33 +293,24 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const addSeasonToWatchedList = (season: TMDBTvSeason) => {
+  const addEpisodeToWatchedList = (item: TvEpisodeDetails) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const { id, ...tmdbDetails } = season
+        const { id, tmdbShowId, tmdbSeasonId, title, runtime } = item
+        const tvEpisode = watchedEpisodeList.find(({ tmdbId }) => tmdbId === id)
+
         const payload = {
-          ...tmdbDetails,
+          _id: tvEpisode ? tvEpisode._id : new BSON.ObjectId(),
           userId: user.id,
-          tmdb_id: id,
+          tmdbId: id,
+          tmdbShowId,
+          tmdbSeasonId,
+          title,
+          runtime,
           updatedAt: new Date(),
         }
 
-        if (!inWatchedSeasonList(id)) {
-          const tvSeason = realm.create(TvSeason, payload, true)
-          // @ts-ignore
-          watchedSeasonList.unshift(tvSeason)
-        }
-
-        // @ts-ignore
-        realm.create(
-          UserTvSeason,
-          {
-            _id: user.id,
-            userId: user.id,
-            watched: watchedSeasonList,
-          },
-          true,
-        )
+        realm.create(TvEpisode, payload, true)
       } catch (error) {
         Sentry.captureException(error)
         reject(error)
@@ -329,72 +320,36 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const addEpisodeToWatchedList = (episode: TMDBTvEpisode) => {
-    return new Promise<void>((resolve, reject) => {
-      try {
-        const { id, ...tmdbDetails } = episode
-        const payload = {
-          ...tmdbDetails,
-          userId: user.id,
-          tmdb_id: id,
-          updatedAt: new Date(),
-        }
-
-        if (!inWatchedEpisodeList(id)) {
-          const tvEpisode = realm.create(TvEpisode, payload, true)
-          // @ts-ignore
-          watchedEpisodeList.unshift(tvEpisode)
-        }
-
-        // @ts-ignore
-        realm.create(
-          UserTvEpisode,
-          {
-            _id: user.id,
-            userId: user.id,
-            watched: watchedEpisodeList,
-          },
-          true,
-        )
-      } catch (error) {
-        Sentry.captureException(error)
-        reject(error)
-      }
-
-      resolve()
-    })
-  }
-
-  const updateShowList = (show: TMDBTvShow) => {
-    const watchedEpisodes = tvEpisodes.filter(
-      ({ tmdb_show_id }) => tmdb_show_id === show!.tmdb_id,
+  const updateShowList = (show: TvShowDetails) => {
+    const watchedEpisodes = watchedEpisodeList.filter(
+      ({ tmdbShowId }) => tmdbShowId === show!.tmdbId,
     )
 
     if (watchedEpisodes.length === 0) {
-      if (inWantList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
-      } else if (inWatchingList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
-      } else if (inWatchedList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
+      if (inWantList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
+      } else if (inWatchingList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
+      } else if (inWatchedList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
       }
     } else if (
       watchedEpisodes.length > 0 &&
-      watchedEpisodes.length === show.number_of_episodes &&
+      watchedEpisodes.length === show.episodesCount &&
       show.status !== TV_IN_PRODUCTION_STATUS
     ) {
-      if (inWantList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
-      } else if (inWatchingList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
+      if (inWantList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
+      } else if (inWatchingList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
       }
 
       addShowToWatchedList(show!)
     } else {
-      if (inWantList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
-      } else if (inWatchedList(show!.tmdb_id)) {
-        batchRemoveShowFromList([show!.tmdb_id])
+      if (inWantList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
+      } else if (inWatchedList(show!.tmdbId)) {
+        batchRemoveShowFromList([show!.tmdbId])
       }
 
       addShowToWatchingList(show)
@@ -407,9 +362,9 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     episode,
     type,
   }: {
-    show: TMDBTvShow
-    season?: TMDBTvSeason
-    episode?: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
@@ -421,7 +376,7 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
             if (isWatchedSeason(season!)) {
               addSeasonToWatchedList(season!)
             } else {
-              batchRemoveSeasonFromList([season!.tmdb_id])
+              batchRemoveSeasonFromList([season!.tmdbId])
             }
           }
 
@@ -457,12 +412,10 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const batchRemoveShowFromList = (tmdbIds: number[]) => {
+  const batchRemoveShowFromList = (ids: number[]) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const tvShowList = tvShows.filter(({ tmdb_id }) =>
-          tmdbIds.includes(tmdb_id),
-        )
+        const tvShowList = tvShows.filter(({ tmdbId }) => ids.includes(tmdbId))
 
         if (tvShowList) {
           realm.delete(tvShowList)
@@ -476,11 +429,11 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const batchRemoveSeasonFromList = (tmdbIds: number[]) => {
+  const batchRemoveSeasonFromList = (ids: number[]) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const tvSeasonList = tvSeasons.filter(({ tmdb_id }) =>
-          tmdbIds.includes(tmdb_id),
+        const tvSeasonList = watchedSeasonList.filter(({ tmdbId }) =>
+          ids.includes(tmdbId),
         )
 
         if (tvSeasonList) {
@@ -495,11 +448,11 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const batchRemoveEpisodeFromList = (tmdbIds: number[]) => {
+  const batchRemoveEpisodeFromList = (ids: number[]) => {
     return new Promise<void>((resolve, reject) => {
       try {
-        const tvEpisodeList = tvEpisodes.filter(({ tmdb_id }) =>
-          tmdbIds.includes(tmdb_id),
+        const tvEpisodeList = watchedEpisodeList.filter(({ tmdbId }) =>
+          ids.includes(tmdbId),
         )
 
         if (tvEpisodeList) {
@@ -520,35 +473,33 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     episode,
     type,
   }: {
-    show: TMDBTvShow
-    season: TMDBTvSeason
-    episode: TMDBTvEpisode
+    show: TvShowDetails
+    season?: TvSeasonDetails
+    episode?: TvEpisodeDetails
     type: "episode" | "season" | "show"
   }) => {
     return new Promise<void>((resolve, reject) => {
       try {
         realm.write(() => {
           if (type === "episode") {
-            batchRemoveEpisodeFromList([episode!.tmdb_id])
-            batchRemoveSeasonFromList([season!.tmdb_id])
+            batchRemoveEpisodeFromList([episode!.tmdbId])
+            batchRemoveSeasonFromList([season!.tmdbId])
           }
 
           if (type === "season") {
             batchRemoveEpisodeFromList(
-              season.items.map(({ tmdb_id }) => tmdb_id),
+              season!.items.map(({ tmdbId }) => tmdbId),
             )
-
-            batchRemoveSeasonFromList([season!.tmdb_id])
+            batchRemoveSeasonFromList([season!.tmdbId])
           }
 
           if (type === "show") {
             batchRemoveEpisodeFromList(
               show!.items.flatMap((showSeason) =>
-                showSeason.items.map(({ tmdb_id }) => tmdb_id),
+                showSeason.items.map(({ tmdbId }) => tmdbId),
               ),
             )
-
-            batchRemoveSeasonFromList(show!.items.map(({ tmdb_id }) => tmdb_id))
+            batchRemoveSeasonFromList(show!.items.map(({ tmdbId }) => tmdbId))
           }
 
           updateShowList(show!)
@@ -562,15 +513,9 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const pinned = (tmdbId: number) => {
-    const tvShow = tvShows.find(({ tmdb_id }) => tmdb_id === tmdbId)
-
-    return tvShow?.pin || false
-  }
-
-  const pinToList = (item: TMDBTvShow) => {
+  const pinToList = (item: TvShowDetails) => {
     return new Promise<void>((resolve, reject) => {
-      const tvShow = tvShows.find(({ tmdb_id }) => tmdb_id === item.id)
+      const tvShow = tvShows.find(({ tmdbId }) => tmdbId === item.id)
 
       if (tvShow) {
         try {
@@ -595,9 +540,9 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  const unpinFromList = (item: TMDBTvShow) => {
+  const unpinFromList = (item: TvShowDetails) => {
     return new Promise<void>((resolve, reject) => {
-      const tvShow = tvShows.find(({ tmdb_id }) => tmdb_id === item.id)
+      const tvShow = tvShows.find(({ tmdbId }) => tmdbId === item.id)
 
       if (tvShow) {
         try {
@@ -628,14 +573,12 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
         inWantList,
         inWatchingList,
         inWatchedList,
+        inPinList,
         inWatchedSeasonList,
         inWatchedEpisodeList,
         addToWantList,
-        // @ts-ignore
         addToWatchedList,
-        // @ts-ignore
         removeFromList,
-        pinned,
         pinToList,
         unpinFromList,
       }}

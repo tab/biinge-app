@@ -21,6 +21,7 @@ const PeopleComponent = ({ items }: Props) => {
       <Typography variant="subhead" style={searchResultsStyles.title}>
         {t("search.people.trending.title")}
       </Typography>
+      {/* @ts-ignore */}
       <List items={items} />
     </View>
   )

@@ -44,16 +44,16 @@ const PeopleListComponent = ({ items }: Props) => {
   }
 
   const renderItem = ({ item }: { item: any }) => {
-    const { profile_path, name, description } = item
+    const { tmdbId, profilePath, name, description } = item
 
     const handleClick = () => {
       // @ts-ignore
-      navigation.push(PERSON_SCREEN.name, { id: item.id })
+      navigation.push(PERSON_SCREEN.name, { id: tmdbId })
     }
 
     return (
       <Pressable style={peopleListStyles.root} onPress={handleClick}>
-        <Image style={peopleListStyles.image} size="w185" path={profile_path} />
+        <Image style={peopleListStyles.image} size="w185" path={profilePath} />
         <View style={peopleListStyles.name}>
           {name.split(" ").map((n: string, index: number) => (
             <Typography
@@ -66,7 +66,7 @@ const PeopleListComponent = ({ items }: Props) => {
           ))}
         </View>
         {description && (
-          <View>
+          <>
             {description.split(" ").map((n: string, index: number) => (
               <Typography
                 key={index.toString()}
@@ -76,7 +76,7 @@ const PeopleListComponent = ({ items }: Props) => {
                 {n}
               </Typography>
             ))}
-          </View>
+          </>
         )}
       </Pressable>
     )

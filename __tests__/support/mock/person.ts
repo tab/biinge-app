@@ -82,16 +82,16 @@ export const TMDB_PERSON_DETAILS = {
 export const PERSON_MOVIE_CREDITS = [
   {
     id: 693134,
-    tmdb_id: 693134,
+    tmdbId: 693134,
     title: "Dune: Part Two",
-    poster_path: "/cBDoFHJVcZqAonkTyhN9sMEggi5.jpg",
+    posterPath: "/cBDoFHJVcZqAonkTyhN9sMEggi5.jpg",
     type: "Lady Jessica Atreides",
   },
   {
     id: 438631,
-    tmdb_id: 438631,
+    tmdbId: 438631,
     title: "Dune",
-    poster_path: "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+    posterPath: "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
     type: "Lady Jessica Atreides",
   },
 ]
@@ -100,12 +100,12 @@ export const PERSON_TV_CREDITS = []
 
 export const PERSON_DETAILS = {
   id: 933238,
-  tmdb_id: 933238,
-  imdb_id: "nm0272581",
+  tmdbId: 933238,
+  imdbId: "nm0272581",
   name: "Rebecca Ferguson",
   birthday: "1983-10-19",
-  profile_path: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
+  profilePath: "/lJloTOheuQSirSLXNA3JHsrMNfH.jpg",
   gender: 1,
-  credits: PERSON_MOVIE_CREDITS,
-  tv_credits: PERSON_TV_CREDITS,
+  movieCredits: PERSON_MOVIE_CREDITS,
+  tvCredits: PERSON_TV_CREDITS,
 }

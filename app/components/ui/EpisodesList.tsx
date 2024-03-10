@@ -5,10 +5,10 @@ import { FlashList } from "@shopify/flash-list"
 import { episodesListStyles } from "styles"
 import Actions from "components/Tv/SeasonActions"
 import Episode from "components/ui/Episode"
-import { TvEpisode, TvSeason, TvDetails } from "types"
+import { TvShowDetails, TvSeason, TvEpisode } from "types"
 
 type Props = {
-  show: TvDetails
+  show: TvShowDetails
   season: TvSeason
   items: TvEpisode[]
 }

@@ -1,7 +1,7 @@
 import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
 import Animated, { SlideInDown } from "react-native-reanimated"
-import { useTheme } from "@react-navigation/native"
+import { useTheme, useNavigation } from "@react-navigation/native"
 
 import { usePersonDetails } from "hocs"
 import Close from "components/ui/Close"
@@ -15,14 +15,19 @@ type Props = {
 }
 
 const ContentComponent = ({ item }: Props) => {
+  const navigation = useNavigation()
   const { dark } = useTheme()
 
-  const { name, birthday, profile_path, gender, credits, tv_credits } = item
+  const { name, birthday, profilePath, gender, movieCredits, tvCredits } = item
+
+  const handleClose = () => {
+    navigation.goBack()
+  }
 
   return (
     <>
-      <Close />
-      <Poster poster_path={profile_path} name={name} birthday={birthday} />
+      <Close isDark onPress={handleClose} />
+      <Poster posterPath={profilePath} name={name} birthday={birthday} />
       <Animated.View
         style={[
           layoutStyles.roundCorners,
@@ -33,8 +38,8 @@ const ContentComponent = ({ item }: Props) => {
         ]}
         entering={SlideInDown}
       >
-        <Movies gender={gender} items={credits} />
-        <TvShows items={tv_credits} />
+        <Movies gender={gender} items={movieCredits} />
+        <TvShows items={tvCredits} />
       </Animated.View>
     </>
   )

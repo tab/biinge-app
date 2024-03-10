@@ -1,13 +1,12 @@
-import { EntityId } from "@reduxjs/toolkit"
-
 export interface SearchFormValues {
   query: string
 }
 
 export interface SearchResult {
-  id: EntityId
+  id: number
+  tmdbId: number
   title: string
-  poster_path: string
+  posterPath: string
 }
 
 export type SearchResultListType = SearchResult[]

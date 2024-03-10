@@ -2,22 +2,27 @@ import React from "react"
 import { SafeAreaView, useWindowDimensions } from "react-native"
 import { TabView, SceneRendererProps } from "react-native-tab-view"
 import { useTheme } from "@react-navigation/native"
-import { useUser, useObject } from "@realm/react"
+import { useQuery } from "@realm/react"
 
 import i18n from "config/i18n"
 import List from "components/ui/MovieList"
 import Tabs from "components/ui/Tabs"
-import { UserMovie } from "models"
+import { Movie } from "models"
 import { layoutStyles } from "styles"
 
 const MoviesScreen = () => {
   const { dark } = useTheme()
 
-  const user = useUser()
-  const userMovie = useObject<UserMovie>(UserMovie, user.id)
+  const movies = useQuery<Movie>(Movie)
 
-  const wantList = userMovie?.want?.sorted("pin", true) || []
-  const watchedList = userMovie?.watched?.sorted("pin", true) || []
+  const wantList = movies
+    .filtered("want == $0", true)
+    .sorted("createdAt", true)
+    .sorted("pin", true)
+  const watchedList = movies
+    .filtered("watched == $0", true)
+    .sorted("createdAt", true)
+    .sorted("pin", true)
 
   const layout = useWindowDimensions()
 

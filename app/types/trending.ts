@@ -2,9 +2,9 @@ import { EntityId } from "@reduxjs/toolkit"
 
 export interface TrendingResult {
   id: EntityId
-  tmdb_id: number
+  tmdbId: number
   title: string
-  poster_path: string
+  posterPath: string
 }
 
 export type TrendingListType = TrendingResult[]

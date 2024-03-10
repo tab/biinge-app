@@ -3,20 +3,15 @@ import Realm, { BSON } from "realm"
 export class TvShow extends Realm.Object<TvShow> {
   _id: BSON.ObjectId = new BSON.ObjectId()
   userId!: string
-  tmdb_id!: number
+  tmdbId!: number
+  imdbId?: string
   title!: string
-  tagline?: string
-  overview!: string
-  backdrop_path?: string
-  poster_path!: string
-  homepage?: string
-  popularity!: number
+  posterPath!: string
+  episodesCount!: number
   status!: string
-  release_date!: string
-  vote_average!: number
-  vote_count!: number
-  number_of_seasons!: number
-  number_of_episodes!: number
+  want!: boolean
+  watching!: boolean
+  watched!: boolean
   pin!: boolean
   createdAt: Date = new Date()
   updatedAt: Date = new Date()
@@ -26,20 +21,15 @@ export class TvShow extends Realm.Object<TvShow> {
     properties: {
       _id: "objectId",
       userId: "string",
-      tmdb_id: "double",
+      tmdbId: "double",
+      imdbId: "string",
       title: { type: "string", indexed: true },
-      tagline: "string?",
-      overview: "string",
-      backdrop_path: "string?",
-      poster_path: "string",
-      homepage: "string?",
-      popularity: "double",
+      posterPath: "string",
+      episodesCount: "double",
       status: "string",
-      release_date: "string",
-      vote_average: "double",
-      vote_count: "double",
-      number_of_seasons: "double",
-      number_of_episodes: "double",
+      want: "boolean",
+      watching: "boolean",
+      watched: "boolean",
       pin: "boolean",
       createdAt: "date",
       updatedAt: "date",

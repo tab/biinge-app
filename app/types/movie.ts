@@ -3,21 +3,27 @@ import { EntityId } from "@reduxjs/toolkit"
 import { CastPerson, CrewPerson } from "types/person"
 import { Video } from "types/video"
 
+export interface MovieListItem {
+  id: number
+  tmdbId: number
+  title: string
+  posterPath: string
+}
+
 export interface MovieDetails {
-  id: EntityId
-  tmdb_id: number
-  imdb_id: string
+  id: number
+  tmdbId: number
+  imdbId: string
   title: string
   tagline: string
   overview: string
-  backdrop_path: string
-  poster_path: string
+  posterPath: string
   homepage: string
   popularity: number
   status: string
-  release_date: string
-  vote_average: number
-  vote_count: number
+  releaseDate: string
+  rating: number
+  runtime: number
   credits: CastPerson[] | CrewPerson[]
   videos: Video[]
 }

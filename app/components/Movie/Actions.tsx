@@ -20,10 +20,10 @@ const ActionsComponent = ({ item }: Props) => {
   const {
     inWantList,
     inWatchedList,
+    inPinList,
     addToWantList,
     addToWatchedList,
     removeFromList,
-    pinned,
     pinToList,
     unpinFromList,
   } = useContext(MovieContext)
@@ -31,9 +31,9 @@ const ActionsComponent = ({ item }: Props) => {
   const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(false)
 
-  const isPinned = pinned(item.id)
   const want = inWantList(item.id)
   const watched = inWatchedList(item.id)
+  const isPinned = inPinList(item.id)
 
   const handlePin = () => {
     setLoading(true)
@@ -171,7 +171,7 @@ const ActionsComponent = ({ item }: Props) => {
       </View>
       <Modal transparent animationType="none" visible={visible}>
         <Menu
-          poster_path={item.poster_path}
+          posterPath={item.posterPath}
           pinned={isPinned}
           want={want}
           watched={watched}

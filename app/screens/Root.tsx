@@ -1,4 +1,5 @@
 import React from "react"
+import { BSON } from "realm"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import i18n from "config/i18n"
@@ -18,7 +19,10 @@ const Tab = createBottomTabNavigator()
 
 const Root = () => {
   const user = useUser()
-  const profile = useObject<UserProfile>(UserProfile, user.id)
+  const profile = useObject<UserProfile>(
+    UserProfile,
+    new BSON.ObjectId(user.id),
+  )
 
   const scheme = useColorScheme()
   const dark =

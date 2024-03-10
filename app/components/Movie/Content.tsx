@@ -2,7 +2,7 @@ import React, { ComponentType } from "react"
 import { compose } from "@reduxjs/toolkit"
 import { View } from "react-native"
 import Animated, { SlideInDown } from "react-native-reanimated"
-import { useTheme } from "@react-navigation/native"
+import { useTheme, useNavigation } from "@react-navigation/native"
 
 import { useMovieDetails } from "hocs"
 import { layoutStyles, movieStyles } from "styles"
@@ -24,14 +24,15 @@ type Props = {
 }
 
 const ContentComponent = ({ item }: Props) => {
+  const navigation = useNavigation()
   const { dark } = useTheme()
 
   const {
     title,
     overview,
-    poster_path,
-    vote_average,
-    release_date,
+    posterPath,
+    rating,
+    releaseDate,
     runtime,
     status,
     credits,
@@ -39,12 +40,16 @@ const ContentComponent = ({ item }: Props) => {
     videos,
   } = item
 
-  const isVotes = vote_average > 0
+  const isVotes = rating > 0
+
+  const handleClose = () => {
+    navigation.goBack()
+  }
 
   return (
     <>
-      <Close />
-      <Poster poster_path={poster_path} />
+      <Close onPress={handleClose} />
+      <Poster posterPath={posterPath} />
       <Play items={videos} />
 
       <Animated.View
@@ -59,16 +64,14 @@ const ContentComponent = ({ item }: Props) => {
       >
         <Title
           aside={
-            <>
-              {isVotes && <Rating size={20}>{vote_average.toFixed(1)}</Rating>}
-            </>
+            <>{isVotes && <Rating size={20}>{rating.toFixed(1)}</Rating>}</>
           }
         >
           {title}
         </Title>
 
         <View style={movieStyles.row}>
-          <ReleaseDate>{release_date}</ReleaseDate>
+          <ReleaseDate>{releaseDate}</ReleaseDate>
           <Runtime>{runtime}</Runtime>
           <Status>{status}</Status>
         </View>

@@ -14,6 +14,7 @@ export const peopleStyles = StyleSheet.create({
 
 export const peopleListStyles = StyleSheet.create({
   root: {
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",

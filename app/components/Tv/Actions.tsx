@@ -25,18 +25,18 @@ const ActionsComponent = ({ item }: Props) => {
     inWantList,
     inWatchingList,
     inWatchedList,
+    inPinList,
     addToWantList,
     addToWatchedList,
     removeFromList,
-    pinned,
     pinToList,
     unpinFromList,
   } = useContext(TvContext)
 
-  const isPinned = pinned(item.id)
   const want = inWantList(item.id)
   const watching = inWatchingList(item.id)
   const watched = inWatchedList(item.id)
+  const isPinned = inPinList(item.id)
   const isAdded = want || watching || watched
 
   const { status } = item
@@ -186,7 +186,7 @@ const ActionsComponent = ({ item }: Props) => {
       </View>
       <Modal transparent animationType="none" visible={visible}>
         <Menu
-          poster_path={item.poster_path}
+          posterPath={item.posterPath}
           pinned={isPinned}
           want={want}
           watching={watching}

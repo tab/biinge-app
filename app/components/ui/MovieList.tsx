@@ -29,18 +29,22 @@ const MovieListComponent = ({
 }: Props) => {
   const navigation = useNavigation()
 
-  const { inWantList, inWatchedList, pinned } = useContext(MovieContext)
+  const { inWantList, inWatchedList, inPinList } = useContext(MovieContext)
 
-  const renderItem = ({ item }: { item: any }) => {
-    const { title, poster_path } = item
+  const renderItem = ({ item }: { item: Movie }) => {
+    if (item === undefined) {
+      return null
+    }
 
-    const inList = inWantList(item.tmdb_id) || inWatchedList(item.tmdb_id)
-    const isPinned = pinned(item.tmdb_id)
+    const { title, tmdbId, posterPath } = item
+
+    const inList = inWantList(tmdbId) || inWatchedList(tmdbId)
+    const isPinned = inPinList(tmdbId)
 
     const handleClick = () => {
       // @ts-ignore
       navigation.push(DETAILS_SCREEN.name, {
-        id: item.tmdb_id,
+        id: tmdbId,
         type: DETAILS_MOVIE_TYPE,
       })
     }
@@ -60,7 +64,7 @@ const MovieListComponent = ({
           ]}
           size={numColumns === 2 ? "w342" : "w185"}
           title={title}
-          path={poster_path}
+          path={posterPath}
         />
         {inList && (
           <>

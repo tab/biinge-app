@@ -18,9 +18,7 @@ exports[`TvReleaseDate renders correctly when show is ended 1`] = `
     ]
   }
 >
-  01.01.2024
    – 
-  27.02.2024
 </Text>
 `;
 
@@ -42,6 +40,6 @@ exports[`TvReleaseDate renders correctly when show is not ended 1`] = `
     ]
   }
 >
-  15 December 2023
+   – 
 </Text>
 `;

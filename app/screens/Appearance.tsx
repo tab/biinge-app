@@ -1,6 +1,7 @@
 import React from "react"
 import { View, Image, ImageProps } from "react-native"
 import { useUser, useObject, useRealm } from "@realm/react"
+import { BSON } from "realm"
 import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
@@ -31,7 +32,7 @@ const AppearanceScreen = () => {
   const { dark } = useTheme()
 
   const user = useUser()
-  const profile = useObject<Profile>(Profile, user.id)
+  const profile = useObject<Profile>(Profile, new BSON.ObjectId(user.id))
 
   const ITEMS = [
     {
@@ -62,7 +63,7 @@ const AppearanceScreen = () => {
       realm.create(
         Profile,
         {
-          _id: user.id,
+          _id: new BSON.ObjectId(user.id),
           userId: user.id,
           appearance: value,
           updatedAt: new Date(),

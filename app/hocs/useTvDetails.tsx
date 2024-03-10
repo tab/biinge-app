@@ -11,7 +11,7 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbTvDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
-import { TvDetails, FETCH_STATUS } from "types"
+import { FETCH_STATUS, TvShowDetails } from "types"
 import { loadingStyles } from "styles"
 import colors from "styles/colors"
 
@@ -26,7 +26,9 @@ export function useTvDetails<GenericType>(
     const dispatch = useAppDispatch()
     const { dark } = useTheme()
 
-    const result = useAppSelector((state) => selectById(state, id)) as TvDetails
+    const result = useAppSelector((state) =>
+      selectById(state, id),
+    ) as TvShowDetails
     const fetchStatus =
       useAppSelector((state) => selectFetchStatus(state, id)) || FETCH_STATUS
 
@@ -67,7 +69,7 @@ export function useTvDetails<GenericType>(
         renderError={renderError}
       >
         {/* eslint-disable-next-line @typescript-eslint/no-shadow */}
-        {(result: TvDetails) => (
+        {(result: TvShowDetails) => (
           // @ts-ignore
           <WrappedComponent
             {...restProps}

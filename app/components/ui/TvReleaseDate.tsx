@@ -5,25 +5,25 @@ import Typography from "components/ui/Typography"
 import { tvStyles } from "styles"
 
 type Props = {
-  in_production: boolean
-  release_date: string
-  end_date: string
+  inProduction: boolean
+  releaseDate: string
+  endDate: string
 }
 
 const TvReleaseDateComponent = ({
-  in_production,
-  release_date,
-  end_date,
+  inProduction,
+  releaseDate,
+  endDate,
 }: Props) => {
   return (
     <Typography variant="headline" style={tvStyles.date}>
-      {in_production ? (
-        <>{formatDate(release_date, "d MMMM yyyy")}</>
+      {inProduction ? (
+        <>{formatDate(releaseDate, "d MMMM yyyy")}</>
       ) : (
         <>
-          {formatDate(release_date, "dd.MM.yyyy")}
+          {formatDate(releaseDate, "dd.MM.yyyy")}
           &nbsp;&ndash;&nbsp;
-          {formatDate(end_date, "dd.MM.yyyy")}
+          {formatDate(endDate, "dd.MM.yyyy")}
         </>
       )}
     </Typography>

@@ -3,6 +3,7 @@ import { useColorScheme } from "react-native"
 import { NavigationContainer, ThemeProvider } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { useObject, useUser } from "@realm/react"
+import { BSON } from "realm"
 
 import { routingInstrumentation } from "../App"
 import {
@@ -34,7 +35,7 @@ const RouterComponent = () => {
   const navigation = useRef()
 
   const user = useUser()
-  const profile = useObject<Profile>(Profile, user.id)
+  const profile = useObject<Profile>(Profile, new BSON.ObjectId(user.id))
 
   const scheme = useColorScheme()
   const dark =

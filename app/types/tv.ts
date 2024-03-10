@@ -3,74 +3,61 @@ import { EntityId } from "@reduxjs/toolkit"
 import { CastPerson, CrewPerson } from "types/person"
 import { Video } from "types/video"
 
-export interface TvDetails {
-  id: EntityId
-  tmdb_id: number
+export interface TvShowDetails {
+  id: number
+  tmdbId: number
+  imdbId: string
   title: string
-  tagline: string
-  overview: string
-  backdrop_path: string
-  poster_path: string
-  homepage: string
-  popularity: number
+  posterPath: string
+  episodesCount: number
   status: string
-  in_production: boolean
-  release_date: string
-  end_date: string
-  first_air_date: string
-  last_air_date: string
-  next_episode_to_air: string
-  vote_average: number
-  vote_count: number
-  number_of_seasons: number
-  number_of_episodes: number
-  seasons: TvSeason[]
+  items: TvSeason[]
   credits: CastPerson[] | CrewPerson[]
   videos: Video[]
 }
 
-export interface TvShow {
+export interface TvSeasonDetails {
   id: number
-  tmdb_id: number
+  tmdbId: number
+  tmdbShowId: number
   title: string
-  status: string
-  poster_path: string
-  number_of_seasons: number
-  number_of_episodes: number
-  items: TvSeason[]
+  number: number
+  posterPath: string
+  items: TvEpisode[]
+}
+
+export interface TvEpisodeDetails {
+  id: number
+  tmdbId: number
+  tmdbSeasonId: number
+  tmdbShowId: number
+  title: string
+  runtime: number
 }
 
 export interface TvSeason {
   id: number
-  tmdb_id: number
-  tmdb_show_id: number
+  tmdbId: number
+  tmdbShowId: number
   title: string
   number: number
-  poster_path: string
+  posterPath: string
   items: TvEpisode[]
-}
-
-export interface TvSeasons {
-  id: EntityId
-  items: TvSeason[]
 }
 
 export interface TvEpisode {
   id: number
-  tmdb_id: number
-  tmdb_season_id: number
-  tmdb_show_id: number
+  tmdbId: number
+  tmdbSeasonId: number
+  tmdbShowId: number
   title: string
-  air_date: string
   runtime: number
-  vote_average: number
-  vote_count: number
 }
 
 export interface TvRecommendation {
   id: EntityId
   title: string
-  poster_path: string
+  posterPath: string
 }
 
 export interface TvRecommendations {

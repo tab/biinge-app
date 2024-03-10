@@ -3,26 +3,24 @@ import { View } from "react-native"
 import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
-import { UserTvShow } from "models"
+import { TvShow } from "models"
+import { getHours, getDays, getWeeks } from "helpers/stats"
 import Typography from "components/ui/Typography"
 import { statsStyles, textStyles, layoutStyles } from "styles"
+import { useQuery } from "@realm/react"
 
 type Props = {
-  object: UserTvShow | null
   minutes: number
 }
 
-const MovieStatsComponent = ({ object, minutes }: Props) => {
+const MovieStatsComponent = ({ minutes }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
 
-  const want = object?.want
-  const watching = object?.watching
-  const watched = object?.watched
-
-  const hours = Math.floor(minutes / 60)
-  const days = Math.floor(hours / 24)
-  const weeks = Math.floor(days / 7)
+  const tvShows = useQuery<TvShow>(TvShow)
+  const wantList = tvShows.filtered("want == $0", true)
+  const watchingList = tvShows.filtered("watching == $0", true)
+  const watchedList = tvShows.filtered("watched == $0", true)
 
   return (
     <View
@@ -45,7 +43,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {want?.length || 0}
+              {wantList?.length || 0}
             </Typography>
             <Typography
               variant="footnote"
@@ -64,7 +62,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {watching?.length || 0}
+              {watchingList?.length || 0}
             </Typography>
             <Typography
               variant="footnote"
@@ -83,7 +81,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {watched?.length || 0}
+              {watchedList?.length || 0}
             </Typography>
             <Typography
               variant="footnote"
@@ -104,7 +102,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {weeks || 0}
+              {getWeeks(minutes)}
             </Typography>
             <Typography
               variant="footnote"
@@ -123,7 +121,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {days || 0}
+              {getDays(minutes)}
             </Typography>
             <Typography
               variant="footnote"
@@ -142,7 +140,7 @@ const MovieStatsComponent = ({ object, minutes }: Props) => {
               variant="headline"
               style={dark ? textStyles.textDark : textStyles.textLight}
             >
-              {hours || 0}
+              {getHours(minutes)}
             </Typography>
             <Typography
               variant="footnote"

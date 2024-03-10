@@ -1,7 +1,7 @@
-import Realm from "realm"
+import Realm, { BSON } from "realm"
 
 export class Profile extends Realm.Object<Profile> {
-  _id!: string
+  _id: BSON.ObjectId = new BSON.ObjectId()
   userId!: string
   appearance!: string
   createdAt: Date = new Date()
@@ -10,7 +10,7 @@ export class Profile extends Realm.Object<Profile> {
   ProfileSchema = {
     name: "Profile",
     properties: {
-      _id: "string",
+      _id: "objectId",
       userId: "string",
       appearance: "string",
       createdAt: "date",

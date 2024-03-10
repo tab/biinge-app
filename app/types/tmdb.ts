@@ -46,30 +46,6 @@ export interface TMDBPersonResult {
 
 export type TMDBPersonListType = TMDBPersonResult[]
 
-export interface TMDBMovieDetails {
-  id: number
-  title: string
-  tagline: string
-  overview: string
-  adult: boolean
-  backdrop_path: string
-  poster_path: string
-  imdb_id: string
-  budget: number
-  genres: []
-  release_date: string
-  homepage: string
-  original_language: string
-  original_title: string
-  popularity: number
-  revenue: number
-  runtime: number
-  status: string
-  video: boolean
-  vote_average: number
-  vote_count: number
-}
-
 export interface TMDBPersonCast {
   id: number
   name: string
@@ -139,30 +115,6 @@ export interface TMDBVideo {
   published_at: string
   iso_3166_1: string
   iso_639_1: string
-}
-
-export interface TMDBTvDetails {
-  id: number
-  name: string
-  tagline: string
-  overview: string
-  adult: boolean
-  backdrop_path: string
-  poster_path: string
-  genres: []
-  seasons: []
-  first_air_date: string
-  last_air_date: string
-  number_of_seasons: number
-  number_of_episodes: number
-  homepage: string
-  original_language: string
-  original_name: string
-  popularity: number
-  status: string
-  in_production: boolean
-  vote_average: number
-  vote_count: number
 }
 
 export interface TMDBTvSeason {

@@ -20,6 +20,9 @@ import {
   TMDB_TRAILER_TYPE,
   TMDB_YOUTUBE_TYPE,
   TMDB_TV_EXCLUDED_GENRE_IDS,
+  TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY,
+  TMDB_JOB_SCREENPLAY,
+  TMDB_JOB_WRITER,
 } from "types"
 
 const uniqById = <T extends { id: number }>(items: T[]): T[] => {
@@ -59,9 +62,9 @@ const filterMovieCredits = (
       }: TMDBMovieCast | TMDBMovieCrew) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title,
-          poster_path,
+          posterPath: poster_path,
           type: job ? job : character,
         }
       },
@@ -90,10 +93,10 @@ const filterTvCredits = (items: (TMDBTvCast | TMDBTvCrew)[]): any[] => {
       ({ id, poster_path, name, episode_count }: TMDBTvCast | TMDBTvCrew) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title: name,
-          poster_path,
-          number_of_episodes: episode_count,
+          posterPath: poster_path,
+          episodesCount: episode_count,
         }
       },
     )
@@ -109,18 +112,13 @@ export const movieDetails = createAsyncThunk(
 
     const {
       title,
-      tagline,
       overview,
-      backdrop_path,
       poster_path,
-      homepage,
-      popularity,
       status,
       imdb_id,
       release_date,
       runtime,
       vote_average,
-      vote_count,
       credits,
       videos,
       recommendations,
@@ -131,21 +129,40 @@ export const movieDetails = createAsyncThunk(
       .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
         return {
           id,
-          tmdb_id: id,
-          profile_path,
+          tmdbId: id,
+          profilePath: profile_path,
           name,
           description: character,
         }
       })
 
-    const filteredCrew = credits.crew
+    const filteredDirector = credits.crew
       .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
       .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
       .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
         return {
           id,
-          tmdb_id: id,
-          profile_path,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredCrew = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) =>
+        [
+          TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY,
+          TMDB_JOB_SCREENPLAY,
+          TMDB_JOB_WRITER,
+        ].includes(job),
+      )
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
           name,
           description: job,
         }
@@ -156,9 +173,9 @@ export const movieDetails = createAsyncThunk(
       .map(({ id, title, poster_path }: TMDBRecommendation) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title,
-          poster_path,
+          posterPath: poster_path,
         }
       })
 
@@ -169,29 +186,28 @@ export const movieDetails = createAsyncThunk(
       .map(({ id, name, key, published_at }: TMDBVideo) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           name,
           key,
-          published_at,
+          publishedAt: published_at,
         }
       })
 
     return {
       id: movieId,
       title,
-      tagline,
       overview,
-      backdrop_path,
-      poster_path,
-      homepage,
-      popularity,
+      posterPath: poster_path,
       status,
-      imdb_id,
-      release_date,
+      imdbId: imdb_id,
+      releaseDate: release_date,
       runtime,
-      vote_average,
-      vote_count,
-      credits: [...filteredCrew, ...filteredCast],
+      rating: vote_average,
+      credits: uniqById([
+        ...filteredDirector,
+        ...filteredCast,
+        ...filteredCrew,
+      ]),
       recommendations: filteredRecommendations,
       videos: filteredVideos,
     }
@@ -209,17 +225,12 @@ export const tvDetails = createAsyncThunk(
       name,
       tagline,
       overview,
-      backdrop_path,
       poster_path,
-      homepage,
-      popularity,
       status,
       in_production,
       first_air_date,
       last_air_date,
-      next_episode_to_air,
       vote_average,
-      vote_count,
       number_of_seasons,
       number_of_episodes,
       seasons,
@@ -240,11 +251,11 @@ export const tvDetails = createAsyncThunk(
 
           return {
             id,
-            tmdb_id: id,
-            tmdb_show_id: tvId,
+            tmdbId: id,
+            tmdbShowId: tvId,
             title: name,
             number: season_number,
-            poster_path: poster_path,
+            posterPath: poster_path,
             // @ts-ignore
             items: payload?.items || [],
           }
@@ -256,21 +267,40 @@ export const tvDetails = createAsyncThunk(
       .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
         return {
           id,
-          tmdb_id: id,
-          profile_path,
+          tmdbId: id,
+          profilePath: profile_path,
           name,
           description: character,
         }
       })
 
-    const filteredCrew = credits.crew
+    const filteredDirector = credits.crew
       .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
       .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
       .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
         return {
           id,
-          tmdb_id: id,
-          profile_path,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredCrew = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) =>
+        [
+          TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY,
+          TMDB_JOB_SCREENPLAY,
+          TMDB_JOB_WRITER,
+        ].includes(job),
+      )
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
           name,
           description: job,
         }
@@ -281,9 +311,9 @@ export const tvDetails = createAsyncThunk(
       .map(({ id, title, poster_path }: TMDBRecommendation) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title,
-          poster_path,
+          posterPath: poster_path,
         }
       })
 
@@ -294,36 +324,33 @@ export const tvDetails = createAsyncThunk(
       .map(({ id, name, key, published_at }: TMDBVideo) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           name,
           key,
-          published_at,
+          publishedAt: published_at,
         }
       })
 
     return {
       id: tvId,
-      tmdb_id: tvId,
+      tmdbId: tvId,
       title: name,
       tagline,
       overview,
-      backdrop_path,
-      poster_path,
-      homepage,
-      popularity,
+      posterPath: poster_path,
       status,
-      in_production,
-      release_date: first_air_date,
-      end_date: last_air_date,
-      first_air_date,
-      last_air_date,
-      next_episode_to_air,
-      vote_average,
-      vote_count,
-      number_of_seasons,
-      number_of_episodes,
-      seasons: filteredSeasons,
-      credits: [...filteredCrew, ...filteredCast],
+      inProduction: in_production,
+      releaseDate: first_air_date,
+      endDate: last_air_date,
+      rating: vote_average,
+      seasonsCount: number_of_seasons,
+      episodesCount: number_of_episodes,
+      items: filteredSeasons,
+      credits: uniqById([
+        ...filteredDirector,
+        ...filteredCast,
+        ...filteredCrew,
+      ]),
       recommendations: filteredRecommendations,
       videos: filteredVideos,
     }
@@ -342,7 +369,7 @@ export const tvEpisodes = createAsyncThunk(
     const tmdb_season_id = id
 
     const filteredEpisodes = episodes
-      .filter(({ still_path }: TMDBTvEpisode) => still_path)
+      .filter(({ air_date }: TMDBTvEpisode) => air_date)
       .map(
         ({
           id,
@@ -350,20 +377,18 @@ export const tvEpisodes = createAsyncThunk(
           air_date,
           runtime,
           vote_average,
-          vote_count,
           still_path,
         }: TMDBTvEpisode) => {
           return {
             id,
-            tmdb_id: id,
-            tmdb_season_id,
-            tmdb_show_id: tvId,
+            tmdbId: id,
+            tmdbSeasonId: tmdb_season_id,
+            tmdbShowId: tvId,
             title: name,
-            air_date,
+            airDate: air_date,
             runtime,
-            vote_average,
-            vote_count,
-            poster_path: still_path,
+            rating: vote_average,
+            posterPath: still_path,
           }
         },
       )
@@ -413,14 +438,14 @@ export const personDetails = createAsyncThunk(
 
     return {
       id: personId,
-      tmdb_id: personId,
-      imdb_id,
+      tmdbId: personId,
+      imdbId: imdb_id,
       name,
       birthday,
-      profile_path,
+      profilePath: profile_path,
       gender,
-      credits: filterdMovieCastAndCredits,
-      tv_credits: uniqById(filteredTvCastAndCredits),
+      movieCredits: filterdMovieCastAndCredits,
+      tvCredits: uniqById(filteredTvCastAndCredits),
     }
   },
 )
@@ -439,9 +464,9 @@ export const trendingMovie = createAsyncThunk(
       .map(({ id, title, poster_path }: TMDBMovieResult) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title,
-          poster_path,
+          posterPath: poster_path,
         }
       })
   },
@@ -458,9 +483,9 @@ export const trendingTv = createAsyncThunk("tmdb/trending/tv", async () => {
     .map(({ id, name, poster_path }: TMDBTvResult) => {
       return {
         id,
-        tmdb_id: id,
+        tmdbId: id,
         title: name,
-        poster_path,
+        posterPath: poster_path,
       }
     })
 })
@@ -478,9 +503,9 @@ export const trendingPeople = createAsyncThunk(
       .map(({ id, name, profile_path }: TMDBPersonResult) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           name,
-          profile_path,
+          profilePath: profile_path,
         }
       })
   },
@@ -499,9 +524,9 @@ export const movieSearch = createAsyncThunk(
       .map(({ id, title, poster_path }: TMDBMovieResult) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title,
-          poster_path,
+          posterPath: poster_path,
         }
       })
   },
@@ -520,9 +545,9 @@ export const tvSearch = createAsyncThunk(
       .map(({ id, name, poster_path }: TMDBTvResult) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           title: name,
-          poster_path,
+          posterPath: poster_path,
         }
       })
   },
@@ -541,9 +566,9 @@ export const personSearch = createAsyncThunk(
       .map(({ id, name, profile_path }: TMDBPersonResult) => {
         return {
           id,
-          tmdb_id: id,
+          tmdbId: id,
           name,
-          profile_path,
+          profilePath: profile_path,
         }
       })
   },

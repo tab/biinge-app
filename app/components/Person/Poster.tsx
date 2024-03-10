@@ -14,12 +14,12 @@ import { personPosterStyles, personStyles } from "styles"
 import colors from "styles/colors"
 
 type Props = {
-  poster_path: string
+  posterPath: string
   name: string
   birthday: string
 }
 
-const PosterComponent = ({ poster_path, name, birthday }: Props) => {
+const PosterComponent = ({ posterPath, name, birthday }: Props) => {
   const { dark } = useTheme()
 
   return (
@@ -31,11 +31,7 @@ const PosterComponent = ({ poster_path, name, birthday }: Props) => {
         reducedTransparencyFallbackColor={colors.white}
       />
       <View style={personPosterStyles.card}>
-        <Image
-          style={personPosterStyles.image}
-          size="w780"
-          path={poster_path}
-        />
+        <Image style={personPosterStyles.image} size="w780" path={posterPath} />
         <LinearGradient
           style={personPosterStyles.blur}
           start={{ x: 1, y: 0 }}

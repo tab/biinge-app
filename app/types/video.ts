@@ -2,7 +2,8 @@ import { EntityId } from "@reduxjs/toolkit"
 
 export interface Video {
   id: EntityId
+  tmdbId: number
   name: string
   key: string
-  published_at: string
+  publishedAt: string
 }

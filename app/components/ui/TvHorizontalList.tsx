@@ -44,17 +44,15 @@ const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
   }
 
   const renderItem = ({ item }: { item: any }) => {
-    const { title, poster_path } = item
+    const { title, tmdbId, posterPath } = item
 
     const inList =
-      inWantList(item.tmdb_id) ||
-      inWatchingList(item.tmdb_id) ||
-      inWatchedList(item.tmdb_id)
+      inWantList(tmdbId) || inWatchingList(tmdbId) || inWatchedList(tmdbId)
 
     const handleClick = () => {
       // @ts-ignore
       navigation.push(DETAILS_SCREEN.name, {
-        id: item.tmdb_id,
+        id: tmdbId,
         type: DETAILS_TV_TYPE,
       })
     }
@@ -65,7 +63,7 @@ const TvHorizontalListComponent = ({ items, showStatus }: Props) => {
           style={[horizontalListStyles.image, horizontalListStyles.imageSm]}
           size="w342"
           title={title}
-          path={poster_path}
+          path={posterPath}
         />
         {showStatus && inList && (
           <Check
