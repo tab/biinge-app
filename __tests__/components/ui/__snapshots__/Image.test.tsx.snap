@@ -2,11 +2,6 @@
 
 exports[`Image renders correctly 1`] = `
 <View
-  animatedStyle={
-    {
-      "value": {},
-    }
-  }
   collapsable={false}
   entering={
     FadeIn {
@@ -30,6 +25,11 @@ exports[`Image renders correctly 1`] = `
     }
   }
   exiting={[Function]}
+  jestAnimatedStyle={
+    {
+      "value": {},
+    }
+  }
   style={
     {
       "backgroundColor": "#fafafa",

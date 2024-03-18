@@ -36,11 +36,6 @@ exports[`Poster renders correctly 1`] = `
     }
   >
     <View
-      animatedStyle={
-        {
-          "value": {},
-        }
-      }
       collapsable={false}
       entering={
         FadeIn {
@@ -64,6 +59,11 @@ exports[`Poster renders correctly 1`] = `
         }
       }
       exiting={[Function]}
+      jestAnimatedStyle={
+        {
+          "value": {},
+        }
+      }
       style={
         {
           "alignSelf": "center",

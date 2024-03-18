@@ -45,11 +45,6 @@ exports[`Close renders correctly 1`] = `
   }
 >
   <View
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
     collapsable={false}
     entering={
       FadeIn {
@@ -70,6 +65,11 @@ exports[`Close renders correctly 1`] = `
         "rotateV": undefined,
         "stiffnessV": undefined,
         "type": undefined,
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {},
       }
     }
     style={
