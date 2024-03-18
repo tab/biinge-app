@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next"
 
 import List from "components/ui/EpisodesList"
 import { seasonsListStyles } from "styles"
+import { TvShowDetails, TvSeasonDetails } from "types"
 
 type Props = {
-  show: any
-  items: any[]
+  show: TvShowDetails
+  items: TvSeasonDetails[]
 }
 
 const SeasonsListComponent = ({ show, items }: Props) => {
@@ -15,7 +16,13 @@ const SeasonsListComponent = ({ show, items }: Props) => {
 
   const [currentSeason, setCurrentSeason] = useState(items[0])
 
-  const renderItem = ({ item, index }: { item: any; index: number }) => {
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: TvSeasonDetails
+    index: number
+  }) => {
     const handleClick = () => {
       setCurrentSeason(item)
     }

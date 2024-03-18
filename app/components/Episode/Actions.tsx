@@ -4,43 +4,48 @@ import { useTranslation } from "react-i18next"
 import { useTheme } from "@react-navigation/native"
 
 import { TvContext } from "contexts/TvContext"
-import { seasonActionsStyles, actionButtonStyles, buttonStyles } from "styles"
+import { actionButtonStyles, seasonActionsStyles, buttonStyles } from "styles"
 import Button from "components/ui/Button"
 import Typography from "components/ui/Typography"
-import { TvShowDetails, TvSeasonDetails } from "types"
+import { TvShowDetails, TvSeasonDetails, TvEpisodeDetails } from "types"
 
 type Props = {
   show: TvShowDetails
-  item: TvSeasonDetails
+  season: TvSeasonDetails
+  item: TvEpisodeDetails
 }
 
-const SeasonActionsComponent = ({ show, item }: Props) => {
+const ActionsComponent = ({ show, season, item }: Props) => {
   const { t } = useTranslation()
   const { dark } = useTheme()
 
   const [loading, setLoading] = useState(false)
 
-  const { inWatchedSeasonList, addToWatchedList, removeFromList } =
+  const { inWatchedEpisodeList, addToWatchedList, removeFromList } =
     useContext(TvContext)
 
-  const watched = inWatchedSeasonList(item.id)
+  const watched = inWatchedEpisodeList(item.id)
 
   const handleAdd = () => {
     setLoading(true)
-    addToWatchedList({ show, season: item, type: "season" }).finally(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 150)
-    })
+    addToWatchedList({ show, season, episode: item, type: "episode" }).finally(
+      () => {
+        setTimeout(() => {
+          setLoading(false)
+        }, 150)
+      },
+    )
   }
 
   const handleRemove = () => {
     setLoading(true)
-    removeFromList({ show, season: item, type: "season" }).finally(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 150)
-    })
+    removeFromList({ show, season, episode: item, type: "episode" }).finally(
+      () => {
+        setTimeout(() => {
+          setLoading(false)
+        }, 150)
+      },
+    )
   }
 
   const handleWatched = () => {
@@ -73,4 +78,4 @@ const SeasonActionsComponent = ({ show, item }: Props) => {
   )
 }
 
-export default SeasonActionsComponent
+export default ActionsComponent

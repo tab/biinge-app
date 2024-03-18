@@ -33,6 +33,12 @@ export interface TvEpisodeDetails {
   tmdbShowId: number
   title: string
   runtime: number
+  posterPath: string
+  overview: string
+  rating: number
+  airDate: string
+  credits: CastPerson[] | CrewPerson[]
+  videos: Video[]
 }
 
 export interface TvSeason {
@@ -52,6 +58,11 @@ export interface TvEpisode {
   tmdbShowId: number
   title: string
   runtime: number
+  posterPath: string
+  overview: string
+  rating: number
+  airDate: string
+  credits: CastPerson[] | CrewPerson[]
 }
 
 export interface TvRecommendation {

@@ -2,10 +2,20 @@ import React from "react"
 import { View } from "react-native"
 import { FlashList } from "@shopify/flash-list"
 
-import { DETAILS_MOVIE_TYPE } from "config"
+import {
+  DETAILS_MOVIE_TYPE,
+  DETAILS_TV_TYPE,
+  DETAILS_EPISODE_TYPE,
+} from "config"
 import MovieContent from "components/Movie/Content"
 import TvContent from "components/Tv/Content"
+import EpisodeContent from "components/Episode/Content"
 import { layoutStyles } from "styles"
+
+type SectionType = {
+  key: string
+  component: React.ReactNode
+}
 
 type Props = {
   route: any
@@ -35,7 +45,36 @@ const DetailsScreen = ({ route }: Props) => {
     },
   ]
 
-  const SECTIONS = type === DETAILS_MOVIE_TYPE ? MOVIE_ITEMS : TV_ITEMS
+  const EPISODE_ITEMS = [
+    {
+      key: "EpisodeContent",
+      component: (
+        <EpisodeContent
+          // @ts-ignore
+          id={id}
+          show={params.show}
+          season={params.season}
+          episodeNumber={params.episodeNumber}
+        />
+      ),
+    },
+  ]
+
+  let SECTIONS: SectionType[] = []
+
+  switch (type) {
+    case DETAILS_MOVIE_TYPE:
+      SECTIONS = MOVIE_ITEMS
+      break
+    case DETAILS_TV_TYPE:
+      SECTIONS = TV_ITEMS
+      break
+    case DETAILS_EPISODE_TYPE:
+      SECTIONS = EPISODE_ITEMS
+      break
+    default:
+      break
+  }
 
   const renderItem = ({ item }: { item: any }) => {
     return item.component

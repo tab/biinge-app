@@ -132,6 +132,7 @@ export interface TMDBTvEpisode {
   vote_average: number
   vote_count: number
   still_path: string
+  guest_stars: TMDBPersonCast[]
 }
 
 export interface TMDBTvCast {

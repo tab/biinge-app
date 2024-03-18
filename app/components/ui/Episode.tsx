@@ -1,34 +1,40 @@
 import React, { useContext, useRef } from "react"
-import { View, Text } from "react-native"
+import { View, Text, Pressable } from "react-native"
 import Animated, { FadeIn } from "react-native-reanimated"
 import { RectButton } from "react-native-gesture-handler"
 import Swipeable from "react-native-gesture-handler/Swipeable"
-import { useTheme } from "@react-navigation/native"
+import { useTheme, useNavigation } from "@react-navigation/native"
 
 import { TvContext } from "contexts/TvContext"
 import { formatDate } from "helpers/formatDate"
 import { formatRuntime } from "helpers/formatRuntime"
+import { DETAILS_SCREEN } from "screens/Details"
 import Icon from "components/ui/Icon"
 import Rating from "components/ui/Rating"
 import Typography from "components/ui/Typography"
+import { DETAILS_EPISODE_TYPE } from "config"
 import { episodesListStyles, titleStyles } from "styles"
+import { TvShowDetails, TvSeasonDetails, TvEpisodeDetails } from "types"
 import colors from "styles/colors"
 
 type Props = {
-  show: any
-  season: any
-  item: any
+  show: TvShowDetails
+  season: TvSeasonDetails
+  item: TvEpisodeDetails
   index: number
 }
 
 const EpisodeComponent = ({ show, season, item, index }: Props) => {
+  const navigation = useNavigation()
   const swipeable = useRef(null)
   const { dark } = useTheme()
 
   const { inWatchedEpisodeList, addToWatchedList, removeFromList } =
     useContext(TvContext)
 
-  const watched = inWatchedEpisodeList(item.id)
+  const { id, tmdbId } = item
+
+  const watched = inWatchedEpisodeList(id)
 
   const { title, airDate, runtime, rating } = item
   const votes = rating > 0
@@ -64,6 +70,17 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
       // @ts-ignore
       swipeable.current.close()
     }
+  }
+
+  const handleClick = () => {
+    // @ts-ignore
+    navigation.push(DETAILS_SCREEN.name, {
+      id: tmdbId,
+      episodeNumber: index + 1,
+      show,
+      season,
+      type: DETAILS_EPISODE_TYPE,
+    })
   }
 
   const renderLeftActions = () => (
@@ -103,16 +120,18 @@ const EpisodeComponent = ({ show, season, item, index }: Props) => {
                   size={watched ? 15 : 8}
                 />
               </Animated.View>
-              <Typography
-                variant="subhead"
-                numberOfLines={2}
-                style={[
-                  episodesListStyles.title,
-                  dark ? titleStyles.dark : titleStyles.light,
-                ]}
-              >
-                {title}
-              </Typography>
+              <Pressable onPress={handleClick}>
+                <Typography
+                  variant="subhead"
+                  numberOfLines={2}
+                  style={[
+                    episodesListStyles.title,
+                    dark ? titleStyles.dark : titleStyles.light,
+                  ]}
+                >
+                  {title}
+                </Typography>
+              </Pressable>
             </View>
             {votes && (
               <Rating style={episodesListStyles.rating} size={16}>

@@ -7,6 +7,7 @@ import peopleTrending from "redux/features/tmdb/tmdbPeopleTrendingSlice"
 import personDetails from "redux/features/tmdb/tmdbPersonDetailsSlice"
 import personSearch from "redux/features/tmdb/tmdbPersonSearchSlice"
 import tvDetails from "redux/features/tmdb/tmdbTvDetailsSlice"
+import episodeDetails from "redux/features/tmdb/tmdbEpisodeDetailsSlice"
 import tvSearch from "redux/features/tmdb/tmdbTvSearchSlice"
 import tvTrending from "redux/features/tmdb/tmdbTvTrendingSlice"
 
@@ -18,6 +19,7 @@ export const features = combineReducers({
   personDetails,
   personSearch,
   tvDetails,
+  episodeDetails,
   tvSearch,
   tvTrending,
 })

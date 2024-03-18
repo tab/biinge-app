@@ -15,6 +15,7 @@ export const YOUTUBE_API_KEY = Config.YOUTUBE_API_KEY
 
 export const DETAILS_MOVIE_TYPE = "movie"
 export const DETAILS_TV_TYPE = "tv"
+export const DETAILS_EPISODE_TYPE = "episode"
 
 export const TV_IN_PRODUCTION_STATUS = "Returning Series"
 

@@ -370,32 +370,150 @@ export const tvEpisodes = createAsyncThunk(
 
     const filteredEpisodes = episodes
       .filter(({ air_date }: TMDBTvEpisode) => air_date)
-      .map(
-        ({
+      .map(({ id, name, air_date, runtime, vote_average }: TMDBTvEpisode) => {
+        return {
           id,
-          name,
-          air_date,
+          tmdbId: id,
+          tmdbSeasonId: tmdb_season_id,
+          tmdbShowId: tvId,
+          title: name,
+          airDate: air_date,
           runtime,
-          vote_average,
-          still_path,
-        }: TMDBTvEpisode) => {
-          return {
-            id,
-            tmdbId: id,
-            tmdbSeasonId: tmdb_season_id,
-            tmdbShowId: tvId,
-            title: name,
-            airDate: air_date,
-            runtime,
-            rating: vote_average,
-            posterPath: still_path,
-          }
-        },
-      )
+          rating: vote_average,
+        }
+      })
 
     return {
       id,
       items: filteredEpisodes,
+    }
+  },
+)
+
+export const episodeDetails = createAsyncThunk(
+  "tmdb/episode/details",
+  async ({
+    id,
+    tvId,
+    seasonNumber,
+    episodeNumber,
+  }: {
+    id: number
+    tvId: number
+    seasonNumber: number
+    episodeNumber: number
+  }) => {
+    const tvShowResponse = await TMDB_API.get(`/tv/${tvId}?language=${LANG}`)
+    const tmdbShowId = tvShowResponse.data.id
+
+    const tvSeasonResponse = await TMDB_API.get(
+      `/tv/${tvId}/season/${seasonNumber}?language=${LANG}`,
+    )
+    const tmdbSeasonId = tvSeasonResponse.data.id
+
+    const response = await TMDB_API.get(
+      `/tv/${tvId}/season/${seasonNumber}/episode/${episodeNumber}?include_adult=false&language=${LANG}&append_to_response=credits,videos`,
+    )
+    const {
+      name,
+      still_path,
+      overview,
+      runtime,
+      vote_average,
+      air_date,
+      credits,
+      guest_stars,
+      videos,
+    } = response.data
+
+    const filteredCast = credits.cast
+      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
+      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: character,
+        }
+      })
+
+    const filteredGuestStars = guest_stars
+      .filter(({ profile_path }: TMDBPersonCast) => profile_path)
+      .map(({ id, profile_path, name, character }: TMDBPersonCast) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: character,
+        }
+      })
+
+    const filteredDirector = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) => [TMDB_JOB_DIRECTOR].includes(job))
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredCrew = credits.crew
+      .filter(({ profile_path }: TMDBPersonCrew) => profile_path)
+      .filter(({ job }: TMDBPersonCrew) =>
+        [
+          TMDB_JOB_DIRECTOR_OF_PHOTOGRAPHY,
+          TMDB_JOB_SCREENPLAY,
+          TMDB_JOB_WRITER,
+        ].includes(job),
+      )
+      .map(({ id, profile_path, name, job }: TMDBPersonCrew) => {
+        return {
+          id,
+          tmdbId: id,
+          profilePath: profile_path,
+          name,
+          description: job,
+        }
+      })
+
+    const filteredVideos = videos.results
+      .filter(({ official }: TMDBVideo) => official)
+      .filter(({ site }: TMDBVideo) => site === TMDB_YOUTUBE_TYPE)
+      .filter(({ type }: TMDBVideo) => type === TMDB_TRAILER_TYPE)
+      .map(({ id, name, key, published_at }: TMDBVideo) => {
+        return {
+          id,
+          tmdbId: id,
+          name,
+          key,
+          publishedAt: published_at,
+        }
+      })
+
+    return {
+      id,
+      tmdbId: id,
+      tmdbShowId,
+      tmdbSeasonId,
+      title: name,
+      posterPath: still_path,
+      overview,
+      runtime,
+      rating: vote_average,
+      airDate: air_date,
+      credits: uniqById([
+        ...filteredDirector,
+        ...filteredCast,
+        ...filteredGuestStars,
+        ...filteredCrew,
+      ]),
+      videos: filteredVideos,
     }
   },
 )
