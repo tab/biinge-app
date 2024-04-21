@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from "react-native"
 import YouTube from "react-native-youtube"
-import { useTheme } from "@react-navigation/native"
 
 import { YOUTUBE_API_KEY } from "config"
 import Close from "components/ui/Close"
