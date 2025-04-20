@@ -4,12 +4,17 @@ exports[`Check renders correctly 1`] = `
 <View
   collapsable={false}
   entering={[Function]}
+  jestAnimatedProps={
+    {
+      "value": {},
+    }
+  }
   jestAnimatedStyle={
     {
       "value": {},
     }
   }
-  style={{}}
+  style={[]}
 >
   <Text
     allowFontScaling={false}

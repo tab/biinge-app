@@ -3,7 +3,6 @@
 exports[`Typography renders correctly body variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -23,7 +22,6 @@ exports[`Typography renders correctly body variant 1`] = `
 exports[`Typography renders correctly callout variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -43,7 +41,6 @@ exports[`Typography renders correctly callout variant 1`] = `
 exports[`Typography renders correctly caption1 variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -63,7 +60,6 @@ exports[`Typography renders correctly caption1 variant 1`] = `
 exports[`Typography renders correctly caption2 variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -83,7 +79,6 @@ exports[`Typography renders correctly caption2 variant 1`] = `
 exports[`Typography renders correctly footnote variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -103,7 +98,6 @@ exports[`Typography renders correctly footnote variant 1`] = `
 exports[`Typography renders correctly headline variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -123,7 +117,6 @@ exports[`Typography renders correctly headline variant 1`] = `
 exports[`Typography renders correctly subhead variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -143,7 +136,6 @@ exports[`Typography renders correctly subhead variant 1`] = `
 exports[`Typography renders correctly title1 variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -163,7 +155,6 @@ exports[`Typography renders correctly title1 variant 1`] = `
 exports[`Typography renders correctly title2 variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -183,7 +174,6 @@ exports[`Typography renders correctly title2 variant 1`] = `
 exports[`Typography renders correctly title3 variant 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {

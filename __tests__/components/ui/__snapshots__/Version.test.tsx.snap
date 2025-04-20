@@ -11,7 +11,6 @@ exports[`Version renders correctly 1`] = `
 >
   <Text
     ellipsizeMode="tail"
-    numberOfLines={0}
     style={
       [
         {
@@ -33,7 +32,6 @@ exports[`Version renders correctly 1`] = `
   </Text>
   <Text
     ellipsizeMode="tail"
-    numberOfLines={0}
     style={
       [
         {
