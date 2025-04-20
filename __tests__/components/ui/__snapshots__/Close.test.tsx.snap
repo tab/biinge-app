@@ -45,42 +45,20 @@ exports[`Close renders correctly 1`] = `
   }
 >
   <View
-    collapsable={false}
-    entering={
-      FadeIn {
-        "build": [Function],
-        "callbackV": undefined,
-        "dampingRatioV": undefined,
-        "dampingV": undefined,
-        "delayV": 500,
-        "durationV": undefined,
-        "easingV": undefined,
-        "initialValues": undefined,
-        "massV": undefined,
-        "overshootClampingV": undefined,
-        "randomizeDelay": false,
-        "reduceMotionV": "system",
-        "restDisplacementThresholdV": undefined,
-        "restSpeedThresholdV": undefined,
-        "rotateV": undefined,
-        "stiffnessV": undefined,
-        "type": undefined,
-      }
-    }
-    jestAnimatedStyle={
-      {
-        "value": {},
-      }
-    }
+    entering="FadeIn"
     style={
-      {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "borderRadius": 50,
-        "height": 28,
-        "justifyContent": "center",
-        "width": 28,
-      }
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 50,
+          "height": 28,
+          "justifyContent": "center",
+          "width": 28,
+        },
+        {
+          "backgroundColor": "#fff",
+        },
+      ]
     }
   >
     <Text

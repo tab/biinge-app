@@ -3,7 +3,6 @@
 exports[`TvReleaseDate renders correctly when show is ended 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {
@@ -25,7 +24,6 @@ exports[`TvReleaseDate renders correctly when show is ended 1`] = `
 exports[`TvReleaseDate renders correctly when show is not ended 1`] = `
 <Text
   ellipsizeMode="tail"
-  numberOfLines={0}
   style={
     [
       {

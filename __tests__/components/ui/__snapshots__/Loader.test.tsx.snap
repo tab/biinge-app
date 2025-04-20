@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "height": 1334,
+      "justifyContent": "center",
+    }
+  }
+>
+  <BlurView
+    blurAmount={15}
+    blurType="light"
+    reducedTransparencyFallbackColor="#000"
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <ActivityIndicator
+    animating={true}
+    color="#ffffff"
+    size="small"
+  />
+</View>
+`;
+
+exports[`Loader renders correctly with dark 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "height": 1334,
+      "justifyContent": "center",
+    }
+  }
+>
+  <BlurView
+    blurAmount={15}
+    blurType="dark"
+    reducedTransparencyFallbackColor="#000"
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <ActivityIndicator
+    animating={true}
+    color="#ffffff"
+    size="small"
+  />
+</View>
+`;

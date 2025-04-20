@@ -10,7 +10,6 @@ exports[`Overview renders correctly 1`] = `
 >
   <Text
     ellipsizeMode="tail"
-    numberOfLines={0}
     style={
       [
         {
@@ -26,11 +25,10 @@ exports[`Overview renders correctly 1`] = `
       ]
     }
   >
-    Synopsis
+    content.overview
   </Text>
   <Text
     ellipsizeMode="tail"
-    numberOfLines={0}
     style={
       [
         {

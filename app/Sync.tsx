@@ -8,6 +8,7 @@ import MovieProvider from "contexts/MovieContext"
 import TvProvider from "contexts/TvContext"
 import { Movie, TvShow, TvSeason, TvEpisode, Profile } from "models"
 import { Store } from "redux/store"
+import Loader from "components/ui/Loader"
 
 const realmAccessBehavior: Realm.OpenRealmBehaviorConfiguration = {
   type: OpenRealmBehaviorType.DownloadBeforeOpen,
@@ -31,6 +32,7 @@ const Sync = ({ children }: Props) => {
         newRealmFileBehavior: realmAccessBehavior,
         existingRealmFileBehavior: realmAccessBehavior,
       }}
+      fallback={<Loader dark />}
     >
       <Provider store={Store}>
         <MovieProvider>

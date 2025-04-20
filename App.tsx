@@ -8,8 +8,9 @@ import Routes from "./app/Routes"
 import Login from "./app/screens/Login"
 import { layoutStyles } from "./app/styles"
 
-export const routingInstrumentation =
-  new Sentry.ReactNavigationInstrumentation()
+export const routingInstrumentation = Sentry.reactNavigationIntegration({
+  enableTimeToInitialDisplay: true,
+})
 
 Sentry.init({
   dsn: SENTRY_ENABLED ? SENTRY_DSN : undefined,
@@ -18,11 +19,7 @@ Sentry.init({
   _experiments: {
     profilesSampleRate: 1.0,
   },
-  integrations: [
-    new Sentry.ReactNativeTracing({
-      routingInstrumentation,
-    }),
-  ],
+  integrations: [routingInstrumentation],
 })
 
 const App = () => {
