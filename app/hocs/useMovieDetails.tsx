@@ -1,9 +1,6 @@
 import React, { useEffect } from "react"
-import { ActivityIndicator, View } from "react-native"
-import { BlurView } from "@react-native-community/blur"
 import { useTheme } from "@react-navigation/native"
 
-import { APP_APPEARANCE_DARK, APP_APPEARANCE_LIGHT } from "config"
 import { useAppDispatch, useAppSelector } from "redux/hooks"
 import { movieDetails } from "redux/features/tmdb/tmdbThunk"
 import {
@@ -11,9 +8,8 @@ import {
   selectFetchStatus,
 } from "redux/features/tmdb/tmdbMovieDetailsSlice"
 import LoadableEntity from "components/ui/LoadableEntity"
+import Loader from "components/ui/Loader"
 import { MovieDetails, FETCH_STATUS } from "types"
-import { loadingStyles } from "styles"
-import colors from "styles/colors"
 
 type Props = {
   id: number
@@ -40,21 +36,7 @@ export function useMovieDetails<GenericType>(
     }, [])
 
     const renderLoader = () => {
-      return (
-        <View style={loadingStyles.root}>
-          <BlurView
-            style={loadingStyles.blur}
-            blurType={dark ? APP_APPEARANCE_DARK : APP_APPEARANCE_LIGHT}
-            blurAmount={15}
-            reducedTransparencyFallbackColor={colors.white}
-          />
-          <ActivityIndicator
-            animating={true}
-            size="small"
-            color={colors.white}
-          />
-        </View>
-      )
+      return <Loader dark={dark} />
     }
 
     const renderError = () => {
