@@ -2,19 +2,11 @@
 
 exports[`Check renders correctly 1`] = `
 <View
-  collapsable={false}
-  entering={[Function]}
-  jestAnimatedProps={
+  entering={
     {
-      "value": {},
+      "delay": [MockFunction],
     }
   }
-  jestAnimatedStyle={
-    {
-      "value": {},
-    }
-  }
-  style={[]}
 >
   <Text
     allowFontScaling={false}

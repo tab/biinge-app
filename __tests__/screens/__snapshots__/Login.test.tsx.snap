@@ -47,23 +47,10 @@ exports[`Login renders correctly 1`] = `
   <BVLinearGradient
     colors={
       [
-        0,
-        2566914048,
-        4278190080,
+        "rgba(0, 0, 0, 0) 100%)",
+        "rgba(0, 0, 0, 0.6) 50%",
+        "rgba(0, 0, 0, 1) 0%",
       ]
-    }
-    endPoint={
-      {
-        "x": 0.5,
-        "y": 1,
-      }
-    }
-    locations={null}
-    startPoint={
-      {
-        "x": 0.5,
-        "y": 0,
-      }
     }
     style={
       {
@@ -155,7 +142,7 @@ exports[`Login renders correctly 1`] = `
           autoFocus={true}
           keyboardAppearance="light"
           onChangeText={[Function]}
-          placeholder="Email"
+          placeholder="login.form.email.placeholder.title"
           placeholderTextColor="#b5b5b5"
           style={
             [
@@ -189,7 +176,7 @@ exports[`Login renders correctly 1`] = `
           autoFocus={false}
           keyboardAppearance="light"
           onChangeText={[Function]}
-          placeholder="Password"
+          placeholder="login.form.password.placeholder.title"
           placeholderTextColor="#b5b5b5"
           secureTextEntry={true}
           style={
@@ -284,7 +271,7 @@ exports[`Login renders correctly 1`] = `
               ]
             }
           >
-            Login or Register
+            login.form.submit.title
           </Text>
         </View>
       </View>

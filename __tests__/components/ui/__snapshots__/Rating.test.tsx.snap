@@ -17,7 +17,7 @@ exports[`Rating renders correctly 1`] = `
       [
         {
           "color": "#eec01e",
-          "fontSize": 20,
+          "fontSize": 12,
         },
         undefined,
         {

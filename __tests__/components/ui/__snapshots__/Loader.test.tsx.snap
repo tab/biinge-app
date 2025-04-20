@@ -16,18 +16,13 @@ exports[`Loader renders correctly 1`] = `
     blurType="light"
     reducedTransparencyFallbackColor="#000"
     style={
-      [
-        {
-          "backgroundColor": "transparent",
-        },
-        {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
     }
   />
   <ActivityIndicator
@@ -54,18 +49,13 @@ exports[`Loader renders correctly with dark 1`] = `
     blurType="dark"
     reducedTransparencyFallbackColor="#000"
     style={
-      [
-        {
-          "backgroundColor": "transparent",
-        },
-        {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
     }
   />
   <ActivityIndicator
