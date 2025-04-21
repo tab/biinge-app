@@ -92,30 +92,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "rnx-kit": {
-    "kitType": "app",
-    "alignDeps": {
-      "requirements": [
-        "react-native@0.73"
-      ],
-      "capabilities": [
-        "animation",
-        "babel-preset-react-native",
-        "core",
-        "core-android",
-        "core-ios",
-        "core/metro-config",
-        "gestures",
-        "jest",
-        "masked-view",
-        "navigation/native",
-        "react",
-        "react-test-renderer",
-        "safe-area",
-        "screens",
-        "svg"
-      ]
-    }
   }
 }
