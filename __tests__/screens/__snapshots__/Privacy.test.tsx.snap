@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Privacy renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "backgroundColor": "#fafafa",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "stretch",
+        "flexDirection": "column",
+        "justifyContent": "space-between",
+        "padding": 24,
+      }
+    }
+  >
+    <Text
+      ellipsizeMode="tail"
+      style={
+        [
+          {
+            "color": "#181818",
+            "fontSize": 26,
+            "fontWeight": "700",
+            "lineHeight": 28,
+          },
+          {
+            "color": "#181818",
+          },
+        ]
+      }
+    >
+      privacy.title
+    </Text>
+  </View>
+</View>
+`;
