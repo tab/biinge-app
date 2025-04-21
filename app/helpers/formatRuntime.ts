@@ -25,8 +25,6 @@ function formatRuntime(value: number) {
         minutes,
       })
     }
-
-    return
   }
 }
 
