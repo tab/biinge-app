@@ -1,97 +1,152 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Biinge
 
-# Getting Started
+Biinge allows users to browse and track movies and TV shows, manage wish list, and discover new content.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- **Track Movies and TV Shows**: Keep track of what you want to watch and what you've already watched
+- **In-Progress Tracking**: For TV shows, track individual episodes and seasons you've watched
+- **Search**: Find movies and TV shows from TMDb's extensive database
+- **Trending Content**: Discover popular movies, TV shows, and people
+- **Detailed Information**: View details about movies, TV shows, episodes, and people
+- **Visual Management**: Pin favorite content to the top of your lists
+- **Dark/Light Themes**: Choose between dark and light themes or use system preferences
+- **Statistics**: View detailed statistics about your watching habits, including total time spent watching
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Development Setup
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Follow these steps to set up the development environment and run the application locally.
 
-```sh
-# Using npm
-npm start
+### Prerequisites
 
-# OR using Yarn
-yarn start
-```
+- Node.js (recommended version: 18.x or later)
+- npm or yarn
+- Xcode (for iOS development)
+- CocoaPods
+- Ruby
+- Git
 
-## Step 2: Build and run your app
+### Installation
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+1. Clone this repository
+   ```sh
+   git clone https://github.com/tab/biinge-app.git
+   cd biinge-app
+   ```
 
-### Android
+2. Install dependencies
+   ```sh
+   yarn install
+   ```
 
-```sh
-# Using npm
-npm run android
+3. Install CocoaPods dependencies
+   ```sh
+   cd ios
+   pod install --repo-update
+   cd ..
+   ```
 
-# OR using Yarn
-yarn android
-```
+4. Create a `.env` file in the root of the project with the following variables:
+   ```
+   APP_ID=your_app_id
+   TMDB_ACCESS_TOKEN=your_tmdb_access_token
+   YOUTUBE_API_KEY=your_youtube_api_key
+   SENTRY_DSN=your_sentry_dsn
+   SENTRY_ENABLED=true
+   ```
 
-### iOS
+   Note: You'll need to obtain API keys from:
+   - [TMDb API](https://developer.themoviedb.org/docs/getting-started)
+   - [YouTube Data API](https://developers.google.com/youtube/v3/getting-started)
+   - [Sentry](https://sentry.io) (optional for error tracking)
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Running the App
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+#### For iOS
 
-```sh
-bundle install
-```
+1. Start the Metro bundler
+   ```sh
+   npx react-native start --reset-cache
+   ```
 
-Then, and every time you update your native dependencies, run:
+2. Run the iOS app in the simulator
+   ```sh
+   npx react-native run-ios --verbose
+   ```
 
-```sh
-bundle exec pod install
-```
+   Alternatively, you can open the `ios/biinge.xcworkspace` file in Xcode and run the app from there.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Building for Release
 
-```sh
-# Using npm
-npm run ios
+### iOS Release Build
 
-# OR using Yarn
-yarn ios
-```
+1. Open the `ios/biinge.xcworkspace` file in Xcode
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+2. Select your connected iPhone or a target device in Xcode
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+3. Change the build configuration to "Release"
+   - Select the project in the Project Navigator
+   - Go to the "Build Settings" tab
+   - Set "Release" in the "Configuration" section
 
-## Step 3: Modify your app
+4. Update the version and build number
+   - Select the project in the Project Navigator
+   - Go to the "General" tab
+   - Update "Version" and "Build" fields as needed
 
-Now that you have successfully run the app, let's make changes!
+5. Set code signing
+   - Select the project in the Project Navigator
+   - Go to the "Signing & Capabilities" tab
+   - Select the appropriate provisioning profile for distribution
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+6. Build the app for your device
+   - Select "Product" -> "Build"
+   - After a successful build, select "Product" -> "Archive"
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+7. Distribute the app
+   - In the Organizer window that appears, select the archive you just created
+   - Click "Distribute App" and follow the prompts based on your distribution method
+     - Ad Hoc: For testing on specific devices
+     - App Store Connect: For submitting to the App Store
+     - Enterprise: For in-house distribution
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Creating an IPA File for Ad Hoc Distribution
 
-## Congratulations! :tada:
+1. In the Organizer, after selecting "Distribute App"
+2. Choose "Ad Hoc" distribution
+3. Follow the prompts and select the devices you want to install the app on
+4. Generate and download the IPA file
+5. The IPA can be installed on registered devices using Apple Configurator or services like Diawi
 
-You've successfully run and modified your React Native App. :partying_face:
+## Technology Stack
 
-### Now what?
+- React Native
+- Redux (with Redux Toolkit)
+- React Navigation
+- Realm Database
+- TypeScript
+- TMDb API
+- Various React Native libraries (Reanimated, Fast Image, Flash List, etc.)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## Project Structure
 
-# Troubleshooting
+- `app/`: Main application code
+  - `components/`: UI components
+  - `contexts/`: React contexts
+  - `models/`: Realm database models
+  - `redux/`: Redux store and slices
+  - `screens/`: Application screens
+  - `styles/`: Style definitions
+  - `types/`: TypeScript type definitions
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## Contributing
 
-# Learn More
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-To learn more about React Native, take a look at the following resources:
+## License
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is licensed under the [MIT License](LICENSE).
