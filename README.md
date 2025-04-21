@@ -13,6 +13,10 @@ Biinge allows users to browse and track movies and TV shows, manage wish list, a
 - **Dark/Light Themes**: Choose between dark and light themes or use system preferences
 - **Statistics**: View detailed statistics about your watching habits, including total time spent watching
 
+## Screenshots
+
+![screenshots](https://github.com/user-attachments/assets/08474315-74c5-4677-847e-effa783401c3)
+
 ## Development Setup
 
 Follow these steps to set up the development environment and run the application locally.
