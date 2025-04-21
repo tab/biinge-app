@@ -2,7 +2,6 @@ import React from "react"
 import "react-native"
 import { Text } from "react-native"
 import { render } from "@testing-library/react-native"
-
 import { it } from "@jest/globals"
 
 import Title from "components/ui/Title"

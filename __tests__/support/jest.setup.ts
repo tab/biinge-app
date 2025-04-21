@@ -72,3 +72,5 @@ jest.mock("@react-native-community/blur", () => ({
 }))
 
 jest.mock("react-native-linear-gradient", () => "BVLinearGradient")
+
+jest.mock("react-native-youtube", () => "YouTube")

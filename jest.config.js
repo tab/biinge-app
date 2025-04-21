@@ -7,6 +7,8 @@ module.exports = {
   moduleNameMapper: {
   },
   setupFiles: [
-    "<rootDir>/__tests__/support/jest.setup.ts"
-  ]
+    "<rootDir>/__tests__/support/jest.setup.ts",
+  ],
+  collectCoverage: true,
+  coverageReporters: ["html"],
 }

@@ -3,13 +3,11 @@ import "react-native"
 import { render } from "@testing-library/react-native"
 import { it } from "@jest/globals"
 
-import FormError from "components/ui/FormError"
+import Privacy from "screens/Privacy"
 
-describe("FormError", () => {
-  const error = "Error message"
-
+describe("Privacy", () => {
   it("renders correctly", () => {
-    const tree = render(<FormError>{error}</FormError>)
+    const tree = render(<Privacy />)
     expect(tree).toMatchSnapshot()
   })
 })

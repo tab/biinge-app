@@ -1,7 +1,6 @@
 import React from "react"
 import "react-native"
 import { render } from "@testing-library/react-native"
-
 import { it } from "@jest/globals"
 
 import Avatar from "components/ui/Avatar"

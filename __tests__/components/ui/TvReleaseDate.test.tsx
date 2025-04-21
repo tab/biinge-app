@@ -1,7 +1,6 @@
 import React from "react"
 import "react-native"
 import { render } from "@testing-library/react-native"
-
 import { it } from "@jest/globals"
 
 import TvReleaseDate from "components/ui/TvReleaseDate"
@@ -13,9 +12,9 @@ describe("TvReleaseDate", () => {
 
     const tree = render(
       <TvReleaseDate
-        in_production={true}
-        release_date={release_date}
-        end_date={end_date}
+        inProduction={true}
+        releaseDate={release_date}
+        endDate={end_date}
       />,
     )
     expect(tree).toMatchSnapshot()
@@ -27,9 +26,9 @@ describe("TvReleaseDate", () => {
 
     const tree = render(
       <TvReleaseDate
-        in_production={false}
-        release_date={release_date}
-        end_date={end_date}
+        inProduction={false}
+        releaseDate={release_date}
+        endDate={end_date}
       />,
     )
     expect(tree).toMatchSnapshot()

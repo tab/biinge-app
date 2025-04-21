@@ -1,4 +1,4 @@
-import { formatDate } from "helpers/formatDate.ts"
+import { formatDate } from "helpers/formatDate"
 
 describe("formatDate", () => {
   test("when value is undefined", () => {

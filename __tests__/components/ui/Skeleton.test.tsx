@@ -1,7 +1,6 @@
 import React from "react"
 import { View } from "react-native"
 import { render } from "@testing-library/react-native"
-
 import { it } from "@jest/globals"
 
 import Skeleton from "components/ui/Skeleton"

@@ -28,8 +28,8 @@ const Root = () => {
   const dark =
     profile?.appearance != null
       ? profile?.appearance === APP_APPEARANCE_DARK ||
-      (profile?.appearance === APP_APPEARANCE_SYSTEM &&
-        scheme === APP_APPEARANCE_DARK)
+        (profile?.appearance === APP_APPEARANCE_SYSTEM &&
+          scheme === APP_APPEARANCE_DARK)
       : scheme === APP_APPEARANCE_DARK
 
   return (
