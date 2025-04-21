@@ -1,6 +1,17 @@
 import { Theme as NavigationTheme } from "@react-navigation/native"
 
-type FontWeight = "normal" | "bold" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900"
+type FontWeight =
+  | "normal"
+  | "bold"
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900"
 
 type FontStyle = {
   fontFamily: string
@@ -8,36 +19,36 @@ type FontStyle = {
 }
 
 export interface Theme extends NavigationTheme {
-  dark: boolean;
+  dark: boolean
   colors: {
-    primary: string;
-    background: string;
-    card: string;
-    lightCard: string;
-    text: string;
-    textSecondary: string;
-    border: string;
-    notification: string;
-    surface: string;
-    onSurface: string;
-    surfaceVariant: string;
-    onSurfaceVariant: string;
-    outline: string;
+    primary: string
+    background: string
+    card: string
+    lightCard: string
+    text: string
+    textSecondary: string
+    border: string
+    notification: string
+    surface: string
+    onSurface: string
+    surfaceVariant: string
+    onSurfaceVariant: string
+    outline: string
     elevation: {
-      level0: string;
-      level1: string;
-      level2: string;
-      level3: string;
-      level4: string;
-      level5: string;
-    };
-  };
+      level0: string
+      level1: string
+      level2: string
+      level3: string
+      level4: string
+      level5: string
+    }
+  }
   fonts: {
-    regular: FontStyle;
-    medium: FontStyle;
-    bold: FontStyle;
-    heavy: FontStyle;
-  };
+    regular: FontStyle
+    medium: FontStyle
+    bold: FontStyle
+    heavy: FontStyle
+  }
 }
 
 export const lightTheme: Theme = {

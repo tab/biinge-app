@@ -1,6 +1,10 @@
 import React from "react"
 import { useColorScheme } from "react-native"
-import { NavigationContainer, ThemeProvider, createNavigationContainerRef } from "@react-navigation/native"
+import {
+  NavigationContainer,
+  ThemeProvider,
+  createNavigationContainerRef,
+} from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { useObject, useUser } from "@realm/react"
 import { BSON } from "realm"
@@ -41,8 +45,8 @@ const RouterComponent = () => {
   const dark =
     profile?.appearance != null
       ? profile?.appearance === APP_APPEARANCE_DARK ||
-      (profile?.appearance === APP_APPEARANCE_SYSTEM &&
-        scheme === APP_APPEARANCE_DARK)
+        (profile?.appearance === APP_APPEARANCE_SYSTEM &&
+          scheme === APP_APPEARANCE_DARK)
       : scheme === APP_APPEARANCE_DARK
   const theme = dark ? darkTheme : lightTheme
 

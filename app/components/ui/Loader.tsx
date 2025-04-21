@@ -19,11 +19,7 @@ const LoaderComponent = ({ dark }: Props) => {
         blurAmount={15}
         reducedTransparencyFallbackColor={colors.darkBlack}
       />
-      <ActivityIndicator
-        animating={true}
-        size="small"
-        color={colors.white}
-      />
+      <ActivityIndicator animating={true} size="small" color={colors.white} />
     </View>
   )
 }

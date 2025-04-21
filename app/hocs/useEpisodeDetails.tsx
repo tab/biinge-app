@@ -56,7 +56,6 @@ export function useEpisodeDetails<GenericType>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     const renderLoader = () => {
       return <Loader dark={dark} />
     }

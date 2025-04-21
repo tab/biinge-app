@@ -172,7 +172,9 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
     watchedEpisodeIds.includes(tmdbId)
 
   const isWatchedSeason = (season: TvSeasonDetails) => {
-    if (season.items.length === 0) {return false}
+    if (season.items.length === 0) {
+      return false
+    }
 
     const episodeSet = new Set(season.items.map(({ tmdbId }) => tmdbId))
     const watchedSet = new Set(
@@ -181,10 +183,14 @@ const TvProvider = ({ children }: { children: React.ReactNode }) => {
         .map(({ tmdbId }) => tmdbId),
     )
 
-    if (episodeSet.size !== watchedSet.size) {return false}
+    if (episodeSet.size !== watchedSet.size) {
+      return false
+    }
 
     for (const id of episodeSet) {
-      if (!watchedSet.has(id)) {return false}
+      if (!watchedSet.has(id)) {
+        return false
+      }
     }
 
     return true
